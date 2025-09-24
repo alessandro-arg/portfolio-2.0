@@ -18,7 +18,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden px-6 py-24 md:px-10">
+    <section className="relative overflow-hidden px-6 py-24 md:px-10 h-[300vh]">
       <div
         ref={ringRef}
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
@@ -30,8 +30,7 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 80 }}
         >
-          Hi, I’m <span className="underline decoration-dotted">Your Name</span>
-          .
+          Hi, I’m <span className="text-blue-500">Alessandro</span>.
         </motion.h1>
         <motion.p
           className="mt-4 text-muted-foreground md:text-lg"

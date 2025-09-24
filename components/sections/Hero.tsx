@@ -30,7 +30,7 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 80 }}
         >
-          Hi, I’m <span className="text-blue-500">Alessandro</span>.
+          Hi, I’m <span className="text-[#16b1ff]">Alessandro</span>.
         </motion.h1>
         <motion.p
           className="mt-4 text-muted-foreground md:text-lg"

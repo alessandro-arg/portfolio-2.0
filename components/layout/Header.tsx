@@ -92,7 +92,7 @@ export default function Header() {
             className={[
               // pill look
               "relative flex items-center justify-between gap-4",
-              "rounded-full border-2 border-black bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80",
+              "rounded-full border-2 border-black bg-gray-800/80 backdrop-blur supports-[backdrop-filter]:bg-gray-800/80",
               "shadow-[2px_3px_0_0_#000] px-4 py-2 sm:px-5 sm:py-2.5",
             ].join(" ")}
           >
@@ -103,7 +103,7 @@ export default function Header() {
               onMouseDown={(e) => e.currentTarget.classList.add("scale-95")}
               onMouseUp={(e) => e.currentTarget.classList.remove("scale-95")}
             >
-              John Smith
+              Alessandro
             </Link>
 
             {/* Nav */}
@@ -114,7 +114,7 @@ export default function Header() {
                   <li key={item.href} className="relative">
                     <Link
                       href={item.href}
-                      className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
+                      className="text-sm text-gray-300 hover:text-white transition-colors"
                       onClick={() => setActive(item.href)}
                     >
                       {item.label}
@@ -125,7 +125,7 @@ export default function Header() {
                       {isActive && (
                         <motion.span
                           layoutId={underlineLayoutId}
-                          className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-gray-900"
+                          className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-[#16b1ff]"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}

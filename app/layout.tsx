@@ -33,7 +33,7 @@ export default function RootLayout({
         <Header />
 
         {/* page content needs some top padding so it's not covered by the fixed header */}
-        <div className="pt-20">
+        <div id="content" className="pt-20">
           <ThemeProvider>{children}</ThemeProvider>
         </div>
       </body>

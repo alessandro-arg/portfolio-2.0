@@ -13,7 +13,6 @@ const NAV = [
 ];
 
 function useScrollDirection(threshold = 6) {
-  // returns "up" | "down"
   const [dir, setDir] = useState<"up" | "down">("up");
   const lastY = useRef(0);
 
@@ -58,12 +57,12 @@ export default function Header() {
       el,
       { y: -40, opacity: 0, filter: "blur(6px)" },
       {
-        y: 0,
+        y: 8,
         opacity: 1,
         filter: "blur(0px)",
         duration: 0.6,
         ease: "power3.out",
-        delay: 0.05,
+        delay: 0.5,
       }
     );
   }, []);
@@ -73,7 +72,7 @@ export default function Header() {
     const el = barRef.current;
     // hide when scrolling down, show when up
     gsap.to(el, {
-      y: dir === "down" ? -80 : 12, // 12px margin from the top when shown
+      y: dir === "down" ? -80 : 8, // 12px margin from the top when shown
       duration: 0.45,
       ease: "power3.out",
     });
@@ -92,7 +91,7 @@ export default function Header() {
             className={[
               // pill look
               "relative flex items-center justify-between gap-4",
-              "rounded-full border-2 border-black bg-gray-800/80 backdrop-blur supports-[backdrop-filter]:bg-gray-800/80",
+              "rounded-full border-2 border-black bg-gray-800/95 backdrop-blur supports-[backdrop-filter]:bg-gray-800/95",
               "shadow-[2px_3px_0_0_#000] px-4 py-2 sm:px-5 sm:py-2.5",
             ].join(" ")}
           >
@@ -140,26 +139,26 @@ export default function Header() {
                   </li>
                 );
               })}
-            </ul>
 
-            {/* Contact button */}
-            <motion.div
-              whileHover={{ y: -1 }}
-              whileTap={{ scale: 0.97, y: 0 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            >
-              <Link
-                href="#contact"
-                className={[
-                  "inline-flex items-center justify-center rounded-full",
-                  "border-2 border-black bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
-                  "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-shadow",
-                ].join(" ")}
-                onClick={() => setActive("#contact")}
+              {/* Contact button */}
+              <motion.div
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
               >
-                Contact
-              </Link>
-            </motion.div>
+                <Link
+                  href="#contact"
+                  className={[
+                    "inline-flex items-center justify-center rounded-full",
+                    "border-2 border-black bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
+                    "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-shadow",
+                  ].join(" ")}
+                  onClick={() => setActive("#contact")}
+                >
+                  Contact
+                </Link>
+              </motion.div>
+            </ul>
           </nav>
         </div>
       </div>

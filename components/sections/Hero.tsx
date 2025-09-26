@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-import { CircleArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   const ringRef = useRef<HTMLDivElement>(null);
@@ -20,42 +20,60 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden px-6 py-24 md:px-10 h-[300vh]">
+    <section className="relative w-full overflow-hidden">
       <div
         ref={ringRef}
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
       />
-      <motion.div
-        className="mx-auto mb-6 w-fit rounded-full flex items-center justify-center gap-2 py-2 px-4 bg-background-100 border-1 border-[#ffffff25] text-[#a0a0a0] text-base font-medium"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
-      >
-        <span className="text-gray-300">Want to work toghether?</span>
-        <CircleArrowRight size={20} />
-      </motion.div>
-      <div className="mx-auto max-w-4xl text-center">
-        <motion.h1
-          className="text-4xl font-bold tracking-tight md:text-6xl"
+
+      {/*Hero*/}
+      <div className="relative z-20 mx-auto mt-40 mb-2 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
+        {/*Small CTA Button*/}
+        <motion.div
+          className="flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
+        >
+          <span className="mx-1 rounded-full bg-blue-700 px-1.5 text-xs leading-relaxed text-white">
+            New
+          </span>
+          <span className="relative text-[rgb(0,0,0,65%)] dark:text-[rgb(255,255,255,90%)] px-1 py-0.5 ">
+            Chess² is live!
+          </span>
+          <ChevronRight
+            size={24}
+            color="#d1d5dc"
+            strokeWidth={1.5}
+            absoluteStrokeWidth
+            className="mr-1 size-4 text-black transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70"
+          />
+        </motion.div>
+
+        {/* Text*/}
+        <motion.h2
+          className="animate-fadeInUp my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          Hi, I’m{" "}
-          <span className="bg-gradient-to-r from-[#ff6d92] to-[#45b2ff] bg-clip-text text-transparent">
-            Alessandro
-          </span>
-          .
-        </motion.h1>
-        <motion.p
-          className="mt-4 text-muted-foreground md:text-lg"
+          I design and develop apps <br />
+          that are fast, intuitive, and scalable
+        </motion.h2>
+        <motion.h1
+          className="animate-fadeInUp grad-white font-instrument-serif relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl tracking-wider sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1, type: "spring", stiffness: 70 }}
+          transition={{ type: "spring", stiffness: 60 }}
         >
-          I build fast, accessible web experiences with Next.js, Tailwind, and
-          delightful motion.
-        </motion.p>
+          <span className="grad-white flex items-center justify-center">
+            Hello, I’m Alessandro
+            <div className="group relative z-300 mx-2"> IMAGE </div>
+          </span>
+          <span className="grad-white leading-relaxed">
+            a Fullstack Developer
+          </span>
+        </motion.h1>
         <motion.div
           className="mt-8 flex items-center justify-center gap-3"
           initial={{ opacity: 0 }}

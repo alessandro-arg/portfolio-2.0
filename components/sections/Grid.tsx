@@ -77,7 +77,8 @@ const features = [
     description: "We automatically save your files as you type.",
     href: "#",
     cta: "Learn more",
-    className: "lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
+    className:
+      "md:row-start-1 md:row-end-3 lg:row-start-1 lg:row-end-3 lg:col-1",
     background: (
       <Marquee
         pauseOnHover
@@ -112,7 +113,8 @@ const features = [
     description: "Get notified when something happens.",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
+    className:
+      "md:row-start-1 md:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
     background: (
       <AnimatedList className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90">
         {files.map((f, i) => (
@@ -133,7 +135,7 @@ const features = [
     description: "Get notified when something happens.",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
+    className: "md:row-3 lg:row-2 lg:col-2",
     background: (
       <AnimatedList className="absolute top-4 right-2 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90">
         {files.map((f, i) => (
@@ -154,14 +156,16 @@ const features = [
     description: "Supports 100+ integrations and counting.",
     href: "#",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
+    className:
+      "md:col-start-1 md:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
     background: <BeamDemo />,
   },
   {
     Icon: CalendarIcon,
     name: "Calendar",
     description: "Use the calendar to filter your files by date.",
-    className: "col-span-3 lg:col-span-1",
+    className:
+      "md:row-start-2 md:row-end-4 lg:row-start-2 lg:row-end-4 lg:col-3",
     href: "#",
     cta: "Learn more",
     background: <Globe />,

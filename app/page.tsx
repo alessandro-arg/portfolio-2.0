@@ -1,12 +1,12 @@
 import Hero from "@/components/sections/Hero";
-import BentoGrid from "@/components/sections/BentoGrid";
+import { Grid } from "@/components/sections/Grid";
 // import ProjectsGrid from "@/components/sections/ProjectsGrid";
 
 export default function HomePage() {
   return (
-    <main className="min-h-[100vh]">
+    <main className="relative flex flex-col items-center justify-center">
       <Hero />
-      <BentoGrid />
+      <Grid />
       {/* <ProjectsGrid /> */}
     </main>
   );

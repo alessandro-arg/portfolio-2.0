@@ -20,14 +20,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden min-h-[700px]">
       <div
         ref={ringRef}
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
       />
 
       {/*Hero*/}
-      <div className="relative z-20 mx-auto mt-40 mb-2 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
+      <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
         <motion.div
           className="flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
@@ -52,7 +52,7 @@ export default function Hero() {
 
         {/* Text*/}
         <motion.h2
-          className="animate-fadeInUp my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
+          className="font-normal tracking-tighter my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
@@ -61,15 +61,15 @@ export default function Hero() {
           that are fast, intuitive, and scalable
         </motion.h2>
         <motion.h1
-          className="animate-fadeInUp grad-white font-instrument-serif relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl tracking-wider sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="font-normal tracking-normal relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
           <span className="grad-white flex items-center justify-center">
             Hello, I’m Alessandro
-            <div className="group relative z-300 mx-2"> IMAGE </div>
           </span>
+          <div className="group relative z-300 mx-2"> IMAGE </div>
           <span className="grad-white leading-relaxed">
             a Fullstack Developer
           </span>

@@ -168,7 +168,7 @@ export default function Header() {
             Alessandro
           </Link>
 
-          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-black/30 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
+          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-gray-200/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
             {/* Nav */}
             <ul className="hidden items-center gap-6 md:flex">
               {NAV.map((item) => {
@@ -215,7 +215,7 @@ export default function Header() {
                   className={[
                     "inline-flex items-center justify-center rounded-full",
                     "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
-                    "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-shadow",
+                    "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
                   ].join(" ")}
                   onClick={() => setActive("#contact")}
                 >

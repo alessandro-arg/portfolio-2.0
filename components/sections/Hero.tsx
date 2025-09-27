@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 
 export default function Hero() {
   const ringRef = useRef<HTMLDivElement>(null);
@@ -35,24 +36,23 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
         >
-          <span className="mx-1 rounded-full bg-blue-700 px-1.5 text-xs leading-relaxed text-white">
+          <span className="mx-1 rounded-full bg-blue-800 px-1.5 text-xs leading-relaxed text-white">
             New
           </span>
-          <span className="relative text-[rgb(0,0,0,65%)] dark:text-[rgb(255,255,255,90%)] px-1 py-0.5 ">
-            Chess² is live!
-          </span>
-          <ChevronRight
-            size={24}
-            color="#d1d5dc"
-            strokeWidth={1.5}
-            absoluteStrokeWidth
-            className="mr-1 size-4 text-black transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70"
-          />
+          <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1">
+            Chess² is now live! Try it out
+            <ArrowRight
+              size={24}
+              strokeWidth={3}
+              absoluteStrokeWidth
+              className="mr-1 mt-0.5 size-3.5 text-black transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70"
+            />
+          </AnimatedShinyText>
         </motion.div>
 
         {/* Text*/}
         <motion.h2
-          className="font-normal tracking-tighter my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
+          className="font-normal font-serif tracking-tighter my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
@@ -61,7 +61,7 @@ export default function Hero() {
           that are fast, intuitive, and scalable
         </motion.h2>
         <motion.h1
-          className="font-normal tracking-normal relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="font-normal font-serif tracking-normal relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}

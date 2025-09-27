@@ -110,7 +110,7 @@ export default function Header() {
         y: 8,
         opacity: 1,
         filter: "blur(0px)",
-        duration: 0.6,
+        duration: 0.8,
         ease: "power3.out",
         delay: 0.5,
       }
@@ -141,33 +141,36 @@ export default function Header() {
   };
 
   return (
-    <div className="pointer-events-auto fixed left-0 right-0 top-3 z-45">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+    <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
+      <div
+        className="pointer-events-none fixed left-0 top-0 z-40 w-full h-[150px]
+    select-none
+    bg-gradient-to-t from-transparent to-[#f5f4f330] dark:to-[#0a0a0aa4]
+    backdrop-blur-xs
+    [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_70%,rgba(0,0,0,0)_100%)]
+    [-webkit-mask-image:linear-gradient(to_bottom,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_70%,rgba(0,0,0,0)_100%)]
+  "
+      ></div>
+      <div className="relative w-full max-w-full md:max-w-4xl lg:max-w-7xl flex justify-center items-center mx-auto px-4 sm:px-6">
         {/* The floating shell we animate with GSAP */}
         <div
           ref={barRef}
-          className="pointer-events-auto mx-auto"
+          className="pointer-events-auto w-full flex justify-end md:justify-center py-3 z-40"
           style={{ willChange: "transform" }}
         >
-          <nav
-            className={[
-              "relative flex items-center justify-between gap-4",
-              "rounded-full border-2 border-gray-300 dark:border-black bg-slate-200/90 dark:bg-gray-800/95 backdrop-blur supports-[backdrop-filter]:bg-slate-200/90 dark:supports-[backdrop-filter]:bg-gray-800/95",
-              "shadow-[2px_3px_0_0_#d1d5dc] dark:shadow-[2px_3px_0_0_#16b1ff20] px-4 py-2 sm:px-5 sm:py-2.5",
-            ].join(" ")}
+          {/* Name/Logo */}
+          <Link
+            href="/"
+            className="absolute left-6 top-6 select-none text-base font-semibold tracking-tight sm:text-lg"
+            onMouseDown={(e) => e.currentTarget.classList.add("scale-95")}
+            onMouseUp={(e) => e.currentTarget.classList.remove("scale-95")}
           >
-            {/* Name/Logo */}
-            <Link
-              href="/"
-              className="select-none text-base font-semibold tracking-tight sm:text-lg"
-              onMouseDown={(e) => e.currentTarget.classList.add("scale-95")}
-              onMouseUp={(e) => e.currentTarget.classList.remove("scale-95")}
-            >
-              Alessandro
-            </Link>
+            Alessandro
+          </Link>
 
+          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-black/30 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
             {/* Nav */}
-            <ul className="hidden items-center gap-6 sm:flex">
+            <ul className="hidden items-center gap-6 md:flex">
               {NAV.map((item) => {
                 const isActive = active === item.href;
                 return (
@@ -211,7 +214,7 @@ export default function Header() {
                   href="#contact"
                   className={[
                     "inline-flex items-center justify-center rounded-full",
-                    "border-2 border-black bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
+                    "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-shadow",
                   ].join(" ")}
                   onClick={() => setActive("#contact")}
@@ -228,7 +231,7 @@ export default function Header() {
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
               onClick={toggleMobile}
-              className="sm:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 bg-transparent cursor-pointer"
+              className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 bg-transparent cursor-pointer"
             >
               <span className="sr-only">Open menu</span>
               {/* simple burger icon */}
@@ -321,7 +324,7 @@ export default function Header() {
                   className={[
                     "inline-flex items-center justify-center rounded-full",
                     "border-2 border-neutral-900 dark:border-neutral-100",
-                    "bg-sky-500 text-neutral-900 dark:text-black",
+                    "bg-[#16b1ff] text-neutral-900 dark:text-black",
                     "px-6 py-3 text-2xl font-bold",
                     "shadow-[2px_3px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_3px_0_0_rgba(255,255,255,0.15)]",
                   ].join(" ")}

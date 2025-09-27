@@ -143,7 +143,7 @@ export default function Header() {
   return (
     <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
       <div
-        className="pointer-events-none fixed left-0 top-0 z-40 w-full h-[150px]
+        className="pointer-events-none fixed left-0 top-0 z-40 w-full h-[120px]
     select-none
     bg-gradient-to-t from-transparent to-[#f5f4f330] dark:to-[#0a0a0aa4]
     backdrop-blur-xs

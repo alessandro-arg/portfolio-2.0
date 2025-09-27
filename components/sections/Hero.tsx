@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 import { ArrowRight } from "lucide-react";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
@@ -52,16 +53,19 @@ export default function Hero() {
 
         {/* Text*/}
         <motion.h2
-          className="font-normal font-serif tracking-tighter my-2 w-full py-px text-center text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
+          className="font-instrument tracking-normal my-2 w-full py-px text-center text-3xl sm:text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-6xl dark:text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
           I design and develop apps <br />
-          that are fast, intuitive, and scalable
+          that are{" "}
+          <span className="tracking-normal ml-1 bg-linear-to-b from-zinc-500 via-zinc-600 to-zinc-900 bg-clip-text font-normal text-transparent italic dark:from-zinc-600 dark:via-zinc-200 dark:to-white">
+            fast, responsive, and scalable
+          </span>
         </motion.h2>
         <motion.h1
-          className="font-normal font-serif tracking-normal relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="font-normal tracking-normal relative z-20 mt-4 mb-7 flex flex-col items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
@@ -69,7 +73,17 @@ export default function Hero() {
           <span className="grad-white flex items-center justify-center">
             Hello, I’m Alessandro
           </span>
-          <div className="group relative z-300 mx-2"> IMAGE </div>
+          <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
+            <Image
+              src="/images/profile-img.jpg"
+              alt="Alessandro"
+              loading="lazy"
+              draggable="false"
+              width={854}
+              height={425}
+              className="transition-transform duration-300 hover:rotate-6 hover:scale-110"
+            />
+          </div>
           <span className="grad-white leading-relaxed">
             a Fullstack Developer
           </span>

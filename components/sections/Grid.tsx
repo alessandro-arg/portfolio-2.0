@@ -175,7 +175,7 @@ const features = [
 export function Grid() {
   return (
     <div className="w-full max-w-7xl px-4">
-      <div className="mx-auto w-full gap-4 md:max-w-full my-30 sm:my-20">
+      <div className="mx-auto w-full gap-4 md:max-w-full mb-30 sm:mb-20">
         <BentoGrid>
           {features.map((feature, idx) => (
             <BentoCard key={idx} {...feature} />

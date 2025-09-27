@@ -22,14 +22,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden min-h-[700px]">
+    <section className="relative h-[800px] lg:h-[900px] w-full overflow-hidden z-0 pb-30 sm:pb-20">
+      <div className="absolute inset-0 size-[520px] border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-blue-600/5 shadow-[0_0_80px_inset] shadow-blue-600/5"></div>
+      <div className="absolute inset-0 size-[820px] border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-blue-600/5 shadow-[0_0_80px_inset] shadow-blue-600/5"></div>
+      <div className="absolute inset-0 size-[1120px] border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-blue-600/5 shadow-[0_0_80px_inset] shadow-blue-600/5"></div>
       <div
         ref={ringRef}
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
       />
 
       {/*Hero*/}
-      <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
+      <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 pt-20 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
         <motion.div
           className="flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"

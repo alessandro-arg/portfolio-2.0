@@ -10,19 +10,22 @@ interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
-  name: string;
+  name?: string;
   className: string;
   background: ReactNode;
-  Icon: React.ElementType;
-  description: string;
-  href: string;
-  cta: string;
+  Icon?: React.ElementType | null;
+  description?: string;
+  href?: string;
+  cta?: string;
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
   return (
     <div
-      className={cn("grid w-full auto-rows-[18rem] gap-4", className)}
+      className={cn(
+        "grid w-full auto-rows-[18rem] auto-cols-fr gap-4",
+        className
+      )}
       {...props}
     >
       {children}
@@ -51,7 +54,7 @@ const BentoCard = ({
     {...props}
   >
     <div>{background}</div>
-    <div className="p-4">
+    {/* <div className="p-4">
       <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
         <Icon className="h-12 w-12 origin-left transform-gpu text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-75" />
         <h3 className="text-xl font-semibold text-neutral-700 dark:text-neutral-300">
@@ -77,9 +80,9 @@ const BentoCard = ({
           </a>
         </Button>
       </div>
-    </div>
+    </div> */}
 
-    <div
+    {/* <div
       className={cn(
         "pointer-events-none absolute bottom-0 hidden w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 lg:flex"
       )}
@@ -95,7 +98,7 @@ const BentoCard = ({
           <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
         </a>
       </Button>
-    </div>
+    </div> */}
 
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
   </div>

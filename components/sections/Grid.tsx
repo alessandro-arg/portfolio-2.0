@@ -9,6 +9,11 @@ import { BentoCard, BentoGrid } from "../ui/bento-grid";
 import { Marquee } from "../ui/marquee";
 import { Globe } from "../ui/globe";
 import { useRef } from "react";
+import {
+  AnimatedSpan,
+  Terminal,
+  TypingAnimation,
+} from "@/components/ui/terminal";
 
 import type { SimpleIcon } from "simple-icons";
 import {
@@ -35,21 +40,39 @@ import {
 } from "simple-icons/icons";
 
 type SkillItem = {
-  img: SimpleIcon; // contains .title, .hex, .path
+  img: SimpleIcon;
+  colorClass?: string;
 };
+
+export function SmallTerminal() {
+  return (
+    <div className="w-[300px] h-50 absolute -bottom-15 group-hover:-bottom-10 group-hover:scale-105 transition-all duration-500">
+      <Terminal>
+        <TypingAnimation delay={0}>$ ls</TypingAnimation>
+        <AnimatedSpan delay={800} className="text-blue-500">
+          Also learning MongoDB
+        </AnimatedSpan>
+        <TypingAnimation delay={1600}>$ cd Documents</TypingAnimation>
+        <AnimatedSpan delay={3200} className="text-green-500">
+          /home/user/alessandro
+        </AnimatedSpan>
+      </Terminal>
+    </div>
+  );
+}
 
 const skillsRow1: SkillItem[] = [
   { img: siJavascript },
   { img: siTypescript },
   { img: siReact },
-  { img: siNextdotjs },
-  { img: siAngular },
+  { img: siNextdotjs, colorClass: "text-black dark:text-white" },
+  { img: siAngular, colorClass: "text-[#DD1100]" },
   { img: siTailwindcss },
   { img: siNodedotjs },
   { img: siFirebase },
   { img: siGooglecloud },
   { img: siGit },
-  { img: siGithub },
+  { img: siGithub, colorClass: "text-black dark:text-white" },
 ];
 
 const skillsRow2: SkillItem[] = [
@@ -64,10 +87,16 @@ const skillsRow2: SkillItem[] = [
   { img: siDocker },
 ];
 
-function SkillPill({ icon }: { icon: SimpleIcon }) {
+function SkillPill({
+  icon,
+  colorClass,
+}: {
+  icon: SimpleIcon;
+  colorClass?: string;
+}) {
   const label = icon.title;
-  const hex = icon.hex || "000000";
-  const id = `${icon.slug}-icon`; // unique enough for keys/aria
+  const brandHex = icon.hex || "000000";
+  const useOverride = Boolean(colorClass);
 
   return (
     <div
@@ -84,9 +113,12 @@ function SkillPill({ icon }: { icon: SimpleIcon }) {
         focusable="false"
         role="img"
         viewBox="0 0 24 24"
-        className="h-5 w-5 shrink-0"
+        className={cn("h-5 w-5 shrink-0", useOverride && colorClass)}
       >
-        <path d={icon.path} fill={`#${hex}`} />
+        <path
+          d={icon.path}
+          fill={useOverride ? "currentColor" : `#${brandHex}`}
+        />
       </svg>
       <span className="text-sm">{label}</span>
     </div>
@@ -155,39 +187,53 @@ function BeamDemo() {
 
 const features = [
   {
-    Icon: FileTextIcon,
-    name: "Save your files",
-    description: "We automatically save your files as you type.",
-    href: "#",
-    cta: "Learn more",
+    Icon: null,
     className:
-      "md:row-start-1 md:row-end-3 lg:row-start-1 lg:row-end-3 lg:col-1",
+      "relative overflow-hidden row-start-1 row-end-3 lg:row-start-1 lg:row-end-3 lg:col-1",
     background: (
-      <Marquee
-        pauseOnHover
-        className="absolute top-10 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] [--duration:20s]"
-      >
-        {files.map((f, idx) => (
-          <figure
-            key={idx}
-            className={cn(
-              "relative w-32 cursor-pointer overflow-hidden rounded-xl border p-4",
-              "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-              "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
-              "transform-gpu blur-[1px] transition-all duration-300 ease-out hover:blur-none"
-            )}
-          >
-            <div className="flex flex-row items-center gap-2">
-              <div className="flex flex-col">
-                <figcaption className="text-sm font-medium dark:text-white">
-                  {f.name}
-                </figcaption>
-              </div>
-            </div>
-            <blockquote className="mt-2 text-xs">{f.body}</blockquote>
-          </figure>
-        ))}
-      </Marquee>
+      <div className="absolute inset-0 group">
+        <div className="flex h-full flex-col gap-10 py-12">
+          {/* Top: title */}
+          <h3 className="w-full bg-linear-to-b from-black to-[#16b1ff70] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
+            Technologies I use <br /> and love
+          </h3>
+
+          {/* Middle: marquees */}
+          <div className="pt-2 cursor-default flex flex-col gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+            {/* Row 1 – left → right */}
+            <Marquee className="[--duration:60s] [--gap:1.5rem]">
+              {skillsRow1.map(({ img, colorClass }, idx) => (
+                <div key={`${img.slug}-${idx}`}>
+                  <SkillPill icon={img} colorClass={colorClass} />
+                </div>
+              ))}
+            </Marquee>
+
+            {/* Row 2 – right → left */}
+            <Marquee reverse className="[--duration:60s] [--gap:1.5rem]">
+              {skillsRow2.map(({ img, colorClass }, idx) => (
+                <div key={`${img.slug}-${idx}`}>
+                  <SkillPill icon={img} colorClass={colorClass} />
+                </div>
+              ))}
+            </Marquee>
+
+            {/* Row 3 – left → right */}
+            <Marquee className="[--duration:60s] [--gap:1.5rem]">
+              {skillsRow1.map(({ img, colorClass }, idx) => (
+                <div key={`${img.slug}-${idx}`}>
+                  <SkillPill icon={img} colorClass={colorClass} />
+                </div>
+              ))}
+            </Marquee>
+          </div>
+
+          {/* Bottom: hover-animated SVG */}
+          <div className="flex items-center justify-center py-2 overflow-hidden">
+            <SmallTerminal />
+          </div>
+        </div>
+      </div>
     ),
   },
   {

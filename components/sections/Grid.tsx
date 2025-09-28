@@ -10,6 +10,89 @@ import { Marquee } from "../ui/marquee";
 import { Globe } from "../ui/globe";
 import { useRef } from "react";
 
+import type { SimpleIcon } from "simple-icons";
+import {
+  siJavascript,
+  siTypescript,
+  siReact,
+  siNextdotjs,
+  siAngular,
+  siTailwindcss,
+  siNodedotjs,
+  siFirebase,
+  siGooglecloud,
+  siGit,
+  siGithub,
+  siHtml5,
+  siCss,
+  siSass,
+  siRedux,
+  siVite,
+  siChartdotjs,
+  siJest,
+  siTestinglibrary,
+  siDocker,
+} from "simple-icons/icons";
+
+type SkillItem = {
+  img: SimpleIcon; // contains .title, .hex, .path
+};
+
+const skillsRow1: SkillItem[] = [
+  { img: siJavascript },
+  { img: siTypescript },
+  { img: siReact },
+  { img: siNextdotjs },
+  { img: siAngular },
+  { img: siTailwindcss },
+  { img: siNodedotjs },
+  { img: siFirebase },
+  { img: siGooglecloud },
+  { img: siGit },
+  { img: siGithub },
+];
+
+const skillsRow2: SkillItem[] = [
+  { img: siHtml5 },
+  { img: siCss },
+  { img: siSass },
+  { img: siRedux },
+  { img: siVite },
+  { img: siChartdotjs },
+  { img: siJest },
+  { img: siTestinglibrary },
+  { img: siDocker },
+];
+
+function SkillPill({ icon }: { icon: SimpleIcon }) {
+  const label = icon.title;
+  const hex = icon.hex || "000000";
+  const id = `${icon.slug}-icon`; // unique enough for keys/aria
+
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-2 rounded-xl border px-3 py-2",
+        "border-gray-950/10 bg-background/70 backdrop-blur",
+        "dark:border-gray-50/10 dark:bg-white/5"
+      )}
+      aria-label={label}
+      title={label}
+    >
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        role="img"
+        viewBox="0 0 24 24"
+        className="h-5 w-5 shrink-0"
+      >
+        <path d={icon.path} fill={`#${hex}`} />
+      </svg>
+      <span className="text-sm">{label}</span>
+    </div>
+  );
+}
+
 const files = [
   {
     name: "bitcoin.pdf",

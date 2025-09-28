@@ -100,11 +100,7 @@ function SkillPill({
 
   return (
     <div
-      className={cn(
-        "flex items-center gap-2 rounded-xl border px-3 py-2",
-        "border-gray-950/10 bg-background/70 backdrop-blur",
-        "dark:border-gray-50/10 dark:bg-white/5"
-      )}
+      className="inline-flex items-center justify-center rounded-lg border px-3 py-1.5 text-sm w-fit whitespace-nowrap shrink-0 gap-2 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden text-black dark:text-white font-mono border-white-3 dark:bg-neutral-900 dark:border-white/[0.14] bg-white-2 [a&]:hover:bg-primary/90"
       aria-label={label}
       title={label}
     >
@@ -199,7 +195,7 @@ const features = [
           </h3>
 
           {/* Middle: marquees */}
-          <div className="pt-2 cursor-default flex flex-col gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+          <div className="pt-4 cursor-default flex flex-col gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
             {/* Row 1 – left → right */}
             <Marquee className="[--duration:60s] [--gap:1.5rem]">
               {skillsRow1.map(({ img, colorClass }, idx) => (
@@ -228,8 +224,9 @@ const features = [
             </Marquee>
           </div>
 
-          {/* Bottom: hover-animated SVG */}
+          {/* Bottom: animated terminal */}
           <div className="flex items-center justify-center py-2 overflow-hidden">
+            <div className="absolute h-70 w-70 rounded-full bg-blue-500 blur-3xl -bottom-40"></div>
             <SmallTerminal />
           </div>
         </div>

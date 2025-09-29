@@ -1,7 +1,7 @@
 "use client";
 
+import * as React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -9,12 +9,35 @@ import Link from "next/link";
 
 import StarIcon from "@/components/icons/star.svg";
 import SparkleIcon from "@/components/icons/sparkle.svg";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Copy } from "lucide-react";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { HeroOrbit } from "../ui/hero-orbit";
+import { toast } from "sonner";
+
+const EMAIL = "contact@alessandro-argenziano.com";
 
 export default function Hero() {
   const ringRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = React.useState(false);
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setCopied(false), 2500);
+      toast("Event has been created.");
+    } catch {
+      // (Optional) you could surface a toast here
+    }
+  };
 
   useEffect(() => {
     if (!ringRef.current) return;
@@ -154,17 +177,38 @@ export default function Hero() {
           </span>
         </motion.h1>
         <motion.div
-          className="mt-8 flex items-center justify-center gap-3"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          className="mt-8 flex items-center justify-center gap-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 60 }}
         >
-          <Button asChild size="lg">
-            <a href="/projects">View Projects</a>
-          </Button>
-          <Button asChild size="lg" variant="secondary">
-            <a href="/contact">Contact Me</a>
-          </Button>
+          {/* Left: "Let's Connect" — outline pill that fills to white on hover */}
+          <a
+            href="mailto:hello@aayushbharti.in"
+            className="group relative inline-flex items-center gap-3 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white/90 outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-white/60"
+          >
+            {/* The animated fill */}
+            <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
+            {/* Content stays above the fill */}
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-neutral-900">
+              Let’s Connect
+            </span>
+            <ArrowRight
+              className="relative z-10 h-4 w-4 transition-colors duration-300 group-hover:text-neutral-900"
+              aria-hidden="true"
+            />
+          </a>
+
+          {/* Right: Copy-to-clipboard button */}
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 backdrop-blur-sm transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            aria-live="polite"
+          >
+            <Copy className="h-4 w-4" aria-hidden="true" />
+            {copied ? "Copied to clipboard" : EMAIL}
+          </button>
         </motion.div>
       </div>
     </section>

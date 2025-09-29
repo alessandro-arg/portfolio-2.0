@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import StarIcon from "@/components/icons/star.svg";
 import SparkleIcon from "@/components/icons/sparkle.svg";
-import { ArrowRight, Copy } from "lucide-react";
+import { ArrowRight, Copy, CheckCheck } from "lucide-react";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { HeroOrbit } from "../ui/hero-orbit";
 import { toast } from "sonner";
@@ -32,10 +32,24 @@ export default function Hero() {
       await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => setCopied(false), 2500);
-      toast("Event has been created.");
+      timeoutRef.current = setTimeout(() => setCopied(false), 3000);
+
+      const body = encodeURIComponent(
+        "Hi Alessandro,\n\nI’d like to connect about..."
+      );
+      const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
+
+      toast("Copied to clipboard!", {
+        description: "Email address copied successfully.",
+        action: {
+          label: "Send Email",
+          onClick: () => {
+            window.open(mailtoUrl, "_blank", "noopener,noreferrer");
+          },
+        },
+      });
     } catch {
-      // (Optional) you could surface a toast here
+      toast.warning("Something went wrong.");
     }
   };
 
@@ -153,7 +167,7 @@ export default function Hero() {
           </span>
         </motion.h2>
         <motion.h1
-          className="font-normal tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="grad-white font-semibold tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
@@ -177,36 +191,47 @@ export default function Hero() {
           </span>
         </motion.h1>
         <motion.div
-          className="mt-8 flex items-center justify-center gap-4"
+          className="z-100 mt-4 flex flex-col items-center justify-center gap-6 sm:flex-row md:gap-10"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
           {/* Left: "Let's Connect" — outline pill that fills to white on hover */}
           <a
-            href="mailto:hello@aayushbharti.in"
-            className="group relative inline-flex items-center gap-3 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white/90 outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-white/60"
+            href="mailto:contact@alessandro-argenziano.com"
+            target="__blank"
+            className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10"
           >
             {/* The animated fill */}
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-neutral-900">
+            <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-white dark:text-white dark:group-hover:text-black">
               Let’s Connect
             </span>
-            <ArrowRight
-              className="relative z-10 h-4 w-4 transition-colors duration-300 group-hover:text-neutral-900"
-              aria-hidden="true"
-            />
+            <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
+              <ArrowRight
+                className="text-white transition-all duration-300 group-hover:translate-x-5 group-hover:opacity-0 dark:text-black"
+                aria-hidden="true"
+              />{" "}
+              <ArrowRight
+                className="absolute -translate-x-5 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-black"
+                aria-hidden="true"
+              />
+            </span>
           </a>
 
           {/* Right: Copy-to-clipboard button */}
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 backdrop-blur-sm transition-colors duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            className="flex items-center gap-2 py-2 text-base font-normal text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90"
             aria-live="polite"
           >
-            <Copy className="h-4 w-4" aria-hidden="true" />
+            {copied ? (
+              <CheckCheck className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Copy className="h-5 w-5" aria-hidden="true" />
+            )}
             {copied ? "Copied to clipboard" : EMAIL}
           </button>
         </motion.div>

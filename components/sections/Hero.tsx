@@ -191,7 +191,7 @@ export default function Hero() {
           </span>
         </motion.h1>
         <motion.div
-          className="z-100 mt-4 flex flex-col items-center justify-center gap-6 sm:flex-row md:gap-10"
+          className="z-100 mt-4 flex flex-col items-center sm:min-w-[500px] justify-center gap-6 sm:flex-row md:gap-10"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}

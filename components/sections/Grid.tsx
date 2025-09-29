@@ -25,18 +25,20 @@ import {
   siTailwindcss,
   siNodedotjs,
   siFirebase,
-  siGooglecloud,
   siGit,
   siGithub,
-  siHtml5,
-  siCss,
-  siSass,
-  siRedux,
-  siVite,
+  siClerk,
+  siShadcnui,
+  siMaterialdesign,
+  siDjango,
+  siVercel,
+  siStripe,
+  siMysql,
+  siBetterauth,
   siChartdotjs,
-  siJest,
-  siTestinglibrary,
-  siDocker,
+  siFramer,
+  siPrisma,
+  siFigma,
 } from "simple-icons/icons";
 
 type SkillItem = {
@@ -62,29 +64,31 @@ export function SmallTerminal() {
 }
 
 const skillsRow1: SkillItem[] = [
-  { img: siJavascript },
   { img: siTypescript },
   { img: siReact },
   { img: siNextdotjs, colorClass: "text-black dark:text-white" },
   { img: siAngular, colorClass: "text-[#DD1100]" },
   { img: siTailwindcss },
-  { img: siNodedotjs },
-  { img: siFirebase },
-  { img: siGooglecloud },
-  { img: siGit },
+  { img: siFramer },
   { img: siGithub, colorClass: "text-black dark:text-white" },
 ];
 
 const skillsRow2: SkillItem[] = [
-  { img: siHtml5 },
-  { img: siCss },
-  { img: siSass },
-  { img: siRedux },
-  { img: siVite },
-  { img: siChartdotjs },
-  { img: siJest },
-  { img: siTestinglibrary },
-  { img: siDocker },
+  { img: siDjango, colorClass: "dark:text-white" },
+  { img: siJavascript },
+  { img: siPrisma },
+  { img: siMaterialdesign },
+  { img: siGit },
+  { img: siStripe },
+];
+
+const skillsRow3: SkillItem[] = [
+  { img: siClerk },
+  { img: siBetterauth },
+  { img: siShadcnui },
+  { img: siVercel, colorClass: "text-black dark:text-white" },
+  { img: siFirebase },
+  { img: siFigma },
 ];
 
 function SkillPill({
@@ -197,7 +201,7 @@ const features = [
           {/* Middle: marquees */}
           <div className="pt-4 cursor-default flex flex-col gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
             {/* Row 1 – left → right */}
-            <Marquee className="[--duration:60s] [--gap:1.5rem]">
+            <Marquee className="[--duration:40s] [--gap:1.5rem]">
               {skillsRow1.map(({ img, colorClass }, idx) => (
                 <div key={`${img.slug}-${idx}`}>
                   <SkillPill icon={img} colorClass={colorClass} />
@@ -206,7 +210,7 @@ const features = [
             </Marquee>
 
             {/* Row 2 – right → left */}
-            <Marquee reverse className="[--duration:60s] [--gap:1.5rem]">
+            <Marquee reverse className="[--duration:40s] [--gap:1.5rem]">
               {skillsRow2.map(({ img, colorClass }, idx) => (
                 <div key={`${img.slug}-${idx}`}>
                   <SkillPill icon={img} colorClass={colorClass} />
@@ -215,8 +219,8 @@ const features = [
             </Marquee>
 
             {/* Row 3 – left → right */}
-            <Marquee className="[--duration:60s] [--gap:1.5rem]">
-              {skillsRow1.map(({ img, colorClass }, idx) => (
+            <Marquee className="[--duration:40s] [--gap:1.5rem]">
+              {skillsRow3.map(({ img, colorClass }, idx) => (
                 <div key={`${img.slug}-${idx}`}>
                   <SkillPill icon={img} colorClass={colorClass} />
                 </div>

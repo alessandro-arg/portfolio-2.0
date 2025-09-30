@@ -160,6 +160,10 @@
   color: transparent;
 }
 
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

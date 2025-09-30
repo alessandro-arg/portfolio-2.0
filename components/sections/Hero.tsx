@@ -210,7 +210,7 @@ export default function Hero() {
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight
-                className="text-white transition-all duration-300 group-hover:translate-x-5 group-hover:opacity-0 dark:text-black"
+                className="w-5 h-5 text-white transition-all duration-300 group-hover:translate-x-5 group-hover:opacity-0 dark:text-black"
                 aria-hidden="true"
               />{" "}
               <ArrowRight

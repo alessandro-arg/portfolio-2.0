@@ -91,8 +91,13 @@ const features = [
     href: "#",
     cta: "Learn more",
     background: (
-      <div className="absolute size-full flex items-center justify-end">
-        <Globe />
+      <div className="flex h-full flex-col gap-10 py-12">
+        <h3 className="w-full bg-linear-to-b from-black to-[#16b1ff70] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
+          I'm very flexible, <br /> i like Switzerland
+        </h3>
+        <div className="size-full flex items-center -left-35 -bottom-50">
+          <Globe />
+        </div>
       </div>
     ),
   },

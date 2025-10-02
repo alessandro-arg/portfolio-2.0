@@ -1,27 +1,79 @@
 import createGlobe from "cobe";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 
-export function Globe() {
+type RGB = [number, number, number];
+
+type Country = {
+  key: string;
+  label: string;
+  flag: string;
+  lat: number;
+  lng: number;
+};
+
+const CITIES: Country[] = [
+  { key: "germany", label: "Germany", flag: "🇩🇪", lat: 47.6231, lng: 8.2172 },
+  { key: "italy", label: "Italy", flag: "🇮🇹", lat: 40.8522, lng: 14.2681 },
+];
+
+export type GlobeProps = {
+  defaultCountryKey?: Country["key"];
+  colors?: {
+    base?: RGB;
+    glow?: RGB;
+    marker?: RGB;
+  };
+  height?: string | number;
+  horizontalOnly?: boolean;
+};
+
+export function Globe({
+  defaultCountryKey = "germany",
+  colors = {
+    base: [1, 1, 1],
+    glow: [1.15, 1.15, 1.2],
+    marker: [0.1, 0.6, 1],
+  },
+  height = "50vh",
+  horizontalOnly = true,
+}: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const [activeKey, setActiveKey] = useState<Country["key"]>(defaultCountryKey);
   const focusRef = useRef<[number, number]>([0, 0]);
 
-  const locationToAngles = (lat: number, long: number): [number, number] => {
-    return [
-      Math.PI - ((long * Math.PI) / 180 - Math.PI / 2),
-      (lat * Math.PI) / 180,
-    ];
-  };
+  const currentPhiRef = useRef(0);
+  const currentThetaRef = useRef(0.38);
+
+  const draggingRef = useRef(false);
+  const snapRef = useRef(false);
+
+  const locationToAngles = (lat: number, lng: number): [number, number] => [
+    Math.PI - ((lng * Math.PI) / 180 - Math.PI / 2),
+    (lat * Math.PI) / 180,
+  ];
+
+  useEffect(() => {
+    const initial =
+      CITIES.find((c) => c.key === defaultCountryKey) ?? CITIES[0];
+    const [phi, theta] = locationToAngles(initial.lat, initial.lng);
+    focusRef.current = [phi, theta];
+    currentPhiRef.current = phi;
+    currentThetaRef.current = theta;
+  }, [defaultCountryKey]);
 
   useEffect(() => {
     let width = 0;
-    let currentPhi = 0;
-    let currentTheta = 0;
+    let heightPx = 0;
     const doublePi = Math.PI * 2;
 
     const onResize = () => {
-      if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
-      }
+      if (!containerRef.current || !canvasRef.current) return;
+      width = containerRef.current.offsetWidth;
+      heightPx =
+        typeof height === "number" ? height : containerRef.current.offsetHeight;
     };
 
     window.addEventListener("resize", onResize);
@@ -32,90 +84,137 @@ export function Globe() {
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
       width: width * 2,
-      height: width * 2,
-      phi: 0,
-      theta: 0.3,
+      height: heightPx * 2,
+      phi: currentPhiRef.current,
+      theta: currentThetaRef.current,
       dark: 1,
       diffuse: 3,
-      mapSamples: 16000,
+      mapSamples: 18000,
       mapBrightness: 1.2,
-      baseColor: [1, 1, 1],
-      markerColor: [251 / 255, 200 / 255, 21 / 255],
-      glowColor: [1.2, 1.2, 1.2],
+      baseColor: colors.base ?? [1, 1, 1],
+      markerColor: colors.marker ?? [0.1, 0.6, 1],
+      glowColor: colors.glow ?? [1.15, 1.15, 1.2],
       markers: [
         { location: [47.6231, 8.2172], size: 0.15 },
         { location: [40.8522, 14.2681], size: 0.15 },
       ],
       onRender: (state) => {
-        state.phi = currentPhi;
-        state.theta = currentTheta;
-        const [focusPhi, focusTheta] = focusRef.current;
-        const distPositive = (focusPhi - currentPhi + doublePi) % doublePi;
-        const distNegative = (currentPhi - focusPhi + doublePi) % doublePi;
+        const [focusPhi] = focusRef.current;
 
-        if (distPositive < distNegative) {
-          currentPhi += distPositive * 0.08;
-        } else {
-          currentPhi -= distNegative * 0.08;
+        let phi = currentPhiRef.current;
+        let theta = currentThetaRef.current;
+
+        if (!draggingRef.current && snapRef.current) {
+          const distPositive = (focusPhi - phi + doublePi) % doublePi;
+          const distNegative = (phi - focusPhi + doublePi) % doublePi;
+          if (distPositive < distNegative) phi += distPositive * 0.08;
+          else phi -= distNegative * 0.08;
+
+          // stop snapping when close enough
+          if (
+            Math.abs(((phi - focusPhi + Math.PI) % (2 * Math.PI)) - Math.PI) <
+            0.002
+          ) {
+            snapRef.current = false;
+          }
         }
+        theta = horizontalOnly ? 0.38 : theta;
 
-        currentTheta = currentTheta * 0.92 + focusTheta * 0.08;
+        currentPhiRef.current = phi;
+        currentThetaRef.current = theta;
+
+        state.phi = phi;
+        state.theta = theta;
         state.width = width * 2;
-        state.height = width * 2;
+        state.height = heightPx * 2;
       },
     });
 
     setTimeout(() => {
-      if (canvasRef.current) {
-        canvasRef.current.style.opacity = "1";
-      }
-    });
+      if (canvasRef.current) canvasRef.current.style.opacity = "1";
+    }, 0);
+
+    const canvas = canvasRef.current;
+    canvas.style.opacity = "1";
+    canvas.style.cursor = "grab";
+
+    let startX = 0;
+    let startPhi = 0;
+
+    const onPointerDown = (e: PointerEvent) => {
+      draggingRef.current = true;
+      startX = e.clientX;
+      startPhi = currentPhiRef.current;
+      canvas.style.cursor = "grabbing";
+      (e.target as Element).setPointerCapture?.(e.pointerId);
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!draggingRef.current) return;
+      const deltaX = e.clientX - startX;
+      const rotPerPx =
+        (2 * Math.PI) / (containerRef.current?.offsetWidth || 800);
+      currentPhiRef.current = startPhi + deltaX * rotPerPx;
+      focusRef.current = [currentPhiRef.current, currentThetaRef.current];
+    };
+    const onPointerUp = () => {
+      draggingRef.current = false;
+      canvas.style.cursor = "grab";
+    };
+
+    canvas.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
 
     return () => {
       globe.destroy();
       window.removeEventListener("resize", onResize);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
     };
-  }, []);
+  }, [colors.base, colors.glow, colors.marker, height, horizontalOnly, 0.38]);
+
+  const selectCity = (country: Country) => {
+    setActiveKey(country.key);
+    // set snap target and enable one-time easing
+    focusRef.current = locationToAngles(country.lat, country.lng);
+    snapRef.current = true;
+  };
 
   return (
-    <div
-      className="-left-33 -bottom-75"
-      style={{
-        width: "700px",
-        aspectRatio: 1,
-        margin: "auto",
-        position: "absolute",
-      }}
-    >
-      <div
-        className="mx-auto flex flex-wrap justify-center gap-2 text-md"
-        style={{ gap: ".5rem", marginBottom: "0" }}
-      >
-        <button
-          className="z-50 flex cursor-pointer items-center gap-1.5 rounded-sm px-1.5 py-0.5 transition-all duration-150 bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/40 ring-inset dark:text-sky-400"
-          onClick={() => {
-            focusRef.current = locationToAngles(47.6231, 8.2172);
-          }}
-        >
-          🇩🇪 Waldshut
-        </button>
-        <button
-          className="z-50 flex cursor-pointer items-center gap-1.5 rounded-sm px-1.5 py-0.5 transition-all duration-150 bg-neutral-100 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800 font-mono"
-          onClick={() => {
-            focusRef.current = locationToAngles(40.8522, 14.2681);
-          }}
-        >
-          🇮🇹 Napoli
-        </button>
+    <div ref={containerRef} className="relative w-full" style={{ height }}>
+      {/* Buttons row */}
+      <div className="absolute mx-auto w-full flex flex-wrap justify-center items-center gap-2 -top-4">
+        {CITIES.map((c) => {
+          const isActive = c.key === activeKey;
+          return (
+            <button
+              key={c.key}
+              onClick={() => selectCity(c)}
+              className={clsx(
+                "z-50 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 transition-all duration-150",
+                isActive
+                  ? "bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/40 ring-inset dark:text-sky-400"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800"
+              )}
+            >
+              <span>{c.flag}</span>
+              <span className="font-medium">{c.label}</span>
+            </button>
+          );
+        })}
       </div>
+
+      {/* Globe canvas */}
       <canvas
         ref={canvasRef}
+        className="absolute inset-x-0 bottom-0 mx-auto"
         style={{
-          width: "100%",
+          width: "min(700px, 100%)",
           height: "100%",
           contain: "layout paint size",
           opacity: 0,
-          transition: "opacity 1s ease",
+          transition: "opacity 0.6s ease",
         }}
       />
     </div>

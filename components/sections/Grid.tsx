@@ -8,6 +8,82 @@ import { BentoCard, BentoGrid } from "../ui/bento-grid";
 import { Globe } from "../ui/globe";
 import { useRef } from "react";
 import TechCard from "../bento/TechCard";
+import { SparklesCore } from "../ui/sparkles";
+import React from "react";
+import { toast } from "sonner";
+import { Copy, CheckCheck } from "lucide-react";
+
+const EMAIL = "contact@alessandro-argenziano.com";
+
+function CopyEmailCard() {
+  const [copied, setCopied] = React.useState(false);
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setCopied(false), 3000);
+
+      const body = encodeURIComponent(
+        "Hi Alessandro,\n\nI’d like to connect about..."
+      );
+      const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
+
+      toast("Copied to clipboard!", {
+        description: "Email address copied successfully.",
+        action: {
+          label: "Send Email",
+          onClick: () =>
+            window.open(mailtoUrl, "_blank", "noopener,noreferrer"),
+        },
+      });
+    } catch {
+      toast.warning("Something went wrong.");
+    }
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <div className="flex h-full w-full flex-col items-center justify-center bg-cover bg-center">
+      <div className="h-40 w-full bg-blue absolute inset-0">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.3}
+          maxSize={1}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
+      </div>
+      <span className="relative text-[rgb(0,0,0,65%)] dark:text-[rgb(255,255,255,90%)] font-instrument-serif w-full max-w-80 -translate-y-4 py-2 text-center text-4xl font-bold text-balance">
+        Let's work together on your next project
+      </span>
+      <div className="relative flex">
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="items-center gap-2 py-2 text-base font-light text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90 flex w-full justify-center rounded-sm dark:bg-white/10 bg-black/10 px-8 border dark:border-white/10 border-black/10"
+          aria-live="polite"
+        >
+          {copied ? (
+            <CheckCheck className="h-5 w-5" aria-hidden="true" />
+          ) : (
+            <Copy className="h-5 w-5" aria-hidden="true" />
+          )}
+          {copied ? "Copied to clipboard" : EMAIL}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function BeamDemo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,7 +146,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className: "md:row-3 lg:row-2 lg:col-2",
-    background: "",
+    background: <CopyEmailCard />,
   },
   {
     Icon: Share2Icon,

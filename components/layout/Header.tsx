@@ -6,11 +6,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
 
-const NAV = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
+const menuItems = [
+  { href: "#home", label: "Home", ariaLabel: "Go to home page", link: "/" },
+  {
+    href: "#about",
+    label: "About",
+    ariaLabel: "Learn about us",
+    link: "/about",
+  },
+  {
+    href: "#projects",
+    label: "Projects",
+    ariaLabel: "View our services",
+    link: "/projects",
+  },
+  { href: "#more", label: "More", ariaLabel: "Get in touch", link: "/more" },
+];
+
+const socialItems = [
+  { label: "Instagram", link: "https://www.instagram.com/alessandro_7.5r/" },
+  { label: "GitHub", link: "https://github.com/alessandro-arg" },
+  {
+    label: "LinkedIn",
+    link: "https://www.linkedin.com/in/alessandro-argenziano/",
+  },
 ];
 
 const panelSpring: Transition = {
@@ -171,7 +190,7 @@ export default function Header() {
           <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-gray-200/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
             {/* Nav */}
             <ul className="hidden items-center gap-6 md:flex">
-              {NAV.map((item) => {
+              {menuItems.map((item) => {
                 const isActive = active === item.href;
                 return (
                   <li key={item.href} className="relative font-medium">
@@ -303,7 +322,7 @@ export default function Header() {
               variants={listVariants}
               className="flex flex-1 items-center justify-center flex-col gap-6 px-6 text-center"
             >
-              {NAV.map((item) => (
+              {menuItems.map((item) => (
                 <motion.li key={item.href} variants={linkVariants}>
                   <Link
                     href={item.href}

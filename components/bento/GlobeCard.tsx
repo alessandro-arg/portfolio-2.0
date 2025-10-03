@@ -8,7 +8,7 @@ export default function GlobeCard() {
       </h3>
       <div className="absolute inset-x-0 size-full flex items-center -bottom-55">
         <Globe
-          defaultCityKey="germany"
+          defaultCountryKey="germany"
           height="55vh"
           horizontalOnly
           colors={{

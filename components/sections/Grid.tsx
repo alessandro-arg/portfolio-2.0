@@ -2,54 +2,12 @@
 
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { BellIcon, Share2Icon } from "lucide-react";
-import { AnimatedBeam } from "../ui/animated-beam";
-import { AnimatedList } from "@/components/ui/animated-list";
 import { BentoCard, BentoGrid } from "../ui/bento-grid";
-import { useRef } from "react";
 import TechCard from "../bento/TechCard";
-import { SparklesCore } from "../ui/sparkles";
 import React from "react";
-import { toast } from "sonner";
-import { Copy, CheckCheck } from "lucide-react";
 import GlobeCard from "../bento/GlobeCard";
 import CopyEmailCard from "../bento/CopyEmailCard";
-
-function BeamDemo() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const fromRef = useRef<HTMLDivElement>(null);
-  const toRef = useRef<HTMLDivElement>(null);
-
-  return (
-    <div ref={containerRef} className="absolute inset-0">
-      <div
-        ref={fromRef}
-        className="absolute left-6 top-1/3 rounded-full border px-3 py-1 text-xs bg-background/70 backdrop-blur"
-      >
-        App A
-      </div>
-      <div
-        ref={toRef}
-        className="absolute right-6 bottom-1/3 rounded-full border px-3 py-1 text-xs bg-background/70 backdrop-blur"
-      >
-        App B
-      </div>
-
-      <AnimatedBeam
-        className="pointer-events-none"
-        containerRef={containerRef}
-        fromRef={fromRef}
-        toRef={toRef}
-        curvature={120}
-        pathColor="gray"
-        pathWidth={3}
-        pathOpacity={0.25}
-        gradientStartColor="#ffaa40"
-        gradientStopColor="#9c40ff"
-        duration={5}
-      />
-    </div>
-  );
-}
+import GithubActivityCard from "../bento/GithubActivityCard";
 
 const features = [
   {
@@ -66,7 +24,9 @@ const features = [
     cta: "Learn more",
     className:
       "md:row-start-1 md:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
-    background: "",
+    background: (
+      <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
+    ),
   },
   {
     Icon: BellIcon,
@@ -85,7 +45,9 @@ const features = [
     cta: "Learn more",
     className:
       "md:col-start-1 md:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
-    background: <BeamDemo />,
+    background: (
+      <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
+    ),
   },
   {
     Icon: CalendarIcon,

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const revalidate = 3600; // cache 1h
+export const revalidate = 3600;
 
 type Day = { date: string; count: number };
 
@@ -29,17 +29,14 @@ function toISODate(d: Date) {
 }
 
 function computeStreaks(days: Day[]) {
-  // days expected sorted ascending by date
   let currentStreak = 0;
   let longestStreak = 0;
 
-  // Walk from latest to oldest to compute current streak first
   for (let i = days.length - 1; i >= 0; i--) {
     if (days[i].count > 0) currentStreak++;
     else break;
   }
 
-  // Longest streak
   let streak = 0;
   for (let i = 0; i < days.length; i++) {
     if (days[i].count > 0) {
@@ -87,7 +84,6 @@ export async function GET(req: Request) {
       "Content-Type": "application/json",
     },
     body,
-    // Avoid leaking token in edge logs
     cache: "force-cache",
   });
 
@@ -104,19 +100,26 @@ export async function GET(req: Request) {
   if (!user)
     return NextResponse.json({ error: "No user found" }, { status: 404 });
 
-  const weeks = user.contributionsCollection.contributionCalendar.weeks as {
+  const calendar = user.contributionsCollection.contributionCalendar;
+
+  const rawWeeks = calendar.weeks as {
     contributionDays: { date: string; contributionCount: number }[];
   }[];
 
-  const allDaysAsc: Day[] = weeks
+  // compact bento width: keep last ~20 weeks
+  const weeksForCard = rawWeeks.slice(-20).map((w) => ({
+    days: w.contributionDays.map((d) => ({
+      date: d.date,
+      count: d.contributionCount,
+    })),
+  }));
+
+  const allDaysAsc: Day[] = rawWeeks
     .flatMap((w) => w.contributionDays)
     .map((d) => ({ date: d.date, count: d.contributionCount }))
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  // last 35 days for the mini heatmap
   const last35 = allDaysAsc.slice(-35);
-
-  // last 30 days total
   const last30 = allDaysAsc.slice(-30).reduce((sum, d) => sum + d.count, 0);
 
   const { currentStreak, longestStreak } = computeStreaks(allDaysAsc);
@@ -125,11 +128,11 @@ export async function GET(req: Request) {
     login,
     followers: user.followers.totalCount,
     publicRepos: user.repositories.totalCount,
-    totalContributionsYear:
-      user.contributionsCollection.contributionCalendar.totalContributions,
+    totalContributionsYear: calendar.totalContributions,
     last30Contributions: last30,
     currentStreak,
     longestStreak,
-    last35Days: last35, // [{ date, count }]
+    last35Days: last35,
+    weeks: weeksForCard,
   });
 }

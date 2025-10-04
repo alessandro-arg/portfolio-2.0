@@ -44,20 +44,13 @@ export default function GithubActivityCard({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      className={[
-        "relative w-full overflow-hidden rounded-2xl",
-        "border border-white/10 bg-gradient-to-b from-zinc-900 to-black",
-        "p-5 backdrop-blur-sm",
-        className,
-      ].join(" ")}
+      className="absolute inset-0 group p-5 cursor-default"
       role="region"
       aria-label="GitHub activity card"
     >
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
-        <div className="bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
+        <div className="bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
           {title}
         </div>
         {data?.login && (
@@ -72,73 +65,75 @@ export default function GithubActivityCard({
         )}
       </div>
 
-      {/* Main stats */}
-      <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Stat
-          label="Current streak"
-          value={isLoading ? "…" : `${data?.currentStreak ?? 0}d`}
-          accent="emerald"
-        />
-        <Stat
-          label="Longest streak"
-          value={isLoading ? "…" : `${data?.longestStreak ?? 0}d`}
-          accent="sky"
-        />
-        <Stat
-          label="Last 30 days"
-          value={isLoading ? "…" : `${data?.last30Contributions ?? 0}`}
-          accent="violet"
-        />
-        <Stat
-          label="Public repos"
-          value={isLoading ? "…" : `${data?.publicRepos ?? 0}`}
-          accent="amber"
-        />
-      </div>
+      <div className="flex gap-5">
+        {/* Heatmap (35 days / 7x5) */}
+        <div className="mt-4 flex-1">
+          <div className="text-md text-zinc-300 mb-4">Recent activity</div>
+          <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
+            {isLoading && (
+              <div className="col-span-7 text-zinc-500 text-xs">Loading...</div>
+            )}
+            {error && (
+              <div className="col-span-7 text-rose-400 text-xs">
+                Failed to load GitHub data
+              </div>
+            )}
+            {!isLoading &&
+              !error &&
+              data?.last35Days?.map((d, i) => {
+                const lvl =
+                  maxCount === 0 ? 0 : Math.ceil((d.count / maxCount) * 4);
+                const cls =
+                  lvl === 0
+                    ? "bg-zinc-700/40"
+                    : lvl === 1
+                    ? "bg-emerald-400/25"
+                    : lvl === 2
+                    ? "bg-emerald-400/50"
+                    : lvl === 3
+                    ? "bg-emerald-400/70"
+                    : "bg-emerald-400";
+                return (
+                  <div key={i} className="flex flex-col gap-1">
+                    <div
+                      className={[
+                        "h-2 w-full rounded sm:h-2 sm:w-2",
+                        "transition-transform duration-200",
+                        "hover:scale-[1.06]",
+                        cls,
+                      ].join(" ")}
+                      role="img"
+                      aria-label={`${d.date}: ${d.count} contributions`}
+                      title={`${d.date} - ${d.count} contributions`}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
 
-      {/* Heatmap (35 days / 7x5) */}
-      <div className="mt-5">
-        <div className="mb-2 text-xs text-zinc-400">Recent activity</div>
-        <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
-          {isLoading && (
-            <div className="col-span-7 text-zinc-500 text-xs">Loading…</div>
-          )}
-          {error && (
-            <div className="col-span-7 text-rose-400 text-xs">
-              Failed to load GitHub data
-            </div>
-          )}
-          {!isLoading &&
-            !error &&
-            data?.last35Days?.map((d, i) => {
-              const lvl =
-                maxCount === 0 ? 0 : Math.ceil((d.count / maxCount) * 4); // 0..4
-              const cls =
-                lvl === 0
-                  ? "bg-zinc-700/40"
-                  : lvl === 1
-                  ? "bg-emerald-400/25"
-                  : lvl === 2
-                  ? "bg-emerald-400/50"
-                  : lvl === 3
-                  ? "bg-emerald-400/70"
-                  : "bg-emerald-400";
-              return (
-                <div key={i} className="flex flex-col gap-1">
-                  <div
-                    className={[
-                      "h-6 w-full rounded sm:h-7",
-                      "transition-transform duration-200",
-                      "hover:scale-[1.06]",
-                      cls,
-                    ].join(" ")}
-                    role="img"
-                    aria-label={`${d.date}: ${d.count} contributions`}
-                    title={`${d.date} — ${d.count} contributions`}
-                  />
-                </div>
-              );
-            })}
+        {/* Main stats */}
+        <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-2">
+          <Stat
+            label="Current streak"
+            value={isLoading ? "…" : `${data?.currentStreak ?? 0} days`}
+            accent="emerald"
+          />
+          <Stat
+            label="Longest streak"
+            value={isLoading ? "…" : `${data?.longestStreak ?? 0} days`}
+            accent="sky"
+          />
+          <Stat
+            label="Last 30 days"
+            value={isLoading ? "…" : `${data?.last30Contributions ?? 0} contr.`}
+            accent="violet"
+          />
+          <Stat
+            label="Public repos"
+            value={isLoading ? "…" : `${data?.publicRepos ?? 0}`}
+            accent="amber"
+          />
         </div>
       </div>
 

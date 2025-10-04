@@ -8,6 +8,7 @@ import React from "react";
 import GlobeCard from "../bento/GlobeCard";
 import CopyEmailCard from "../bento/CopyEmailCard";
 import GithubActivityCard from "../bento/GithubActivityCard";
+import TextCard from "../bento/TextCard";
 
 const features = [
   {
@@ -24,9 +25,7 @@ const features = [
     cta: "Learn more",
     className:
       "md:row-start-1 md:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
-    background: (
-      <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
-    ),
+    background: <TextCard />,
   },
   {
     Icon: BellIcon,

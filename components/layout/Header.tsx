@@ -7,7 +7,7 @@ import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
 
 const menuItems = [
-  { href: "#home", label: "Home", ariaLabel: "Go to home page", link: "/" },
+  { href: "/", label: "Home", ariaLabel: "Go to home page", link: "/" },
   {
     href: "#about",
     label: "About",
@@ -15,7 +15,7 @@ const menuItems = [
     link: "/about",
   },
   {
-    href: "#projects",
+    href: "/projects",
     label: "Projects",
     ariaLabel: "View our services",
     link: "/projects",

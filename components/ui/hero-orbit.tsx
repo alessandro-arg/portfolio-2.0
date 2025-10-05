@@ -1,4 +1,3 @@
-import StarIcon from "@/components/icons/star.svg";
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 

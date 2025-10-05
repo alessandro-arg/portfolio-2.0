@@ -29,6 +29,7 @@ import {
   siFramer,
   siPrisma,
   siFigma,
+  siPython,
 } from "simple-icons/icons";
 
 type SkillItem = {
@@ -67,7 +68,7 @@ const skillsRow2: SkillItem[] = [
   { img: siDjango, colorClass: "dark:text-white" },
   { img: siJavascript },
   { img: siPrisma },
-  { img: siMaterialdesign },
+  { img: siPython },
   { img: siGit },
   { img: siStripe },
 ];

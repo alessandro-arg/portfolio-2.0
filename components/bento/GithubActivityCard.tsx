@@ -122,14 +122,14 @@ export default function GithubActivityCard({
 
       {/* Heatmap */}
       <div className="relative mt-4 flex gap-5">
-        <div className="flex-1 h-full">
+        <div className="h-full">
           {/* Month labels */}
-          <div className="relative mb-1 hidden text-[10px] text-zinc-400 sm:block">
-            <div className="grid grid-flow-col auto-cols-[0.8rem] gap-[3px] md:auto-cols-[0.9rem] md:gap-[4px]">
+          <div className="relative mb-1 hidden text-[10px] text-zinc-400 sm:flex">
+            <div className="grid grid-flow-col auto-cols-[0.8rem] gap-[3px] md:auto-cols-[1rem] md:gap-[4px]">
               {weeks.map((_, i) => {
                 const label = monthLabels.find((m) => m.col === i)?.label ?? "";
                 return (
-                  <div key={`m-${i}`} className="text-[10px]">
+                  <div key={`m-${i}`} className="text-[10px] capitalize">
                     {label}
                   </div>
                 );
@@ -140,7 +140,7 @@ export default function GithubActivityCard({
           {/* Weekday labels + grid */}
           <div className="flex">
             {/* Weekday labels (md+) */}
-            <div className="mr-2 hidden flex-col justify-between py-[2px] text-[10px] text-zinc-400 md:flex">
+            <div className="mr-2 hidden flex-col justify-around py-[2px] text-[10px] text-zinc-400 md:flex">
               <span>Mon</span>
               <span>Wed</span>
               <span>Fri</span>
@@ -226,7 +226,7 @@ export default function GithubActivityCard({
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:w-[300px]">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:flex-1">
           <Stat
             label="Current streak"
             value={isLoading ? "…" : `${data?.currentStreak ?? 0} days`}

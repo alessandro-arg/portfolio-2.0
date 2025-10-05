@@ -226,7 +226,7 @@ export default function GithubActivityCard({
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:flex-1">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 flex-1">
           <Stat
             label="Current streak"
             value={isLoading ? "…" : `${data?.currentStreak ?? 0} days`}

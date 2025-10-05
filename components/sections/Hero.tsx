@@ -138,7 +138,7 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
           >
-            <span className="mx-1 rounded-full bg-blue-800 px-1.5 text-xs leading-relaxed text-white">
+            <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed text-white">
               New
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1">

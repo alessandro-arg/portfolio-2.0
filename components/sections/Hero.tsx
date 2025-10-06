@@ -133,7 +133,7 @@ export default function Hero() {
           target="__blank"
         >
           <motion.div
-            className="mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
@@ -141,13 +141,13 @@ export default function Hero() {
             <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed text-white">
               New
             </span>
-            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1">
+            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white transition-all duration-300">
               Chess² is now live! Try it out
               <ArrowRight
                 size={24}
                 strokeWidth={3}
                 absoluteStrokeWidth
-                className="mr-1 mt-0.5 size-3.5 text-black transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70"
+                className="mr-1 mt-0.5 size-3.5 text-black ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70 group-hover:dark:text-white transition-all duration-300"
               />
             </AnimatedShinyText>
           </motion.div>

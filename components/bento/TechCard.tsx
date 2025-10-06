@@ -21,7 +21,6 @@ import {
   siGithub,
   siClerk,
   siShadcnui,
-  siMaterialdesign,
   siDjango,
   siVercel,
   siStripe,

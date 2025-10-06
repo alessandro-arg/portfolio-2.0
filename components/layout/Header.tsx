@@ -1,26 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
 
 const menuItems = [
-  { href: "/", label: "Home", ariaLabel: "Go to home page", link: "/" },
-  {
-    href: "#about",
-    label: "About",
-    ariaLabel: "Learn about us",
-    link: "/about",
-  },
-  {
-    href: "/projects",
-    label: "Projects",
-    ariaLabel: "View our services",
-    link: "/projects",
-  },
-  { href: "#more", label: "More", ariaLabel: "Get in touch", link: "/more" },
+  { href: "/", label: "Home", ariaLabel: "Go to home page" },
+  { href: "/about", label: "About", ariaLabel: "Learn about us" },
+  { href: "/projects", label: "Projects", ariaLabel: "View our projects" },
+  { href: "#", label: "More", ariaLabel: "See more" },
 ];
 
 const socialItems = [
@@ -79,9 +70,18 @@ function useScrollDirection(threshold = 6) {
 
 export default function Header() {
   const dir = useScrollDirection(8);
+  const pathname = usePathname();
   const barRef = useRef<HTMLDivElement>(null);
   const underlineLayoutId = useMemo(() => "nav-underline", []);
-  const [active, setActive] = useState("#home");
+  const [hash, setHash] = useState<string>("");
+
+  // Track hash for section links (#about, #more, #contact)
+  useEffect(() => {
+    const update = () => setHash(window.location.hash || "");
+    update();
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
 
   // Mobile
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -90,21 +90,19 @@ export default function Header() {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      const { overflow, paddingRight } = getComputedStyle(document.body);
-      const scrollbar =
-        window.innerWidth - document.documentElement.clientWidth;
-      const prevOverflow = document.body.style.overflow;
-      const prevPadding = document.body.style.paddingRight;
-      document.body.style.overflow = "hidden";
-      if (scrollbar > 0 && overflow !== "hidden") {
-        document.body.style.paddingRight = `${scrollbar}px`;
-      }
-      return () => {
-        document.body.style.overflow = prevOverflow;
-        document.body.style.paddingRight = prevPadding;
-      };
+    if (!mobileOpen) return;
+    const { overflow } = getComputedStyle(document.body);
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    const prevOverflow = document.body.style.overflow;
+    const prevPadding = document.body.style.paddingRight;
+    document.body.style.overflow = "hidden";
+    if (scrollbar > 0 && overflow !== "hidden") {
+      document.body.style.paddingRight = `${scrollbar}px`;
     }
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPadding;
+    };
   }, [mobileOpen]);
 
   // Close on ESC
@@ -136,12 +134,12 @@ export default function Header() {
     );
   }, []);
 
+  // Show/hide on scroll
   useEffect(() => {
     if (!barRef.current) return;
     const el = barRef.current;
-    // hide when scrolling down, show when up
     gsap.to(el, {
-      y: dir === "down" ? -80 : 8, // 12px margin from the top when shown
+      y: dir === "down" ? -80 : 8,
       duration: 0.45,
       ease: "power3.out",
     });
@@ -157,6 +155,15 @@ export default function Header() {
     hidden: { x: -24, opacity: 0 },
     visible: { x: 0, opacity: 1, transition: panelSpring },
     exit: { x: -24, opacity: 0, transition: { duration: 0.15 } },
+  };
+
+  const isItemActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) {
+      const targetHash = href.slice(1);
+      return pathname === "/" && hash === targetHash;
+    }
+    return pathname === href;
   };
 
   return (
@@ -191,20 +198,20 @@ export default function Header() {
             {/* Nav */}
             <ul className="hidden items-center gap-6 md:flex">
               {menuItems.map((item) => {
-                const isActive = active === item.href;
+                const active = isItemActive(item.href);
                 return (
                   <li key={item.href} className="relative font-medium">
                     <Link
                       href={item.href}
+                      aria-label={item.ariaLabel}
                       className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                      onClick={() => setActive(item.href)}
                     >
                       {item.label}
                     </Link>
 
                     {/* animated underline */}
                     <AnimatePresence>
-                      {isActive && (
+                      {active && (
                         <motion.span
                           layoutId={underlineLayoutId}
                           className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-[#16b1ff]"
@@ -236,7 +243,7 @@ export default function Header() {
                     "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
                   ].join(" ")}
-                  onClick={() => setActive("#contact")}
+                  aria-label="Jump to contact section"
                 >
                   Contact
                 </Link>
@@ -326,9 +333,9 @@ export default function Header() {
                 <motion.li key={item.href} variants={linkVariants}>
                   <Link
                     href={item.href}
+                    aria-label={item.ariaLabel}
                     className="block px-4 py-2 text-3xl font-semibold tracking-tight text-neutral-900 hover:text-neutral-700 dark:text-neutral-100 dark:hover:text-neutral-300 transition-colors"
                     onClick={() => {
-                      setActive(item.href);
                       closeMobile();
                     }}
                   >
@@ -339,7 +346,7 @@ export default function Header() {
 
               <motion.li variants={linkVariants} className="mt-2">
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className={[
                     "inline-flex items-center justify-center rounded-full",
                     "border-2 border-neutral-900 dark:border-neutral-100",
@@ -347,10 +354,8 @@ export default function Header() {
                     "px-6 py-3 text-2xl font-bold",
                     "shadow-[2px_3px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_3px_0_0_rgba(255,255,255,0.15)]",
                   ].join(" ")}
-                  onClick={() => {
-                    setActive("#contact");
-                    closeMobile();
-                  }}
+                  aria-label="Jump to contact section"
+                  onClick={closeMobile}
                 >
                   Contact
                 </Link>

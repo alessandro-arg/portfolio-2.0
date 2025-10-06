@@ -3,178 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { ArrowRight } from "lucide-react";
-import StarIcon from "@/components/icons/star.svg";
-import Image from "next/image";
+import { projectsData } from "./projects.data";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectInfoPanel } from "./ProjectInfoPanel";
-import { Project } from "./types";
-
-import type { SimpleIcon } from "simple-icons";
-import {
-  siNextdotjs,
-  siReact,
-  siAngular,
-  siTypescript,
-  siTailwindcss,
-  siFirebase,
-} from "simple-icons/icons";
-
-export function IconInline({
-  icon,
-  size = 16,
-}: {
-  icon: SimpleIcon;
-  size?: number;
-}) {
-  return (
-    <div aria-label={icon.title} title={icon.title}>
-      <svg
-        role="img"
-        viewBox="0 0 24 24"
-        width={size}
-        height={size}
-        aria-hidden="true"
-      >
-        <path d={icon.path} fill={`#${icon.hex || "000000"}`} />
-      </svg>
-    </div>
-  );
-}
-
-const projectsData: Project[] = [
-  {
-    title: "DABubble",
-    smallDescription:
-      "A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design",
-    description:
-      " A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design sdfagsdfgasjdhfgkajshdgfajshdgfkjahsdgf asdfjhgasdfkjhg sADJFHGASDF KJHSdGFJh ",
-    src: "/images/dabubble_mockup.jpg",
-    href: "/projects/dabubble",
-    slug: "dabubble",
-    github: "https://github.com/alessandro-arg/dabubble",
-    technologies: [
-      {
-        name: siNextdotjs.title,
-        icon: <IconInline icon={siNextdotjs} size={16} />,
-      },
-      {
-        name: siTypescript.title,
-        icon: <IconInline icon={siTypescript} size={16} />,
-      },
-      {
-        name: siTailwindcss.title,
-        icon: <IconInline icon={siTailwindcss} size={16} />,
-      },
-      {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
-      },
-    ],
-    year: "2025",
-    points: [
-      "Built with Next.js, React, and TypeScript for scalability.",
-      "Real-time messaging and presence with Firebase.",
-      "Accessible UI with Tailwind CSS and motion effects.",
-    ],
-    theme: {
-      angle: 10,
-      stops: [
-        { color: "#7E22CE", at: "49.9%" },
-        { color: "#7E22CE", at: "81.7%" },
-        { color: "#C084FC", at: "99.88%" },
-        { color: "#F9D793", at: "113.5%" },
-      ],
-    },
-  },
-  {
-    title: "Join",
-    smallDescription:
-      "A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design",
-    description:
-      " A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design",
-    src: "/images/dabubble_mockup.jpg",
-    href: "/projects/dabubble",
-    slug: "join",
-    github: "https://github.com/alessandro-arg/dabubble",
-    technologies: [
-      {
-        name: siNextdotjs.title,
-        icon: <IconInline icon={siNextdotjs} size={16} />,
-      },
-      {
-        name: siTypescript.title,
-        icon: <IconInline icon={siTypescript} size={16} />,
-      },
-      {
-        name: siTailwindcss.title,
-        icon: <IconInline icon={siTailwindcss} size={16} />,
-      },
-      {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
-      },
-    ],
-    year: "2025",
-    points: [
-      "Built with Next.js, React, and TypeScript for scalability.",
-      "Real-time messaging and presence with Firebase.",
-      "Accessible UI with Tailwind CSS and motion effects.",
-    ],
-    theme: {
-      angle: 10,
-      stops: [
-        { color: "#2932CB", at: "49.9%" },
-        { color: "#2932CB", at: "81.7%" },
-        { color: "#7980FF", at: "99.88%" },
-        { color: "#F9D793", at: "113.5%" },
-      ],
-    },
-  },
-  {
-    title: "Chess²",
-    smallDescription:
-      "A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design",
-    description:
-      " A space for entrepreneurs to pitch ideas, explore others,and gain exposure with clean design",
-    src: "/images/dabubble_mockup.jpg",
-    href: "/projects/dabubble",
-    slug: "chess2",
-    github: "https://github.com/alessandro-arg/dabubble",
-    technologies: [
-      {
-        name: siNextdotjs.title,
-        icon: <IconInline icon={siNextdotjs} size={16} />,
-      },
-      {
-        name: siTypescript.title,
-        icon: <IconInline icon={siTypescript} size={16} />,
-      },
-      {
-        name: siTailwindcss.title,
-        icon: <IconInline icon={siTailwindcss} size={16} />,
-      },
-      {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
-      },
-    ],
-    year: "2025",
-    points: [
-      "Built with Next.js, React, and TypeScript for scalability.",
-      "Real-time messaging and presence with Firebase.",
-      "Accessible UI with Tailwind CSS and motion effects.",
-    ],
-    theme: {
-      angle: 10,
-      stops: [
-        { color: "#14B8A6", at: "49.9%" },
-        { color: "#14B8A6", at: "81.7%" },
-        { color: "#5EEAD4", at: "99.88%" },
-        { color: "#F9D793", at: "113.5%" },
-      ],
-    },
-  },
-];
 
 export default function ProjectsSection() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -185,7 +16,7 @@ export default function ProjectsSection() {
   useEffect(() => {
     const options: IntersectionObserverInit = {
       root: null,
-      rootMargin: "0px 0px -50% 0px", // triggers when the card passes midpoint
+      rootMargin: "0px 0px -60% 0px",
       threshold: 0.3,
     };
 
@@ -255,7 +86,7 @@ export default function ProjectsSection() {
       {/* CTA for the other projects */}
       <a
         href="/projects"
-        className="group dark:text-white-1 flex w-fit items-center justify-center gap-2 font-mono text-neutral-800 transition-colors hover:text-black mx-auto md:mt-20"
+        className="group dark:text-white flex w-fit items-center justify-center gap-2 font-mono text-neutral-800 transition-colors hover:text-black mx-auto md:mt-20"
       >
         See more projects
         <div className="bg-white-1/50 size-[25px] overflow-hidden rounded-full border border-neutral-300 transition-all duration-500 group-hover:bg-neutral-200 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">

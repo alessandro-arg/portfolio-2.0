@@ -6,15 +6,7 @@ import { Project } from "./types";
 import { makeGradient } from "@/lib/theme";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const {
-    title,
-    smallDescription,
-    description,
-    src,
-    href = "#",
-    theme = { from: "rgb(219,39,119)", to: "rgb(244,114,182)" },
-    technologies = [],
-  } = project;
+  const { title, smallDescription, src, href, technologies = [] } = project;
 
   return (
     <div
@@ -72,7 +64,7 @@ export function ProjectCard({ project }: { project: Project }) {
             </h2>
           </div>
           <div className="w-full flex-row gap-8 items-center justify-between flex text-black dark:text-white text-base mt-1">
-            <h3>{description}</h3>
+            <h3>{smallDescription}</h3>
             <ArrowRight className="size-6 shrink-0" />
           </div>
           {technologies.length > 0 && (

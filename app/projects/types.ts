@@ -5,6 +5,7 @@ export type GradientStop = { color: string; at: string };
 export type ProjectTheme = {
   angle?: number;
   stops: GradientStop[];
+  primary?: string;
 };
 
 export type Technology = {

@@ -41,9 +41,6 @@ export const MaskContainer = ({
     <motion.div
       ref={containerRef}
       className={cn("relative h-screen cursor-default", className)}
-      animate={{
-        backgroundColor: isHovered ? "var(--slate-900)" : "var(--white)",
-      }}
       transition={{
         backgroundColor: { duration: 0.3 },
       }}

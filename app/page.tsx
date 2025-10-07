@@ -3,6 +3,7 @@ import Grid from "@/components/sections/Grid";
 import ProjectsSection from "./projects/ProjectsSection";
 import Skills from "@/components/sections/Skills";
 import InfiniteRow from "@/components/sections/InfiniteRow";
+import AboutSection from "./about/AboutSection";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <ProjectsSection showCTA />
       <Skills />
       <InfiniteRow />
+      <AboutSection />
     </main>
   );
 }

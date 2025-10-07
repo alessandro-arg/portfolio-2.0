@@ -6,8 +6,8 @@ import StarIcon from "@/components/icons/star.svg";
 
 export default function ScrollBasedVelocity() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-20">
-      <ScrollVelocityContainer className="text-4xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+      <ScrollVelocityContainer>
         <ScrollVelocityRow
           baseVelocity={2}
           direction={1}

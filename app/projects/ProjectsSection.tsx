@@ -16,7 +16,7 @@ export default function ProjectsSection() {
   useEffect(() => {
     const options: IntersectionObserverInit = {
       root: null,
-      rootMargin: "0px 0px -60% 0px",
+      rootMargin: "0px 0px -50% 0px",
       threshold: 0.3,
     };
 
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
         aria-label="Projects list"
         className="relative flex w-full max-lg:max-w-xl mx-auto"
       >
-        {/* Here loop all the projects like -> for every project, create an article like under */}
+        {/* Here loop all the projects like -> for every project, create an article */}
         <div className="mx-auto gap-y-6 flex lg:max-w-[65%] flex-col lg:gap-y-28">
           {projectsData.map((project, i) => (
             <div

@@ -60,7 +60,7 @@ const features = [
   },
 ];
 
-export function Grid() {
+export default function Grid() {
   return (
     <div className="w-full max-w-7xl px-4">
       <div className="mx-auto w-full gap-4 md:max-w-full mb-30 sm:mb-20">

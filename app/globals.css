@@ -3,6 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 96rem) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
 @theme {
   --font-instrument: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
@@ -81,11 +92,20 @@
       background-position: calc(100% + var(--shiny-width)) 0;
     }
   }
-  --animate-gradient: gradient 8s linear infinite
-;
+  --animate-gradient: gradient 8s linear infinite;
   @keyframes gradient {
-  to {
-    background-position: var(--bg-size, 300%) 0;
+    to {
+      background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite
+;
+  @keyframes ripple {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    }
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
     }
   }}
 

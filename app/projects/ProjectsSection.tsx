@@ -7,10 +7,15 @@ import { projectsData } from "./projects.data";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectInfoPanel } from "./ProjectInfoPanel";
 
-export default function ProjectsSection() {
+type ProjectsSectionProps = {
+  showCTA?: boolean;
+};
+
+export default function ProjectsSection({
+  showCTA = true,
+}: ProjectsSectionProps) {
   const [activeIdx, setActiveIdx] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   const ids = useMemo(() => projectsData.map((p, i) => p.slug ?? `p-${i}`), []);
 
   useEffect(() => {
@@ -83,23 +88,25 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* CTA for the other projects */}
-      <a
-        href="/projects"
-        className="group dark:text-white flex w-fit items-center justify-center gap-2 font-mono text-neutral-800 transition-colors hover:text-black mx-auto md:mt-20"
-      >
-        See more projects
-        <div className="bg-white-1/50 size-[25px] overflow-hidden rounded-full border border-neutral-300 transition-all duration-500 group-hover:bg-neutral-200 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
-          <div className="flex w-12 -translate-x-1/2 transition-transform duration-500 ease-in-out group-hover:translate-x-0">
-            <span className="flex size-6">
-              <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
-            </span>
-            <span className="flex size-6">
-              <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
-            </span>
+      {/* Only render CTA if showCTA = true */}
+      {showCTA && (
+        <a
+          href="/projects"
+          className="group dark:text-white flex w-fit items-center justify-center gap-2 font-mono text-neutral-800 transition-colors hover:text-black mx-auto md:mt-20"
+        >
+          See more projects
+          <div className="bg-white-1/50 size-[25px] overflow-hidden rounded-full border border-neutral-300 transition-all duration-500 group-hover:bg-neutral-200 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
+            <div className="flex w-12 -translate-x-1/2 transition-transform duration-500 ease-in-out group-hover:translate-x-0">
+              <span className="flex size-6">
+                <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
+              </span>
+              <span className="flex size-6">
+                <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
+              </span>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      )}
     </section>
   );
 }

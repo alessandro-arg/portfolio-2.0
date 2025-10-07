@@ -8,7 +8,7 @@ export default function HomePage() {
     <main className="relative flex flex-col items-center justify-center">
       <Hero />
       <Grid />
-      <ProjectsSection />
+      <ProjectsSection showCTA />
       <Skills />
     </main>
   );

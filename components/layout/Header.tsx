@@ -194,7 +194,7 @@ export default function Header() {
             Alessandro
           </Link>
 
-          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-gray-200/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
+          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-black/10 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
             {/* Nav */}
             <ul className="hidden items-center gap-6 md:flex">
               {menuItems.map((item) => {

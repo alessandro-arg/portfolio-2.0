@@ -11,11 +11,11 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    img: string;
     quote: string;
     name: string;
     title: string;
     role: string;
+    bg?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -89,28 +89,30 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative flex h-[370px] w-[300px] flex-col justify-between overflow-hidden rounded-xl p-5 antialiased select-none md:h-[440px] md:w-[400px] md:rounded-2xl lg:px-6 lg:py-7 text-white mx-1 sm:mx-2 bg-[linear-gradient(rgb(2,156,114),rgb(0,75,54))]"
+            className="relative flex h-[300px] w-[300px] flex-col justify-between overflow-hidden rounded-xl p-5 antialiased select-none md:h-[400px] md:w-[400px] md:rounded-2xl lg:px-6 lg:py-7 text-white mx-1 sm:mx-2"
+            style={{
+              background: item.bg,
+            }}
             key={item.name}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-800 dark:text-gray-100">
+            <div
+              aria-hidden="true"
+              className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+            ></div>
+            <div>
+              <h4 className="mb-5 text-lg font-bold tracking-wide md:text-2xl font-instrument">
+                {item.title}
+              </h4>
+              <p className="mb-3 line-clamp-7 text-base font-extralight tracking-tight md:line-clamp-10 md:text-lg">
                 {item.quote}
+              </p>
+            </div>
+            <div>
+              <span className="text-base font-bold tracking-wide md:text-xl">
+                {item.name}
               </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
-                    {item.name}
-                  </span>
-                  <span className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
-                    {item.title}
-                  </span>
-                </span>
-              </div>
-            </blockquote>
+              <p>{item.role}</p>
+            </div>
           </li>
         ))}
       </ul>

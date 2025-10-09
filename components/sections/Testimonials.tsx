@@ -4,35 +4,35 @@ import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 const testimonials = [
   {
     quote:
-      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
-    name: "Charles Dickens",
-    title: "Developer • DA Akademie",
-    role: "yeah",
-    img: "/images/profile.jpg",
+      "Working with Alessandro is a fantastic experience. He's not only highly skilled in frontend technologies but also brings a refreshing creativity to every project. His ability to solve complex problems quickly and effectively makes him a key asset to the team.",
+    name: "Selahattin Safra",
+    title: "Efficient, innovative, and a pleasure to work with.",
+    role: "System Engineer • Letec IT Solutions",
+    bg: "linear-gradient(#2b5876, #4e4376)",
   },
   {
     quote:
-      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
-    name: "William Shakespeare",
-    title: "Hamlet",
-    role: "yeah",
-    img: "/images/profile.jpg",
+      "Working with Alessandro was always constructive and inspiring. He has a solid technical understanding, creative ideas and a solution-oriented way of thinking. Reliable, a team player and committed - with him, every project is a succes.",
+    name: "Eid Aden",
+    title: "Consistent and clean work in every project.",
+    role: "Software Engineer • Developer Akdemie",
+    bg: "linear-gradient(#2c3e50, #4ca1af)",
   },
   {
     quote:
-      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-    name: "Jane Austen",
-    title: "Pride and Prejudice",
-    role: "yeah",
-    img: "/images/profile.jpg",
+      "I completed the frontend development training course together with Alessandro. During that time, I got to know him as a very reliable, helpful, and talented colleague.",
+    name: "Marco Marrocu",
+    title: "A frontend developer who transforms visions into reality.",
+    role: "Supervisor • Imperial Auto",
+    bg: "linear-gradient(#314755, #26a0da)",
   },
   {
     quote:
-      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
-    name: "Herman Melville",
-    title: "Moby-Dick",
-    role: "yeah",
-    img: "/images/profile.jpg",
+      "He worked quickly and with great commitment, never limited himself to just 'his' tasks, and repeatedly contributed clever ideas that noticeably advanced our project.",
+    name: "Judith Lenz",
+    title: "Working with Alessandro in the team was inspiring.",
+    role: "Frontend Developer • Developer Akdemie",
+    bg: "linear-gradient(#373b44, #4286f4)",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="my-32 dark:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [text-shadow:0px_4px_8px_rgba(255,255,255,0.05),0px_8px_30px_rgba(255,255,255,0.25)]"
+      className="container mb-20 md:mb-32 md:mt-32 dark:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [text-shadow:0px_4px_8px_rgba(255,255,255,0.05),0px_8px_30px_rgba(255,255,255,0.25)]"
     >
       <h2 className="relative z-2 text-5xl font-medium tracking-tight text-balance sm:text-5xl md:mb-36 md:text-6xl text-center mt-44 md:mt-28 mb-16 mx-12 md:mx-2">
         <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">
@@ -61,7 +61,7 @@ export default function Testimonials() {
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
-          speed="slow"
+          speed="normal"
         />
       </div>
     </section>

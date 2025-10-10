@@ -133,7 +133,7 @@ export default function Hero() {
           target="__blank"
         >
           <motion.div
-            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
@@ -141,7 +141,7 @@ export default function Hero() {
             <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed text-white">
               New
             </span>
-            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white transition-all duration-300">
+            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
               Chess² is now live! Try it out
               <ArrowRight
                 size={24}
@@ -203,9 +203,9 @@ export default function Hero() {
             className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10"
           >
             {/* The animated fill */}
-            <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
+            <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
-            <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-white dark:text-white dark:group-hover:text-black">
+            <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-black dark:text-white dark:group-hover:text-black">
               Let’s Connect
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
@@ -214,7 +214,7 @@ export default function Hero() {
                 aria-hidden="true"
               />{" "}
               <ArrowRight
-                className="absolute -translate-x-5 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 dark:text-black"
+                className="absolute -translate-x-5 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 text-black"
                 aria-hidden="true"
               />
             </span>

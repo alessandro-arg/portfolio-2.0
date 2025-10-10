@@ -63,7 +63,7 @@ export default function CopyEmailCard() {
           <button
             type="button"
             onClick={handleCopy}
-            className="items-center gap-2 py-2 text-base font-light text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90 flex w-full justify-center rounded-sm dark:bg-white/10 bg-black/10 px-4 border dark:border-white/10 border-black/10 translate-y-4"
+            className="items-center gap-2 py-2 text-base font-light text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90 flex w-full justify-center rounded-sm dark:bg-white/10 bg-neutral-200 px-4 border dark:border-white/10 border-black/10 translate-y-4"
             aria-live="polite"
           >
             {copied ? (

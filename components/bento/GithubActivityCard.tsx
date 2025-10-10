@@ -113,7 +113,7 @@ export default function GithubActivityCard({
             href={`https://github.com/${data.login}`}
             target="_blank"
             rel="noreferrer"
-            className="text-md text-zinc-300 hover:text-white transition-all duration-200"
+            className="text-md dark:text-zinc-300 dark:hover:text-white text-neutral-600 hover:text-black transition-all duration-200"
           >
             @{data.login}
           </a>
@@ -281,7 +281,9 @@ function Stat({
       <div className="text-[11px] uppercase tracking-wide text-zinc-400">
         {label}
       </div>
-      <div className="mt-1 text-xl font-semibold text-white">{value}</div>
+      <div className="mt-1 text-xl font-semibold text-neutral-600 dark:text-white">
+        {value}
+      </div>
     </div>
   );
 }

@@ -19,6 +19,7 @@ const CITIES: Country[] = [
 
 export type GlobeProps = {
   defaultCountryKey?: Country["key"];
+  isDark?: boolean;
   colors?: {
     base?: RGB;
     glow?: RGB;
@@ -30,6 +31,7 @@ export type GlobeProps = {
 
 export function Globe({
   defaultCountryKey = "germany",
+  isDark = true,
   colors = {
     base: [1, 1, 1],
     glow: [1.15, 1.15, 1.2],
@@ -87,10 +89,10 @@ export function Globe({
       height: heightPx * 2,
       phi: currentPhiRef.current,
       theta: currentThetaRef.current,
-      dark: 1,
-      diffuse: 3,
+      dark: isDark ? 1 : 0,
+      diffuse: isDark ? 2.7 : 3.2,
       mapSamples: 18000,
-      mapBrightness: 1.2,
+      mapBrightness: isDark ? 1.35 : 1.1,
       baseColor: colors.base ?? [1, 1, 1],
       markerColor: colors.marker ?? [0.1, 0.6, 1],
       glowColor: colors.glow ?? [1.15, 1.15, 1.2],
@@ -172,7 +174,15 @@ export function Globe({
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
     };
-  }, [colors.base, colors.glow, colors.marker, height, horizontalOnly, 0.38]);
+  }, [
+    colors.base,
+    colors.glow,
+    colors.marker,
+    height,
+    horizontalOnly,
+    0.38,
+    isDark,
+  ]);
 
   const selectCity = (country: Country) => {
     setActiveKey(country.key);
@@ -195,7 +205,7 @@ export function Globe({
                 "z-50 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 transition-all duration-150",
                 isActive
                   ? "bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/40 ring-inset dark:text-sky-400"
-                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800"
+                  : "bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800"
               )}
             >
               <span>{c.flag}</span>

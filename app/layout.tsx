@@ -45,16 +45,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
-        {/* floating header */}
-        <Header />
+        <ThemeProvider>
+          {/* floating header */}
+          <Header />
 
-        {/* page content needs some top padding so it's not covered by the fixed header */}
-        <div id="content">
-          <ThemeProvider>{children}</ThemeProvider>
-        </div>
+          {/* page content needs some top padding so it's not covered by the fixed header */}
+          <div id="content">{children}</div>
 
-        <Footer />
-        <Toaster />
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 import { FooterLinks } from "./FooterLinks";
 import { footerCategories } from "./footer.data";
-import { Moon, Sun } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export default function Footer() {
   return (
@@ -51,27 +51,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col items-center gap-4 md:flex-row md:justify-end">
-          <div
-            className="relative flex items-center rounded-full p-1 ring-1 ring-border"
-            data-theme-toggle
-            aria-label="Toggle Theme"
-          >
-            <button
-              type="button"
-              className="relative size-6.5 rounded-full p-1.5 text-fd-muted-foreground text-fd-muted-foreground"
-              aria-label="Light theme"
-            >
-              <Sun className="relative m-auto size-full" />
-            </button>
-            <button
-              type="button"
-              className="relative size-6.5 rounded-full p-1.5 text-fd-muted-foreground text-fd-accent-foreground"
-              aria-label="Dark theme"
-            >
-              <Moon className="relative m-auto size-full" />
-            </button>
-          </div>
-          <div className="flex gap-3 mx-auto -mt-4 w-fit lg:mx-0 overflow-visible">
+          <ThemeToggle className="ms-auto" />
+          <div className="flex gap-3">
             <div className="relative group">
               <button>
                 <a
@@ -81,8 +62,8 @@ export default function Footer() {
                 >
                   <span className="sr-only">LinkedIn</span>
                   <svg
-                    width="25"
-                    height="25"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     fill="none"
@@ -114,8 +95,8 @@ export default function Footer() {
                 >
                   <span className="sr-only">GitHub</span>
                   <svg
-                    width="25"
-                    height="25"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     strokeLinecap="round"

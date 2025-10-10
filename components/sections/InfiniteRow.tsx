@@ -11,7 +11,7 @@ export default function ScrollBasedVelocity() {
         <ScrollVelocityRow
           baseVelocity={2}
           direction={1}
-          className="font-instrument leading-6 font-semibold tracking-wider text-nowrap text-gray-50 uppercase text-2xl md:text-3xl inline-flex items-center"
+          className="font-instrument leading-6 font-semibold tracking-wider text-nowrap dark:text-gray-50 uppercase text-2xl md:text-3xl inline-flex items-center"
         >
           <span>Accessible</span>
           <StarIcon className="size-8 text-[#16b1ff] mx-4" />

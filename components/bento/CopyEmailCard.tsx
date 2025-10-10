@@ -2,10 +2,12 @@ import React from "react";
 import { toast } from "sonner";
 import { SparklesCore } from "../ui/sparkles";
 import { CheckCheck, Copy } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
 export default function CopyEmailCard() {
+  const { theme } = useTheme();
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -48,10 +50,10 @@ export default function CopyEmailCard() {
             id="tsparticlesfullpage"
             background="transparent"
             minSize={0.3}
-            maxSize={1}
+            maxSize={theme === "dark" ? 1 : 3}
             particleDensity={100}
             className="w-full h-full"
-            particleColor="#FFFFFF"
+            particleColor={theme === "dark" ? "#FFFFFF" : "#000000"}
           />
         </div>
         <span className="w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white max-w-80 -translate-y-4 py-2">

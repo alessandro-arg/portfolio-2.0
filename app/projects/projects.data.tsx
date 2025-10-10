@@ -51,7 +51,7 @@ export const projectsData: Project[] = [
     technologies: [
       {
         name: siAngular.title,
-        icon: <IconInline icon={siAngular} size={16} color="#ffffff" />,
+        icon: <IconInline icon={siAngular} size={16} color="currentColor" />,
       },
       {
         name: siTypescript.title,
@@ -137,7 +137,7 @@ export const projectsData: Project[] = [
     technologies: [
       {
         name: siAngular.title,
-        icon: <IconInline icon={siAngular} size={16} color="#ffffff" />,
+        icon: <IconInline icon={siAngular} size={16} color="currentColor" />,
       },
       {
         name: siTypescript.title,

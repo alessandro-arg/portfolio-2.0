@@ -15,7 +15,7 @@ const testimonials = [
       "Working with Alessandro was always constructive and inspiring. He has a solid technical understanding, creative ideas and a solution-oriented way of thinking. Reliable, a team player and committed - with him, every project is a succes.",
     name: "Eid Aden",
     title: "Consistent and clean work in every project.",
-    role: "Software Engineer • Developer Akdemie",
+    role: "Software Engineer • DA",
     bg: "linear-gradient(#2c3e50, #4ca1af)",
   },
   {
@@ -31,7 +31,7 @@ const testimonials = [
       "He worked quickly and with great commitment, never limited himself to just 'his' tasks, and repeatedly contributed clever ideas that noticeably advanced our project.",
     name: "Judith Lenz",
     title: "Working with Alessandro in the team was inspiring.",
-    role: "Frontend Developer • Developer Akdemie",
+    role: "Developer • Developer Akdemie",
     bg: "linear-gradient(#373b44, #4286f4)",
   },
 ];

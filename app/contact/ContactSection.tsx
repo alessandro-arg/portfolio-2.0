@@ -2,6 +2,7 @@
 
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Magnet from "@/components/ui/magnet";
 
 export default function ContactSection() {
@@ -19,14 +20,35 @@ export default function ContactSection() {
           className="opacity-0 select-none dark:opacity-100 size-16"
         />
         <span className="mt-4 text-2xl font-light tracking-wide text-black sm:text-4xl lg:text-5xl dark:text-white">
-          <h3 className="text-nowrap">
-            FROM CONCEPT TO
-            <span className="font-extrabold"> CREATION</span>
-          </h3>
-          <h3 className="text-nowrap">
-            LET's MAKE IT
-            <span className="font-extrabold"> HAPPEN!</span>
-          </h3>
+          <motion.h3
+            className="text-nowrap text-2xl font-light tracking-wide sm:text-4xl lg:text-5xl"
+            initial={{ x: -80, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+              mass: 0.6,
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            FROM CONCEPT TO <span className="font-extrabold">CREATION</span>
+          </motion.h3>
+          <motion.h3
+            className="text-nowrap text-2xl font-light tracking-wide sm:text-4xl lg:text-5xl"
+            initial={{ x: 80, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+              mass: 0.6,
+              delay: 0.05,
+            }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            LET's MAKE IT <span className="font-extrabold">HAPPEN!</span>
+          </motion.h3>
         </span>
         <Magnet>
           <button className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10 my-10 group-hover:scale-125">

@@ -8,8 +8,13 @@ export default function Footer() {
       <div className="relative flex flex-col items-center g-6 mb-10 md:flex-row">
         <div className="flex flex-1 flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="hidden flex-col gap-y-6 md:flex md:w-1/2">
-            <a href="/" className="inline-block">
-              Alessandro
+            <a href="#content" className="inline-block">
+              <img
+                src="../icon.png"
+                alt="small logo"
+                draggable="false"
+                className="size-10"
+              />
             </a>
             <p className="w-60 text-base leading-5 dark:text-gray-300">
               I'm Alessandro - a full-stack developer, gamer and problem solver.

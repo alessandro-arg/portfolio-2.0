@@ -1,9 +1,11 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ExperienceSection from "./ExperienceSection";
-import SocialButtons from "./social-buttons";
-import { ThreeDDraggableCarousel } from "./ThreeDDraggableCarousel";
+import SocialButtons from "./ui/social-buttons";
+import { ThreeDDraggableCarousel } from "./ui/ThreeDDraggableCarousel";
+import GithubSection from "./GithubSection";
+import ContactSection from "../contact/ContactSection";
 
-export default function ProjectsPage() {
+export default function AboutPage() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
@@ -51,15 +53,17 @@ export default function ProjectsPage() {
             <ThreeDDraggableCarousel
               height={350} // parent already changes height on lg; you can pass 450 for lg via CSS if preferred
               items={[
-                { src: "/images/profile.jpg", title: "Design Lead" },
+                { src: "/images/nature-bg.webp", title: "Design Lead" },
                 { src: "/images/profile.jpg", title: "Frontend Engineer" },
-                { src: "/images/profile.jpg", title: "System Engineer" },
+                { src: "/images/steel-flower.webp", title: "System Engineer" },
               ]}
             />
           </div>
         </div>
       </div>
       <ExperienceSection />
+      <GithubSection />
+      <ContactSection />
     </>
   );
 }

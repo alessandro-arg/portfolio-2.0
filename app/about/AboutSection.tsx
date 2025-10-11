@@ -2,7 +2,7 @@
 
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { ArrowRight } from "lucide-react";
-import SocialButtons from "./social-buttons";
+import SocialButtons from "./ui/social-buttons";
 
 export default function AboutSection() {
   return (

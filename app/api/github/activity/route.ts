@@ -4,7 +4,34 @@ export const revalidate = 3600;
 
 type Day = { date: string; count: number };
 
-const GQL = `
+//
+// ---- GraphQL payload types (module scope) ----
+//
+interface CalendarResp {
+  user: {
+    followers: { totalCount: number };
+    repositories: { totalCount: number };
+    contributionsCollection: {
+      contributionCalendar: {
+        weeks: Array<{
+          contributionDays: Array<{ date: string; contributionCount: number }>;
+        }>;
+        totalContributions: number;
+      };
+    };
+  } | null;
+}
+
+interface ReposPage {
+  user: {
+    repos: {
+      pageInfo: { hasNextPage: boolean; endCursor: string | null };
+      nodes: Array<{ stargazerCount: number; forkCount: number }>;
+    };
+  } | null;
+}
+
+const GQL_CALENDAR = `
   query($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
       followers { totalCount }
@@ -18,6 +45,27 @@ const GQL = `
             }
           }
           totalContributions
+        }
+      }
+    }
+  }
+`;
+
+const GQL_REPOS_PAGE = `
+  query($login: String!, $after: String) {
+    user(login: $login) {
+      repos: repositories(
+        first: 100
+        privacy: PUBLIC
+        isFork: false
+        ownerAffiliations: OWNER
+        orderBy: { field: STARGAZERS, direction: DESC }
+        after: $after
+      ) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          stargazerCount
+          forkCount
         }
       }
     }
@@ -41,13 +89,34 @@ function computeStreaks(days: Day[]) {
   for (let i = 0; i < days.length; i++) {
     if (days[i].count > 0) {
       streak++;
-      longestStreak = Math.max(longestStreak, streak);
+      if (streak > longestStreak) longestStreak = streak;
     } else {
       streak = 0;
     }
   }
 
   return { currentStreak, longestStreak };
+}
+
+async function ghFetch<T>(
+  token: string,
+  query: string,
+  variables: Record<string, unknown>
+): Promise<T> {
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query, variables }),
+    cache: "force-cache",
+  });
+
+  if (!res.ok) throw new Error(await res.text());
+  const json = (await res.json()) as { data?: T; errors?: unknown };
+  if (json.errors) throw new Error(JSON.stringify(json.errors));
+  return json.data as T;
 }
 
 export async function GET(req: Request) {
@@ -68,71 +137,87 @@ export async function GET(req: Request) {
     );
   }
 
-  const now = new Date();
-  const yearAgo = new Date(now);
-  yearAgo.setFullYear(now.getFullYear() - 1);
+  try {
+    const now = new Date();
+    const yearAgo = new Date(now);
+    yearAgo.setFullYear(now.getFullYear() - 1);
 
-  const body = JSON.stringify({
-    query: GQL,
-    variables: { login, from: toISODate(yearAgo), to: toISODate(now) },
-  });
+    // 1) Calendar + followers + public repo count
+    const calData: CalendarResp = await ghFetch<CalendarResp>(
+      token,
+      GQL_CALENDAR,
+      { login, from: toISODate(yearAgo), to: toISODate(now) }
+    );
 
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body,
-    cache: "force-cache",
-  });
+    const user = calData.user;
+    if (!user)
+      return NextResponse.json({ error: "No user found" }, { status: 404 });
 
-  if (!res.ok) {
-    const text = await res.text();
+    const calendar = user.contributionsCollection.contributionCalendar;
+    const rawWeeks = calendar.weeks;
+
+    const allDaysAsc: Day[] = rawWeeks
+      .flatMap((w) => w.contributionDays)
+      .map((d) => ({ date: d.date, count: d.contributionCount }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    const last35 = allDaysAsc.slice(-35);
+    const last30 = allDaysAsc.slice(-30).reduce((sum, d) => sum + d.count, 0);
+
+    const { currentStreak, longestStreak } = computeStreaks(allDaysAsc);
+
+    // 2) Aggregate stars + forks (paginated)
+    let after: string | null = null;
+    let totalStars = 0;
+    let totalForks = 0;
+
+    for (let i = 0; i < 10; i++) {
+      const reposData: ReposPage = await ghFetch<ReposPage>(
+        token,
+        GQL_REPOS_PAGE,
+        { login, after }
+      );
+
+      const page = reposData.user?.repos;
+      if (!page) break;
+
+      for (const repo of page.nodes) {
+        totalStars += repo.stargazerCount;
+        totalForks += repo.forkCount;
+      }
+
+      if (!page.pageInfo.hasNextPage) break;
+      after = page.pageInfo.endCursor;
+    }
+
+    // Optional compact weeks slice
+    const weeksForCard = rawWeeks.slice(-20).map((w) => ({
+      days: w.contributionDays.map((d) => ({
+        date: d.date,
+        count: d.contributionCount,
+      })),
+    }));
+
+    return NextResponse.json({
+      login,
+      followers: user.followers.totalCount,
+      publicRepos: user.repositories.totalCount,
+      totalStars,
+      totalForks,
+      totalContributionsYear: calendar.totalContributions,
+      last30Contributions: last30,
+      currentStreak,
+      longestStreak,
+      last35Days: last35,
+      contributions: allDaysAsc, // full year for react-activity-calendar
+      weeks: weeksForCard,
+      asOf: now.toISOString(),
+    });
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
     return NextResponse.json(
-      { error: "GitHub API error", detail: text },
+      { error: "GitHub API error", detail: msg },
       { status: 502 }
     );
   }
-
-  const json = await res.json();
-  const user = json?.data?.user;
-  if (!user)
-    return NextResponse.json({ error: "No user found" }, { status: 404 });
-
-  const calendar = user.contributionsCollection.contributionCalendar;
-
-  const rawWeeks = calendar.weeks as {
-    contributionDays: { date: string; contributionCount: number }[];
-  }[];
-
-  // compact bento width: keep last ~20 weeks
-  const weeksForCard = rawWeeks.slice(-20).map((w) => ({
-    days: w.contributionDays.map((d) => ({
-      date: d.date,
-      count: d.contributionCount,
-    })),
-  }));
-
-  const allDaysAsc: Day[] = rawWeeks
-    .flatMap((w) => w.contributionDays)
-    .map((d) => ({ date: d.date, count: d.contributionCount }))
-    .sort((a, b) => a.date.localeCompare(b.date));
-
-  const last35 = allDaysAsc.slice(-35);
-  const last30 = allDaysAsc.slice(-30).reduce((sum, d) => sum + d.count, 0);
-
-  const { currentStreak, longestStreak } = computeStreaks(allDaysAsc);
-
-  return NextResponse.json({
-    login,
-    followers: user.followers.totalCount,
-    publicRepos: user.repositories.totalCount,
-    totalContributionsYear: calendar.totalContributions,
-    last30Contributions: last30,
-    currentStreak,
-    longestStreak,
-    last35Days: last35,
-    weeks: weeksForCard,
-  });
 }

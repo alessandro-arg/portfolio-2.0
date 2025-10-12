@@ -32,7 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <div className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70 bg-[linear-gradient(90deg,rgba(0,0,0,0)_20%,rgb(255,255,255)_50%,rgba(0,0,0,0)_80%)]"></div>
             {/* top section (desktop view) */}
             <div className="hidden w-full flex-row items-center justify-between gap-8 px-10 py-8 text-white/70 lg:flex">
-              <h3 className="text-xl xl:text-2xl font-mono tracking-tight">
+              <h3 className="text-xl xl:text-2xl tracking-tight">
                 {smallDescription}
               </h3>
               <ArrowRight

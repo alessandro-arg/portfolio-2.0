@@ -26,7 +26,15 @@
 }
 
 @theme {
-  --font-instrument: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-instrument: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
+@theme {
+  --font-outfit: var(--font-outfit), ui-serif, Georgia, serif;
+}
+
+@utility font-outfit {
+  font-family: var(--font-outfit), sans-serif;
 }
 
 @layer base {
@@ -209,6 +217,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  h3,
+  a,
+  button,
+  p,
+  text,
+  li {
+    @apply font-outfit;
   }
 }
 

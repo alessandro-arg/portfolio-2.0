@@ -79,7 +79,7 @@ export default function GithubActivityCard({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="absolute inset-0 group p-5 cursor-default"
+      className="absolute inset-0 group p-5 cursor-default font-outfit"
       role="region"
       aria-label="GitHub activity card"
     >
@@ -106,7 +106,7 @@ export default function GithubActivityCard({
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div className="bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
-          {title}
+          <h3>{title}</h3>
         </div>
         {data?.login && (
           <a

@@ -209,7 +209,7 @@ export function Globe({
               )}
             >
               <span>{c.flag}</span>
-              <span className="font-medium">{c.label}</span>
+              <span className="font-mono">{c.label}</span>
             </button>
           );
         })}

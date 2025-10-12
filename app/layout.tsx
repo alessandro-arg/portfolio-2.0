@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
@@ -25,6 +25,14 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const outfitSans = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  style: ["normal"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Alessandro - Portfolio",
   description: "Fullstack Developer • Next.js • Tailwind CSS • Animations",
@@ -43,7 +51,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
         <ThemeProvider>
           {/* floating header */}

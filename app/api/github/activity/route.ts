@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 export const revalidate = 3600;
 
 type Day = { date: string; count: number };
+type LevelDay = Day & { level: 0 | 1 | 2 | 3 | 4 };
 
 //
 // ---- GraphQL payload types (module scope) ----
@@ -74,6 +75,20 @@ const GQL_REPOS_PAGE = `
 
 function toISODate(d: Date) {
   return d.toISOString();
+}
+
+function addLevels(days: Day[]): LevelDay[] {
+  if (!days.length) return [];
+  const max = Math.max(...days.map((d) => d.count));
+  if (max === 0) return days.map((d) => ({ ...d, level: 0 }));
+
+  return days.map((d) => {
+    if (d.count === 0) return { ...d, level: 0 };
+    const r = d.count / max;
+    // thresholds: (0, .25] => 1, (.25, .5] => 2, (.5, .75] => 3, (.75, 1] => 4
+    const level: 1 | 2 | 3 | 4 = r > 0.75 ? 4 : r > 0.5 ? 3 : r > 0.25 ? 2 : 1;
+    return { ...d, level };
+  });
 }
 
 function computeStreaks(days: Day[]) {
@@ -166,6 +181,8 @@ export async function GET(req: Request) {
 
     const { currentStreak, longestStreak } = computeStreaks(allDaysAsc);
 
+    const contributionsWithLevels = addLevels(allDaysAsc);
+
     // 2) Aggregate stars + forks (paginated)
     let after: string | null = null;
     let totalStars = 0;
@@ -209,7 +226,7 @@ export async function GET(req: Request) {
       currentStreak,
       longestStreak,
       last35Days: last35,
-      contributions: allDaysAsc, // full year for react-activity-calendar
+      contributions: contributionsWithLevels,
       weeks: weeksForCard,
       asOf: now.toISOString(),
     });

@@ -44,9 +44,10 @@ const features = [
     cta: "Learn more",
     className:
       "md:col-start-1 md:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
-    background: (
-      <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
-    ),
+    background: "",
+    // background: (
+    //   <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
+    // ),
   },
   {
     Icon: CalendarIcon,

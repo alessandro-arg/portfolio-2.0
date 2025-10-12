@@ -12,52 +12,78 @@ interface GitHubActivity {
   level: 0 | 1 | 2 | 3 | 4;
 }
 
+interface ActivityApi {
+  login: string;
+  followers: number;
+  publicRepos: number;
+  totalStars: number;
+  totalForks: number;
+  totalContributionsYear: number;
+  last30Contributions: number;
+  currentStreak: number;
+  longestStreak: number;
+  contributions: GitHubActivity[];
+  asOf: string;
+}
+
+const username = "alessandro-arg";
+
 const GitHubActivitySection = () => {
   const [data, setData] = useState<GitHubActivity[]>([]);
+  const [stats, setStats] = useState<Partial<ActivityApi>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const username = "alessandro-arg";
+  const fetchContributionLevels = async (user: string) => {
+    const response = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${user}?y=last`
+    );
+    if (!response.ok) throw new Error("Failed to fetch contribution levels");
+    const result = await response.json();
+    const contributions: GitHubActivity[] = result.contributions.map(
+      (day: any) => ({
+        date: day.date,
+        count: day.count,
+        level: day.level,
+      })
+    );
+    return contributions;
+  };
+
+  const fetchActivityStats = async (user: string) => {
+    const res = await fetch(`/api/github/activity?user=${user}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`Failed stats fetch: ${res.status}`);
+    const result: ActivityApi = await res.json();
+    return result;
+  };
 
   useEffect(() => {
-    const fetchGitHubActivity = async () => {
+    (async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // Using GitHub's contribution API endpoint
-        const response = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
-        );
+        // run both in parallel
+        const [levels, statsResult] = await Promise.all([
+          fetchContributionLevels(username),
+          fetchActivityStats(username),
+        ]);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch GitHub activity");
-        }
-
-        const result = await response.json();
-
-        // Transform the data to match react-activity-calendar format
-        const contributions: GitHubActivity[] = result.contributions.map(
-          (day: any) => ({
-            date: day.date,
-            count: day.count,
-            level: day.level,
-          })
-        );
-
-        setData(contributions);
+        setData(levels);
+        setStats(statsResult);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
-        console.error("Error fetching GitHub activity:", err);
+        console.error(err);
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchGitHubActivity();
-  }, [username]);
+    })();
+  }, []);
 
   const theme = {
+    light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
     dark: ["#0d1117", "#0b2d1d", "#085c36", "#04964f", "#00d264"],
   };
 
@@ -99,11 +125,62 @@ const GitHubActivitySection = () => {
       hideTotalCount={false}
       showWeekdayLabels={false}
       labels={{
-        totalCount: "Total {{count}} contributions in this year",
+        totalCount: `Total ${
+          stats.totalContributionsYear ?? 0
+        } contributions in this year`,
       }}
     />
   );
 };
+
+function StatsGrid({ username }: { username: string }) {
+  const [s, setS] = useState<ActivityApi | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`/api/github/activity?user=${username}`, {
+          cache: "no-store",
+        });
+        if (!res.ok) throw new Error(`Failed: ${res.status}`);
+        setS(await res.json());
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [username]);
+
+  if (!s) return null;
+
+  return (
+    <div className="mx-auto mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <StatsCard
+        title="Followers"
+        value={s.followers ?? 0}
+        icon={User}
+        scheme="purple"
+      />
+      <StatsCard
+        title="Stars"
+        value={s.totalStars ?? 0}
+        icon={Star}
+        scheme="yellow"
+      />
+      <StatsCard
+        title="Public Repos"
+        value={s.publicRepos ?? 0}
+        icon={BookOpen}
+        scheme="green"
+      />
+      <StatsCard
+        title="Forks"
+        value={s.totalForks ?? 0}
+        icon={GitFork}
+        scheme="blue"
+      />
+    </div>
+  );
+}
 
 export default function GithubSection() {
   return (
@@ -129,32 +206,7 @@ export default function GithubSection() {
       <div className="flex justify-center">
         <GitHubActivitySection />
       </div>
-      <div className="mx-auto mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatsCard
-          title="Followers"
-          value={"NUMBER"}
-          icon={User}
-          scheme="purple"
-        />
-        <StatsCard
-          title="Total Stars"
-          value={"NUMBER"}
-          icon={Star}
-          scheme="yellow"
-        />
-        <StatsCard
-          title="Public Repos"
-          value={"NUMBER"}
-          icon={BookOpen}
-          scheme="green"
-        />
-        <StatsCard
-          title="Total Forks"
-          value={"NUMBER"}
-          icon={GitFork}
-          scheme="blue"
-        />
-      </div>
+      <StatsGrid username="alessandro-arg" />
     </section>
   );
 }

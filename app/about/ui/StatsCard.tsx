@@ -18,25 +18,25 @@ const schemes: Record<
   purple: {
     border: "border-purple-500/30",
     hoverBg: "hover:bg-purple-500/5",
-    iconWrapBg: "bg-purple-900/20",
+    iconWrapBg: "bg-purple-500/20 dark:bg-purple-900/20",
     iconColor: "text-purple-400",
   },
   yellow: {
     border: "border-yellow-500/30",
     hoverBg: "hover:bg-yellow-500/5 ",
-    iconWrapBg: "bg-yellow-900/20",
+    iconWrapBg: "bg-yellow-500/20 dark:bg-yellow-900/20",
     iconColor: "text-yellow-400",
   },
   green: {
     border: "border-green-500/30",
     hoverBg: "hover:bg-green-500/5",
-    iconWrapBg: "bg-green-900/20",
+    iconWrapBg: "bg-green-500/20 dark:bg-green-900/20",
     iconColor: "text-green-400",
   },
   blue: {
     border: "border-blue-500/30",
     hoverBg: "hover:bg-blue-500/5",
-    iconWrapBg: "bg-blue-900/20",
+    iconWrapBg: "bg-blue-500/20 dark:bg-blue-900/20",
     iconColor: "text-blue-400",
   },
 };
@@ -61,7 +61,7 @@ export default function StatsCard({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl cursor-default border p-3 md:p-4 transition-all duration-300 bg-zinc-900/50",
+        "relative overflow-hidden rounded-xl cursor-default border p-3 md:p-4 transition-all duration-300 bg-neutral-100 dark:bg-zinc-900/50",
         s.border,
         s.hoverBg,
         "col-span-1",
@@ -75,10 +75,10 @@ export default function StatsCard({
           <Icon className={cn("h-6 w-6", s.iconColor)} aria-hidden="true" />
         </div>
         <div>
-          <p className="line-clamp-1 text-sm text-neutral-400 dark:text-zinc-400">
+          <p className="line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">
             {title}
           </p>
-          <p className="text-xl md:text-2xl font-bold text-neutral-100 dark:text-zinc-100">
+          <p className="text-xl md:text-2xl font-bold text-neutral-500 dark:text-zinc-100">
             {value}
           </p>
         </div>

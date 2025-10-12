@@ -28,7 +28,7 @@ export default function ExperienceSection() {
           </span>
         </h2>
         <div className="relative mx-auto mt-20 mb-20 max-w-7xl">
-          <div className="flex w-full flex-col max-md:ps-16 md:gap-10">
+          <div className="flex w-full flex-col max-md:pl-16 md:gap-10">
             <article className="grid grid-cols-1 gap-6 py-12 first:pt-0 last:pb-0 md:grid-cols-[2fr_1fr_4fr]">
               <div className="w-full lg:max-w-sm">
                 <div className="flex flex-col items-start gap-y-3 text-sm font-light">
@@ -50,7 +50,7 @@ export default function ExperienceSection() {
                     </div>
                     <div className="text-muted-foreground flex items-center gap-1.5">
                       <Briefcase />
-                      <span className="text-sm font-medium">Hybrid Work</span>
+                      <span className="text-sm font-medium">Hybrid</span>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-xs leading-relaxed md:text-sm">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Ausbildung Fachinformatiker - Anwendungsentwickler
+                      Fachinformatiker - Anwendungsentwickler
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
@@ -101,13 +101,13 @@ export default function ExperienceSection() {
                 <div className="flex flex-col items-start gap-y-3 text-sm font-light">
                   <time
                     className="text-muted-foreground text-xs font-medium tracking-wide uppercase"
-                    dateTime="OCT 2025 - Present"
+                    dateTime="MAY 2024 - OCT 2025"
                   >
-                    OCT 2025 - Present
+                    MAY 2024 - OCT 2025
                   </time>
                   <div className="flex items-center gap-2">
                     <h2 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      GFN
+                      Developer Akademie - Fullstack Developer
                     </h2>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -117,7 +117,7 @@ export default function ExperienceSection() {
                     </div>
                     <div className="text-muted-foreground flex items-center gap-1.5">
                       <Briefcase />
-                      <span className="text-sm font-medium">Hybrid Work</span>
+                      <span className="text-sm font-medium">Remote</span>
                     </div>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-xs leading-relaxed md:text-sm">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Ausbildung Fachinformatiker - Anwendungsentwickler
+                      Webdevelopment - Fullstack
                     </h3>
                   </header>
                   <section aria-label="Key achievements">

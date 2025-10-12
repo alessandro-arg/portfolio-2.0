@@ -6,19 +6,19 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 const ImageCarousel = () => {
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=800&fit=crop",
-      title: "Creative Vision",
-      alt: "Abstract art 1",
+      src: "/images/profile.jpg",
+      title: "Developer",
+      alt: "Developer",
     },
     {
-      src: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=600&h=800&fit=crop",
-      title: "Innovation",
-      alt: "Abstract art 2",
+      src: "/images/nature-bg.webp",
+      title: "Snowboarder",
+      alt: "Snowboarder",
     },
     {
-      src: "https://images.unsplash.com/photo-1557672199-6ab6ecdb0160?w=600&h=800&fit=crop",
-      title: "Excellence",
-      alt: "Abstract art 3",
+      src: "/images/chess_mockup.webp",
+      title: "Gamer",
+      alt: "Gamer",
     },
   ];
 
@@ -52,11 +52,25 @@ const ImageCarousel = () => {
     const diff = (index - currentIndex + images.length) % images.length;
 
     if (diff === 0) {
-      return { x: 0, z: 0, opacity: 1, scale: 1, rotateY: 0 };
+      return { x: 0, z: 0, opacity: 1, scale: 1, rotateY: 0, zIndex: 30 };
     } else if (diff === 1 || diff === -(images.length - 1)) {
-      return { x: 120, z: -150, opacity: 0.7, scale: 0.85, rotateY: -45 };
+      return {
+        x: 120,
+        z: -150,
+        opacity: 0.7,
+        scale: 0.85,
+        rotateY: -45,
+        zIndex: 10,
+      };
     } else {
-      return { x: -120, z: -150, opacity: 0.7, scale: 0.85, rotateY: 45 };
+      return {
+        x: -120,
+        z: -150,
+        opacity: 0.7,
+        scale: 0.85,
+        rotateY: 45,
+        zIndex: 10,
+      };
     }
   };
 
@@ -87,6 +101,7 @@ const ImageCarousel = () => {
                   opacity: position.opacity,
                   scale: position.scale,
                   rotateY: position.rotateY,
+                  zIndex: position.zIndex,
                 }}
                 transition={{
                   type: "spring",
@@ -96,6 +111,7 @@ const ImageCarousel = () => {
                 className="absolute cursor-grab active:cursor-grabbing"
                 style={{
                   transformStyle: "preserve-3d",
+                  zIndex: position.zIndex,
                 }}
               >
                 <div className="relative">
@@ -123,7 +139,7 @@ const ImageCarousel = () => {
                     }}
                     className="text-center mt-4 sm:mt-5 lg:mt-6"
                   >
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-wide">
+                    <h3 className="text-center text-2xl font-light transition-opacity duration-500">
                       {image.title}
                     </h3>
                   </motion.div>

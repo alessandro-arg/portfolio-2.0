@@ -10,7 +10,7 @@ export default function ContactSection() {
       id="contact"
       className="relative z-0 mt-40 flex w-full justify-center overflow-x-hidden bg-cover bg-center px-4 py-20"
     >
-      <div className="absolute inset-0 bg-[url('/images/test.webp')] bg-cover bg-center opacity-40 -z-10"></div>
+      <div className="absolute inset-0 bg-[url('/images/cta-bg.webp')] bg-cover bg-center opacity-40 -z-10"></div>
       <div className="pointer-events-none absolute inset-0">
         {/* Top shadow */}
         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>

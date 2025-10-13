@@ -43,7 +43,7 @@ export default function ExperienceSection() {
                       GFN
                     </h2>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="font-outfit flex flex-col gap-2">
                     <div className="text-muted-foreground flex items-center gap-1.5">
                       <MapPin />
                       <span className="text-sm">Donaueschingen, Germany</span>
@@ -110,10 +110,10 @@ export default function ExperienceSection() {
                       Developer Akademie - Fullstack Developer
                     </h2>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="font-outfit flex flex-col gap-2">
                     <div className="text-muted-foreground flex items-center gap-1.5">
                       <MapPin />
-                      <span className="text-sm">Donaueschingen, Germany</span>
+                      <span className="text-sm">München, Germany</span>
                     </div>
                     <div className="text-muted-foreground flex items-center gap-1.5">
                       <Briefcase />

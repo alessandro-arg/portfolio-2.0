@@ -7,8 +7,8 @@ import TechCard from "../bento/TechCard";
 import React from "react";
 import GlobeCard from "../bento/GlobeCard";
 import CopyEmailCard from "../bento/CopyEmailCard";
-import GithubActivityCard from "../bento/GithubActivityCard";
 import TextCard from "../bento/TextCard";
+import TimeGradientCard from "../bento/TimeGradientCard";
 
 const features = [
   {
@@ -24,7 +24,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className:
-      "md:row-start-1 md:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
+      "hidden sm:row-start-1 sm:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
     background: <TextCard />,
   },
   {
@@ -33,7 +33,7 @@ const features = [
     description: "Get notified when something happens.",
     href: "#",
     cta: "Learn more",
-    className: "md:row-3 lg:row-2 lg:col-2",
+    className: "hidden sm:row-3 lg:row-2 lg:col-2",
     background: <CopyEmailCard />,
   },
   {
@@ -44,17 +44,14 @@ const features = [
     cta: "Learn more",
     className:
       "md:col-start-1 md:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
-    background: "",
-    // background: (
-    //   <GithubActivityCard className="md:col-span-2" title="GitHub Activity" />
-    // ),
+    background: <TimeGradientCard />,
   },
   {
     Icon: CalendarIcon,
     name: "Calendar",
     description: "Use the calendar to filter your files by date.",
     className:
-      "md:row-start-2 md:row-end-4 lg:row-start-2 lg:row-end-4 lg:col-3",
+      "row-start-4 row-end-6 md:row-start-2 md:row-end-4 lg:row-start-2 lg:row-end-4 lg:col-3",
     href: "#",
     cta: "Learn more",
     background: <GlobeCard />,

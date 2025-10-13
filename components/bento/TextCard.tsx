@@ -13,7 +13,7 @@ export default function TextCard() {
     >
       <MaskContainer
         revealText={
-          <p className="mx-auto max-w-4xl text-center text-4xl font-bold w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 tracking-normal text-transparent select-none dark:from-white">
+          <p className="mx-auto max-w-4xl text-center text-3xl lg:text-4xl font-bold w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 tracking-normal text-transparent select-none dark:from-white">
             Every pixel tells a story. Every line of code shapes the experience.
             Together, they define how ideas become beautiful art.
           </p>

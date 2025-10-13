@@ -24,7 +24,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className:
-      "hidden sm:row-start-1 sm:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
+      "hidden sm:block sm:row-start-1 sm:row-end-2 lg:row-1 lg:col-start-2 lg:col-end-4",
     background: <TextCard />,
   },
   {
@@ -33,7 +33,7 @@ const features = [
     description: "Get notified when something happens.",
     href: "#",
     cta: "Learn more",
-    className: "hidden sm:row-3 lg:row-2 lg:col-2",
+    className: "hidden sm:block sm:row-3 lg:row-2 lg:col-2",
     background: <CopyEmailCard />,
   },
   {
@@ -43,7 +43,7 @@ const features = [
     href: "#",
     cta: "Learn more",
     className:
-      "md:col-start-1 md:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
+      "sm:col-start-1 sm:col-end-7 lg:row-3 lg:col-start-1 lg:col-end-3",
     background: <TimeGradientCard />,
   },
   {
@@ -51,7 +51,7 @@ const features = [
     name: "Calendar",
     description: "Use the calendar to filter your files by date.",
     className:
-      "row-start-4 row-end-6 md:row-start-2 md:row-end-4 lg:row-start-2 lg:row-end-4 lg:col-3",
+      "row-start-4 row-end-6 sm:row-start-2 sm:row-end-4 lg:row-start-2 lg:row-end-4 lg:col-3",
     href: "#",
     cta: "Learn more",
     background: <GlobeCard />,

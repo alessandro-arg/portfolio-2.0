@@ -132,6 +132,7 @@ export const projectsData: Project[] = [
     href: "/projects/chess",
     slug: "chess",
     github: "https://github.com/alessandro-arg/chess",
+    liveLink: "https://chess2.alessandro-argenziano.com",
     technologies: [
       {
         name: siAngular.title,
@@ -151,6 +152,7 @@ export const projectsData: Project[] = [
       },
     ],
     year: "2025",
+    date: "2025-09-12",
     points: [
       "Real-time multiplayer with Firebase RTDB.",
       "Play vs Stockfish bot (server worker).",

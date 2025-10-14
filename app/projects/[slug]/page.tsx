@@ -3,30 +3,37 @@ import { notFound } from "next/navigation";
 import { projectsData } from "../projects.data";
 import { ProjectTOC, type TocItem } from "../_components/ProjectTOC";
 import { TechBadge } from "../_components/TechBadge";
+import ContactSection from "@/app/contact/ContactSection";
+import { ProjectDate } from "../_components/ProjectDate";
 
-type PageProps = { params: { slug: string } };
+type PageProps = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return projectsData.filter((p) => p.slug).map((p) => ({ slug: p.slug! }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const p = projectsData.find((x) => x.slug === params.slug);
-  if (!p) return { title: "Project not found" };
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projectsData.find((p) => p.slug === slug);
+  if (!project) return { title: "Project not found" };
+
   return {
-    title: `${p.title} - Projects`,
-    description: p.smallDescription ?? p.description?.slice(0, 140),
+    title: `${project.title} - Projects`,
+    description: project.smallDescription ?? project.description?.slice(0, 140),
     openGraph: {
-      title: p.title,
-      description: p.smallDescription ?? p.description,
-      images: p.src ? [{ url: p.src }] : undefined,
+      title: project.title,
+      description: project.smallDescription ?? project.description,
+      images: project.src ? [{ url: project.src }] : undefined,
       type: "website",
     },
   };
 }
 
-export default function ProjectPage({ params }: PageProps) {
-  const project = projectsData.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = projectsData.find((p) => p.slug === slug);
   if (!project) notFound();
 
   // Build the same sections as your reference
@@ -53,6 +60,9 @@ export default function ProjectPage({ params }: PageProps) {
     project.href && !project.href.startsWith("/projects")
       ? project.href
       : undefined;
+
+  const dateISO =
+    project.date ?? (project.year ? `${project.year}-01-01` : null);
 
   return (
     <main className="relative mx-auto w-full">
@@ -86,7 +96,7 @@ export default function ProjectPage({ params }: PageProps) {
             {/* HEADER */}
             <header className="flex flex-col gap-y-4">
               <div className="flex flex-col justify-between gap-y-4 md:flex-row">
-                <h1 className="font-instrument-serif text-4xl font-bold tracking-wide md:text-5xl">
+                <h1 className="font-instrument text-4xl font-bold tracking-wide md:text-5xl">
                   {project.title}
                 </h1>
 
@@ -124,12 +134,12 @@ export default function ProjectPage({ params }: PageProps) {
                   ) : null}
 
                   {/* “Check it out” button if liveLink exists */}
-                  {liveLink ? (
+                  {project.liveLink ? (
                     <a
                       href={liveLink}
                       referrerPolicy="no-referrer"
                       target="_blank"
-                      className="group relative flex w-fit items-center justify-between h-9 rounded-full bg-neutral-900 text-white opacity-90 dark:bg-white dark:text-black"
+                      className="group relative flex w-fit items-center justify-between h-9 rounded-full bg-neutral-900 text-white opacity-90 dark:bg-white dark:text-black cursor-pointer"
                     >
                       <span className="pl-4 text-base font-light">
                         Check it out
@@ -190,69 +200,63 @@ export default function ProjectPage({ params }: PageProps) {
               ) : null}
 
               {/* Date (if you only have year, still show it) */}
-              {project.year ? (
-                <div className="gap-px text-sm">
-                  <time className="text-xs text-neutral-400">
-                    {project.year}
-                  </time>
-                </div>
-              ) : null}
+              {dateISO && <ProjectDate dateISO={dateISO} />}
             </header>
-
-            {/* Small callout (optional) */}
-            <div
-              className="flex gap-2 my-4 rounded-xl border bg-fd-card p-3 ps-1 text-sm text-fd-card-foreground shadow-md"
-              style={{
-                ["--callout-color" as any]:
-                  "var(--color-fd-info, var(--color-fd-muted))",
-              }}
-            >
-              <div
-                role="none"
-                className="w-0.5 bg-(--callout-color)/50 rounded-sm"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide size-5 -me-0.5 fill-(--callout-color) text-fd-card"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 16v-4"></path>
-                <path d="M12 8h.01"></path>
-              </svg>
-              <div className="flex flex-col gap-2 min-w-0 flex-1">
-                <p className="font-medium !my-0">✨ Quick note</p>
-                <div className="text-fd-muted-foreground prose-no-margin empty:hidden">
-                  <p>{project.description}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Big hero image */}
-            {project.src ? (
-              <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#f2f2f20c] p-1.5 shadow-2xl md:p-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt={`${project.title} Screenshot`}
-                  loading="lazy"
-                  width={1602}
-                  height={967}
-                  decoding="async"
-                  className="!my-0 rounded-[8px] lg:my-0"
-                  src={project.src}
-                />
-              </div>
-            ) : null}
 
             {/* Content sections */}
             <div className="prose">
+              {/* Small callout (optional) */}
+              <div
+                className="flex gap-2 my-4 rounded-xl border bg-fd-card p-3 ps-1 text-sm text-fd-card-foreground shadow-md"
+                style={{
+                  ["--callout-color" as any]:
+                    "var(--color-fd-info, var(--color-fd-muted))",
+                }}
+              >
+                <div
+                  role="none"
+                  className="w-0.5 bg-(--callout-color)/50 rounded-sm"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide size-5 -me-0.5 fill-(--callout-color) text-fd-card"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+                <div className="flex flex-col gap-2 min-w-0 flex-1">
+                  <p className="font-medium !my-0">✨ Quick note</p>
+                  <div className="text-fd-muted-foreground prose-no-margin empty:hidden">
+                    <p>{project.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Big hero image */}
+              {project.src ? (
+                <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#f2f2f20c] p-1.5 shadow-2xl md:p-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    alt={`${project.title} Screenshot`}
+                    loading="lazy"
+                    width={1602}
+                    height={967}
+                    decoding="async"
+                    className="!my-0 rounded-[8px] lg:my-0"
+                    src={project.src}
+                  />
+                </div>
+              ) : null}
+
               <h2
                 id="what-is"
                 className="flex scroll-m-28 flex-row items-center gap-2"
@@ -532,6 +536,7 @@ export default function ProjectPage({ params }: PageProps) {
           <ProjectTOC items={toc} />
         </div>
       </main>
+      <ContactSection />
     </main>
   );
 }

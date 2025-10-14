@@ -20,8 +20,10 @@ export type Project = {
   src: string;
   href?: string;
   github?: string;
+  liveLink?: string;
   technologies?: Technology[];
   year?: string;
+  date?: string;
   theme?: ProjectTheme;
   points?: string[];
   slug?: string;

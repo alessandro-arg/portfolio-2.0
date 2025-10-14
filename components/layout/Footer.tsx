@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-4 flex flex-col items-center justify-between gap-4 text-sm text-neutral-600 md:flex-row dark:text-neutral-400">
+      <div className="mt-4 mx-2 flex flex-col items-center justify-between gap-4 text-sm text-neutral-600 md:flex-row dark:text-neutral-400">
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
           <p className="whitespace-nowrap">
             © 2025{" "}

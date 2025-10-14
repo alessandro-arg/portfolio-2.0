@@ -167,11 +167,11 @@
 
 /* Fuma Docs  */
 :root {
-  --fd-nav-height: 64px;
+  --fd-nav-height: 0px;
   --fd-tocnav-height: 0px;
   --fd-sidebar-width: 0px;
-  --fd-layout-width: 1200px;
-  --fd-page-width: 900px;
+  --fd-layout-width: 100vw;
+  --fd-page-width: 1200px;
 }
 
 .dark {

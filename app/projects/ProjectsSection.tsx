@@ -44,7 +44,11 @@ export default function ProjectsSection({
   return (
     <section
       id="projects"
-      className="relative mx-auto mt-28 w-full container py-10 cursor-default"
+      className={
+        showCTA
+          ? "relative mx-auto mt-28 w-full container py-10 cursor-default"
+          : "relative mx-auto w-full container mt-0 px-4 py-36"
+      }
     >
       <h2 className="relative z-2 text-5xl font-medium tracking-tight text-balance sm:text-5xl md:text-6xl text-center mb-20 md:mb-24 [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
         <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">

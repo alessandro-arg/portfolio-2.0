@@ -165,6 +165,15 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* Fuma Docs  */
+:root {
+  --fd-nav-height: 64px;
+  --fd-tocnav-height: 0px;
+  --fd-sidebar-width: 0px;
+  --fd-layout-width: 1200px;
+  --fd-page-width: 900px;
+}
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

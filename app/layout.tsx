@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { RootProvider } from "fumadocs-ui/provider/next";
+import "fumadocs-ui/style.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -58,7 +60,9 @@ export default function RootLayout({
           <Header />
 
           {/* page content needs some top padding so it's not covered by the fixed header */}
-          <div id="content">{children}</div>
+          <div id="content">
+            <RootProvider>{children}</RootProvider>
+          </div>
 
           <Footer />
           <Toaster />

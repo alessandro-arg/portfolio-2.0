@@ -1,13 +1,11 @@
 import { Project } from "./types";
 import type { SimpleIcon } from "simple-icons";
 import {
-  siNextdotjs,
   siTypescript,
   siTailwindcss,
   siFirebase,
   siAngular,
   siJavascript,
-  siCss,
   siSass,
 } from "simple-icons/icons";
 

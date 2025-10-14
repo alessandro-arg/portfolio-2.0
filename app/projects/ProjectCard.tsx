@@ -4,9 +4,17 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Project } from "./types";
 import { makeGradient } from "@/lib/theme";
+import Link from "next/link";
+
+function projectHref(project: Project) {
+  if (project.href) return project.href;
+  if (project.slug) return `/projects/${project.slug}`;
+  return "/projects";
+}
 
 export function ProjectCard({ project }: { project: Project }) {
-  const { title, smallDescription, src, href, technologies = [] } = project;
+  const { title, smallDescription, src, technologies = [] } = project;
+  const href = projectHref(project);
 
   return (
     <div
@@ -15,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
       className="flex w-full flex-row will-change-auto"
     >
       <div className="flex flex-col w-full lg:mx-10">
-        <a
+        <Link
           draggable="false"
           href={href}
           className="border-white-3 group relative block cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1 shadow-2xl lg:rounded-3xl lg:p-2 dark:border-white/15"
@@ -51,10 +59,10 @@ export function ProjectCard({ project }: { project: Project }) {
               className="w-full max-w-[85%] translate-y-5 rounded-t-lg will-change-transform lg:block transition-transform duration-500 ease-in-out -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 shadow-[0px_40px_50px_10px_rgba(0,0,0,0.22)]"
             />
           </div>
-        </a>
+        </Link>
 
         {/* mobile view */}
-        <a
+        <Link
           href={href}
           className="mt-6 mb-12 flex flex-col lg:hidden cursor-pointer"
         >
@@ -80,7 +88,7 @@ export function ProjectCard({ project }: { project: Project }) {
               ))}
             </div>
           )}
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import ContactSection from "../contact/ContactSection";
 import ProjectsSection from "./ProjectsSection";
 
 export default function ProjectsPage() {
@@ -12,6 +13,7 @@ export default function ProjectsPage() {
         />
       </div>
       <ProjectsSection showCTA={false} />
+      <ContactSection />
     </main>
   );
 }

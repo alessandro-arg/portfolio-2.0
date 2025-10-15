@@ -234,9 +234,9 @@ export default async function ProjectPage({ params }: PageProps) {
                   <path d="M12 8h.01"></path>
                 </svg>
                 <div className="flex flex-col gap-2 min-w-0 flex-1">
-                  <p className="font-medium !my-0">✨ Quick note</p>
+                  <p className="font-medium !my-0">{project.calloutTitle}</p>
                   <div className="text-fd-muted-foreground prose-no-margin empty:hidden">
-                    <p>{project.description}</p>
+                    <p>{project.calloutDescription}</p>
                   </div>
                 </div>
               </div>

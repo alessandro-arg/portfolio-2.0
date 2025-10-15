@@ -168,5 +168,9 @@ export const projectsData: Project[] = [
         { color: "#F9D793", at: "113.5%" },
       ],
     },
+    calloutTitle:
+      "♟️ Play online with friends or against Stockfish AI powered bots",
+    calloutDescription:
+      "Online chess with real-time multiplayer, Stockfish AI, and Elo ratings.",
   },
 ];

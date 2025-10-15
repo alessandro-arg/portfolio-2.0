@@ -36,6 +36,7 @@ const outfitSans = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://alessandro-argenziano.com"),
   title: "Alessandro - Portfolio",
   description: "Fullstack Developer • Next.js • Tailwind CSS • Animations",
 };

@@ -27,4 +27,6 @@ export type Project = {
   theme?: ProjectTheme;
   points?: string[];
   slug?: string;
+  calloutTitle?: string;
+  calloutDescription?: string;
 };

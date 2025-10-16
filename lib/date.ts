@@ -21,7 +21,7 @@ export function relativeAgeLabel(dateISO: string, now = new Date()): string {
   const monthsThen = d.getFullYear() * 12 + d.getMonth();
   const diffMonths = monthsNow - monthsThen;
 
-  if (diffMonths < 6) return "(new!)";
+  if (diffMonths < 6) return "- New!";
   if (diffMonths < 12) return "(over 6 months ago)";
 
   const yrs = Math.floor(diffMonths / 12);

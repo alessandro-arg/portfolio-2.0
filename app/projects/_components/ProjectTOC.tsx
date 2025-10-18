@@ -1,22 +1,34 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 
 export type TocItem = {
-  id: string;
+  id: string; // DOM id like "what-is"
   title: string;
-  depth?: number;
+  depth?: number; // 2 or 3 (controls indent)
 };
+
+const RAIL_W = 12; // mask rail width
+const X_D2 = 1; // rail x for depth-2
+const X_D3 = 11; // rail x for depth-3 (must match inner guide inset)
+const PAD_TOP = 12; // top offset inside the rail wrapper (matches your CSS)
+const ATTACH_Y = 12; // <-- where the rail should hit inside a link (px from link's top)
+const MARKER_H = 80; // active marker height
+const TAIL = 0; // optional tail (extra px) at the end
 
 export function ProjectTOC({ items }: { items: TocItem[] }) {
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null);
-  const [indicatorPos, setIndicatorPos] = useState({ top: 12, height: 20 });
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollAreaRef = useRef<HTMLDivElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const ids = useMemo(() => items.map((i) => i.id), [items]);
 
+  // --- Observe headings in page content to set activeId
   useEffect(() => {
+    if (!ids.length) return;
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -26,22 +38,12 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
               (a.target as HTMLElement).offsetTop -
               (b.target as HTMLElement).offsetTop
           );
-
         if (visible[0]) {
           const id = (visible[0].target as HTMLElement).id;
           setActiveId(id);
-
-          // find index of active item and animate indicator
-          const index = items.findIndex((i) => i.id === id);
-          if (index !== -1) {
-            setIndicatorPos({
-              top: 12 + index * 44,
-              height: 20,
-            });
-          }
         }
       },
-      { rootMargin: "0px 0px -70% 0px", threshold: 0.1 }
+      { root: null, rootMargin: "0px 0px -65% 0px", threshold: 0.1 }
     );
 
     ids.forEach((id) => {
@@ -50,23 +52,95 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
     });
 
     return () => obs.disconnect();
-  }, [ids, items]);
+  }, [ids]);
 
-  // dynamically build SVG path for maskImage to connect all items
-  const maskPath = useMemo(() => {
-    const step = 20;
-    let path = `M1 12 `;
-    for (let i = 1; i <= items.length; i++) {
-      const y = 12 + i * step * 2;
-      path += `L1 ${y} `;
-      if (i % 6 === 0) path += `L11 ${y + 12} `;
-    }
-    return encodeURIComponent(
-      `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 ${
-        (items.length + 1) * 24
-      }'><path d='${path}' stroke='black' stroke-width='1' fill='none' /></svg>`
+  // --- Layout measuring + mask path building
+  const [markerTop, setMarkerTop] = useState(PAD_TOP);
+  const [markerX, setMarkerX] = useState<number>(X_D2);
+
+  type Measure = { id: string; depth: 2 | 3; y: number };
+
+  const recompute = () => {
+    const area = scrollAreaRef.current;
+    const list = listRef.current;
+    const rail = railRef.current;
+    if (!area || !list || !rail) return;
+
+    const areaRect = area.getBoundingClientRect();
+    const links = Array.from(
+      list.querySelectorAll<HTMLAnchorElement>("a[data-toc-link='true']")
     );
-  }, [items.length]);
+
+    if (!links.length) {
+      rail.style.height = "0px";
+      rail.style.maskImage = "none";
+      return;
+    }
+
+    type Measure = { id: string; depth: 2 | 3; railY: number };
+    const measures: Measure[] = links.map((a) => {
+      const rect = a.getBoundingClientRect();
+      const depthAttr = Number(a.getAttribute("data-depth")) as
+        | 2
+        | 3
+        | undefined;
+      const depth = depthAttr === 3 ? 3 : 2;
+      const id = a.getAttribute("href")?.slice(1) || "";
+      const railY = rect.top - areaRect.top + ATTACH_Y; // <-- not center anymore
+      return { id, depth, railY };
+    });
+
+    const toX = (d: 2 | 3) => (d === 3 ? X_D3 : X_D2);
+
+    // Build polyline through attach points
+    let d = `M ${toX(measures[0].depth)} ${PAD_TOP + measures[0].railY}`;
+    for (let i = 1; i < measures.length; i++) {
+      const m = measures[i];
+      d += ` L ${toX(m.depth)} ${PAD_TOP + m.railY}`;
+    }
+
+    // rail height (just enough to contain last point + optional tail)
+    const last = measures[measures.length - 1];
+    const railHeight = Math.ceil(PAD_TOP + last.railY + TAIL);
+    rail.style.height = `${railHeight}px`;
+
+    // Inline SVG mask (same as your working sample)
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${RAIL_W} ${railHeight}">
+<path d="${d}" stroke="black" stroke-width="1" fill="none"/>
+</svg>`;
+    const encoded = encodeURIComponent(svg)
+      .replace(/'/g, "%27")
+      .replace(/"/g, "%22");
+    rail.style.maskImage = `url("data:image/svg+xml,${encoded}")`;
+
+    // Active marker placement (align to the same attach Y)
+    const idx = Math.max(
+      0,
+      measures.findIndex((m) => m.id === activeId)
+    );
+    const active = measures[idx] ?? measures[0];
+    setMarkerTop(PAD_TOP + active.railY - MARKER_H / 2);
+    setMarkerX(toX(active.depth));
+  };
+
+  useLayoutEffect(() => {
+    // Recompute initially and when items / active change
+    recompute();
+
+    // Keep in sync on resize
+    const ro = new ResizeObserver(() => recompute());
+    if (scrollAreaRef.current) ro.observe(scrollAreaRef.current);
+    if (listRef.current) ro.observe(listRef.current);
+
+    const onResize = () => recompute();
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, activeId]);
 
   return (
     <div
@@ -92,45 +166,61 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
             strokeLinejoin="round"
             className="lucide size-4"
           >
-            <path d="M15 18H3" />
-            <path d="M17 6H3" />
-            <path d="M21 12H3" />
+            <path d="M15 18H3"></path>
+            <path d="M17 6H3"></path>
+            <path d="M21 12H3"></path>
           </svg>
           On this page
         </h3>
 
         <div
-          ref={containerRef}
+          ref={scrollAreaRef}
           className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,white_16px,white_calc(100%-16px),transparent)] py-3"
         >
-          {/* Left Rail */}
+          {/* Dynamic rail using mask-image (exactly like your working example) */}
           <div
+            ref={railRef}
             className="absolute start-0 top-0 rtl:-scale-x-100"
             style={{
-              width: "12px",
-              height: `${(items.length + 1) * 44}px`,
-              maskImage: `url("data:image/svg+xml,${maskPath}")`,
-              WebkitMaskImage: `url("data:image/svg+xml,${maskPath}")`,
-              maskRepeat: "no-repeat",
+              width: `${RAIL_W}px`,
+              height: "0px", // will be set dynamically
+              maskImage: "none", // will be set dynamically
             }}
           >
+            {/* Active marker (follows the rail) */}
             <div
               role="none"
-              className="absolute w-full bg-fd-primary transition-all duration-300 ease-out"
-              style={{
-                top: `${indicatorPos.top}px`,
-                height: `${indicatorPos.height}px`,
-              }}
+              className="mt-(--fd-top) h-(--fd-height) bg-fd-primary transition-all"
+              style={
+                {
+                  ["--fd-top" as any]: `${Math.max(0, markerTop)}px`,
+                  ["--fd-height" as any]: `${MARKER_H}px`,
+                  // slight x alignment by translating via left padding in the link rows,
+                  // the marker sits under the mask (x controlled by the mask path),
+                } as React.CSSProperties
+              }
             />
           </div>
 
-          <div className="flex flex-col">
-            {items.map((i) => {
+          {/* Links list */}
+          <div ref={listRef} className="flex flex-col">
+            {items.map((i, idx) => {
+              const depth = (i.depth && i.depth > 2 ? 3 : 2) as 2 | 3;
+              const prevDepth = (
+                idx > 0 && (items[idx - 1].depth || 2) > 2 ? 3 : 2
+              ) as 2 | 3;
               const active = activeId === i.id;
-              const indent = i.depth && i.depth > 2 ? 26 : 14;
+              const indent = depth === 3 ? 26 : 14;
+
+              // Show diagonal helper icon when transitioning depth to match example
+              const showDownDiag = depth === 3 && prevDepth === 2; // 2 -> 3
+              const showUpDiag = depth === 2 && prevDepth === 3; // 3 -> 2
+
               return (
                 <a
                   key={i.id}
+                  data-toc-link="true"
+                  data-depth={depth}
                   data-active={active}
                   href={`#${i.id}`}
                   className={clsx(
@@ -138,11 +228,50 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
                   )}
                   style={{ paddingInlineStart: `${indent}px` }}
                 >
-                  {/* vertical line */}
+                  {/* small diagonal helpers (purely visual, like your working snapshot) */}
+                  {showDownDiag ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      className="absolute -top-1.5 start-0 size-4 rtl:-scale-x-100"
+                    >
+                      <line
+                        x1="0"
+                        y1="0"
+                        x2="10"
+                        y2="12"
+                        className="stroke-fd-foreground/10"
+                        strokeWidth="1"
+                      />
+                    </svg>
+                  ) : null}
+                  {showUpDiag ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      className="absolute -top-1.5 start-0 size-4 rtl:-scale-x-100"
+                    >
+                      <line
+                        x1="10"
+                        y1="0"
+                        x2="0"
+                        y2="12"
+                        className="stroke-fd-foreground/10"
+                        strokeWidth="1"
+                      />
+                    </svg>
+                  ) : null}
+
+                  {/* inner guide line beside text block */}
                   <div
-                    className="absolute inset-y-0 w-px bg-fd-foreground/10"
+                    className={clsx(
+                      "absolute inset-y-0 w-px bg-fd-foreground/10",
+                      // match your example's slight top/bottom offsets on the guide line
+                      showDownDiag && "top-1.5",
+                      idx === items.length - 1 && depth === 3 && "bottom-1.5"
+                    )}
                     style={{
-                      insetInlineStart: i.depth && i.depth > 2 ? 10 : 0,
+                      insetInlineStart: depth === 3 ? 10 : 0,
                     }}
                   />
                   {i.title}

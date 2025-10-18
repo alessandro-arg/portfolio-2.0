@@ -36,30 +36,91 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = projectsData.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  // Build the same sections as your reference
-  const toc: TocItem[] = [
-    { id: "what-is", title: "🔍 What is " + project.title + "?", depth: 2 },
-    { id: "key-features", title: "🧩 Key Features", depth: 2 },
-    { id: "why-built", title: "📌 Why I Built This", depth: 2 },
-    { id: "use-cases", title: "💡 Use Cases", depth: 2 },
-    { id: "tech-stack-overview", title: "🧪 Tech Stack Overview", depth: 2 },
-    { id: "getting-started", title: "⚙️ Getting Started", depth: 2 },
-    // (example nested steps)
-    { id: "clone-the-repository", title: "Clone the repository", depth: 3 },
-    { id: "install-dependencies", title: "Install dependencies", depth: 3 },
-    { id: "build-and-run-locally", title: "Build and run locally", depth: 3 },
-    {
+  // Optional fields (kept type-safe locally without touching your global types)
+  const useCases = (project as any).useCases as string[] | undefined;
+  const whyBuilt = (project as any).whyBuilt as string | undefined;
+  const learnings = (project as any).learnings as string | undefined;
+
+  // Build the TOC dynamically based on available data
+  const sections: TocItem[] = [];
+
+  // Always show "What is"
+  sections.push({
+    id: "what-is",
+    title: "🔍 What is " + project.title + "?",
+    depth: 2,
+  });
+
+  // Key Features (only if points exist)
+  if (project.points?.length) {
+    sections.push({ id: "key-features", title: "🧩 Key Features", depth: 2 });
+  }
+
+  // Why I Built This (optional)
+  if (whyBuilt) {
+    sections.push({ id: "why-built", title: "📌 Why I Built This", depth: 2 });
+  }
+
+  // Use Cases (optional)
+  if (useCases?.length) {
+    sections.push({ id: "use-cases", title: "💡 Use Cases", depth: 2 });
+  }
+
+  // Tech Stack (only if there are technologies)
+  if (project.technologies?.length) {
+    sections.push({
+      id: "tech-stack-overview",
+      title: "🧪 Tech Stack Overview",
+      depth: 2,
+    });
+  }
+
+  // Getting Started (always)
+  sections.push({
+    id: "getting-started",
+    title: "⚙️ Getting Started",
+    depth: 2,
+  });
+  sections.push({
+    id: "clone-the-repository",
+    title: "Clone the repository",
+    depth: 3,
+  });
+  sections.push({
+    id: "install-dependencies",
+    title: "Install dependencies",
+    depth: 3,
+  });
+  sections.push({
+    id: "build-and-run-locally",
+    title: "Build and run locally",
+    depth: 3,
+  });
+
+  // Challenges & Learnings (optional)
+  if (learnings) {
+    sections.push({
       id: "challenges-learnings",
       title: "🧠 Challenges & Learnings",
       depth: 2,
-    },
-    { id: "see-it-in-action", title: "📸 See it in Action", depth: 2 },
-  ];
+    });
+  }
 
+  // See it in Action (only if there is at least one link)
   const liveLink =
     project.href && !project.href.startsWith("/projects")
       ? project.href
       : undefined;
+
+  if (liveLink || project.github) {
+    sections.push({
+      id: "see-it-in-action",
+      title: "📸 See it in Action",
+      depth: 2,
+    });
+  }
+
+  const toc: TocItem[] = sections;
 
   const dateISO =
     project.date ?? (project.year ? `${project.year}-01-01` : null);
@@ -114,7 +175,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         aria-label="GitHub"
                         title="GitHub"
                       >
-                        {/* lucide: github (outline-ish) */}
+                        {/* lucide: github */}
                         <svg
                           stroke="currentColor"
                           fill="none"
@@ -134,7 +195,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   ) : null}
 
                   {/* “Check it out” button if liveLink exists */}
-                  {project.liveLink ? (
+                  {project.liveLink ? ( // kept as-is per your code; you can switch to (liveLink) if you prefer
                     <a
                       href={liveLink}
                       referrerPolicy="no-referrer"
@@ -267,6 +328,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </h2>
               <p>{project.description}</p>
 
+              {/* Key Features (already conditional) */}
               {project.points?.length ? (
                 <>
                   <h2
@@ -320,53 +382,60 @@ export default async function ProjectPage({ params }: PageProps) {
                 </>
               ) : null}
 
-              <h2
-                id="why-built"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#-why-i-built-this" className="peer">
-                  📌 Why I Built This
-                </a>
-              </h2>
-              <p>
-                A short paragraph on the motivation behind{" "}
-                <strong>{project.title}</strong>. (You can add a new field to
-                your data later and render it here.)
-              </p>
+              {/* Why I Built This (optional) */}
+              {whyBuilt ? (
+                <>
+                  <h2
+                    id="why-built"
+                    className="flex scroll-m-28 flex-row items-center gap-2"
+                  >
+                    <a data-card href="#-why-i-built-this" className="peer">
+                      📌 Why I Built This
+                    </a>
+                  </h2>
+                  <p>{whyBuilt}</p>
+                </>
+              ) : null}
 
-              <h2
-                id="use-cases"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#-use-cases" className="peer">
-                  💡 Use Cases
-                </a>
-              </h2>
-              <ul className="list-disc ps-6">
-                <li>Showcase features to recruiters or clients</li>
-                <li>Share visuals in social posts or blog write-ups</li>
-                <li>Use screenshots for case studies and decks</li>
-              </ul>
+              {/* Use Cases (optional) */}
+              {useCases?.length ? (
+                <>
+                  <h2
+                    id="use-cases"
+                    className="flex scroll-m-28 flex-row items-center gap-2"
+                  >
+                    <a data-card href="#-use-cases" className="peer">
+                      💡 Use Cases
+                    </a>
+                  </h2>
+                  <ul className="list-disc ps-6">
+                    {useCases.map((uc, i) => (
+                      <li key={i}>{uc}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
 
-              <h2
-                id="tech-stack-overview"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#-tech-stack-overview" className="peer">
-                  🧪 Tech Stack Overview
-                </a>
-              </h2>
+              {/* Tech Stack (hide when empty for clean TOC parity) */}
               {project.technologies?.length ? (
-                <ul>
-                  {project.technologies.map((t, i) => (
-                    <li key={i}>
-                      <strong>{t.name}</strong>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>Tech stack details coming soon.</p>
-              )}
+                <>
+                  <h2
+                    id="tech-stack-overview"
+                    className="flex scroll-m-28 flex-row items-center gap-2"
+                  >
+                    <a data-card href="#-tech-stack-overview" className="peer">
+                      🧪 Tech Stack Overview
+                    </a>
+                  </h2>
+                  <ul>
+                    {project.technologies.map((t, i) => (
+                      <li key={i}>
+                        <strong>{t.name}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
 
               <h2
                 id="getting-started"
@@ -468,53 +537,64 @@ export default async function ProjectPage({ params }: PageProps) {
                 </div>
               </div>
 
-              <h2
-                id="challenges-learnings"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#-challenges--learnings" className="peer">
-                  🧠 Challenges &amp; Learnings
-                </a>
-              </h2>
-              <p>
-                Add a few lessons you learned while building{" "}
-                <strong>{project.title}</strong>.
-              </p>
+              {/* Challenges & Learnings (optional) */}
+              {learnings ? (
+                <>
+                  <h2
+                    id="challenges-learnings"
+                    className="flex scroll-m-28 flex-row items-center gap-2"
+                  >
+                    <a
+                      data-card
+                      href="#-challenges--learnings"
+                      className="peer"
+                    >
+                      🧠 Challenges &amp; Learnings
+                    </a>
+                  </h2>
+                  <p>{learnings}</p>
+                </>
+              ) : null}
 
-              <h2
-                id="see-it-in-action"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#-see-it-in-action" className="peer">
-                  📸 See it in Action
-                </a>
-              </h2>
-              <ul>
-                {liveLink ? (
-                  <li>
-                    🌍{" "}
-                    <a
-                      href={liveLink}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      Live App
+              {/* See it in Action (only when any link exists) */}
+              {liveLink || project.github ? (
+                <>
+                  <h2
+                    id="see-it-in-action"
+                    className="flex scroll-m-28 flex-row items-center gap-2"
+                  >
+                    <a data-card href="#-see-it-in-action" className="peer">
+                      📸 See it in Action
                     </a>
-                  </li>
-                ) : null}
-                {project.github ? (
-                  <li>
-                    🛠{" "}
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      GitHub Repo
-                    </a>
-                  </li>
-                ) : null}
-              </ul>
+                  </h2>
+                  <ul>
+                    {liveLink ? (
+                      <li>
+                        🌍{" "}
+                        <a
+                          href={liveLink}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          Live App
+                        </a>
+                      </li>
+                    ) : null}
+                    {project.github ? (
+                      <li>
+                        🛠{" "}
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          GitHub Repo
+                        </a>
+                      </li>
+                    ) : null}
+                  </ul>
+                </>
+              ) : null}
 
               <p>
                 Want to chat about this project?{" "}

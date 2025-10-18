@@ -29,4 +29,7 @@ export type Project = {
   slug?: string;
   calloutTitle?: string;
   calloutDescription?: string;
+  useCases?: string[]; // e.g. ["Pitch to recruiters", "Create case studies"]
+  whyBuilt?: string; // short paragraph
+  learnings?: string; // short paragraph or bullets joined with \n
 };

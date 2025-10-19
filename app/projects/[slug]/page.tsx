@@ -5,6 +5,8 @@ import { ProjectTOC, type TocItem } from "../_components/ProjectTOC";
 import { TechBadge } from "../_components/TechBadge";
 import ContactSection from "@/app/contact/ContactSection";
 import { ProjectDate } from "../_components/ProjectDate";
+import Link from "fumadocs-core/link";
+import { Accordions, Accordion } from "fumadocs-ui/components/accordion";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -29,6 +31,11 @@ export async function generateMetadata({
       type: "website",
     },
   };
+}
+
+type NormalizedPoint = { title: string; description?: string };
+function normalizePoints(points: (string | NormalizedPoint)[] | undefined) {
+  return (points ?? []).map((p) => (typeof p === "string" ? { title: p } : p));
 }
 
 export default async function ProjectPage({ params }: PageProps) {
@@ -124,6 +131,8 @@ export default async function ProjectPage({ params }: PageProps) {
 
   const dateISO =
     project.date ?? (project.year ? `${project.year}-01-01` : null);
+
+  const normalizedPoints = normalizePoints(project.points);
 
   return (
     <main className="relative mx-auto w-full">
@@ -329,7 +338,7 @@ export default async function ProjectPage({ params }: PageProps) {
               <p>{project.description}</p>
 
               {/* Key Features (already conditional) */}
-              {project.points?.length ? (
+              {normalizedPoints.length ? (
                 <>
                   <h2
                     id="key-features"
@@ -340,45 +349,32 @@ export default async function ProjectPage({ params }: PageProps) {
                     </a>
                   </h2>
 
-                  {/* Accordion-ish look (static, matches the style) */}
-                  <div
+                  <Accordions
+                    type="single"
                     className="divide-y divide-fd-border overflow-hidden rounded-lg border bg-fd-card"
                     data-orientation="vertical"
                   >
-                    {project.points.map((pt, i) => (
-                      <div
-                        key={i}
-                        data-state="closed"
-                        data-orientation="vertical"
+                    {normalizedPoints.map((pt, i) => (
+                      <Accordion
                         className="scroll-m-24"
+                        key={i}
+                        title={pt.title}
+                        id={`key-feature-${i}`}
+                        value={`key-feature-${i}`}
                       >
-                        <h3 className="not-prose flex flex-row items-center text-fd-card-foreground font-medium has-focus-visible:bg-fd-accent">
-                          <button
-                            type="button"
-                            className="group flex flex-1 items-center gap-2 px-3 py-2.5 text-start focus-visible:outline-none"
-                          >
-                            {/* chevron */}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="lucide size-4 shrink-0 text-fd-muted-foreground transition-transform duration-200"
-                            >
-                              <path d="m9 18 6-6-6-6"></path>
-                            </svg>
-                            {pt}
-                          </button>
-                        </h3>
-                        <div data-state="closed" hidden />
-                      </div>
+                        {/* Match reference spacing + typography */}
+                        <div className="px-4 pb-2 text-[15px] prose-no-margin">
+                          {pt.description ? (
+                            <p>{pt.description}</p>
+                          ) : (
+                            <p className="italic text-fd-muted-foreground/80">
+                              No additional details provided.
+                            </p>
+                          )}
+                        </div>
+                      </Accordion>
                     ))}
-                  </div>
+                  </Accordions>
                 </>
               ) : null}
 
@@ -430,7 +426,15 @@ export default async function ProjectPage({ params }: PageProps) {
                   <ul>
                     {project.technologies.map((t, i) => (
                       <li key={i}>
-                        <strong>{t.name}</strong>
+                        <Link
+                          href={t.link}
+                          rel="noreferrer noopener"
+                          target="_blank"
+                          className="decoration-blue-500"
+                        >
+                          <strong>{t.name}</strong>
+                        </Link>{" "}
+                        - {t.description}
                       </li>
                     ))}
                   </ul>

@@ -11,7 +11,17 @@ export type ProjectTheme = {
 export type Technology = {
   name: string;
   icon?: ReactNode;
+  description?: string;
+  link?: string;
 };
+
+/** New: supports both legacy string points and rich points with description */
+export type ProjectPoint =
+  | string
+  | {
+      title: string;
+      description?: string;
+    };
 
 export type Project = {
   title: string;
@@ -25,11 +35,11 @@ export type Project = {
   year?: string;
   date?: string;
   theme?: ProjectTheme;
-  points?: string[];
+  points?: ProjectPoint[];
   slug?: string;
   calloutTitle?: string;
   calloutDescription?: string;
-  useCases?: string[]; // e.g. ["Pitch to recruiters", "Create case studies"]
-  whyBuilt?: string; // short paragraph
-  learnings?: string; // short paragraph or bullets joined with \n
+  useCases?: string[];
+  whyBuilt?: string;
+  learnings?: string;
 };

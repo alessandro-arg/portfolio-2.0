@@ -25,13 +25,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-  // ---- NEW: detect short screens to enter "compact" mode ----
   const [isShort, setIsShort] = useState(false);
   const [isEvenShorter, setIsEvenShorter] = useState(false);
   useEffect(() => {
     const check = () => {
-      // Tweak threshold to taste; 640 is a good starting point for "short"
       setIsShort(window.innerHeight < 740);
       setIsEvenShorter(window.innerHeight < 670);
     };
@@ -85,7 +82,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   const handleEmailClick = () => {
-    window.location.href = "mailto:your.email@example.com";
+    window.open("mailto:contact@alessandro-argenziano.com", "_blank");
   };
 
   return (
@@ -206,7 +203,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         htmlFor="name"
                         className="block text-sm font-medium text-foreground mb-2"
                       >
-                        Your Name
+                        Name
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -221,7 +218,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           className={`w-full pl-10 pr-4 py-3 bg-secondary/50 border ${
                             errors.name ? "border-destructive" : "border-border"
                           } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200`}
-                          placeholder="John Doe"
+                          placeholder="Your name"
                         />
                       </div>
                       {errors.name && (
@@ -241,7 +238,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         htmlFor="email"
                         className="block text-sm font-medium text-foreground mb-2"
                       >
-                        Email Address
+                        Email
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -258,7 +255,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                               ? "border-destructive"
                               : "border-border"
                           } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200`}
-                          placeholder="john@example.com"
+                          placeholder="email@example.com"
                         />
                       </div>
                       {errors.email && (
@@ -278,7 +275,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         htmlFor="message"
                         className="block text-sm font-medium text-foreground mb-2"
                       >
-                        Your Message
+                        Message
                       </label>
                       <div className="relative">
                         <div className="absolute top-3 left-3 pointer-events-none">
@@ -295,7 +292,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                               ? "border-destructive"
                               : "border-border"
                           } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200 resize-none`}
-                          placeholder="Tell me about your project..."
+                          placeholder="What would you like to discuss?"
                         />
                       </div>
                       {errors.message && (
@@ -315,7 +312,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group cursor-pointer"
+                        className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap text-md disabled:pointer-events-none disabled:opacity-50 shadow-xs py-3 px-6 rounded-md group relative w-full overflow-hidden bg-gradient-to-r from-[#4aeedd80] to-[#16b1ff70] font-normal text-white transition-all duration-300"
                       >
                         {isSubmitting ? (
                           <>

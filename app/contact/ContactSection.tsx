@@ -3,12 +3,31 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Magnet from "@/components/ui/magnet";
+import { cn } from "@/lib/utils"; // shadcn helper
 
-export default function ContactSection() {
+type ContactSectionProps = {
+  /** If true, removes the default top margin */
+  noTopMargin?: boolean;
+  /** Override the top margin utility (e.g. 'mt-0', 'mt-16', 'mt-[120px]') */
+  mtClassName?: string;
+  /** Extra classes from the parent */
+  className?: string;
+};
+
+export default function ContactSection({
+  noTopMargin = false,
+  mtClassName,
+  className,
+}: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="relative z-0 mt-40 flex w-full justify-center overflow-x-hidden bg-cover bg-center px-4 py-20"
+      className={cn(
+        "relative z-0 flex w-full justify-center overflow-x-hidden bg-cover bg-center px-4 py-20",
+        noTopMargin ? null : "mt-40",
+        mtClassName,
+        className
+      )}
     >
       <div className="absolute inset-0 bg-[url('/images/cta-bg.webp')] bg-cover bg-center opacity-40 -z-10"></div>
       <div className="pointer-events-none absolute inset-0">

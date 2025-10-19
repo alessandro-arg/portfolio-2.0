@@ -13,7 +13,7 @@ export default function ProjectsPage() {
         />
       </div>
       <ProjectsSection showCTA={false} />
-      <ContactSection />
+      <ContactSection mtClassName="mt-0 lg:mt-40" />
     </main>
   );
 }

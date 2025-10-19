@@ -233,7 +233,8 @@
   button,
   p,
   text,
-  li {
+  li,
+  figcaption {
     @apply font-outfit;
   }
 }

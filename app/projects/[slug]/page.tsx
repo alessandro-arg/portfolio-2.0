@@ -7,6 +7,7 @@ import ContactSection from "@/app/contact/ContactSection";
 import { ProjectDate } from "../_components/ProjectDate";
 import Link from "fumadocs-core/link";
 import { Accordions, Accordion } from "fumadocs-ui/components/accordion";
+import CopyFigure from "../_components/CopyFigure";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -461,65 +462,13 @@ export default async function ProjectPage({ params }: PageProps) {
                       Clone the repository
                     </a>
                   </h3>
-                  <figure
-                    dir="ltr"
-                    className="my-4 rounded-xl bg-fd-card p-1 shiki relative border outline-none not-prose overflow-hidden text-sm"
-                  >
-                    <div className="flex text-fd-muted-foreground items-center gap-2 ps-3 h-9.5">
-                      <div className="[&_svg]:size-3.5">
-                        <svg viewBox="0 0 24 24">
-                          <path
-                            d="m 4,4 a 1,1 0 0 0 -0.7070312,0.2929687 1,1 0 0 0 0,1.4140625 L 8.5859375,11 3.2929688,16.292969 a 1,1 0 0 0 0,1.414062 1,1 0 0 0 1.4140624,0 l 5.9999998,-6 a 1.0001,1.0001 0 0 0 0,-1.414062 L 4.7070312,4.2929687 A 1,1 0 0 0 4,4 Z m 8,14 a 1,1 0 0 0 -1,1 1,1 0 0 0 1,1 h 8 a 1,1 0 0 0 1,-1 1,1 0 0 0 -1,-1 z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </div>
-                      <figcaption className="flex-1 truncate">
-                        Terminal
-                      </figcaption>
-                      <div className="empty:hidden">
-                        <button
-                          type="button"
-                          className="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none hover:bg-fd-accent hover:text-fd-accent-foreground [&amp;_svg]:size-3.5"
-                          aria-label="Copy Text"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide"
-                          >
-                            <rect
-                              width="14"
-                              height="14"
-                              x="8"
-                              y="8"
-                              rx="2"
-                              ry="2"
-                            ></rect>
-                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    <div className="bg-fd-secondary rounded-lg border text-[13px] py-3.5 overflow-auto fd-scroll-container">
-                      <pre className="min-w-full w-max *:flex *:flex-col">
-                        <code>
-                          <span className="line">
-                            git clone{" "}
-                            {project.github ?? "https://example.com/repo.git"}{" "}
-                            && cd {project.slug}
-                          </span>
-                        </code>
-                      </pre>
-                    </div>
-                  </figure>
+                  {/* Clone the repository */}
+                  <CopyFigure
+                    caption="Terminal"
+                    code={`git clone ${
+                      project.github ?? "https://example.com/repo.git"
+                    } && cd ${project.slug}`}
+                  />
                 </div>
 
                 <div className="fd-step">
@@ -531,18 +480,7 @@ export default async function ProjectPage({ params }: PageProps) {
                       Install dependencies
                     </a>
                   </h3>
-                  <figure
-                    dir="ltr"
-                    className="my-4 rounded-xl bg-fd-card p-1 shiki relative border outline-none not-prose overflow-hidden text-sm"
-                  >
-                    <div className="bg-fd-secondary rounded-lg border text-[13px] py-3.5 overflow-auto fd-scroll-container">
-                      <pre className="min-w-full w-max *:flex *:flex-col">
-                        <code>
-                          <span className="line">npm install</span>
-                        </code>
-                      </pre>
-                    </div>
-                  </figure>
+                  <CopyFigure caption="Terminal" code={`npm install`} />
                 </div>
 
                 <div className="fd-step">
@@ -554,20 +492,10 @@ export default async function ProjectPage({ params }: PageProps) {
                       Build and run locally
                     </a>
                   </h3>
-                  <figure
-                    dir="ltr"
-                    className="my-4 rounded-xl bg-fd-card p-1 shiki relative border outline-none not-prose overflow-hidden text-sm"
-                  >
-                    <div className="bg-fd-secondary rounded-lg border text-[13px] py-3.5 overflow-auto fd-scroll-container">
-                      <pre className="min-w-full w-max *:flex *:flex-col">
-                        <code>
-                          <span className="line">
-                            npm run build && npm run serve
-                          </span>
-                        </code>
-                      </pre>
-                    </div>
-                  </figure>
+                  <CopyFigure
+                    caption="Terminal"
+                    code={`npm run build && npm run serve`}
+                  />
                 </div>
               </div>
 

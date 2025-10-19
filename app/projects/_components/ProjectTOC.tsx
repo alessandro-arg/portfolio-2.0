@@ -10,7 +10,7 @@ import {
 } from "fumadocs-core/toc";
 
 export type TocItem = {
-  id: string; // DOM id like "what-is"
+  id: string;
   title: string;
   depth?: number; // 2 or 3
 };
@@ -31,9 +31,8 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
   const viewRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
+  // Fade/hide when prose end crosses 50% viewport
   const [isPastHalf, setIsPastHalf] = useState(false);
-
-  // Observe end-of-prose sentinel and toggle isPastHalf
   useEffect(() => {
     const sentinel = document.getElementById("toc-end-sentinel");
     if (!sentinel) return;
@@ -41,12 +40,9 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
     const onScroll = () => {
       const rect = sentinel.getBoundingClientRect();
       const half = window.innerHeight * 0.5;
-      // If the bottom of the prose is now *above* the 50% line,
-      // start hiding the TOC
       setIsPastHalf(rect.top <= half);
     };
 
-    // Run once and on scroll/resize
     onScroll();
     const opts = { passive: true } as const;
     window.addEventListener("scroll", onScroll, opts);
@@ -57,74 +53,66 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
     };
   }, []);
 
-  // === Multi-active: mark items whose heading sits within the top 50% of viewport
-  const ACTIVE_FRACTION = 0.5;
+  // === Our OWN highlighting (bottom 30% band) ===
+  const [multiActive, setMultiActive] = useState<Set<string>>(new Set());
+  const [primaryActiveHref, setPrimaryActiveHref] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
-    const container = listRef.current;
-    if (!container) return;
+    const pairs = tocItems
+      .map((it) => {
+        const el = document.getElementById(it.url.slice(1));
+        return el ? ({ url: it.url, el } as const) : null;
+      })
+      .filter(Boolean) as { url: string; el: HTMLElement }[];
 
-    // map href -> anchor element
-    const anchors = Array.from(
-      container.querySelectorAll<HTMLAnchorElement>('a[data-fuma="toc-item"]')
-    );
-    if (!anchors.length) return;
+    if (!pairs.length) {
+      setMultiActive(new Set());
+      setPrimaryActiveHref(null);
+      return;
+    }
 
-    // observe these headings
-    const headings: HTMLElement[] = [];
-    tocItems.forEach((it) => {
-      const el = document.getElementById(it.url.slice(1));
-      if (el) headings.push(el);
-    });
-    if (!headings.length) return;
+    let raf = 0;
+    const compute = () => {
+      const vh = window.innerHeight;
+      const bandTop = vh * 0.05;
+      const bandBottom = vh * 0.5;
 
-    const activeSet = new Set<string>();
+      const next = new Set<string>();
+      let bestUrl: string | null = null;
+      let bestDist = Infinity;
 
-    const updateAnchors = () => {
-      anchors.forEach((a) => {
-        const href = a.getAttribute("href") || "";
-        if (activeSet.has(href)) a.setAttribute("data-active-multi", "true");
-        else a.removeAttribute("data-active-multi");
-      });
-    };
-
-    // IO region = top 50% band of the viewport
-    const buildObserver = () => {
-      const bottomCut = Math.round(window.innerHeight * ACTIVE_FRACTION);
-      return new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const id = (entry.target as HTMLElement).id;
-            const href = `#${id}`;
-            if (entry.isIntersecting) activeSet.add(href);
-            else activeSet.delete(href);
-          });
-          updateAnchors();
-        },
-        {
-          root: null,
-          rootMargin: `0px 0px -${bottomCut}px 0px`, // shrink bottom → top-half band
-          threshold: 0,
+      for (const { url, el } of pairs) {
+        const r = el.getBoundingClientRect();
+        if (r.top >= bandTop && r.top <= bandBottom) {
+          next.add(url);
+          const dist = bandBottom - r.top;
+          if (dist >= 0 && dist < bestDist) {
+            bestDist = dist;
+            bestUrl = url;
+          }
         }
-      );
+      }
+
+      setMultiActive(next);
+      setPrimaryActiveHref(bestUrl);
     };
 
-    let io = buildObserver();
-    headings.forEach((h) => io.observe(h));
-    updateAnchors();
-
-    const onResize = () => {
-      io.disconnect();
-      activeSet.clear();
-      updateAnchors();
-      io = buildObserver();
-      headings.forEach((h) => io.observe(h));
+    const onScroll = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(compute);
     };
 
-    window.addEventListener("resize", onResize, { passive: true });
+    compute(); // initial
+    const opts = { passive: true } as const;
+    window.addEventListener("scroll", onScroll, opts);
+    window.addEventListener("resize", onScroll, opts);
+
     return () => {
-      io.disconnect();
-      window.removeEventListener("resize", onResize);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, [tocItems]);
 
@@ -133,7 +121,6 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
       id="nd-toc"
       className={clsx(
         "sticky pb-2 pt-12 max-xl:hidden transition-opacity duration-200",
-        // 👇 When prose bottom crosses 50vh, begin to fade/hide TOC
         isPastHalf ? "opacity-0 pointer-events-none" : "opacity-100"
       )}
       style={{
@@ -144,7 +131,6 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
       <div className="flex h-full w-(--fd-toc-width) max-w-full flex-col pe-4">
         <div className="h-10" />
         <h3 className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground">
-          {/* ...icon + label... */}
           On this page
         </h3>
 
@@ -152,24 +138,34 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
           ref={viewRef}
           className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-4px),transparent)] py-3 pb-8"
         >
+          {/* We still use Fumadocs providers for anchor links & scroll sync,
+              but we IGNORE its visual "active" styling */}
           <AnchorProvider toc={tocItems}>
             <ScrollProvider containerRef={viewRef}>
               <div ref={listRef} className="flex flex-col">
                 {tocItems.map((it) => {
                   const depth = (it.depth && it.depth > 2 ? 3 : 2) as 2 | 3;
                   const indent = depth === 3 ? 36 : 14;
+                  const isMulti = multiActive.has(it.url);
+                  const isPrimary = primaryActiveHref === it.url;
 
                   return (
                     <FumaTOCItem
                       key={it.url}
                       href={it.url}
                       className={clsx(
-                        "prose relative py-1.5 text-sm text-fd-muted-foreground hover:text-fd-accent-foreground transition-colors",
+                        "prose relative py-1.5 text-sm transition-colors",
                         "[overflow-wrap:anywhere] first:pt-0 last:pb-0",
-                        "data-[active=true]:text-fd-primary data-[active-multi=true]:text-fd-primary"
+                        // Neutral base color (don't rely on Fumadocs data-[active=true])
+                        "text-fd-muted-foreground hover:text-fd-accent-foreground",
+                        // Our own highlight rules:
+                        (isMulti || isPrimary) && "text-fd-primary font-medium"
                       )}
                       data-fuma="toc-item"
                       data-depth={depth}
+                      // Optional: expose our state as attributes (useful if you want CSS-only styling)
+                      {...(isMulti ? { "data-active-multi": "true" } : {})}
+                      {...(isPrimary ? { "data-active-primary": "true" } : {})}
                       style={{ paddingInlineStart: `${indent}px` }}
                     >
                       {it.title as any}

@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: PageProps) {
   // Optional fields (kept type-safe locally without touching your global types)
   const useCases = (project as any).useCases as string[] | undefined;
   const whyBuilt = (project as any).whyBuilt as string | undefined;
-  const learnings = (project as any).learnings as string | undefined;
+  const learnings = (project as any).learnings as string[] | undefined;
 
   // Build the TOC dynamically based on available data
   const sections: TocItem[] = [];
@@ -500,7 +500,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </div>
 
               {/* Challenges & Learnings (optional) */}
-              {learnings ? (
+              {learnings?.length ? (
                 <>
                   <h2
                     id="challenges-learnings"
@@ -514,7 +514,11 @@ export default async function ProjectPage({ params }: PageProps) {
                       🧠 Challenges &amp; Learnings
                     </a>
                   </h2>
-                  <p>{learnings}</p>
+                  <ul className="list-disc ps-6">
+                    {learnings.map((l, i) => (
+                      <li key={i}>{l}</li>
+                    ))}
+                  </ul>
                 </>
               ) : null}
 

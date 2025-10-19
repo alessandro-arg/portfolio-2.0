@@ -41,5 +41,5 @@ export type Project = {
   calloutDescription?: string;
   useCases?: string[];
   whyBuilt?: string;
-  learnings?: string;
+  learnings?: string[];
 };

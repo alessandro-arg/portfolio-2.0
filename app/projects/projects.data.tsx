@@ -129,10 +129,6 @@ export const projectsData: Project[] = [
     description:
       "Chess² is a modern web chess app built with heart and an eye for details. Play live vs friends or a Stockfish-powered bot, track your Elo, and review recent games—all in a responsive, polished UI with elegant animations and a clean analysis board.",
     src: "/images/chess_mockup.webp",
-
-    // Keep both: your page uses `project.liveLink` for the header CTA,
-    // and also derives a `liveLink` from `href` when it's an external URL.
-    // This guarantees the CTA button and the 'See it in Action' list both show.
     href: "/projects/chess",
     liveLink: "https://chess2.alessandro-argenziano.com",
 
@@ -234,8 +230,6 @@ export const projectsData: Project[] = [
       "Firebase RTDB presence + heartbeats creates reliable online/offline indicators.",
       "Web Worker integration keeps the UI snappy while Stockfish thinks.",
       "Careful rate-limiting and security rules prevent malicious move injections.",
-    ]
-      .map((b) => `• ${b}`)
-      .join("\n"),
+    ],
   },
 ];

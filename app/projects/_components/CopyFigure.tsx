@@ -7,7 +7,6 @@ import {
   bundledLanguages,
   type Highlighter,
 } from "shiki/bundle/web";
-// ⬇️ type-only import (fixes your TS error)
 import type { ThemeRegistration } from "shiki";
 
 type CopyFigureProps = {
@@ -15,13 +14,12 @@ type CopyFigureProps = {
   caption?: string;
   copyLabel?: string;
   className?: string;
-  lang?: string; // default "bash"
+  lang?: string;
 };
 
-// --- Minimal custom theme that delegates colors to CSS variables you control
 const CUSTOM_THEME: ThemeRegistration = {
   name: "custom",
-  type: "dark", // doesn't matter; we drive colors via CSS vars
+  type: "dark",
   colors: {
     "editor.background": "var(--shiki-bg)",
     "editor.foreground": "var(--shiki-fg)",
@@ -65,13 +63,12 @@ const CUSTOM_THEME: ThemeRegistration = {
   ],
 };
 
-// --- Singleton highlighter (no bundledThemes)
 let highlighterPromise: Promise<Highlighter> | null = null;
 function getHighlighterSingleton() {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighter({
       themes: [CUSTOM_THEME],
-      langs: [bundledLanguages.bash], // keep it simple
+      langs: [bundledLanguages.bash],
     });
   }
   return highlighterPromise;
@@ -157,7 +154,7 @@ export default function CopyFigure({
             aria-label={copyLabel}
             onClick={copy}
             className={clsx(
-              "inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-150",
+              "inline-flex items-center justify-center rounded-md pr-1.5 pl-2 pb-1.5 pt-2 mr-1 text-sm font-medium transition-colors duration-150 cursor-pointer",
               "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none",
               "hover:bg-fd-accent hover:text-fd-accent-foreground [&_svg]:size-3.5"
             )}

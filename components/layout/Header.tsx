@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
+import { useContactModal } from "@/app/contact/ContactModalProvider";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
@@ -74,6 +75,7 @@ export default function Header() {
   const barRef = useRef<HTMLDivElement>(null);
   const underlineLayoutId = useMemo(() => "nav-underline", []);
   const [hash, setHash] = useState<string>("");
+  const { openModal } = useContactModal();
 
   // Track hash for section links (#about, #more, #contact)
   useEffect(() => {
@@ -87,6 +89,17 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((s) => !s), []);
+
+  // Handler for contact button - combines modal opening (and optionally mobile menu closing)
+  const handleContactClick = useCallback(() => {
+    openModal();
+  }, [openModal]);
+
+  // Handler for mobile contact button - closes menu and opens modal
+  const handleMobileContactClick = useCallback(() => {
+    closeMobile();
+    openModal();
+  }, [closeMobile, openModal]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -230,23 +243,24 @@ export default function Header() {
                 );
               })}
 
-              {/* Contact button */}
+              {/* Contact button - Changed to button with onClick */}
               <motion.div
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.97, y: 0 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
               >
-                <Link
-                  href="#contact"
+                <button
+                  onClick={handleContactClick}
                   className={[
                     "inline-flex items-center justify-center rounded-full",
                     "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
+                    "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Jump to contact section"
+                  aria-label="Open contact form"
                 >
                   Contact
-                </Link>
+                </button>
               </motion.div>
             </ul>
 
@@ -335,30 +349,29 @@ export default function Header() {
                     href={item.href}
                     aria-label={item.ariaLabel}
                     className="block px-4 py-2 text-3xl font-semibold tracking-tight text-neutral-900 hover:text-neutral-700 dark:text-neutral-100 dark:hover:text-neutral-300 transition-colors"
-                    onClick={() => {
-                      closeMobile();
-                    }}
+                    onClick={closeMobile}
                   >
                     {item.label}
                   </Link>
                 </motion.li>
               ))}
 
+              {/* Mobile Contact button - Changed to button with combined handler */}
               <motion.li variants={linkVariants} className="mt-2">
-                <Link
-                  href="/contact"
+                <button
+                  onClick={handleMobileContactClick}
                   className={[
                     "inline-flex items-center justify-center rounded-full",
                     "border-2 border-neutral-900 dark:border-neutral-100",
                     "bg-[#16b1ff] text-neutral-900 dark:text-black",
                     "px-6 py-3 text-2xl font-bold",
                     "shadow-[2px_3px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_3px_0_0_rgba(255,255,255,0.15)]",
+                    "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Jump to contact section"
-                  onClick={closeMobile}
+                  aria-label="Open contact form"
                 >
                   Contact
-                </Link>
+                </button>
               </motion.li>
             </motion.ul>
           </motion.aside>

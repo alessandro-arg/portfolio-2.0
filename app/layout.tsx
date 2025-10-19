@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ContactModalProvider } from "@/app/contact/ContactModalProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -57,16 +58,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
         <ThemeProvider>
-          {/* floating header */}
-          <Header />
+          <ContactModalProvider>
+            {/* floating header */}
+            <Header />
 
-          {/* page content needs some top padding so it's not covered by the fixed header */}
-          <div id="content">
-            <RootProvider>{children}</RootProvider>
-          </div>
+            {/* page content needs some top padding so it's not covered by the fixed header */}
+            <div id="content">
+              <RootProvider>{children}</RootProvider>
+            </div>
 
-          <Footer />
-          <Toaster />
+            <Footer />
+            <Toaster />
+          </ContactModalProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import {
   AnchorProvider,
@@ -30,6 +30,32 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
   // Scroll container + list refs (for Fumadocs ScrollProvider)
   const viewRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
+
+  const [isPastHalf, setIsPastHalf] = useState(false);
+
+  // Observe end-of-prose sentinel and toggle isPastHalf
+  useEffect(() => {
+    const sentinel = document.getElementById("toc-end-sentinel");
+    if (!sentinel) return;
+
+    const onScroll = () => {
+      const rect = sentinel.getBoundingClientRect();
+      const half = window.innerHeight * 0.5;
+      // If the bottom of the prose is now *above* the 50% line,
+      // start hiding the TOC
+      setIsPastHalf(rect.top <= half);
+    };
+
+    // Run once and on scroll/resize
+    onScroll();
+    const opts = { passive: true } as const;
+    window.addEventListener("scroll", onScroll, opts);
+    window.addEventListener("resize", onScroll, opts);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   // === Multi-active: mark items whose heading sits within the top 50% of viewport
   const ACTIVE_FRACTION = 0.5;
@@ -105,7 +131,11 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
   return (
     <div
       id="nd-toc"
-      className="sticky pb-2 pt-12 max-xl:hidden"
+      className={clsx(
+        "sticky pb-2 pt-12 max-xl:hidden transition-opacity duration-200",
+        // 👇 When prose bottom crosses 50vh, begin to fade/hide TOC
+        isPastHalf ? "opacity-0 pointer-events-none" : "opacity-100"
+      )}
       style={{
         top: "var(--fd-toc-top, 64px)",
         height: "calc(100dvh - var(--fd-toc-top, 64px))",
@@ -114,26 +144,10 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
       <div className="flex h-full w-(--fd-toc-width) max-w-full flex-col pe-4">
         <div className="h-10" />
         <h3 className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide size-4"
-          >
-            <path d="M15 18H3" />
-            <path d="M17 6H3" />
-            <path d="M21 12H3" />
-          </svg>
+          {/* ...icon + label... */}
           On this page
         </h3>
 
-        {/* Scroll container provided to Fumadocs */}
         <div
           ref={viewRef}
           className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-4px),transparent)] py-3 pb-8"
@@ -143,7 +157,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
               <div ref={listRef} className="flex flex-col">
                 {tocItems.map((it) => {
                   const depth = (it.depth && it.depth > 2 ? 3 : 2) as 2 | 3;
-                  const indent = depth === 3 ? 26 : 14;
+                  const indent = depth === 3 ? 36 : 14;
 
                   return (
                     <FumaTOCItem
@@ -152,7 +166,6 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
                       className={clsx(
                         "prose relative py-1.5 text-sm text-fd-muted-foreground hover:text-fd-accent-foreground transition-colors",
                         "[overflow-wrap:anywhere] first:pt-0 last:pb-0",
-                        // highlight from fumadocs (single) and our top-half multi-active
                         "data-[active=true]:text-fd-primary data-[active-multi=true]:text-fd-primary"
                       )}
                       data-fuma="toc-item"

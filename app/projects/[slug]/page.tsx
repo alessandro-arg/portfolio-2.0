@@ -477,6 +477,36 @@ export default async function ProjectPage({ params }: PageProps) {
                       <figcaption className="flex-1 truncate">
                         Terminal
                       </figcaption>
+                      <div className="empty:hidden">
+                        <button
+                          type="button"
+                          className="inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none hover:bg-fd-accent hover:text-fd-accent-foreground [&amp;_svg]:size-3.5"
+                          aria-label="Copy Text"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="lucide"
+                          >
+                            <rect
+                              width="14"
+                              height="14"
+                              x="8"
+                              y="8"
+                              rx="2"
+                              ry="2"
+                            ></rect>
+                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <div className="bg-fd-secondary rounded-lg border text-[13px] py-3.5 overflow-auto fd-scroll-container">
                       <pre className="min-w-full w-max *:flex *:flex-col">
@@ -610,6 +640,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   Let’s chat.
                 </a>
               </p>
+              <div id="toc-end-sentinel" aria-hidden="true" className="h-px" />
             </div>
 
             <div role="none" className="flex-1" />

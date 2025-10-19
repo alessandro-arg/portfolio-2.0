@@ -172,6 +172,12 @@
   --fd-sidebar-width: 0px;
   --fd-layout-width: 100vw;
   --fd-page-width: 1200px;
+  --fd-secondary: #212121;
+
+  --shiki-bg: #fff;
+  --shiki-string: #64a9f8;
+  --shiki-func: #b087fd;
+  --shiki-punctuation: #afb1b3;
 }
 
 .dark {
@@ -206,6 +212,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
+
+  --shiki-bg: #212121;
+  --shiki-string: #9ecbff;
+  --shiki-func: #b392f0;
+  --shiki-punctuation: #e1e4e8;
 }
 
 .grad-white {

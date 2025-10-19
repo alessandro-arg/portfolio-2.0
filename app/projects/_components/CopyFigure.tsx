@@ -5,9 +5,10 @@ import clsx from "clsx";
 import {
   createHighlighter,
   bundledLanguages,
-  bundledThemes,
   type Highlighter,
 } from "shiki/bundle/web";
+// ⬇️ type-only import (fixes your TS error)
+import type { ThemeRegistration } from "shiki";
 
 type CopyFigureProps = {
   code: string;
@@ -17,16 +18,60 @@ type CopyFigureProps = {
   lang?: string; // default "bash"
 };
 
-// --- Singleton highlighter in the browser
+// --- Minimal custom theme that delegates colors to CSS variables you control
+const CUSTOM_THEME: ThemeRegistration = {
+  name: "custom",
+  type: "dark", // doesn't matter; we drive colors via CSS vars
+  colors: {
+    "editor.background": "var(--shiki-bg)",
+    "editor.foreground": "var(--shiki-fg)",
+  },
+  tokenColors: [
+    {
+      scope: ["comment"],
+      settings: {
+        foreground: "var(--shiki-comment, var(--shiki-fg))",
+        fontStyle: "italic",
+      },
+    },
+    {
+      scope: ["keyword", "storage.type", "storage.modifier"],
+      settings: { foreground: "var(--shiki-keyword, var(--shiki-fg))" },
+    },
+    {
+      scope: ["string"],
+      settings: { foreground: "var(--shiki-string, var(--shiki-fg))" },
+    },
+    {
+      scope: ["constant.numeric", "number"],
+      settings: { foreground: "var(--shiki-number, var(--shiki-fg))" },
+    },
+    {
+      scope: ["variable"],
+      settings: { foreground: "var(--shiki-variable, var(--shiki-fg))" },
+    },
+    {
+      scope: ["support.function", "entity.name.function"],
+      settings: { foreground: "var(--shiki-func, var(--shiki-fg))" },
+    },
+    {
+      scope: ["support.type", "entity.name.type"],
+      settings: { foreground: "var(--shiki-type, var(--shiki-fg))" },
+    },
+    {
+      scope: ["punctuation", "meta.brace"],
+      settings: { foreground: "var(--shiki-punctuation, var(--shiki-fg))" },
+    },
+  ],
+};
+
+// --- Singleton highlighter (no bundledThemes)
 let highlighterPromise: Promise<Highlighter> | null = null;
 function getHighlighterSingleton() {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighter({
-      themes: [
-        bundledThemes["github-light-default"],
-        bundledThemes["github-dark-default"],
-      ],
-      langs: [bundledLanguages.bash],
+      themes: [CUSTOM_THEME],
+      langs: [bundledLanguages.bash], // keep it simple
     });
   }
   return highlighterPromise;
@@ -42,19 +87,11 @@ export default function CopyFigure({
   const [copied, setCopied] = useState(false);
   const [html, setHtml] = useState<string>("");
 
-  // Render highlighted HTML whenever code/lang/theme changes
   useEffect(() => {
     let cancelled = false;
-
-    const render = async () => {
-      const themeName =
-        document.documentElement.classList.contains("dark") ||
-        window.matchMedia?.("(prefers-color-scheme: dark)").matches
-          ? "github-dark-default"
-          : "github-light-default";
-
+    (async () => {
       const highlighter = await getHighlighterSingleton();
-      let out = highlighter.codeToHtml(code, { lang, theme: themeName });
+      let out = highlighter.codeToHtml(code, { lang, theme: "custom" });
 
       // Add your terminal body classes onto the <pre class="shiki ...">
       out = out.replace(
@@ -63,24 +100,9 @@ export default function CopyFigure({
       );
 
       if (!cancelled) setHtml(out);
-    };
-
-    render();
-
-    // Re-render on theme toggles (Tailwind dark class or system change)
-    const mql = window.matchMedia?.("(prefers-color-scheme: dark)");
-    const handleThemeChange = () => render();
-    const mo = new MutationObserver(handleThemeChange);
-    mo.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    mql?.addEventListener?.("change", handleThemeChange);
-
+    })();
     return () => {
       cancelled = true;
-      mo.disconnect();
-      mql?.removeEventListener?.("change", handleThemeChange);
     };
   }, [code, lang]);
 
@@ -116,7 +138,7 @@ export default function CopyFigure({
         className
       )}
     >
-      {/* Header bar */}
+      {/* Header */}
       <div className="flex text-fd-muted-foreground items-center gap-2 ps-3 h-9.5 font-outfit">
         <div className="[&_svg]:size-3.5">
           <svg viewBox="0 0 24 24">
@@ -184,7 +206,7 @@ export default function CopyFigure({
         </div>
       </div>
 
-      {/* Code body (Shiki HTML) */}
+      {/* Code body */}
       <div
         className="rounded-lg"
         dangerouslySetInnerHTML={{
@@ -196,7 +218,6 @@ export default function CopyFigure({
         }}
       />
 
-      {/* SR-only polite announcement when copied */}
       <span className="sr-only" aria-live="polite">
         {copied ? "Copied to clipboard" : ""}
       </span>

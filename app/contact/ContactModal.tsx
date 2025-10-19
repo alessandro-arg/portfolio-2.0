@@ -85,6 +85,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     window.open("mailto:contact@alessandro-argenziano.com", "_blank");
   };
 
+  const MESSAGE_LIMIT = 100;
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -100,7 +102,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           />
 
           {/* Modal wrapper (centers panel) */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center sm:p-4 pointer-events-none">
+          <div className="fixed inset-0 z-50 flex items-center justify-center sm:p-4 pointer-events-none cursor-default">
             {/* Panel */}
             <motion.div
               initial={{ opacity: 0, scale: 0.98, y: 16 }}
@@ -191,7 +193,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   {/* Form */}
                   <form
                     onSubmit={handleSubmit}
-                    className="space-y-4 sm:space-y-5"
+                    className="space-y-3 sm:space-y-5"
                   >
                     {/* Name */}
                     <motion.div
@@ -221,11 +223,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           placeholder="Your name"
                         />
                       </div>
-                      {errors.name && (
-                        <p className="mt-1 text-sm text-destructive">
-                          {errors.name}
-                        </p>
-                      )}
+                      <div className="w-full h-5 mt-1">
+                        {errors.name && (
+                          <p className="text-sm text-destructive">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
                     </motion.div>
 
                     {/* Email */}
@@ -258,11 +262,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           placeholder="email@example.com"
                         />
                       </div>
-                      {errors.email && (
-                        <p className="mt-1 text-sm text-destructive">
-                          {errors.email}
-                        </p>
-                      )}
+                      <div className="w-full h-5 mt-1">
+                        {errors.email && (
+                          <p className=" text-sm text-destructive">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
                     </motion.div>
 
                     {/* Message */}
@@ -271,12 +277,32 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-foreground mb-2"
-                      >
-                        Message
-                      </label>
+                      {/* Label row: left label, right counter */}
+                      <div className="mb-2 flex items-center justify-between">
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium text-foreground"
+                        >
+                          Message
+                        </label>
+
+                        {/* live counter */}
+                        <span
+                          id="message-counter"
+                          aria-live="polite"
+                          className={[
+                            "text-xs tabular-nums",
+                            formData.message.length >= MESSAGE_LIMIT
+                              ? "text-destructive"
+                              : formData.message.length >= MESSAGE_LIMIT - 10
+                              ? "text-amber-600 dark:text-amber-400"
+                              : "text-muted-foreground",
+                          ].join(" ")}
+                        >
+                          {formData.message.length}/{MESSAGE_LIMIT}
+                        </span>
+                      </div>
+
                       <div className="relative">
                         <div className="absolute top-3 left-3 pointer-events-none">
                           <MessageSquare className="w-5 h-5 text-muted-foreground" />
@@ -287,6 +313,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           value={formData.message}
                           onChange={handleChange}
                           rows={4}
+                          maxLength={MESSAGE_LIMIT}
+                          aria-describedby="message-counter"
                           className={`w-full pl-10 pr-4 py-3 bg-secondary/50 border ${
                             errors.message
                               ? "border-destructive"
@@ -295,11 +323,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           placeholder="What would you like to discuss?"
                         />
                       </div>
-                      {errors.message && (
-                        <p className="mt-1 text-sm text-destructive">
-                          {errors.message}
-                        </p>
-                      )}
+
+                      <div className="w-full h-5 mt-1">
+                        {errors.message && (
+                          <p className="text-sm text-destructive">
+                            {errors.message}
+                          </p>
+                        )}
+                      </div>
                     </motion.div>
 
                     {/* Submit */}

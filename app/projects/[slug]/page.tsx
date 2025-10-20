@@ -435,7 +435,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         >
                           <strong>{t.name}</strong>
                         </Link>{" "}
-                        - {t.description}
+                        {t.description}
                       </li>
                     ))}
                   </ul>

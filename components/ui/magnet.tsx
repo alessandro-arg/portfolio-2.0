@@ -10,19 +10,12 @@ import {
 
 export type MagnetProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
-  /** Extra hover area beyond the element’s bounds */
   padding?: number;
-  /** Disable magnetic behavior */
   disabled?: boolean;
-  /** Lower = stronger pull (distance is divided by this) */
   magnetStrength?: number;
-  /** CSS transition while active */
   activeTransition?: string;
-  /** CSS transition when returning to rest */
   inactiveTransition?: string;
-  /** Tailwind/class for the outer wrapper */
   wrapperClassName?: string;
-  /** Tailwind/class for the moving inner node */
   innerClassName?: string;
 };
 
@@ -39,39 +32,52 @@ export default function Magnet({
 }: MagnetProps) {
   const [isActive, setIsActive] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const magnetRef = useRef<HTMLDivElement>(null);
 
-  // rAF throttle for smoother motion
+  const magnetRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
+  const mounted = useRef(true);
 
   useEffect(() => {
-    if (disabled) {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      if (frame.current) cancelAnimationFrame(frame.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (disabled || typeof window === "undefined") {
       setIsActive(false);
       setPosition({ x: 0, y: 0 });
       return;
     }
-    // Guard for SSR (shouldn’t run on server anyway due to 'use client')
-    if (typeof window === "undefined") return;
 
     const handlePointerMove = (e: PointerEvent) => {
-      if (!magnetRef.current) return;
+      const node = magnetRef.current;
+      if (!node) return;
 
       if (frame.current) cancelAnimationFrame(frame.current);
       frame.current = requestAnimationFrame(() => {
-        const rect = magnetRef.current!.getBoundingClientRect();
+        // The node may have unmounted between event and rAF
+        if (!mounted.current) return;
+        if (!node.isConnected) return;
+
+        const rect = node.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         const distX = Math.abs(centerX - e.clientX);
         const distY = Math.abs(centerY - e.clientY);
 
-        if (
-          distX < rect.width / 2 + padding &&
-          distY < rect.height / 2 + padding
-        ) {
-          setIsActive(true);
+        const within =
+          distX < rect.width / 2 + padding && distY < rect.height / 2 + padding;
+
+        if (!mounted.current) return;
+
+        if (within) {
           const offsetX = (e.clientX - centerX) / magnetStrength;
           const offsetY = (e.clientY - centerY) / magnetStrength;
+          setIsActive(true);
           setPosition({ x: offsetX, y: offsetY });
         } else {
           setIsActive(false);
@@ -80,7 +86,8 @@ export default function Magnet({
       });
     };
 
-    const handlePointerLeave = () => {
+    const reset = () => {
+      if (!mounted.current) return;
       setIsActive(false);
       setPosition({ x: 0, y: 0 });
     };
@@ -88,14 +95,16 @@ export default function Magnet({
     window.addEventListener("pointermove", handlePointerMove, {
       passive: true,
     });
-    window.addEventListener("pointerleave", handlePointerLeave, {
-      passive: true,
-    });
+    window.addEventListener("pointerleave", reset, { passive: true });
+    window.addEventListener("pointercancel", reset, { passive: true });
+    window.addEventListener("blur", reset, { passive: true }); // tab switch safety
 
     return () => {
       if (frame.current) cancelAnimationFrame(frame.current);
       window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("pointerleave", reset);
+      window.removeEventListener("pointercancel", reset);
+      window.removeEventListener("blur", reset);
     };
   }, [padding, disabled, magnetStrength]);
 

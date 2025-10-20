@@ -140,28 +140,28 @@ export const projectsData: Project[] = [
         name: siAngular.title,
         icon: <IconInline icon={siAngular} size={16} color="currentColor" />,
         description:
-          "Modern frontend framework with standalone components, SSR, and powerful reactive forms.",
+          "- Modern frontend framework with standalone components, SSR, and powerful reactive forms.",
         link: "https://angular.dev/",
       },
       {
         name: siTypescript.title,
         icon: <IconInline icon={siTypescript} size={16} />,
         description:
-          "Strongly typed JavaScript enabling safer refactors and reliable game logic.",
+          "- Strongly typed JavaScript enabling safer refactors and reliable game logic.",
         link: "https://www.typescriptlang.org/",
       },
       {
         name: siTailwindcss.title,
         icon: <IconInline icon={siTailwindcss} size={16} />,
         description:
-          "Utility-first styling for responsive UI, dark mode, and consistent spacing.",
+          "- Utility-first styling for responsive UI, dark mode, and consistent spacing.",
         link: "https://tailwindcss.com/",
       },
       {
         name: siFirebase.title,
         icon: <IconInline icon={siFirebase} size={16} />,
         description:
-          "Auth + RTDB/Firestore for secure accounts, presence, and real-time games.",
+          "- Auth + RTDB/Firestore for secure accounts, presence, and real-time games.",
         link: "https://firebase.google.com/",
       },
     ],

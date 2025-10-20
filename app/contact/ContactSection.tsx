@@ -3,7 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Magnet from "@/components/ui/magnet";
-import { cn } from "@/lib/utils"; // shadcn helper
+import { cn } from "@/lib/utils";
+import { useContactModal } from "./ContactModalProvider";
 
 type ContactSectionProps = {
   /** If true, removes the default top margin */
@@ -19,6 +20,8 @@ export default function ContactSection({
   mtClassName,
   className,
 }: ContactSectionProps) {
+  const { openModal } = useContactModal();
+
   return (
     <section
       id="contact"
@@ -77,7 +80,10 @@ export default function ContactSection({
           </motion.h3>
         </span>
         <Magnet>
-          <button className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10 my-10 group-hover:scale-125">
+          <button
+            onClick={openModal}
+            className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10 my-10 group-hover:scale-125"
+          >
             {/* The animated fill */}
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}

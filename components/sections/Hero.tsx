@@ -13,6 +13,7 @@ import { ArrowRight, Copy, CheckCheck } from "lucide-react";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { HeroOrbit } from "../ui/hero-orbit";
 import { toast } from "sonner";
+import { useContactModal } from "@/app/contact/ContactModalProvider";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
@@ -20,6 +21,7 @@ export default function Hero() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const { openModal } = useContactModal();
 
   React.useEffect(() => {
     return () => {
@@ -197,9 +199,8 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 60 }}
         >
           {/* Left: "Let's Connect" — outline pill that fills to white on hover */}
-          <a
-            href="mailto:contact@alessandro-argenziano.com"
-            target="__blank"
+          <button
+            onClick={openModal}
             className="group relative inline-flex cursor-pointer items-center justify-between overflow-hidden rounded-full border border-black/30 bg-black/20 py-[3px] pr-[3px] pl-2 text-base font-medium opacity-85 backdrop-blur-xs transition-all hover:bg-transparent md:py-1 md:pr-1 md:pl-3 dark:border-white/10 dark:bg-white/10"
           >
             {/* The animated fill */}
@@ -218,7 +219,7 @@ export default function Hero() {
                 aria-hidden="true"
               />
             </span>
-          </a>
+          </button>
 
           {/* Right: Copy-to-clipboard button */}
           <button

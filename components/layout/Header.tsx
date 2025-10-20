@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
 
 const menuItems = [
@@ -181,15 +182,7 @@ export default function Header() {
 
   return (
     <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
-      <div
-        className="pointer-events-none fixed left-0 top-0 z-40 w-full h-[120px]
-    select-none
-    bg-gradient-to-t from-transparent to-[#f5f4f330] dark:to-[#0a0a0aa4]
-    backdrop-blur-xs
-    [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_70%,rgba(0,0,0,0)_100%)]
-    [-webkit-mask-image:linear-gradient(to_bottom,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_70%,rgba(0,0,0,0)_100%)]
-  "
-      ></div>
+      <ProgressiveBlur height="150px" position="top" />
       <div className="relative w-full max-w-full md:max-w-4xl lg:max-w-7xl flex justify-center items-center mx-auto px-4 sm:px-6">
         {/* The floating shell we animate with GSAP */}
         <div
@@ -253,7 +246,7 @@ export default function Header() {
                   onClick={handleContactClick}
                   className={[
                     "inline-flex items-center justify-center rounded-full",
-                    "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black",
+                    "border-2 border-black bg-[#16b1ff95] hover:bg-[#16b1ff] px-4 py-1.5 text-sm font-semibold text-black dark:text-white",
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
                     "cursor-pointer",
                   ].join(" ")}

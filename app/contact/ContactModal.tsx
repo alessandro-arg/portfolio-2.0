@@ -62,6 +62,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      setErrors({});
+      setIsSubmitting(false);
+    }
+  }, [isOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -143,35 +150,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 ].join(" ")}
               >
                 {/* Inner content box to constrain width on mobile while centered */}
-                <div className="w-full max-w-md sm:max-w-none sm:w-auto">
+                <div className="w-full max-w-md sm:max-w-none sm:w-auto font-outfit">
                   {/* Header */}
                   <div className="mb-5 sm:mb-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.08 }}
-                      className="flex items-center gap-2.5 mb-3"
-                    >
-                      {/* Available Badge – keep it small on mobile */}
-                      <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [1, 0.85, 1],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                          className="w-2 h-2 rounded-full bg-emerald-500"
-                        />
-                        <span className="text-[11px] sm:text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                          Available for new opportunities
-                        </span>
-                      </div>
-                    </motion.div>
-
                     <motion.h2
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -304,7 +285,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       </div>
 
                       <div className="relative">
-                        <div className="absolute top-3 left-3 pointer-events-none">
+                        <div className="absolute top-4 left-3 pointer-events-none">
                           <MessageSquare className="w-5 h-5 text-muted-foreground" />
                         </div>
                         <textarea
@@ -343,7 +324,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap text-md disabled:pointer-events-none disabled:opacity-50 shadow-xs py-3 px-6 rounded-md group relative w-full overflow-hidden bg-gradient-to-r from-[#4aeedd80] to-[#16b1ff70] font-normal text-white transition-all duration-300"
+                        className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap text-md disabled:pointer-events-none disabled:opacity-50 shadow-xs py-3 px-6 rounded-md group relative w-full overflow-hidden bg-[#16b1ff95] hover:bg-[#16b1ff] font-normal text-white transition-all duration-300"
                       >
                         {isSubmitting ? (
                           <>
@@ -397,10 +378,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       >
                         <button
                           onClick={handleEmailClick}
-                          className="w-fit bg-secondary/50 hover:bg-secondary border border-border py-3 px-4 rounded-lg transition-all duration-200 group cursor-pointer"
+                          className="w-fit bg-secondary/50 hover:bg-secondary border py-3 px-4 rounded-lg transition-all duration-200 group cursor-pointer flex gap-x-3 border-b bg-gradient-to-r to-transparent p-4 border-neutral-200 dark:border-neutral-700/30 from-blue-900/20"
                         >
                           <div className="flex items-center justify-center gap-2">
-                            <Mail className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                            <Mail className="w-5 h-5 group-hover:text-blue-500 text-blue-400 transition-colors" />
                             <div className="flex flex-col items-start">
                               <span className="text-sm font-medium text-foreground">
                                 contact@alessandro-argenziano.com
@@ -422,24 +403,41 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         transition={{ delay: 0.5 }}
                         className="flex items-center justify-center gap-3 sm:gap-4"
                       >
-                        <a
-                          href="https://github.com/alessandro-arg"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary/50 hover:bg-secondary border border-border transition-all duration-200 group"
-                          aria-label="GitHub Profile"
-                        >
-                          <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </a>
-                        <a
-                          href="https://www.linkedin.com/in/alessandro-argenziano/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary/50 hover:bg-secondary border border-border transition-all duration-200 group"
-                          aria-label="LinkedIn Profile"
-                        >
-                          <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </a>
+                        <div className="relative group">
+                          <a
+                            href="https://github.com/alessandro-arg"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary/50 hover:bg-secondary border border-border transition-all duration-200 group"
+                            aria-label="GitHub Profile"
+                          >
+                            <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                          </a>
+                          <div
+                            className="z-60 absolute left-1/2 -translate-x-1/2 -top-9 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none
+                          bg-neutral-900 text-white dark:bg-neutral-100 dark:text-black
+                            px-3 py-1.5 text-xs font-medium rounded-lg shadow-md whitespace-nowrap"
+                          >
+                            GitHub
+                          </div>
+                        </div>
+                        <div className="relative group">
+                          <a
+                            href="https://www.linkedin.com/in/alessandro-argenziano/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-secondary/50 hover:bg-secondary border border-border transition-all duration-200 group"
+                            aria-label="LinkedIn Profile"
+                          >
+                            <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                          </a>
+                          <div
+                            className="z-60 absolute left-1/2 -translate-x-1/2 -top-9 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none
+                          bg-neutral-900 text-white dark:bg-neutral-100 dark:text-black px-3 py-1.5 text-xs font-medium rounded-lg shadow-md whitespace-nowrap"
+                          >
+                            LinkedIn
+                          </div>
+                        </div>
                       </motion.div>
                     )}
                   </div>

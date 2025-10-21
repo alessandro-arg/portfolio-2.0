@@ -114,13 +114,7 @@ export default async function ProjectPage({ params }: PageProps) {
     });
   }
 
-  // See it in Action (only if there is at least one link)
-  const liveLink =
-    project.href && !project.href.startsWith("/projects")
-      ? project.href
-      : undefined;
-
-  if (liveLink || project.github) {
+  if (project.liveLink || project.github) {
     sections.push({
       id: "see-it-in-action",
       title: "📸 See it in Action",
@@ -207,7 +201,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   {/* “Check it out” button if liveLink exists */}
                   {project.liveLink ? ( // kept as-is per your code; you can switch to (liveLink) if you prefer
                     <a
-                      href={liveLink}
+                      href={project.liveLink}
                       referrerPolicy="no-referrer"
                       target="_blank"
                       className="group relative flex w-fit items-center justify-between h-9 rounded-full bg-neutral-900 text-white opacity-90 dark:bg-white dark:text-black cursor-pointer"
@@ -523,7 +517,7 @@ export default async function ProjectPage({ params }: PageProps) {
               ) : null}
 
               {/* See it in Action (only when any link exists) */}
-              {liveLink || project.github ? (
+              {project.liveLink || project.github ? (
                 <>
                   <h2
                     id="see-it-in-action"
@@ -534,11 +528,11 @@ export default async function ProjectPage({ params }: PageProps) {
                     </a>
                   </h2>
                   <ul>
-                    {liveLink ? (
+                    {project.liveLink ? (
                       <li>
                         🌍{" "}
                         <a
-                          href={liveLink}
+                          href={project.liveLink}
                           target="_blank"
                           rel="noreferrer noopener"
                         >

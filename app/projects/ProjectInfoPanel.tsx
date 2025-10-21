@@ -68,12 +68,7 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
                 data-slot="badge"
                 className={`${badgeClass} hover:-translate-y-[1px]`}
               >
-                <TechIcon
-                  tech={tech}
-                  size={16}
-                  className="mr-1"
-                  color="currentColor"
-                />
+                <TechIcon tech={tech} size={16} className="mr-1" />
                 {TECH_LABELS[tech]}
               </span>
             ))}

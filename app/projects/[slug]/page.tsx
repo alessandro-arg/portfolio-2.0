@@ -8,6 +8,7 @@ import { ProjectDate } from "../_components/ProjectDate";
 import Link from "fumadocs-core/link";
 import { Accordions, Accordion } from "fumadocs-ui/components/accordion";
 import CopyFigure from "../_components/CopyFigure";
+import ContactCTA from "../_components/ContactCTA";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -558,13 +559,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
               <p>
                 Want to chat about this project?{" "}
-                <a
-                  href="mailto:hello@example.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Let’s chat.
-                </a>
+                <ContactCTA className="cursor-pointer">Let’s chat.</ContactCTA>
               </p>
               <div id="toc-end-sentinel" aria-hidden="true" className="h-px" />
             </div>

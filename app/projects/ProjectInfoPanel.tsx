@@ -3,6 +3,7 @@
 import StarIcon from "@/components/icons/star.svg";
 import { Project, ProjectPoint } from "./types";
 import { getAccentColor } from "@/lib/theme";
+import { TechIcon, TECH_LABELS } from "./_components/TechIcon";
 
 function normalizePoints(points: ProjectPoint[] | undefined) {
   return (points ?? []).map((p) =>
@@ -61,14 +62,19 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
 
         {technologies.length > 0 && (
           <div className="mt-10 flex flex-wrap gap-3 text-sm">
-            {technologies.map((t, i) => (
+            {technologies.map((tech, i) => (
               <span
-                key={`${t.name}-${i}`}
+                key={`${tech}-${i}`}
                 data-slot="badge"
                 className={`${badgeClass} hover:-translate-y-[1px]`}
               >
-                {t.icon ?? null}
-                {t.name}
+                <TechIcon
+                  tech={tech}
+                  size={16}
+                  className="mr-1"
+                  color="currentColor"
+                />
+                {TECH_LABELS[tech]}
               </span>
             ))}
           </div>

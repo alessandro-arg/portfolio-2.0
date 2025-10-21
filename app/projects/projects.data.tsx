@@ -1,39 +1,4 @@
 import { Project } from "./types";
-import type { SimpleIcon } from "simple-icons";
-import {
-  siTypescript,
-  siTailwindcss,
-  siFirebase,
-  siAngular,
-  siJavascript,
-  siSass,
-} from "simple-icons/icons";
-
-export function IconInline({
-  icon,
-  size = 16,
-  color,
-}: {
-  icon: SimpleIcon;
-  size?: number;
-  color?: string;
-}) {
-  const fill = color ?? `#${icon.hex}`;
-
-  return (
-    <div aria-label={icon.title} title={icon.title}>
-      <svg
-        role="img"
-        viewBox="0 0 24 24"
-        width={size}
-        height={size}
-        aria-hidden="true"
-      >
-        <path d={icon.path} fill={fill} />
-      </svg>
-    </div>
-  );
-}
 
 export const projectsData: Project[] = [
   {
@@ -41,29 +6,12 @@ export const projectsData: Project[] = [
     smallDescription:
       "Seamless team communication with real-time chat, channels, and user presence.",
     description:
-      "DA Bubble is a Slack-inspired chat that enables real-time messaging across public and private channels, supports threaded replies, emoji reactions, mentions, and live user status. Designed with a responsive, intuitive UI, DA Bubble makes team collaboration fast, organized, and enjoyable.",
+      "DA Bubble is a Slack-inspired chat that enables real-time messaging across public and private channels...",
     src: "/images/dabubble_mockup.jpg",
     href: "/projects/dabubble",
     slug: "dabubble",
     github: "https://github.com/alessandro-arg/dabubble",
-    technologies: [
-      {
-        name: siAngular.title,
-        icon: <IconInline icon={siAngular} size={16} color="currentColor" />,
-      },
-      {
-        name: siTypescript.title,
-        icon: <IconInline icon={siTypescript} size={16} />,
-      },
-      {
-        name: siTailwindcss.title,
-        icon: <IconInline icon={siTailwindcss} size={16} />,
-      },
-      {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
-      },
-    ],
+    technologies: ["angular", "ts", "tailwind", "firebase"],
     year: "2025",
     points: [
       "Built with Angular 17 and TypeScript for modular and scalable architecture.",
@@ -86,25 +34,12 @@ export const projectsData: Project[] = [
     smallDescription:
       "A Kanban-style project board app for visual task management and collaboration.",
     description:
-      "Join is a web application inspired by Trello / Jira boards, built to help teams organize tasks, track progress, and collaborate. With drag-and-drop cards, customizable columns, task details, and member assignments, Join makes project workflows transparent and efficient.",
+      "Join is a web application inspired by Trello / Jira boards...",
     src: "/images/join_mockup.jpg",
     href: "/projects/join",
     slug: "join",
     github: "https://github.com/alessandro-arg/join",
-    technologies: [
-      {
-        name: siJavascript.title,
-        icon: <IconInline icon={siJavascript} size={16} />,
-      },
-      {
-        name: siSass.title,
-        icon: <IconInline icon={siSass} size={16} />,
-      },
-      {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
-      },
-    ],
+    technologies: ["js", "sass", "firebase"],
     year: "2024",
     points: [
       "Drag-and-drop board interface for intuitive task movement across stages",
@@ -127,76 +62,63 @@ export const projectsData: Project[] = [
     smallDescription:
       "Online chess with real-time multiplayer, Stockfish AI, and Elo ratings.",
     description:
-      "Chess² is a modern web chess app built with heart and an eye for details. Play live vs friends or a Stockfish-powered bot, track your Elo, and review recent games—all in a responsive, polished UI with elegant animations and a clean analysis board.",
+      "Chess² is a modern web chess app built with heart and an eye for details...",
     src: "/images/chess_mockup.webp",
     href: "/projects/chess",
     liveLink: "https://chess2.alessandro-argenziano.com",
-
     slug: "chess",
     github: "https://github.com/alessandro-arg/chess",
-
-    technologies: [
+    technologies: ["angular", "ts", "tailwind", "firebase"],
+    techDesc: [
       {
-        name: siAngular.title,
-        icon: <IconInline icon={siAngular} size={16} color="currentColor" />,
+        name: "Angular",
         description:
           "- Modern frontend framework with standalone components, SSR, and powerful reactive forms.",
         link: "https://angular.dev/",
       },
       {
-        name: siTypescript.title,
-        icon: <IconInline icon={siTypescript} size={16} />,
+        name: "TypeScript",
         description:
           "- Strongly typed JavaScript enabling safer refactors and reliable game logic.",
         link: "https://www.typescriptlang.org/",
       },
       {
-        name: siTailwindcss.title,
-        icon: <IconInline icon={siTailwindcss} size={16} />,
+        name: "Tailwind CSS",
         description:
           "- Utility-first styling for responsive UI, dark mode, and consistent spacing.",
         link: "https://tailwindcss.com/",
       },
       {
-        name: siFirebase.title,
-        icon: <IconInline icon={siFirebase} size={16} />,
+        name: "Firebase",
         description:
           "- Auth + RTDB/Firestore for secure accounts, presence, and real-time games.",
         link: "https://firebase.google.com/",
       },
     ],
-
     year: "2025",
     date: "2025-09-12",
-
     points: [
       {
         title: "Real-time Multiplayer",
-        description:
-          "Challenge friends and play live with Firebase RTDB syncing moves, resigns, draws, and clocks. Optimistic UI keeps animations smooth while authoritative state prevents desyncs.",
+        description: "Challenge friends and play live...",
       },
       {
         title: "Stockfish Bot Integration",
-        description:
-          "Battle an in-browser Stockfish (Web Worker) with adjustable strength. Off-main-thread computation keeps the UI responsive during engine search.",
+        description: "Battle an in-browser Stockfish...",
       },
       {
         title: "Accounts, Profiles & Friends",
-        description:
-          "Firebase Auth for email/Google logins, avatars, presence, and friend invites. Presence is tracked with heartbeats and server timestamps.",
+        description: "Firebase Auth for email/Google...",
       },
       {
         title: "Elo Ratings",
-        description:
-          "Earn or lose Elo after rated games via a simple Glicko-like update. Match players by rating band to keep games competitive.",
+        description: "Earn or lose Elo after rated games...",
       },
       {
         title: "Responsive UI & Premove",
-        description:
-          "Mobile-first layout, keyboard shortcuts (e.g., undo in casual), and premoves for fast time controls without sacrificing clarity.",
+        description: "Mobile-first layout, keyboard shortcuts...",
       },
     ],
-
     theme: {
       angle: 10,
       stops: [
@@ -207,15 +129,11 @@ export const projectsData: Project[] = [
       ],
       primary: "#14B8A6",
     },
-
     calloutTitle: "♟️ Play online with friends or against Stockfish AI bots",
     calloutDescription:
       "Challenge friends in real time, or sharpen tactics vs a fast, in-browser Stockfish—no install needed.",
-
-    // === Optional sections to force all TOC items to render ===
     whyBuilt:
-      "I’ve always loved chess and wanted a fast, modern app that feels instant: no page reloads, clean animations, and frictionless online play. Building Chess² let me combine real-time data, game rules/engines, and delightful UI details into a single focused project.",
-
+      "I’ve always loved chess and wanted a fast, modern app that feels instant...",
     useCases: [
       "Play casual or rated games with friends in the browser.",
       "Practice vs Stockfish at adjustable strength levels.",
@@ -223,7 +141,6 @@ export const projectsData: Project[] = [
       "Review openings and blunders with the quick recap.",
       "Use on mobile or desktop during breaks or commutes.",
     ],
-
     learnings: [
       "Designing a deterministic game loop and validating moves on both client and server reduces desyncs.",
       "Separating UI state from canonical game state avoids animation jank during fast sequences.",

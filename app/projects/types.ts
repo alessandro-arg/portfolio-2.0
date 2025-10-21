@@ -10,10 +10,17 @@ export type ProjectTheme = {
 
 export type Technology = {
   name: string;
-  icon?: ReactNode;
   description?: string;
   link?: string;
 };
+
+export type TechKey =
+  | "angular"
+  | "ts"
+  | "tailwind"
+  | "firebase"
+  | "js"
+  | "sass";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =
@@ -31,7 +38,8 @@ export type Project = {
   href?: string;
   github?: string;
   liveLink?: string;
-  technologies?: Technology[];
+  technologies?: TechKey[];
+  techDesc?: Technology[];
   year?: string;
   date?: string;
   theme?: ProjectTheme;

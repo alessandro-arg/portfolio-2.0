@@ -264,7 +264,7 @@ export default async function ProjectPage({ params }: PageProps) {
               {/* Tech badges */}
               {project.technologies?.length ? (
                 <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">
-                  {project.technologies.map((t, i) => (
+                  {project.techDesc?.map((t, i) => (
                     <TechBadge key={`${t.name}-${i}`}>{t.name}</TechBadge>
                   ))}
                 </div>
@@ -425,7 +425,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     </a>
                   </h2>
                   <ul>
-                    {project.technologies.map((t, i) => (
+                    {project.techDesc?.map((t, i) => (
                       <li key={i}>
                         <Link
                           href={t.link}

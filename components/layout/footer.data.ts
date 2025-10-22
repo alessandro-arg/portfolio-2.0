@@ -21,15 +21,14 @@ export const footerCategories: FooterCategory[] = [
     title: "Resources",
     links: [
       { name: "Bucket List", href: "/bucket-list" },
-      { name: "Uses", href: "/uses" },
-      { name: "Attribution", href: "/attribution" },
+      { name: "My Setup", href: "/my-setup" },
     ],
   },
   {
     title: "More",
     links: [
       { name: "Links", href: "/links" },
-      { name: "RSS", href: "/rss" },
+      { name: "Attribution", href: "/attribution" },
     ],
   },
 ];

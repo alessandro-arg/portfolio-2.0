@@ -10,6 +10,7 @@ import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
 import { MoreMenu } from "./_ui/MoreMenu";
 import { MobileMore } from "./_ui/MobileMore";
+import { moreLinks } from "./more.data";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
@@ -181,6 +182,10 @@ export default function Header() {
     return pathname === href;
   };
 
+  const normalize = (p: string) => (p !== "/" ? p.replace(/\/+$/, "") : "/");
+  const current = normalize(pathname);
+  const moreActive = moreLinks.some((l) => normalize(l.href) === current);
+
   return (
     <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
       <ProgressiveBlur height="150px" position="top" />
@@ -237,8 +242,11 @@ export default function Header() {
                 );
               })}
 
-              <li className="relative">
-                <MoreMenu />
+              <li className="relative font-medium">
+                <MoreMenu
+                  active={moreActive}
+                  underlineLayoutId={underlineLayoutId}
+                />
               </li>
 
               {/* Contact button - Changed to button with onClick */}

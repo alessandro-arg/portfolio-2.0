@@ -31,7 +31,7 @@ export default function Footer() {
       <div className="mt-4 mx-2 flex flex-col items-center justify-between gap-4 text-sm text-neutral-600 md:flex-row dark:text-neutral-400">
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
           <p className="whitespace-nowrap">
-            © 2025{" "}
+            © {new Date().getFullYear()} {""}
             <a
               href="/"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"

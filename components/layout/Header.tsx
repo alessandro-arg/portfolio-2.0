@@ -8,12 +8,12 @@ import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
+import { MoreMenu } from "./MoreMenu";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
   { href: "/about", label: "About", ariaLabel: "Learn about us" },
   { href: "/projects", label: "Projects", ariaLabel: "View our projects" },
-  { href: "#", label: "More", ariaLabel: "See more" },
 ];
 
 const socialItems = [
@@ -235,6 +235,10 @@ export default function Header() {
                   </li>
                 );
               })}
+
+              <li className="relative">
+                <MoreMenu />
+              </li>
 
               {/* Contact button - Changed to button with onClick */}
               <motion.div

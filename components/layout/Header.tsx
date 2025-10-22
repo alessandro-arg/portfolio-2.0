@@ -8,7 +8,8 @@ import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
-import { MoreMenu } from "./MoreMenu";
+import { MoreMenu } from "./_ui/MoreMenu";
+import { MobileMore } from "./_ui/MobileMore";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
@@ -352,6 +353,13 @@ export default function Header() {
                   </Link>
                 </motion.li>
               ))}
+
+              <motion.li
+                variants={linkVariants}
+                className="w-full flex justify-center items-center"
+              >
+                <MobileMore onNavigate={closeMobile} />
+              </motion.li>
 
               {/* Mobile Contact button - Changed to button with combined handler */}
               <motion.li variants={linkVariants} className="mt-2">

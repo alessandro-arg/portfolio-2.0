@@ -1,23 +1,27 @@
-export const moreLinks = [
+export type MoreLink = {
+  title: string;
+  description: string;
+  href: string;
+  icon: "Link2" | "Goal" | "Laptop";
+};
+
+export const moreLinks: MoreLink[] = [
   {
-    href: "/",
-    title: "shadcn/ui",
-    description: "Beautifully designed components built with Tailwind CSS.",
-    hero: true,
+    title: "Links",
+    description: "All my links are here",
+    href: "/links",
+    icon: "Link2",
   },
   {
-    href: "/docs",
-    title: "Introduction",
-    description: "Re-usable components built using Radix UI and Tailwind CSS.",
+    title: "Bucket List",
+    description: "Thinks to do at least once in my life",
+    href: "/bucket-list",
+    icon: "Goal",
   },
   {
-    href: "/docs/installation",
-    title: "Installation",
-    description: "How to install dependencies and structure your app.",
-  },
-  {
-    href: "/docs/primitives/typography",
-    title: "Typography",
-    description: "Styles for headings, paragraphs, lists...etc",
+    title: "My setup",
+    description: "My digital workspace",
+    href: "/my-setup",
+    icon: "Laptop",
   },
 ];

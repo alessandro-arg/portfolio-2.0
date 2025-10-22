@@ -24,22 +24,22 @@ export function FooterLinks({ category }: { category: FooterCategory }) {
               className="group relative inline-flex items-center before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-[''] before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] hover:before:origin-left hover:before:scale-x-100"
             >
               {link.name}
+              <svg
+                fill="none"
+                viewBox="0 0 10 10"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="ml-[0.3em] size-[0.65em] -translate-x-1 opacity-0 transition-all duration-300 [motion-reduce:transition-none] group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                <path
+                  d="M1.667 5h6.666m0 0L5 1.667M8.333 5 5 8.333"
+                  stroke="currentColor"
+                  strokeWidth={1.25}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </a>
-            <svg
-              fill="none"
-              viewBox="0 0 10 10"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className="ml-[0.3em] size-[0.65em] -translate-x-1 opacity-0 transition-all duration-300 [motion-reduce:transition-none] group-hover:translate-x-0 group-hover:opacity-100"
-            >
-              <path
-                d="M1.667 5h6.666m0 0L5 1.667M8.333 5 5 8.333"
-                stroke="currentColor"
-                strokeWidth={1.25}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
           </li>
         ))}
       </ul>

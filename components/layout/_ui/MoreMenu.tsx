@@ -59,8 +59,6 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
               "border border-black/10 dark:border-white/10",
               "bg-white/90 dark:bg-neutral-900/90 backdrop-blur",
               "shadow-xl"
-              // keep your position tweaks here if you added them
-              // e.g. "translate-y-3 -translate-x-4"
             )}
           >
             <ul className="flex w-[320px] flex-col gap-2 p-2 md:w-[340px] lg:w-[360px]">

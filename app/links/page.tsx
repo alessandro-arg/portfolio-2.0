@@ -25,15 +25,15 @@ export default function Links() {
             />
             <h1 className="font-semibold text-xl">Alessandro Argenziano</h1>
             <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">
-              <span className="rounded-full px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-500">
+              <span className="rounded-full px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-500">
                 Developer
               </span>
-              <span className="rounded-full px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-500">
+              <span className="rounded-full px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-500">
                 Problem Solver
               </span>
             </div>
           </div>
-          <div className="mx-auto mb-4 flex w-fit gap-x-2 md:text-sm">
+          <div className="mx-auto justify-center items-center sm:justify-normal mb-4 flex flex-col sm:flex-row w-fit gap-4 sm:gap-2 md:text-sm">
             <a
               href="https://alessandro-argenziano.com"
               className="group relative flex w-fit items-center justify-between rounded-full bg-black text-white opacity-90 hover:bg-black/80 dark:bg-neutral-200 dark:text-black dark:hover:bg-neutral-300"
@@ -82,6 +82,8 @@ export default function Links() {
             <a
               href="mailto:contact@alessandro-argenziano.com"
               className="group relative flex w-fit items-center justify-between rounded-full bg-black/20 text-black opacity-90 hover:bg-black/30 dark:bg-white/20 dark:text-white dark:hover:bg-white/30"
+              referrerPolicy="no-referrer"
+              target="_blank"
             >
               <span className="pl-4 font-light text-base">
                 contact@alessandro-argenziano.com

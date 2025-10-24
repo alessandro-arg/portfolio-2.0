@@ -1,5 +1,6 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { Check } from "lucide-react";
+import ContactSection from "../contact/ContactSection";
 
 interface Goal {
   id: string;
@@ -64,7 +65,7 @@ const goals: Goal[] = [
     title: "Cherry blossom season in Kyoto",
     description: "Philosopher's Path at full bloom.",
     images: ["https://images.unsplash.com/photo-1503264116251-35a269479413"],
-    isChecked: false,
+    isChecked: true,
     hasImage: true,
   },
   {
@@ -95,74 +96,86 @@ const goals: Goal[] = [
 
 export default function BucketList() {
   return (
-    <main className="px-4 py-16 pt-36 md:px-1">
-      <h2 className="relative z-2 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:mb-36 md:text-6xl text-center max-w-xl mx-auto mb-20 [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
-        <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">
-          The bucket list
-        </p>
-        <span className="font-instrument">
-          <span className="md:text-5xl">Things I'll do </span>
-          <br />
-          <AnimatedGradientText
-            colorFrom="#4aeedd"
-            colorTo="#16b1ff"
-            className="tracking-normal italic md:text-5xl w-full"
-          >
-            at least once
-          </AnimatedGradientText>
-        </span>
-      </h2>
-      <div className="mx-auto max-w-xl">
-        {goals.map((goal) => (
-          <div
-            key={goal.id}
-            className="relative flex items-start gap-4 border-white-3 border-b py-5 dark:border-white/5"
-          >
-            <div
-              className={[
-                "mt-1 size-5 shrink-0 rounded border",
-                "border-white-3 dark:border-white/20",
-                goal.isChecked
-                  ? "bg-gradient-to-br from-[#3ebeb1] to-[#1ba0e2] text-white"
-                  : "",
-                "grid place-items-center",
-              ].join(" ")}
-              aria-checked={goal.isChecked}
-              role="checkbox"
-            >
-              {goal.isChecked && <Check className="h-3.5 w-3.5" />}
-            </div>
-            <div className="flex w-full flex-col justify-between gap-4 md:flex-row">
-              <div className="flex flex-col flex-1">
-                <h2 className="text-base md:text-xl">{goal.title}</h2>
-                {goal.description && (
-                  <p className="text-black/75 text-sm dark:text-white/60">
-                    {goal.description}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {goal.hasImage && goal.images && goal.images.length > 0 && (
-              <div className="absolute right-2 flex top-6 min-h-10">
-                {goal.images.map((src, idx) => (
-                  <div
-                    key={`${goal.id}-img-${idx}`}
-                    className="overflow-hidden rounded-lg border border-white/10"
-                  >
-                    <img
-                      src={src}
-                      alt={`${goal.title} ${idx + 1}`}
-                      className="h-10 w-10 object-cover md:h-10"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+    <>
+      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
+        <img
+          src="/images/nature-bg.webp"
+          alt="nature background"
+          loading="lazy"
+          decoding="async"
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+        />
       </div>
-    </main>
+      <main className="px-4 py-16 pt-36 md:px-1">
+        <h2 className="relative z-2 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:mb-36 md:text-6xl text-center max-w-xl mx-auto mb-20 [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
+          <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">
+            The bucket list
+          </p>
+          <span className="font-instrument">
+            <span className="md:text-6xl">Things I'll do </span>
+            <br />
+            <AnimatedGradientText
+              colorFrom="#4aeedd"
+              colorTo="#16b1ff"
+              className="tracking-normal italic w-full"
+            >
+              at least once
+            </AnimatedGradientText>
+          </span>
+        </h2>
+        <div className="mx-auto max-w-xl">
+          {goals.map((goal) => (
+            <div
+              key={goal.id}
+              className="relative flex items-start gap-4 border-white-3 border-b py-5 dark:border-white/5"
+            >
+              <div
+                className={[
+                  "mt-1 size-5 shrink-0 rounded border",
+                  "border-white-3 dark:border-white/20",
+                  goal.isChecked
+                    ? "bg-gradient-to-br from-[#3ebeb1] to-[#1ba0e2] text-white"
+                    : "",
+                  "grid place-items-center",
+                ].join(" ")}
+                aria-checked={goal.isChecked}
+                role="checkbox"
+              >
+                {goal.isChecked && <Check className="h-3.5 w-3.5" />}
+              </div>
+              <div className="flex w-full flex-col justify-between gap-4 md:flex-row">
+                <div className="flex flex-col flex-1">
+                  <h2 className="text-base md:text-xl">{goal.title}</h2>
+                  {goal.description && (
+                    <p className="text-black/75 text-sm dark:text-white/60">
+                      {goal.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {goal.hasImage && goal.images && goal.images.length > 0 && (
+                <div className="absolute right-2 flex top-6 min-h-10">
+                  {goal.images.map((src, idx) => (
+                    <div
+                      key={`${goal.id}-img-${idx}`}
+                      className="overflow-hidden rounded-lg border border-white/10"
+                    >
+                      <img
+                        src={src}
+                        alt={`${goal.title} ${idx + 1}`}
+                        className="h-10 w-10 object-cover md:h-10"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </main>
+      <ContactSection />
+    </>
   );
 }

@@ -169,12 +169,12 @@ export default function Hero() {
           </span>
         </motion.h2>
         <motion.h1
-          className="grad-white font-semibold tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="font-semibold tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          <span className="grad-white flex items-center justify-center">
+          <span className="text-neutral-700 dark:text-neutral-300 flex items-center justify-center">
             Hello, I’m Alessandro
           </span>
           <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
@@ -188,7 +188,7 @@ export default function Hero() {
               className="transition-transform duration-300 hover:rotate-6 hover:scale-110"
             />
           </div>
-          <span className="grad-white leading-relaxed">
+          <span className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
             a Fullstack Developer
           </span>
         </motion.h1>

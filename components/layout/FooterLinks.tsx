@@ -11,7 +11,7 @@ export function FooterLinks({ category }: { category: FooterCategory }) {
   }
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-4 cursor-default min-w-[250px] sm:min-w-auto">
+    <div className="flex flex-col gap-2 sm:gap-4 cursor-default min-w-[250px] sm:min-w-[100px]">
       <h4 className="text-base text-neutral-700 dark:text-white/90 font-mono">
         {category.title}
       </h4>

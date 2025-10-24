@@ -219,14 +219,6 @@
   --shiki-punctuation: #e1e4e8;
 }
 
-.grad-white {
-  background: linear-gradient(to bottom, white 0%, rgba(53, 53, 53, 0.5) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }

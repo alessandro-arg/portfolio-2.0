@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
 
     // 2) Send lead to you
     await resend.emails.send({
-      from: "Portfolio Contact <hello@alessandro-argenziano.com>",
+      from: "Contact form - <hello@alessandro-argenziano.com>",
       to: "contact@alessandro-argenziano.com",
       replyTo: email,
       subject: `New contact form message from ${name}`,

@@ -82,7 +82,6 @@ export default function ContactForm({
           .catch(() => ({ error: "Unknown error" }));
         throw new Error(error || `Request failed with ${res.status}`);
       }
-      console.log("Form submitted:", formData);
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
       onSubmitted?.();

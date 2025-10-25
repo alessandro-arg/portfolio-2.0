@@ -69,12 +69,28 @@ export default function ContactForm({
     e.preventDefault();
     if (!validateForm()) return;
     setIsSubmitting(true);
-    // your async submit logic here:
-    await fetch("/api/emails", { method: "POST" });
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", message: "" });
-    onSubmitted?.();
+    try {
+      const res = await fetch("/api/emails", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const { error } = await res
+          .json()
+          .catch(() => ({ error: "Unknown error" }));
+        throw new Error(error || `Request failed with ${res.status}`);
+      }
+      console.log("Form submitted:", formData);
+      setIsSubmitting(false);
+      setFormData({ name: "", email: "", message: "" });
+      onSubmitted?.();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

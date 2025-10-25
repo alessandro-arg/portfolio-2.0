@@ -1,6 +1,35 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ContactSection from "../contact/ContactSection";
 
+interface SetupIcon {
+  title: string;
+  href: string;
+  src: string;
+}
+
+const tools: SetupIcon[] = [
+  {
+    title: "VSCode",
+    href: "https://code.visualstudio.com/",
+    src: "/setup/vscode_logo.png",
+  },
+  {
+    title: "GitHub",
+    href: "https://github.com",
+    src: "/setup/github_logo.png",
+  },
+  {
+    title: "Spotify",
+    href: "https://spotify.com",
+    src: "/setup/spotify_logo.png",
+  },
+  {
+    title: "Notion",
+    href: "https://notion.com",
+    src: "/setup/notion_logo.png",
+  },
+];
+
 export default function MySetup() {
   return (
     <>
@@ -19,7 +48,7 @@ export default function MySetup() {
             My tools
           </p>
           <span className="font-instrument">
-            <span className="md:text-6xl">The</span>
+            <span className="md:text-6xl">The </span>
             <AnimatedGradientText
               colorFrom="#4aeedd"
               colorTo="#16b1ff"
@@ -41,6 +70,30 @@ export default function MySetup() {
           <h2 className="mb-10 text-left font-bold text-2xl text-neutral-900 dark:text-neutral-100">
             Software & Tools
           </h2>
+          <div className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-4 sm:gap-x-4 md:gap-x-6 lg:gap-10">
+            {tools.map((tools, i) => (
+              <a
+                key={i}
+                className="group hover:-translate-y-2 no-underline transition-all duration-500"
+                href={tools.href}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <div className="group inline-block text-center">
+                  <div className="h-28 w-28 rounded-[20px] border-2 p-2 transition-all duration-300 group-hover:border-indigo-400 group-hover:shadow-lg dark:group-hover:border-indigo-500">
+                    <div className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0] dark:border-[#5A5F661F]/10 dark:bg-[#1A1B1E] shadow-[inset_0px_2px_1.5px_0px_rgba(165,174,184,0.32)]">
+                      <img
+                        alt={tools.title}
+                        className="h-10 w-10"
+                        src={tools.src}
+                      />
+                    </div>
+                  </div>
+                  <p className="mt-3 text-gray-500 text-sm">{tools.title}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </main>
       <ContactSection />

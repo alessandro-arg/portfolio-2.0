@@ -42,7 +42,7 @@ export default function MySetup() {
           className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
         />
       </div>
-      <main className="px-4 py-16 pt-36 md:px-1">
+      <main className="px-4 py-16 pt-36 md:px-1 container">
         <h2 className="relative z-2 mb-12 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:mb-20 md:text-6xl text-center max-w-xl mx-auto [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
           <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">
             My tools
@@ -80,11 +80,11 @@ export default function MySetup() {
                 target="_blank"
               >
                 <div className="group inline-block text-center">
-                  <div className="h-28 w-28 rounded-[20px] border-2 p-2 transition-all duration-300 group-hover:border-indigo-400 group-hover:shadow-lg dark:group-hover:border-indigo-500">
+                  <div className="h-20 w-20 sm:h-28 sm:w-28 rounded-[20px] border-2 p-2 transition-all duration-300 group-hover:border-indigo-400 group-hover:shadow-lg dark:group-hover:border-indigo-500">
                     <div className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0] dark:border-[#5A5F661F]/10 dark:bg-[#1A1B1E] shadow-[inset_0px_2px_1.5px_0px_rgba(165,174,184,0.32)]">
                       <img
                         alt={tools.title}
-                        className="h-10 w-10"
+                        className="h-8 w-8 sm:h-10 sm:w-10"
                         src={tools.src}
                       />
                     </div>
@@ -96,7 +96,7 @@ export default function MySetup() {
           </div>
         </div>
       </main>
-      <ContactSection />
+      <ContactSection mtClassName="mt-20 sm:mt-40" />
     </>
   );
 }

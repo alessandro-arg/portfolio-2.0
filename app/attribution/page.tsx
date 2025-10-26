@@ -1,17 +1,20 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ContactSection from "../contact/ContactSection";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Attribution() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
-          alt="nature background"
-          loading="lazy"
-          decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+        <Image
           src="/images/nature-bg.webp"
+          alt="nature background"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
+          decoding="async"
+          sizes="100vw"
         />
       </div>
       <main className="container relative z-10 mx-auto pt-32">

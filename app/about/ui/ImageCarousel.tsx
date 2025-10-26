@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import Image from "next/image";
 
 const ImageCarousel = () => {
   const images = [
@@ -116,18 +117,20 @@ const ImageCarousel = () => {
               >
                 <div className="relative">
                   <div
-                    className="aspect-[4/5] w-[160px] sm:w-[200px] md:w-[240px] lg:w-[300px] overflow-hidden rounded-3xl"
+                    className="relative aspect-[4/5] w-[160px] sm:w-[200px] md:w-[240px] lg:w-[300px] overflow-hidden rounded-3xl"
                     style={{
                       boxShadow: "rgba(0, 0, 0, 0.5) 0px 10px 30px",
                     }}
                   >
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
-                      className="h-full w-full rounded-3xl object-cover"
-                      draggable="false"
+                      fill
+                      className="object-cover"
+                      draggable={false}
                       loading="lazy"
                       decoding="async"
+                      sizes="(min-width: 1024px) 300px, (min-width: 768px) 240px, (min-width: 640px) 200px, 160px"
                     />
                   </div>
 

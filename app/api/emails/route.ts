@@ -82,12 +82,9 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ ok: true }, { status: 200 });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Resend error:", err);
-    const msg =
-      err?.message ||
-      err?.response?.data?.message ||
-      "Failed to send email(s). Check server logs.";
+    const msg = String(err) || "Failed to send email(s). Check server logs.";
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

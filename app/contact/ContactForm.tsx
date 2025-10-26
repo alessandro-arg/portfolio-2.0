@@ -98,7 +98,9 @@ export default function ContactForm({
 
             <div className="pr-20">
               <div className="font-medium">Message sent successfully!</div>
-              <p className="text-sm opacity-90">I'll write you back soon 👀</p>
+              <p className="text-sm opacity-90">
+                I&apos;ll write you back soon 👀
+              </p>
             </div>
           </div>
         ),

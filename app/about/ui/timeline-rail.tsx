@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 function TimelineRail() {
@@ -88,13 +89,15 @@ function TimelineRail() {
             className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-white/60 shadow-md dark:border-white/20"
           >
             {/* Perfect circular cover */}
-            <img
+            <Image
               src="/images/profile.jpg"
               alt="profile"
+              fill
+              className="block object-cover object-center select-none"
+              draggable={false}
               loading="lazy"
               decoding="async"
-              draggable={false}
-              className="block h-full w-full object-cover object-center select-none"
+              sizes="36px"
             />
           </div>
         </div>

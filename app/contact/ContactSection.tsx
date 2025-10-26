@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Magnet from "@/components/ui/magnet";
 import { cn } from "@/lib/utils";
 import { useContactModal } from "./ContactModalProvider";
+import Image from "next/image";
 
 type ContactSectionProps = {
   /** If true, removes the default top margin */
@@ -41,12 +42,16 @@ export default function ContactSection({
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>
       </div>
       <div className="relative z-10 mx-auto flex w-full container flex-col items-center justify-center gap-y-2 py-10 text-center ">
-        <img
-          src="../icon.png"
+        <Image
+          src="/images/icon.png"
           alt="small logo"
+          width={64}
+          height={64}
           aria-hidden="true"
-          draggable="false"
-          className="opacity-0 select-none dark:opacity-100 size-16"
+          draggable={false}
+          className="w-16 h-16 select-none"
+          loading="lazy"
+          decoding="async"
         />
         <span className="mt-4 text-2xl font-light tracking-wide text-black sm:text-4xl lg:text-5xl dark:text-white">
           <motion.h3
@@ -76,7 +81,7 @@ export default function ContactSection({
             }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            LET's MAKE IT <span className="font-extrabold">HAPPEN!</span>
+            LET&apos;s MAKE IT <span className="font-extrabold">HAPPEN!</span>
           </motion.h3>
         </span>
         <Magnet>
@@ -103,7 +108,7 @@ export default function ContactSection({
           </button>
         </Magnet>
         <p className="text-base font-semibold lg:text-2xl">
-          I'm available for full-time roles & freelance projects.
+          I&apos;m available for full-time roles & freelance projects.
         </p>
         <p className="my-2 text-sm font-extralight tracking-wide text-balance opacity-75 lg:text-xl">
           I create dynamic web applications, and <br />

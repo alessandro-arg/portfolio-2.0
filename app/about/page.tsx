@@ -4,17 +4,20 @@ import SocialButtons from "./ui/social-buttons";
 import GithubSection from "./GithubSection";
 import ContactSection from "../contact/ContactSection";
 import ImageCarousel from "./ui/ImageCarousel";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
+        <Image
           src="/images/nature-bg.webp"
           alt="nature background"
-          loading="lazy"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
           decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+          sizes="100vw"
         />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 pt-28 pb-12 md:pt-36 md:pb-20">
@@ -24,7 +27,7 @@ export default function AboutPage() {
           </p>
           <span className="font-instrument">
             <span>
-              I'm Alessandro, a <br /> creative{" "}
+              I&apos;m Alessandro, a <br /> creative{" "}
             </span>
             <AnimatedGradientText
               colorFrom="#4aeedd"
@@ -38,15 +41,15 @@ export default function AboutPage() {
         <div className="flex flex-col items-center justify-between lg:justify-between sm:justify-normal lg:flex-row">
           <div className="relative z-5 mx-auto flex max-w-xl flex-col gap-y-8 text-center text-base font-light tracking-wider text-black/80 lg:mx-0 md:max-w-[500px] lg:max-w-[550px] lg:text-left lg:text-lg dark:text-neutral-300">
             <p>
-              I'm Alessandro Argenziano, a full-stack developer passionate about
-              creating dynamic web experiences. From frontend to backend, I
-              solve complex problems with clean, efficient code. My expertise
-              spans React, Next.js, and Django, and I'm always motivated to
+              I&apos;m Alessandro Argenziano, a full-stack developer passionate
+              about creating dynamic web experiences. From frontend to backend,
+              I solve complex problems with clean, efficient code. My expertise
+              spans React, Next.js, and Django, and I&apos;m always motivated to
               learn more.
             </p>
             <p>
-              When I'm not immersed in work, I'm exploring new ideas and staying
-              curious.
+              When I&apos;m not immersed in work, I&apos;m exploring new ideas
+              and staying curious.
             </p>
             <p>I believe in waking up each day eager to make a difference!</p>
             <SocialButtons />

@@ -1,6 +1,7 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { Check } from "lucide-react";
 import ContactSection from "../contact/ContactSection";
+import Image from "next/image";
 
 interface Goal {
   id: string;
@@ -24,7 +25,7 @@ const goals: Goal[] = [
     id: "surf-portugal",
     title: "Learn to surf in Portugal",
     description: "A week in Ericeira catching green waves.",
-    images: ["https://images.unsplash.com/photo-1502786129293-79981df4e689"],
+    images: ["/images/test1.png"],
     isChecked: false,
     hasImage: true,
   },
@@ -47,8 +48,8 @@ const goals: Goal[] = [
   {
     id: "iceland-roadtrip",
     title: "Drive Iceland's Ring Road",
-    description: "7–10 days, waterfalls, black sand beaches & hot springs.",
-    images: ["https://images.unsplash.com/photo-1441974231531-c6227db76b6e"],
+    description: "7-10 days, waterfalls, black sand beaches & hot springs.",
+    images: ["/images/test2.png"],
     isChecked: false,
     hasImage: true,
   },
@@ -64,7 +65,7 @@ const goals: Goal[] = [
     id: "kyoto-sakura",
     title: "Cherry blossom season in Kyoto",
     description: "Philosopher's Path at full bloom.",
-    images: ["https://images.unsplash.com/photo-1503264116251-35a269479413"],
+    images: ["/images/test3.png"],
     isChecked: true,
     hasImage: true,
   },
@@ -98,12 +99,14 @@ export default function BucketList() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
+        <Image
           src="/images/nature-bg.webp"
           alt="nature background"
-          loading="lazy"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
           decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+          sizes="100vw"
         />
       </div>
       <main className="px-4 py-16 pt-36 md:px-1">
@@ -112,7 +115,7 @@ export default function BucketList() {
             The bucket list
           </p>
           <span className="font-instrument">
-            <span className="md:text-6xl">Things I'll do </span>
+            <span className="md:text-6xl">Things I&apos;ll do </span>
             <br />
             <AnimatedGradientText
               colorFrom="#4aeedd"
@@ -159,13 +162,15 @@ export default function BucketList() {
                   {goal.images.map((src, idx) => (
                     <div
                       key={`${goal.id}-img-${idx}`}
-                      className="overflow-hidden rounded-lg border border-white/10"
+                      className="relative overflow-hidden rounded-lg border border-white/10 h-10 w-10"
                     >
-                      <img
+                      <Image
                         src={src}
                         alt={`${goal.title} ${idx + 1}`}
-                        className="h-10 w-10 object-cover md:h-10"
+                        fill
+                        className="object-cover"
                         loading="lazy"
+                        sizes="40px"
                       />
                     </div>
                   ))}

@@ -26,6 +26,12 @@ interface ActivityApi {
   asOf: string;
 }
 
+type GitHubDay = {
+  date: string;
+  count: number;
+  level: number;
+};
+
 const username = "alessandro-arg";
 
 const GitHubActivitySection = () => {
@@ -41,7 +47,7 @@ const GitHubActivitySection = () => {
     if (!response.ok) throw new Error("Failed to fetch contribution levels");
     const result = await response.json();
     const contributions: GitHubActivity[] = result.contributions.map(
-      (day: any) => ({
+      (day: GitHubDay) => ({
         date: day.date,
         count: day.count,
         level: day.level,

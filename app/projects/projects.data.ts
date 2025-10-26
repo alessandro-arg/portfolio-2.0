@@ -133,7 +133,7 @@ export const projectsData: Project[] = [
     calloutDescription:
       "Challenge friends in real time, or sharpen tactics vs a fast, in-browser Stockfish—no install needed.",
     whyBuilt:
-      "I’ve always loved chess and wanted a fast, modern app that feels instant...",
+      "I've always loved chess and wanted a fast, modern app that feels instant...",
     useCases: [
       "Play casual or rated games with friends in the browser.",
       "Practice vs Stockfish at adjustable strength levels.",

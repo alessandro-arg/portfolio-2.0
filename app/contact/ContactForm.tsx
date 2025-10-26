@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MessageSquare, User, Send } from "lucide-react";
+import { Mail, MessageSquare, User, Send, CircleX } from "lucide-react";
 import { toast } from "sonner";
-import { CircleX } from "lucide-react";
 
 type ContactFormProps = {
   className?: string;
@@ -67,17 +66,6 @@ export default function ContactForm({
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const click = async () => {
-    let successId: string | number;
-    successId = toast.success("Message sent successfully!", {
-      description: "I'll write you soon.",
-      action: {
-        label: <CircleX />,
-        onClick: () => toast.dismiss(successId),
-      },
-    });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -97,25 +85,47 @@ export default function ContactForm({
       }
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
-      let successId: string | number;
-      successId = toast.success("Message sent successfully!", {
-        description: "I'll write you soon.",
-        action: {
-          label: <CircleX />,
-          onClick: () => toast.dismiss(successId),
-        },
-      });
+      toast.custom(
+        (id) => (
+          <div className="relative rounded-md p-4 pt-3 shadow-lg bg-emerald-600 text-white min-w-50">
+            <button
+              onClick={() => toast.dismiss(id)}
+              className="absolute top-2 right-2 p-1 rounded hover:opacity-80 focus:outline-none"
+              aria-label="Close"
+            >
+              <CircleX className="w-5 h-5" />
+            </button>
+
+            <div className="pr-20">
+              <div className="font-medium">Message sent successfully!</div>
+              <p className="text-sm opacity-90">I'll write you back soon 👀</p>
+            </div>
+          </div>
+        ),
+        { duration: 3000 }
+      );
       onSubmitted?.();
     } catch (err) {
       console.error(err);
-      let errorId: string | number;
-      errorId = toast.error("Something went wrong!", {
-        description: String(err),
-        action: {
-          label: <CircleX className="text-neutral-300" />,
-          onClick: () => toast.dismiss(errorId),
-        },
-      });
+      toast.custom(
+        (id) => (
+          <div className="relative rounded-md p-4 pt-3 shadow-lg bg-red-700 text-white min-w-50">
+            <button
+              onClick={() => toast.dismiss(id)}
+              className="absolute top-2 right-2 p-1 rounded hover:opacity-80 focus:outline-none"
+              aria-label="Close"
+            >
+              <CircleX className="w-5 h-5" />
+            </button>
+
+            <div className="pr-20">
+              <div className="font-medium">Something went wrong!</div>
+              <p className="text-sm opacity-90">${String(err)}</p>
+            </div>
+          </div>
+        ),
+        { duration: 3000 }
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -256,8 +266,6 @@ export default function ContactForm({
           )}
         </div>
       </motion.div>
-
-      <button className="h-10 w-10 bg-white" onClick={click}></button>
 
       {/* Submit */}
       <motion.div

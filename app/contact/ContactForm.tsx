@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageSquare, User, Send } from "lucide-react";
+import { toast } from "sonner";
+import { CircleX } from "lucide-react";
 
 type ContactFormProps = {
   className?: string;
@@ -65,6 +67,17 @@ export default function ContactForm({
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const click = async () => {
+    let successId: string | number;
+    successId = toast.success("Message sent successfully!", {
+      description: "I'll write you soon.",
+      action: {
+        label: <CircleX />,
+        onClick: () => toast.dismiss(successId),
+      },
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -84,9 +97,25 @@ export default function ContactForm({
       }
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
+      let successId: string | number;
+      successId = toast.success("Message sent successfully!", {
+        description: "I'll write you soon.",
+        action: {
+          label: <CircleX />,
+          onClick: () => toast.dismiss(successId),
+        },
+      });
       onSubmitted?.();
     } catch (err) {
       console.error(err);
+      let errorId: string | number;
+      errorId = toast.error("Something went wrong!", {
+        description: String(err),
+        action: {
+          label: <CircleX className="text-neutral-300" />,
+          onClick: () => toast.dismiss(errorId),
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -227,6 +256,8 @@ export default function ContactForm({
           )}
         </div>
       </motion.div>
+
+      <button className="h-10 w-10 bg-white" onClick={click}></button>
 
       {/* Submit */}
       <motion.div

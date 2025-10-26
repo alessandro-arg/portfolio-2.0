@@ -68,7 +68,15 @@ export default function RootLayout({
             </div>
 
             <Footer />
-            <Toaster />
+            <Toaster
+              position="bottom-right"
+              toastOptions={{
+                classNames: {
+                  success: "bg-emerald-600 text-white border-none",
+                  error: "bg-red-700 text-white border-none",
+                },
+              }}
+            />
           </ContactModalProvider>
         </ThemeProvider>
       </body>

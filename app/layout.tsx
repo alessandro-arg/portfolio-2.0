@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { RootProvider } from "fumadocs-ui/provider/next";
+import { Analytics } from "@vercel/analytics/next";
 import "fumadocs-ui/style.css";
 import "./globals.css";
 import { Suspense } from "react";
@@ -68,7 +69,10 @@ export default function RootLayout({
 
               {/* page content needs some top padding so it's not covered by the fixed header */}
               <div id="content">
-                <RootProvider>{children}</RootProvider>
+                <RootProvider>
+                  {children}
+                  <Analytics />
+                </RootProvider>
               </div>
 
               <Footer />

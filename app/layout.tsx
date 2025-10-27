@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import "fumadocs-ui/style.css";
 import "./globals.css";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,8 +60,10 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ContactModalProvider>
-            {/* floating header */}
-            <Header />
+            {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}
+            <Suspense fallback={null}>
+              <Header />
+            </Suspense>
 
             {/* page content needs some top padding so it's not covered by the fixed header */}
             <div id="content">

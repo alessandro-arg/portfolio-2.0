@@ -5,8 +5,6 @@ import AdminLeadEmail from "../../emails/AdminLeadEmail";
 
 export const runtime = "nodejs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 type Body = {
   name?: string;
   email?: string;
@@ -38,6 +36,14 @@ function validate({ name, email, message }: Body) {
   return { ok: Object.keys(errors).length === 0, errors };
 }
 
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    throw new Error("RESEND_API_KEY is not set on the server.");
+  }
+  return new Resend(key);
+}
+
 export async function POST(req: NextRequest) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
@@ -64,6 +70,7 @@ export async function POST(req: NextRequest) {
   const { name = "", email = "", message = "" } = body;
 
   try {
+    const resend = getResend();
     // 1) Send confirmation to the user
     await resend.emails.send({
       from: "Alessandro <hello@alessandro-argenziano.com>",

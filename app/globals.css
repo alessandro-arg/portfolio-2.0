@@ -219,6 +219,19 @@
   --shiki-punctuation: #e1e4e8;
 }
 
+.halftone {
+  -webkit-mask-image: radial-gradient(circle, #0000 50%, #000 0);
+  mask-image: radial-gradient(circle, #0000 50%, #000 0);
+  -webkit-mask-position: 50%;
+  mask-position: 50%;
+  -webkit-mask-size: 4px 4px;
+  mask-size: 4px 4px;
+  position: relative;
+  transition:
+    -webkit-mask-size 0.3s,
+    mask-size 0.3s;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }

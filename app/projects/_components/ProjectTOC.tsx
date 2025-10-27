@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import {
@@ -168,7 +169,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
                       {...(isPrimary ? { "data-active-primary": "true" } : {})}
                       style={{ paddingInlineStart: `${indent}px` }}
                     >
-                      {it.title as any}
+                      {it.title as ReactNode}
                     </FumaTOCItem>
                   );
                 })}

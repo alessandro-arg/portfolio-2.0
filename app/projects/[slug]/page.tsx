@@ -13,6 +13,14 @@ import Image from "next/image";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
+type Project = (typeof projectsData)[number];
+
+type ProjectWithExtras = Project & {
+  useCases?: string[];
+  whyBuilt?: string;
+  learnings?: string[];
+};
+
 export function generateStaticParams() {
   return projectsData.filter((p) => p.slug).map((p) => ({ slug: p.slug! }));
 }
@@ -46,10 +54,7 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = projectsData.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  // Optional fields (kept type-safe locally without touching your global types)
-  const useCases = (project as any).useCases as string[] | undefined;
-  const whyBuilt = (project as any).whyBuilt as string | undefined;
-  const learnings = (project as any).learnings as string[] | undefined;
+  const { useCases, whyBuilt, learnings } = project as ProjectWithExtras;
 
   // Build the TOC dynamically based on available data
   const sections: TocItem[] = [];
@@ -133,17 +138,26 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <main className="relative mx-auto w-full">
-      <div className="absolute inset-0 z-[-1] h-[300px] w-full overflow-hidden [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-100">
+      <div
+        className="absolute inset-0 z-[-1] h-[300px] w-full overflow-hidden
+             [mask-image:linear-gradient(rgba(0,0,0,0.5)_10%,rgba(0,0,0,0)_100%)] opacity-100"
+        aria-hidden="true"
+      >
         <Image
           src={project.src}
           alt={project.title}
-          aria-hidden="true"
-          priority
-          width="1203"
-          height="753"
+          fill
+          loading="lazy"
+          fetchPriority="low"
+          sizes="100vw"
           decoding="async"
-          className=" h-[300px] w-full object-cover mix-blend-overlay grayscale select-none"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px"
+          aria-hidden="true"
+          className="
+      halftone pointer-events-none absolute inset-0 h-full w-full
+      object-cover grayscale
+      mix-blend-multiply dark:mix-blend-overlay
+      opacity-90 dark:opacity-100
+    "
         />
       </div>
       <div className="relative pt-60"></div>
@@ -278,10 +292,12 @@ export default async function ProjectPage({ params }: PageProps) {
               {/* Small callout (optional) */}
               <div
                 className="flex gap-2 my-4 rounded-xl border bg-fd-card p-3 ps-1 text-sm text-fd-card-foreground shadow-md"
-                style={{
-                  ["--callout-color" as any]:
-                    "var(--color-fd-info, var(--color-fd-muted))",
-                }}
+                style={
+                  {
+                    "--callout-color":
+                      "var(--color-fd-info, var(--color-fd-muted))",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   role="none"
@@ -317,12 +333,12 @@ export default async function ProjectPage({ params }: PageProps) {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <Image
                     alt={`${project.title} Screenshot`}
-                    loading="lazy"
+                    src={project.src}
                     width={1602}
                     height={967}
+                    priority
                     decoding="async"
                     className="!my-0 rounded-[8px] lg:my-0"
-                    src={project.src}
                   />
                 </div>
               ) : null}

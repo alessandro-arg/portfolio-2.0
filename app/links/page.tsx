@@ -1,27 +1,32 @@
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
-import { siFacebook } from "simple-icons";
 import ContactSection from "../contact/ContactSection";
 import { Facebook } from "lucide-react";
+import Image from "next/image";
 
 export default function Links() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
+        <Image
           src="/images/nature-bg.webp"
           alt="nature background"
-          loading="lazy"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
           decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+          sizes="100vw"
         />
       </div>
       <section className="mx-auto w-full max-w-7xl overflow-x-hidden">
         <div className="relative mx-auto min-h-[75vh] max-w-lg overflow-x-hidden px-4">
-          <div className="relative mx-auto flex flex-col items-center justify-center gap-4 overflow-hidden pt-30 pb-6">
-            <img
+          <div className="relative mx-auto flex flex-col items-center justify-center gap-4 overflow-hidden pt-50 pb-6">
+            <Image
               src="/images/profile.jpg"
               alt="profile picture"
-              className="rounded-full h-[120px] w-[120px] object-cover object-center"
+              width={120}
+              height={120}
+              className="rounded-full object-cover object-center h-[120px] w-[120px]"
+              priority
             />
             <h1 className="font-semibold text-xl">Alessandro Argenziano</h1>
             <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">

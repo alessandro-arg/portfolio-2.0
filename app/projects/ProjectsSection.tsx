@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { projectsData } from "./projects.data";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectInfoPanel } from "./ProjectInfoPanel";
+import Link from "next/link";
 
 type ProjectsSectionProps = {
   showCTA?: boolean;
@@ -94,7 +95,7 @@ export default function ProjectsSection({
 
       {/* Only render CTA if showCTA = true */}
       {showCTA && (
-        <a
+        <Link
           href="/projects"
           className="group dark:text-white flex w-fit items-center justify-center gap-2 font-mono text-neutral-800 transition-colors hover:text-black mx-auto md:mt-20"
         >
@@ -109,7 +110,7 @@ export default function ProjectsSection({
               </span>
             </div>
           </div>
-        </a>
+        </Link>
       )}
     </section>
   );

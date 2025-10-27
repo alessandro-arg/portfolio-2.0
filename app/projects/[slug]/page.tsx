@@ -9,6 +9,7 @@ import Link from "fumadocs-core/link";
 import { Accordions, Accordion } from "fumadocs-ui/components/accordion";
 import CopyFigure from "../_components/CopyFigure";
 import ContactCTA from "../_components/ContactCTA";
+import Image from "next/image";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -133,13 +134,16 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <main className="relative mx-auto w-full">
       <div className="absolute inset-0 z-[-1] h-[300px] w-full overflow-hidden [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-100">
-        <img
+        <Image
           src={project.src}
           alt={project.title}
           aria-hidden="true"
-          loading="lazy"
+          priority
+          width="1203"
+          height="753"
           decoding="async"
-          className="halftone pointer-events-none absolute inset-0 z-[-1] h-[300px] w-full object-cover mix-blend-overlay grayscale select-none"
+          className=" h-[300px] w-full object-cover mix-blend-overlay grayscale select-none"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px"
         />
       </div>
       <div className="relative pt-60"></div>
@@ -311,7 +315,7 @@ export default async function ProjectPage({ params }: PageProps) {
               {project.src ? (
                 <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#f2f2f20c] p-1.5 shadow-2xl md:p-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     alt={`${project.title} Screenshot`}
                     loading="lazy"
                     width={1602}

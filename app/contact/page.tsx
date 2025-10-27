@@ -7,6 +7,7 @@ import ContactSection from "./ContactSection";
 import { toast } from "sonner";
 import React from "react";
 import { CheckCheck, Copy } from "lucide-react";
+import Image from "next/image";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
@@ -42,12 +43,14 @@ export default function Contact() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
+        <Image
           src="/images/nature-bg.webp"
           alt="nature background"
-          loading="lazy"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
           decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+          sizes="100vw"
         />
       </div>
       <section className="relative px-4 pt-10">

@@ -1,5 +1,6 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ContactSection from "../contact/ContactSection";
+import Image from "next/image";
 
 interface SetupIcon {
   title: string;
@@ -34,12 +35,14 @@ export default function MySetup() {
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <img
+        <Image
           src="/images/nature-bg.webp"
           alt="nature background"
-          loading="lazy"
+          fill
+          priority
+          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
           decoding="async"
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale-100"
+          sizes="100vw"
         />
       </div>
       <main className="px-4 py-16 pt-36 md:px-1 container">
@@ -59,8 +62,15 @@ export default function MySetup() {
           </span>
         </h2>
         <div className="mx-auto my-20 max-w-5xl">
-          <div className="overflow-hidden rounded-2xl border-1 border-neutral-200/50 shadow-lg dark:border-white/10">
-            <img src="/images/mac-m4-air.avif" alt="MacBook" loading="lazy" />
+          <div className="relative overflow-hidden rounded-2xl border-1 border-neutral-200/50 shadow-lg dark:border-white/10">
+            <Image
+              src="/images/mac-m4-air.avif"
+              alt="MacBook"
+              width={800}
+              height={600}
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
           </div>
           <h3 className="mt-2 text-center font-light text-base text-neutral-900 dark:text-neutral-100">
             MacBook Air
@@ -71,25 +81,28 @@ export default function MySetup() {
             Software & Tools
           </h2>
           <div className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-4 sm:gap-x-4 md:gap-x-6 lg:gap-10">
-            {tools.map((tools, i) => (
+            {tools.map((tool, i) => (
               <a
                 key={i}
                 className="group hover:-translate-y-2 no-underline transition-all duration-500"
-                href={tools.href}
+                href={tool.href}
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <div className="group inline-block text-center">
                   <div className="h-20 w-20 sm:h-28 sm:w-28 rounded-[20px] border-2 p-2 transition-all duration-300 group-hover:border-indigo-400 group-hover:shadow-lg dark:group-hover:border-indigo-500">
                     <div className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0] dark:border-[#5A5F661F]/10 dark:bg-[#1A1B1E] shadow-[inset_0px_2px_1.5px_0px_rgba(165,174,184,0.32)]">
-                      <img
-                        alt={tools.title}
-                        className="h-8 w-8 sm:h-10 sm:w-10"
-                        src={tools.src}
+                      <Image
+                        alt={tool.title}
+                        src={tool.src}
+                        priority
+                        width={40}
+                        height={40}
+                        className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
                       />
                     </div>
                   </div>
-                  <p className="mt-3 text-gray-500 text-sm">{tools.title}</p>
+                  <p className="mt-3 text-gray-500 text-sm">{tool.title}</p>
                 </div>
               </a>
             ))}

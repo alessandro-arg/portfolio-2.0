@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   description: "Fullstack Developer • Next.js • Tailwind CSS • Animations",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,20 +61,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
         <ThemeProvider>
-          <ContactModalProvider>
+          <Suspense fallback={null}>
             {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}
-            <Suspense fallback={null}>
+            <ContactModalProvider>
               <Header />
-            </Suspense>
 
-            {/* page content needs some top padding so it's not covered by the fixed header */}
-            <div id="content">
-              <RootProvider>{children}</RootProvider>
-            </div>
+              {/* page content needs some top padding so it's not covered by the fixed header */}
+              <div id="content">
+                <RootProvider>{children}</RootProvider>
+              </div>
 
-            <Footer />
-            <Toaster position="bottom-right" />
-          </ContactModalProvider>
+              <Footer />
+              <Toaster position="bottom-right" />
+            </ContactModalProvider>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type GradientStop = { color: string; at: string };
 
 export type ProjectTheme = {

@@ -18,15 +18,6 @@ const menuItems = [
   { href: "/projects", label: "Projects", ariaLabel: "View our projects" },
 ];
 
-const socialItems = [
-  { label: "Instagram", link: "https://www.instagram.com/alessandro_7.5r/" },
-  { label: "GitHub", link: "https://github.com/alessandro-arg" },
-  {
-    label: "LinkedIn",
-    link: "https://www.linkedin.com/in/alessandro-argenziano/",
-  },
-];
-
 const panelSpring: Transition = {
   type: "spring",
   stiffness: 300,

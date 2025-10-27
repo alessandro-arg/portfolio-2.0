@@ -1,9 +1,16 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { AnimatedGradientText } from "../ui/animated-gradient-text";
 import { Ripple } from "../ui/ripple";
 import { motion, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import { useRef, useMemo, useEffect, useState } from "react";
+import Image from "next/image";
+
+type CSSWithVars = CSSProperties & {
+  [key: `--${string}`]: string | number;
+};
 
 function useIsMounted() {
   const [mounted, setMounted] = useState(false);
@@ -77,7 +84,7 @@ interface SkillIconProps {
   skill: string;
   index: number;
   total: number;
-  scrollProgress: any;
+  scrollProgress: MotionValue<number>;
 }
 
 const seededRandom = (seed: number) => {
@@ -85,7 +92,7 @@ const seededRandom = (seed: number) => {
   return x - Math.floor(x);
 };
 
-const SkillIcon = ({ skill, index, total, scrollProgress }: SkillIconProps) => {
+const SkillIcon = ({ skill, index, scrollProgress }: SkillIconProps) => {
   const mounted = useIsMounted();
 
   // deterministic randoms
@@ -128,28 +135,25 @@ const SkillIcon = ({ skill, index, total, scrollProgress }: SkillIconProps) => {
   );
 
   const src = `https://skillicons.dev/icons?i=${skill}&theme=dark&titles=true`;
-  const baseProps = {
-    src,
-    alt: skill,
-    className: "w-10 h-10 md:w-12 md:h-12",
-    draggable: false as const,
-  };
 
-  /** ---- IMPORTANT: on server + first client render, output a plain <img> ----
-   * This guarantees the server HTML matches the client’s initial HTML,
-   * avoiding React’s hydration mismatch caused by motion style serialization.
-   */
-  if (!mounted) {
-    return <img {...baseProps} />;
-  }
-
-  // After mount, we can safely render the animated version
-  return <motion.img {...baseProps} style={{ x, y, rotate, opacity }} />;
+  return (
+    <motion.div style={mounted ? { x, y, rotate, opacity } : undefined}>
+      <Image
+        src={src}
+        alt={skill}
+        width={48}
+        height={48}
+        className="w-10 h-10 md:w-12 md:h-12"
+        draggable={false}
+        unoptimized
+      />
+    </motion.div>
+  );
 };
 
 interface SkillRowProps {
   skills: string[];
-  scrollProgress: any;
+  scrollProgress: MotionValue<number>;
   className?: string;
 }
 
@@ -179,12 +183,16 @@ export default function Skills() {
     offset: ["start end", "end start"],
   });
 
+  const sectionStyle: CSSWithVars = {
+    "--ripple-y": "clamp(0.5rem, 16vw, 0.5rem)",
+  };
+
   return (
     <section
       ref={sectionRef}
       id="skills"
       className="relative mx-auto flex h-full container flex-col mt-60 w-full py-20 cursor-default"
-      style={{ ["--ripple-y" as any]: "clamp(0.5rem, 16vw, 0.5rem)" }}
+      style={sectionStyle}
     >
       <section className="relative w-full overflow-x-clip">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-y-visible overflow-x-clip">

@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { FooterLinks } from "./FooterLinks";
 import { footerCategories } from "./footer.data";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,17 +10,21 @@ export default function Footer() {
       <div className="relative flex flex-col items-center g-6 mb-10 md:flex-row">
         <div className="flex flex-1 flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="hidden flex-col gap-y-6 md:flex md:w-1/2">
-            <a href="#content" className="inline-block">
-              <img
-                src="../icon.png"
+            <a href="#content" className="relative inline-block">
+              <Image
+                src="/images/icon.png"
                 alt="small logo"
+                height={40}
+                width={40}
+                loading="lazy"
+                className="w-10 h-10"
+                priority={false}
                 draggable="false"
-                className="size-10"
               />
             </a>
             <p className="w-60 text-base leading-5 dark:text-gray-300">
-              I'm Alessandro - a full-stack developer, gamer and problem solver.
-              Thanks for checking out my site!
+              I&apos;m Alessandro - a full-stack developer, gamer and problem
+              solver. Thanks for checking out my site!
             </p>
           </div>
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:gap-16 lg:gap-32 max-sm:bg-primary/[0.05] rounded-3xl p-5">
@@ -32,27 +38,27 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
           <p className="whitespace-nowrap">
             © {new Date().getFullYear()} {""}
-            <a
+            <Link
               href="/"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
               Alessandro Argenziano
-            </a>
+            </Link>
             . All rights reserved
           </p>
           <div className="flex items-center justify-center gap-4 sm:gap-6">
-            <a
+            <Link
               href="/legal/privacy"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
               Privacy Policy
-            </a>
-            <a
+            </Link>
+            <Link
               href="/legal/terms"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
               Terms & Conditions
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col items-center gap-4 md:flex-row md:justify-end">

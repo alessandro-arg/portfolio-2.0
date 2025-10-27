@@ -57,7 +57,7 @@ export default function CopyEmailCard() {
           />
         </div>
         <span className="w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white max-w-80 -translate-y-4 py-2">
-          Let's work together on your next project
+          Let&apos;s work together on your next project
         </span>
         <div className="relative flex">
           <button

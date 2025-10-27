@@ -13,7 +13,7 @@ function projectHref(project: Project) {
 }
 
 export function ProjectCard({ project }: { project: Project }) {
-  const { title, smallDescription, src, technologies = [] } = project;
+  const { title, smallDescription, src, techDesc = [] } = project;
   const href = projectHref(project);
 
   return (
@@ -75,9 +75,9 @@ export function ProjectCard({ project }: { project: Project }) {
             <h3>{smallDescription}</h3>
             <ArrowRight className="size-6 shrink-0" />
           </div>
-          {technologies.length > 0 && (
+          {techDesc.length > 0 && (
             <div className="my-4 flex max-w-fit flex-wrap items-center gap-1">
-              {technologies.map((t, i) => (
+              {techDesc.map((t, i) => (
                 <span
                   data-slot="badge"
                   key={`${t.name}-${i}`}

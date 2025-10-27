@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cloud, CloudRain, Moon, Sun, Sunrise, Sunset } from "lucide-react";
+import { CloudRain, Moon, Sun, Sunrise, Sunset } from "lucide-react";
 
 type TimeOfDay = "dawn" | "morning" | "day" | "evening" | "dusk" | "night";
 

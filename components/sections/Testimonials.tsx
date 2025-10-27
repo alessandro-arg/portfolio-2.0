@@ -47,7 +47,7 @@ export default function Testimonials() {
           Testimonials
         </p>
         <span className="font-instrument">
-          <span>Colleagues' thoughts </span>
+          <span>Colleagues&apos; thoughts </span>
           <AnimatedGradientText
             colorFrom="#4aeedd"
             colorTo="#16b1ff"

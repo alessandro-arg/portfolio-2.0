@@ -330,7 +330,6 @@ export default async function ProjectPage({ params }: PageProps) {
               {/* Big hero image */}
               {project.src ? (
                 <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#f2f2f20c] p-1.5 shadow-2xl md:p-2">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <Image
                     alt={`${project.title} Screenshot`}
                     src={project.src}

@@ -56,7 +56,13 @@ export const AnimatedSpan = ({
     if (sequence.activeIndex === itemIndex) {
       setHasStarted(true);
     }
-  }, [sequence?.activeIndex, sequence?.sequenceStarted, hasStarted, itemIndex]);
+  }, [
+    sequence,
+    sequence?.activeIndex,
+    sequence?.sequenceStarted,
+    hasStarted,
+    itemIndex,
+  ]);
 
   const shouldAnimate = sequence ? hasStarted : startOnView ? isInView : true;
 
@@ -120,6 +126,15 @@ export const TypingAnimation = ({
   const sequence = useSequence();
   const itemIndex = useItemIndex();
 
+  const sequenceRef = useRef(sequence);
+  const itemIndexRef = useRef(itemIndex);
+  useEffect(() => {
+    sequenceRef.current = sequence;
+  }, [sequence]);
+  useEffect(() => {
+    itemIndexRef.current = itemIndex;
+  }, [itemIndex]);
+
   useEffect(() => {
     if (sequence && itemIndex !== null) {
       if (!sequence.sequenceStarted) return;
@@ -140,34 +155,37 @@ export const TypingAnimation = ({
     const startTimeout = setTimeout(() => setStarted(true), delay);
     return () => clearTimeout(startTimeout);
   }, [
+    sequence,
+    itemIndex,
     delay,
     startOnView,
     isInView,
     started,
     sequence?.activeIndex,
     sequence?.sequenceStarted,
-    itemIndex,
   ]);
 
   useEffect(() => {
     if (!started) return;
 
+    setDisplayedText("");
+
     let i = 0;
-    const typingEffect = setInterval(() => {
+    const id = setInterval(() => {
       if (i < children.length) {
         setDisplayedText(children.substring(0, i + 1));
         i++;
       } else {
-        clearInterval(typingEffect);
-        if (sequence && itemIndex !== null) {
-          sequence.completeItem(itemIndex);
+        clearInterval(id);
+        const s = sequenceRef.current;
+        const idx = itemIndexRef.current;
+        if (s && idx !== null) {
+          s.completeItem(idx);
         }
       }
     }, duration);
 
-    return () => {
-      clearInterval(typingEffect);
-    };
+    return () => clearInterval(id);
   }, [children, duration, started]);
 
   return (

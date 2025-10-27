@@ -1,3 +1,5 @@
+"use client";
+
 import createGlobe from "cobe";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
@@ -11,6 +13,8 @@ type Country = {
   lat: number;
   lng: number;
 };
+
+const DEFAULT_THETA = 0.38;
 
 const CITIES: Country[] = [
   { key: "germany", label: "Germany", flag: "🇩🇪", lat: 47.6231, lng: 8.2172 },
@@ -47,7 +51,7 @@ export function Globe({
   const focusRef = useRef<[number, number]>([0, 0]);
 
   const currentPhiRef = useRef(0);
-  const currentThetaRef = useRef(0.38);
+  const currentThetaRef = useRef(DEFAULT_THETA);
 
   const draggingRef = useRef(false);
   const snapRef = useRef(false);
@@ -120,7 +124,7 @@ export function Globe({
             snapRef.current = false;
           }
         }
-        theta = horizontalOnly ? 0.38 : theta;
+        theta = horizontalOnly ? DEFAULT_THETA : theta;
 
         currentPhiRef.current = phi;
         currentThetaRef.current = theta;
@@ -174,15 +178,7 @@ export function Globe({
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
     };
-  }, [
-    colors.base,
-    colors.glow,
-    colors.marker,
-    height,
-    horizontalOnly,
-    0.38,
-    isDark,
-  ]);
+  }, [colors.base, colors.glow, colors.marker, height, horizontalOnly, isDark]);
 
   const selectCity = (country: Country) => {
     setActiveKey(country.key);

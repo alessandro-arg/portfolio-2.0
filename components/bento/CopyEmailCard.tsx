@@ -71,7 +71,14 @@ export default function CopyEmailCard() {
             ) : (
               <Copy className="h-5 w-5" aria-hidden="true" />
             )}
-            {copied ? "Copied to clipboard" : EMAIL}
+            {copied ? (
+              "Copied to clipboard"
+            ) : (
+              <>
+                <span className="hidden md:inline">{EMAIL}</span>
+                <span className="inline md:hidden">Write me an email</span>
+              </>
+            )}
           </button>
         </div>
       </div>

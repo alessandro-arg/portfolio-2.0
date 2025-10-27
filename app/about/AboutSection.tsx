@@ -7,11 +7,11 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative px-4 pt-20">
+    <section id="about" className="relative px-4 pt-20 container">
       <div className="relative py-10 lg:max-h-[1300px]">
         <section className="relative mx-auto flex max-w-6xl flex-col items-center justify-center gap-8 lg:size-full lg:flex-row lg:justify-between">
-          <div className="max-w-[60%]">
-            <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70 md:mt-28">
+          <div className="min-w-full lg:max-w-[60%] lg:min-w-auto">
+            <p className="text-center lg:text-left mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70 md:mt-28">
               Know about me
             </p>
 

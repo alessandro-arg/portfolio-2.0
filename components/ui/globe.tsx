@@ -190,7 +190,7 @@ export function Globe({
   return (
     <div ref={containerRef} className="relative w-full" style={{ height }}>
       {/* Buttons row */}
-      <div className="absolute mx-auto w-full flex flex-wrap justify-center items-center gap-2 -top-4">
+      <div className="absolute mx-auto w-full flex flex-wrap justify-center items-center gap-2 -top-12 sm:-top-4 lg:-top-4">
         {CITIES.map((c) => {
           const isActive = c.key === activeKey;
           return (

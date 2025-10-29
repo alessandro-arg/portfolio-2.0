@@ -48,7 +48,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center justify-center gap-4 sm:gap-6">
             <Link
-              href="/legal/privacy"
+              href="/legal/privacy-policy"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
               Privacy Policy

@@ -6,6 +6,7 @@ import Magnet from "@/components/ui/magnet";
 import { cn } from "@/lib/utils";
 import { useContactModal } from "./ContactModalProvider";
 import Image from "next/image";
+import { BrandMark } from "@/components/layout/BrandMark";
 
 type ContactSectionProps = {
   /** If true, removes the default top margin */
@@ -43,16 +44,28 @@ export default function ContactSection({
       </div>
       <div className="relative z-10 mx-auto flex w-full container flex-col items-center justify-center gap-y-2 py-10 text-center ">
         <Image
-          src="/images/icon.png"
+          src="/brand/logo-dark-256px.png"
           alt="small logo"
-          width={64}
-          height={64}
+          width={80}
+          height={80}
           aria-hidden="true"
           draggable={false}
-          className="w-16 h-16 select-none"
+          className="w-20 h-20 select-none block dark:hidden"
           loading="lazy"
           decoding="async"
         />
+        <Image
+          src="/brand/logo-light-256px.png"
+          alt="small logo"
+          width={80}
+          height={80}
+          aria-hidden="true"
+          draggable={false}
+          className="w-20 h-20 select-none hidden dark:block"
+          loading="lazy"
+          decoding="async"
+        />
+        {/* <BrandMark className="w-20 h-20 select-none" aria-hidden="true" /> */}
         <span className="mt-4 text-2xl font-light tracking-wide text-black sm:text-4xl lg:text-5xl dark:text-white">
           <motion.h3
             className="text-nowrap text-2xl font-light tracking-wide sm:text-4xl lg:text-5xl"

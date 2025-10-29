@@ -1,0 +1,8 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sriracha&amp;display=swap');
+    .logo-text { font-family: 'Sriracha', cursive; }
+  </style>
+  <text x="15" y="75" class="logo-text" font-size="80" fill="#1A1A1A">A</text>
+  <text x="65" y="45" class="logo-text" font-size="40" fill="#1A1A1A">2</text>
+</svg>

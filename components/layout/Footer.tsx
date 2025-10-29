@@ -12,14 +12,26 @@ export default function Footer() {
           <div className="hidden flex-col gap-y-6 md:flex md:w-1/2">
             <a href="#content" className="relative inline-block">
               <Image
-                src="/images/icon.png"
+                src="/brand/logo-dark-256px.png"
                 alt="small logo"
-                height={40}
-                width={40}
+                width={80}
+                height={80}
+                aria-hidden="true"
+                draggable={false}
+                className="w-20 h-20 select-none block dark:hidden"
                 loading="lazy"
-                className="w-10 h-10"
-                priority={false}
-                draggable="false"
+                decoding="async"
+              />
+              <Image
+                src="/brand/logo-light-256px.png"
+                alt="small logo"
+                width={80}
+                height={80}
+                aria-hidden="true"
+                draggable={false}
+                className="w-20 h-20 select-none hidden dark:block"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p className="w-60 text-base leading-5 dark:text-gray-300">

@@ -33,7 +33,7 @@ export default function Terms() {
             </AnimatedGradientText>
           </span>
         </h2>
-        <div className="text-lg mx-auto max-w-xl xl:max-w-4xl leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-6">
+        <div className="text-lg mx-auto max-w-xl lg:max-w-4xl leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-6">
           <p>
             Welcome to{" "}
             <a

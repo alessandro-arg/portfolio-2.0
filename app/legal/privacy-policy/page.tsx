@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
             </AnimatedGradientText>
           </span>
         </h2>
-        <div className="text-lg mx-auto max-w-4xl leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-6">
+        <div className="text-lg mx-auto max-w-xl lg:max-w-4xl leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-6">
           <p>
             This website (
             <a

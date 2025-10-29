@@ -11,6 +11,7 @@ import { useContactModal } from "@/app/contact/ContactModalProvider";
 import { MoreMenu } from "./_ui/MoreMenu";
 import { MobileMore } from "./_ui/MobileMore";
 import { moreLinks } from "./more.data";
+import { BrandMark } from "./BrandMark";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
@@ -191,10 +192,10 @@ export default function Header() {
           <Link
             href="/"
             className="absolute left-6 top-6 select-none text-base font-semibold tracking-tight sm:text-lg"
-            onMouseDown={(e) => e.currentTarget.classList.add("scale-95")}
-            onMouseUp={(e) => e.currentTarget.classList.remove("scale-95")}
+            aria-label="Go to homepage"
           >
-            Alessandro
+            <span className="sr-only">Alessandro</span>
+            <BrandMark className="h-12 w-auto" />
           </Link>
 
           <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-black/10 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">

@@ -42,6 +42,24 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://alessandro-argenziano.com"),
   title: "Alessandro - Portfolio",
   description: "Fullstack Developer • Next.js • Tailwind CSS • Animations",
+  icons: {
+    icon: [
+      { url: "/brand/logo-light.svg", media: "(prefers-color-scheme: light)" },
+      { url: "/brand/logo-dark.svg", media: "(prefers-color-scheme: dark)" },
+      { url: "/icons/favicon-32x16.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon.ico" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/icons/safari-pinned-tab.svg",
+        color: "#0EA5E9",
+      },
+    ],
+  },
+  manifest: "/icons/site.webmanifest",
 };
 
 export const dynamic = "force-dynamic";

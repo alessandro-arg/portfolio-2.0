@@ -163,6 +163,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
 }
 
 /* Fuma Docs  */
@@ -236,12 +238,20 @@
   font-variant-numeric: tabular-nums;
 }
 
+.fullscreen {
+  height: 100dvh;
+  height: 100svh;
+  min-height: 100vh;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
   }
 
   h3,
@@ -258,4 +268,20 @@
 *,
 body {
   scroll-behavior: smooth;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 700px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
 }

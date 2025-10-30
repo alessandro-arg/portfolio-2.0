@@ -51,13 +51,6 @@ export const metadata: Metadata = {
       { url: "/icons/favicon.ico" },
     ],
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/icons/safari-pinned-tab.svg",
-        color: "#0EA5E9",
-      },
-    ],
   },
   manifest: "/icons/site.webmanifest",
 };
@@ -76,6 +69,10 @@ export default function RootLayout({
       className="relative"
       data-scroll-behavior="smooth"
     >
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >

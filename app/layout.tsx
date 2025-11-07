@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -38,21 +38,26 @@ const outfitSans = Outfit({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://alessandro-argenziano.com"),
   title: "Alessandro - Portfolio",
-  description: "Fullstack Developer • Next.js • Tailwind CSS • Animations",
+  description: "Fullstack Developer • Angular • Next.js • React",
   icons: {
     icon: [
-      { url: "/brand/logo-light.svg", media: "(prefers-color-scheme: light)" },
-      { url: "/brand/logo-dark.svg", media: "(prefers-color-scheme: dark)" },
-      { url: "/icons/favicon-32x16.png", sizes: "32x32", type: "image/png" },
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/icons/favicon.ico" },
+      { url: "/icons/icon1.png", type: "image/png" },
+      { url: "/icons/icon0.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+    apple: [{ url: "/icons/apple-icon.png", sizes: "180x180" }],
   },
-  manifest: "/icons/site.webmanifest",
+  manifest: "/icons/manifest.json",
 };
 
 export const dynamic = "force-dynamic";
@@ -69,10 +74,6 @@ export default function RootLayout({
       className="relative"
       data-scroll-behavior="smooth"
     >
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
-      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >

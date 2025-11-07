@@ -3,6 +3,7 @@ import { FooterLinks } from "./FooterLinks";
 import { footerCategories } from "./footer.data";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import Image from "next/image";
+import { Logo } from "../ui/logo";
 
 export default function Footer() {
   return (
@@ -10,30 +11,9 @@ export default function Footer() {
       <div className="relative flex flex-col items-center g-6 mb-10 md:flex-row">
         <div className="flex flex-1 flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="hidden flex-col gap-y-6 md:flex md:w-1/2">
-            <a href="#content" className="relative inline-block">
-              <Image
-                src="/brand/logo-dark-256px.png"
-                alt="small logo"
-                width={80}
-                height={80}
-                aria-hidden="true"
-                draggable={false}
-                className="w-20 h-20 select-none block dark:hidden"
-                loading="lazy"
-                decoding="async"
-              />
-              <Image
-                src="/brand/logo-light-256px.png"
-                alt="small logo"
-                width={80}
-                height={80}
-                aria-hidden="true"
-                draggable={false}
-                className="w-20 h-20 select-none hidden dark:block"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
+            <Link href="#content" className="relative inline-block">
+              <Logo className="w-18 h-18 select-none" />
+            </Link>
             <p className="w-60 text-base leading-5 dark:text-gray-300">
               I&apos;m Alessandro - a full-stack developer, gamer and problem
               solver. Thanks for checking out my site!

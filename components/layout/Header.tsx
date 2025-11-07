@@ -241,7 +241,7 @@ export default function Header() {
               </li>
 
               {/* Contact button - Changed to button with onClick */}
-              <motion.div
+              <motion.li
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.97, y: 0 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -258,7 +258,7 @@ export default function Header() {
                 >
                   Contact
                 </button>
-              </motion.div>
+              </motion.li>
             </ul>
 
             {/* Mobile burger */}

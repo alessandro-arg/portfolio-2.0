@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FooterLinks } from "./FooterLinks";
 import { footerCategories } from "./footer.data";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
-import Image from "next/image";
 import { Logo } from "../ui/logo";
 
 export default function Footer() {
@@ -11,7 +10,12 @@ export default function Footer() {
       <div className="relative flex flex-col items-center g-6 mb-10 md:flex-row">
         <div className="flex flex-1 flex-col items-center gap-4 md:flex-row md:justify-between">
           <div className="hidden flex-col gap-y-6 md:flex md:w-1/2">
-            <Link href="#content" className="relative inline-block">
+            <Link
+              href="#content"
+              className="relative inline-block"
+              aria-label="return to the top"
+              title="logo"
+            >
               <Logo className="w-18 h-18 select-none" />
             </Link>
             <p className="w-60 text-base leading-5 dark:text-gray-300">

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Magnet from "@/components/ui/magnet";
 import { cn } from "@/lib/utils";
 import { useContactModal } from "./ContactModalProvider";
-import Image from "next/image";
 import { Logo } from "@/components/ui/logo";
 
 type ContactSectionProps = {

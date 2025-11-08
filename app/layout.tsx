@@ -42,6 +42,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -58,6 +62,10 @@ export const metadata: Metadata = {
     apple: [{ url: "/icons/apple-icon.png", sizes: "180x180" }],
   },
   manifest: "/icons/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const dynamic = "force-dynamic";

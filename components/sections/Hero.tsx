@@ -131,7 +131,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 pt-20 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
         <Link
-          href="https://www.chess2.alessandro-argenziano.com"
+          href="https://coordina.alessandro-argenziano.com"
           target="__blank"
         >
           <motion.div
@@ -140,11 +140,14 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
           >
-            <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed text-white">
+            <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
               New
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
-              Chess² is now live! Try it out
+              <strong className="font-medium dark:text-white text-black">
+                Coordina
+              </strong>{" "}
+              is now live! Try it out
               <ArrowRight
                 size={24}
                 strokeWidth={3}
@@ -175,7 +178,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 60 }}
         >
           <span className="text-neutral-700 dark:text-neutral-300 flex items-center justify-center">
-            Hello, I’m Alessandro
+            Hello, I&apos;m Alessandro
           </span>
           <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
             <Image
@@ -207,7 +210,7 @@ export default function Hero() {
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
             <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-black dark:text-white dark:group-hover:text-black">
-              Let’s Connect
+              Let&apos;s Connect
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight

@@ -9,8 +9,9 @@ export const projectsData: Project[] = [
       "DA Bubble is a Slack-inspired chat that enables real-time messaging across public and private channels...",
     src: "/images/dabubble_mockup.jpg",
     href: "/projects/dabubble",
+    liveLink: "https://dabubble.alessandro-argenziano.com",
     slug: "dabubble",
-    github: "https://github.com/alessandro-arg/dabubble",
+    github: "https://github.com/alessandro-arg/da-bubble",
     technologies: ["angular", "ts", "tailwind", "firebase"],
     year: "2025",
     points: [
@@ -28,6 +29,9 @@ export const projectsData: Project[] = [
         { color: "#F9D793", at: "113.5%" },
       ],
     },
+    calloutTitle: "Chat online with friends and organize your work",
+    calloutDescription:
+      "Chat with your friends in real time, open threads and use the shortcuts to enjoy a mouse-less experience.",
   },
   {
     title: "Join",
@@ -37,6 +41,7 @@ export const projectsData: Project[] = [
       "Join is a web application inspired by Trello / Jira boards...",
     src: "/images/join_mockup.jpg",
     href: "/projects/join",
+    liveLink: "https://join.alessandro-argenziano.com",
     slug: "join",
     github: "https://github.com/alessandro-arg/join",
     technologies: ["js", "sass", "firebase"],

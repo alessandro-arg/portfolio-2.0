@@ -18,7 +18,11 @@ export type TechKey =
   | "tailwind"
   | "firebase"
   | "js"
-  | "sass";
+  | "sass"
+  | "next"
+  | "react"
+  | "appwrite"
+  | "react-query";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =

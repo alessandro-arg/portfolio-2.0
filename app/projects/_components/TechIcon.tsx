@@ -9,6 +9,10 @@ import {
   siFirebase,
   siJavascript,
   siSass,
+  siNextdotjs,
+  siReact,
+  siAppwrite,
+  siReactquery,
 } from "simple-icons/icons";
 
 // Define each icon and optionally override its default color
@@ -47,6 +51,27 @@ const ICONS: Record<
     title: siSass.title,
     hex: siSass.hex,
     path: siSass.path,
+  },
+  next: {
+    title: siNextdotjs.title,
+    hex: siNextdotjs.hex,
+    path: siNextdotjs.path,
+    overrideColor: "currentColor",
+  },
+  react: {
+    title: siReact.title,
+    hex: siReact.hex,
+    path: siReact.path,
+  },
+  appwrite: {
+    title: siAppwrite.title,
+    hex: siAppwrite.hex,
+    path: siAppwrite.path,
+  },
+  "react-query": {
+    title: siReactquery.title,
+    hex: siReactquery.hex,
+    path: siReactquery.path,
   },
 };
 

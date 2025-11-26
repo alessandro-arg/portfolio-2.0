@@ -6,7 +6,7 @@ export const projectsData: Project[] = [
     smallDescription:
       "Modern project & task management with Kanban boards, calendar views, analytics, and collaborative workspaces.",
     description:
-      "Coordina is a sleek, opinionated project & task management platform inspired by tools like Linear, Jira, and Trello. It combines Kanban boards, full-calendar scheduling, analytics dashboards, and multi-workspace collaboration into a single, fast Next.js app. Users can create projects, invite members, prioritize work with labels and due dates, and track progress over time via charts.",
+      "Coordina is a sleek, opinionated project & task management platform. It combines Kanban boards, full-calendar scheduling, analytics dashboards, and multi-workspace collaboration into a single, fast Next.js app. Users can create projects, invite members, prioritize work with labels and due dates, and track progress over time via charts.",
     src: "/images/coordina_mockup.webp",
     href: "/projects/coordina",
     liveLink: "https://coordina.alessandro-argenziano.com",
@@ -90,19 +90,19 @@ export const projectsData: Project[] = [
     theme: {
       angle: 135,
       stops: [
-        { color: "#0EA5E9", at: "30%" },
-        { color: "#6366F1", at: "60%" },
-        { color: "#A855F7", at: "90%" },
-        { color: "#F97316", at: "115%" },
+        { color: "#4FCBFF", at: "30%" },
+        { color: "#66D4FF", at: "60%" },
+        { color: "#80DDFF", at: "90%" },
+        { color: "#99E5FF", at: "115%" },
       ],
-      primary: "#6366F1",
+      primary: "#4FCBFF",
     },
     calloutTitle:
       "📋 Plan, prioritize, and track your projects in one cohesive workspace",
     calloutDescription:
       "Coordina lets you structure work into projects, visualize tasks on Kanban boards and calendars, and keep teams aligned with analytics and a polished, responsive UI.",
     whyBuilt:
-      "I wanted a project management tool that felt as polished as Linear but was fully under my control—both as a real-world productivity app and as a playground for modern React, Next.js, Appwrite, and React Query patterns. Coordina is my take on a focused, opinionated project & task manager that I would happily use for personal and client work.",
+      "I wanted a project management tool that felt as polished as Linear but was fully under my control, both as a real-world productivity app and as a playground for modern React, Next.js, Appwrite, and React Query patterns. Coordina is my take on a focused, opinionated project & task manager that I would happily use for personal and client work.",
     useCases: [
       "Plan sprints with Kanban boards and track progress across multiple projects.",
       "Manage personal tasks, side projects, and long-running initiatives in one dashboard.",

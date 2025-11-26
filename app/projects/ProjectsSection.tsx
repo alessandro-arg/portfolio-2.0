@@ -17,7 +17,20 @@ export default function ProjectsSection({
 }: ProjectsSectionProps) {
   const [activeIdx, setActiveIdx] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const ids = useMemo(() => projectsData.map((p, i) => p.slug ?? `p-${i}`), []);
+
+  const displayedProjects = useMemo(
+    () => (showCTA ? projectsData.slice(0, 3) : projectsData),
+    [showCTA]
+  );
+
+  const ids = useMemo(
+    () => displayedProjects.map((p, i) => p.slug ?? `p-${i}`),
+    [displayedProjects]
+  );
+
+  useEffect(() => {
+    setActiveIdx(0);
+  }, [displayedProjects.length]);
 
   useEffect(() => {
     const options: IntersectionObserverInit = {
@@ -40,7 +53,7 @@ export default function ProjectsSection({
     itemRefs.current.forEach((el) => el && observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [displayedProjects.length]);
 
   return (
     <section
@@ -73,7 +86,7 @@ export default function ProjectsSection({
       >
         {/* Here loop all the projects like -> for every project, create an article */}
         <div className="mx-auto gap-y-6 flex lg:max-w-[65%] flex-col lg:gap-y-28">
-          {projectsData.map((project, i) => (
+          {displayedProjects.map((project, i) => (
             <div
               key={ids[i]}
               ref={(el) => {
@@ -88,7 +101,7 @@ export default function ProjectsSection({
         </div>
         <div className="hidden py-4 lg:sticky lg:block lg:w-[35%]">
           <div className="sticky top-40">
-            <ProjectInfoPanel project={projectsData[activeIdx] ?? null} />
+            <ProjectInfoPanel project={displayedProjects[activeIdx] ?? null} />
           </div>
         </div>
       </div>

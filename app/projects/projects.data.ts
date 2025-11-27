@@ -59,7 +59,7 @@ export const projectsData: Project[] = [
       },
     ],
     year: "2025",
-    date: "2025-11-25",
+    date: "2025-11",
     points: [
       {
         title: "Kanban Boards for Every Project",
@@ -88,7 +88,7 @@ export const projectsData: Project[] = [
       },
     ],
     theme: {
-      angle: 135,
+      angle: 10,
       stops: [
         { color: "#4FCBFF", at: "30%" },
         { color: "#66D4FF", at: "60%" },
@@ -121,21 +121,75 @@ export const projectsData: Project[] = [
   {
     title: "DABubble",
     smallDescription:
-      "Seamless team communication with real-time chat, channels, and user presence.",
+      "Slack-style team chat with channels, DMs, threads, reactions, and real-time presence.",
     description:
-      "DA Bubble is a Slack-inspired chat that enables real-time messaging across public and private channels...",
-    src: "/images/dabubble_mockup.jpg",
+      "DABubble is a modern chat application. It offers real-time messaging across public channels, private channels, and direct messages, plus threads, emoji reactions, mentions, and presence indicators. The app uses Firebase (Firestore, RTDB, Auth, Storage) with AngularFire to deliver live updates, secure authentication, and a responsive, accessible UI that feels at home on both desktop and mobile.",
+    src: "/images/dabubble_mockup.webp",
     href: "/projects/dabubble",
     liveLink: "https://dabubble.alessandro-argenziano.com",
     slug: "dabubble",
     github: "https://github.com/alessandro-arg/da-bubble",
     technologies: ["angular", "ts", "tailwind", "firebase"],
+    techDesc: [
+      {
+        name: "Angular 17",
+        description:
+          "- Standalone components, typed routing, and SSR support power the workspace shell, channel layout, and auth-guarded routes.",
+        link: "https://angular.dev/",
+      },
+      {
+        name: "TypeScript",
+        description:
+          "- Strong typing for users, channels, messages, threads, and presence models keeps chat logic predictable and refactors safe.",
+        link: "https://www.typescriptlang.org/",
+      },
+      {
+        name: "Tailwind CSS",
+        description:
+          "- Utility-first styling for the Slack-like layout, responsive sidebar + content area, and accessible focus/hover states.",
+        link: "https://tailwindcss.com/",
+      },
+      {
+        name: "Firebase",
+        description:
+          "- Auth, Firestore, RTDB, and Storage provide secure login, real-time messages, presence tracking, and avatar/file uploads.",
+        link: "https://firebase.google.com/",
+      },
+      {
+        name: "AngularFire",
+        description:
+          "- Bridges Angular and Firebase with typed observables for streams, simplifying real-time listeners and auth state handling.",
+        link: "https://github.com/angular/angularfire",
+      },
+    ],
     year: "2025",
+    date: "2025-07",
     points: [
-      "Built with Angular 17 and TypeScript for modular and scalable architecture.",
-      "Powered by Firebase for authentication, storage, and real-time data sync.",
-      "Supports private chats, group channels, threads, and emoji reactions.",
-      "Responsive design with Tailwind CSS for a clean, modern user experience.",
+      {
+        title: "Channels & Direct Messages",
+        description:
+          "Organize conversations into public/private channels and one-to-one DMs, with a familiar Slack-style sidebar and headers.",
+      },
+      {
+        title: "Threads & In-Context Replies",
+        description:
+          "Reply to specific messages in dedicated threads, keeping busy channels clean while preserving full context.",
+      },
+      {
+        title: "Emoji Reactions & Message Editing",
+        description:
+          "React with emojis, edit sent messages, and keep the conversation expressive without sending extra chat spam.",
+      },
+      {
+        title: "Mentions & Presence",
+        description:
+          "Use @user and #channel mentions, with online/offline/last-seen indicators backed by Firebase presence data.",
+      },
+      {
+        title: "Responsive, Accessible UI",
+        description:
+          "Tailwind-driven layout, keyboard navigation, and ARIA roles make DABubble usable on laptops, tablets, and phones.",
+      },
     ],
     theme: {
       angle: 10,
@@ -145,10 +199,131 @@ export const projectsData: Project[] = [
         { color: "#C084FC", at: "99.88%" },
         { color: "#F9D793", at: "113.5%" },
       ],
+      primary: "#6366F1",
     },
-    calloutTitle: "Chat online with friends and organize your work",
+    calloutTitle:
+      "💬 Real-time team chat with channels, DMs, threads, and reactions",
     calloutDescription:
-      "Chat with your friends in real time, open threads and use the shortcuts to enjoy a mouse-less experience.",
+      "DABubble brings a smooth experience to the browser: create channels, send direct messages, reply in threads, react with emojis, and see who's online, all powered by Angular and Firebase.",
+    whyBuilt:
+      "I wanted to deeply understand what it takes to build a modern, real-time messaging app: presence, threads, reactions, and secure multi-user data flows. DABubble became my playground for Angular 17, Firebase, Tailwind, and real-time UX patterns, while recreating the collaboration flow of tools like Slack and Discord.",
+    useCases: [
+      "Create workspaces for small teams and organize conversations into topic-based channels.",
+      "Use direct messages and group channels to coordinate quickly without email.",
+      "Keep busy channels readable by moving detailed discussions into threads.",
+      "Rely on presence indicators and last-seen times to know who's available.",
+      "Run the app during coding sessions, study groups, or side-project collabs.",
+    ],
+    learnings: [
+      "Designing Firestore collections for users, groups, private chats, messages, and threads upfront avoids painful migrations later.",
+      "Combining AngularFire streams with local UI state provides smooth real-time updates without over-complicating global state management.",
+      "Implementing mentions and reactions cleanly requires a clear separation between message content, metadata, and aggregated reaction counts.",
+      "Presence tracking with Firebase RTDB + heartbeats is powerful but needs careful timeouts and cleanup to stay accurate.",
+      "Investing early in accessibility (focus management, ARIA roles, keyboard shortcuts) makes a dense chat UI feel much more polished.",
+    ],
+  },
+  {
+    title: "Chess²",
+    smallDescription:
+      "Online chess game with real-time multiplayer against friends, Stockfish AI, and Elo ratings.",
+    description:
+      "Chess² is a modern web-based chess game where you can play against friends in real time or challenge a Stockfish-powered bot. It features authenticated accounts, friend lists, an Elo rating system, and detailed game recaps. Under the hood, it uses Firebase Realtime Database for live games, Firestore for user data, and a dedicated Stockfish worker deployed on Render for fast, realistic AI play, all wrapped in a responsive, polished UI.",
+    src: "/images/chess_mockup.webp",
+    href: "/projects/chess",
+    liveLink: "https://chess2.alessandro-argenziano.com",
+    slug: "chess",
+    github: "https://github.com/alessandro-arg/chess",
+    technologies: ["angular", "ts", "tailwind", "firebase"],
+    techDesc: [
+      {
+        name: "Angular 17",
+        description:
+          "- Standalone components, typed routing, and SSR provide a structured dashboard shell, smooth navigation, and fast initial loads.",
+        link: "https://angular.dev/",
+      },
+      {
+        name: "TypeScript",
+        description:
+          "- Strong typing for moves, boards, games, and users keeps chess logic deterministic and refactors safe as the codebase grows.",
+        link: "https://www.typescriptlang.org/",
+      },
+      {
+        name: "Tailwind CSS",
+        description:
+          "- Utility-first styling for the board, dashboard, and modals, enabling a clean, responsive layout and quick design iterations.",
+        link: "https://tailwindcss.com/",
+      },
+      {
+        name: "Firebase",
+        description:
+          "- Auth, Firestore, Realtime Database, and Storage power accounts, friend lists, live games, and secure per-user data.",
+        link: "https://firebase.google.com/",
+      },
+      {
+        name: "Stockfish",
+        description:
+          "- A strong open-source chess engine accessed via a Render-hosted worker to provide fast, realistic AI opponents in the browser.",
+        link: "https://stockfishchess.org/",
+      },
+    ],
+    year: "2025",
+    date: "2025-09",
+    points: [
+      {
+        title: "Real-time Multiplayer",
+        description:
+          "Challenge friends to live games backed by Firebase Realtime Database, with synchronized clocks, turns, and game states.",
+      },
+      {
+        title: "Stockfish Bot Integration",
+        description:
+          "Play against a Stockfish-powered AI via a dedicated engine server, with moves validated both by chess.js and the engine.",
+      },
+      {
+        title: "Accounts, Friends & Invitations",
+        description:
+          "Sign in with Firebase Auth, add friends, send invites, and keep all games tied to your profile and history.",
+      },
+      {
+        title: "Elo Rating System",
+        description:
+          "Win or lose rating points after rated games using a custom Elo service, encouraging fair matchmaking and progression.",
+      },
+      {
+        title: "Game Recap & Responsive UI",
+        description:
+          "Review your recent games from the dashboard and enjoy a mobile-friendly layout built with Angular 17 and TailwindCSS.",
+      },
+    ],
+    theme: {
+      angle: 10,
+      stops: [
+        { color: "#14B8A6", at: "49.9%" },
+        { color: "#14B8A6", at: "81.7%" },
+        { color: "#5EEAD4", at: "99.88%" },
+        { color: "#F9D793", at: "113.5%" },
+      ],
+      primary: "#14B8A6",
+    },
+    calloutTitle: "♟️ Play online with friends or against Stockfish AI bots",
+    calloutDescription:
+      "Create an account, add friends, and start real-time games—or sharpen your tactics versus a fast, Stockfish-powered bot directly in the browser.",
+    whyBuilt:
+      "I wanted to build more than a simple chess board: a complete multiplayer platform with accounts, ratings, and a strong AI opponent. Chess² became a way to combine my love for chess with modern Angular, Firebase, and SSR patterns and to push myself to ship a polished, real-world app in just a few weeks.",
+    useCases: [
+      "Play casual or rated games with friends in the browser.",
+      "Practice vs a Stockfish bot to explore openings and tactics.",
+      "Share a game link and start playing instantly, no installs.",
+      "Track your recent games and see how your Elo evolves over time.",
+      "Use it on desktop or mobile for quick games during breaks.",
+    ],
+    learnings: [
+      "Designing a deterministic game loop with chess.js and validating moves server-side helps prevent illegal positions and desyncs.",
+      "Separating UI state from canonical game state avoids animation glitches and keeps reconnections stable during live games.",
+      "Using Firebase Realtime Database for games and Firestore for profiles/friends keeps reads efficient and data modeling clear.",
+      "Integrating a remote Stockfish worker requires careful timeouts, error handling, and rate limiting to keep the UI responsive.",
+      "Building an Elo system on top of Firebase data taught me how to handle concurrency, retries, and edge cases like aborted games.",
+    ],
   },
   {
     title: "Join",
@@ -178,97 +353,5 @@ export const projectsData: Project[] = [
         { color: "#F9D793", at: "113.5%" },
       ],
     },
-  },
-  {
-    title: "Chess²",
-    smallDescription:
-      "Online chess with real-time multiplayer, Stockfish AI, and Elo ratings.",
-    description:
-      "Chess² is a modern web chess app built with heart and an eye for details...",
-    src: "/images/chess_mockup.webp",
-    href: "/projects/chess",
-    liveLink: "https://chess2.alessandro-argenziano.com",
-    slug: "chess",
-    github: "https://github.com/alessandro-arg/chess",
-    technologies: ["angular", "ts", "tailwind", "firebase"],
-    techDesc: [
-      {
-        name: "Angular",
-        description:
-          "- Modern frontend framework with standalone components, SSR, and powerful reactive forms.",
-        link: "https://angular.dev/",
-      },
-      {
-        name: "TypeScript",
-        description:
-          "- Strongly typed JavaScript enabling safer refactors and reliable game logic.",
-        link: "https://www.typescriptlang.org/",
-      },
-      {
-        name: "Tailwind CSS",
-        description:
-          "- Utility-first styling for responsive UI, dark mode, and consistent spacing.",
-        link: "https://tailwindcss.com/",
-      },
-      {
-        name: "Firebase",
-        description:
-          "- Auth + RTDB/Firestore for secure accounts, presence, and real-time games.",
-        link: "https://firebase.google.com/",
-      },
-    ],
-    year: "2025",
-    date: "2025-09-12",
-    points: [
-      {
-        title: "Real-time Multiplayer",
-        description: "Challenge friends and play live...",
-      },
-      {
-        title: "Stockfish Bot Integration",
-        description: "Battle an in-browser Stockfish...",
-      },
-      {
-        title: "Accounts, Profiles & Friends",
-        description: "Firebase Auth for email/Google...",
-      },
-      {
-        title: "Elo Ratings",
-        description: "Earn or lose Elo after rated games...",
-      },
-      {
-        title: "Responsive UI & Premove",
-        description: "Mobile-first layout, keyboard shortcuts...",
-      },
-    ],
-    theme: {
-      angle: 10,
-      stops: [
-        { color: "#14B8A6", at: "49.9%" },
-        { color: "#14B8A6", at: "81.7%" },
-        { color: "#5EEAD4", at: "99.88%" },
-        { color: "#F9D793", at: "113.5%" },
-      ],
-      primary: "#14B8A6",
-    },
-    calloutTitle: "♟️ Play online with friends or against Stockfish AI bots",
-    calloutDescription:
-      "Challenge friends in real time, or sharpen tactics vs a fast, in-browser Stockfish—no install needed.",
-    whyBuilt:
-      "I've always loved chess and wanted a fast, modern app that feels instant...",
-    useCases: [
-      "Play casual or rated games with friends in the browser.",
-      "Practice vs Stockfish at adjustable strength levels.",
-      "Share a game link and start instantly—no app store.",
-      "Review openings and blunders with the quick recap.",
-      "Use on mobile or desktop during breaks or commutes.",
-    ],
-    learnings: [
-      "Designing a deterministic game loop and validating moves on both client and server reduces desyncs.",
-      "Separating UI state from canonical game state avoids animation jank during fast sequences.",
-      "Firebase RTDB presence + heartbeats creates reliable online/offline indicators.",
-      "Web Worker integration keeps the UI snappy while Stockfish thinks.",
-      "Careful rate-limiting and security rules prevent malicious move injections.",
-    ],
   },
 ];

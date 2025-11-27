@@ -120,7 +120,7 @@ export default function TechCard() {
     <div className="absolute inset-0 group">
       <div className="flex h-full flex-col gap-10 py-12">
         {/* Top: title */}
-        <h3 className="w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 text-center text-2xl sm:text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
+        <h3 className="w-full bg-linear-to-b from-black to-[#5db6e3] dark:to-[#83d6ff90] bg-clip-text px-4 text-center text-2xl sm:text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
           Technologies I use <br /> and love
         </h3>
 

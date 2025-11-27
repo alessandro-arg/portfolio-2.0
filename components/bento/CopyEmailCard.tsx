@@ -50,15 +50,15 @@ export default function CopyEmailCard() {
             id="tsparticlesfullpage"
             background="transparent"
             minSize={0.3}
-            maxSize={theme === "dark" ? 1 : 3}
-            particleDensity={100}
+            maxSize={theme === "dark" ? 0.5 : 2}
+            particleDensity={50}
             className="w-full h-full"
             particleColor={theme === "dark" ? "#FFFFFF" : "#000000"}
           />
         </div>
-        <span className="w-full bg-linear-to-b from-black to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white max-w-80 -translate-y-4 py-2">
+        <h3 className="w-full bg-linear-to-b from-black to-[#5db6e3] dark:to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white max-w-80 -translate-y-4 py-2">
           Let&apos;s work together on your next project
-        </span>
+        </h3>
         <div className="relative flex">
           <button
             type="button"

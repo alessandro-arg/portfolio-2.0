@@ -31,10 +31,10 @@ export default function Links() {
             />
             <h1 className="font-semibold text-xl">Alessandro Argenziano</h1>
             <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">
-              <span className="rounded-full px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-500">
+              <span className="rounded-full px-3 py-1 bg-blue-500/80 text-primary font-medium">
                 Developer
               </span>
-              <span className="rounded-full px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-500">
+              <span className="rounded-full px-3 py-1 bg-emerald-500/80 text-primary font-medium">
                 Problem Solver
               </span>
             </div>

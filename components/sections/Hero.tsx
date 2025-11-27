@@ -143,11 +143,11 @@ export default function Hero() {
             <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
               New
             </span>
-            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
+            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
               <strong className="font-medium dark:text-white text-zinc-600">
                 Coordina
               </strong>{" "}
-              is now live! Try it out
+              is now live!
               <ArrowRight
                 size={24}
                 strokeWidth={3}
@@ -182,7 +182,7 @@ export default function Hero() {
           </span>
           <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
             <Image
-              src="/images/profile-img.jpg"
+              src="/images/profile-img.webp"
               alt="Alessandro"
               loading="lazy"
               draggable="false"

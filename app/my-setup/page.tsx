@@ -48,7 +48,7 @@ export default function MySetup() {
               colorTo="#16b1ff"
               className="tracking-normal italic w-full"
             >
-              Setup
+              setup
             </AnimatedGradientText>
           </span>
         </h2>

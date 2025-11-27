@@ -212,7 +212,7 @@ export default function Skills() {
               colorTo="#16b1ff"
               className="pe-2 tracking-tight italic"
             >
-              Sauce
+              sauce
             </AnimatedGradientText>
           </span>
         </h2>

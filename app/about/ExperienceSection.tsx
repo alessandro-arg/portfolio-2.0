@@ -3,6 +3,7 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MapPin, Briefcase } from "lucide-react";
 import TimelineRail from "./ui/timeline-rail";
+import { Badge } from "@/components/ui/badge";
 
 export default function ExperienceSection() {
   return (
@@ -36,7 +37,7 @@ export default function ExperienceSection() {
                     className="text-muted-foreground text-xs font-medium tracking-wide uppercase"
                     dateTime="OCT 2025 - Present"
                   >
-                    OCT 2025 - Present
+                    JAN 2026 - Present
                   </time>
                   <div className="flex items-center gap-2">
                     <h2 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
@@ -57,40 +58,42 @@ export default function ExperienceSection() {
               </div>
               <div className="hidden md:block"></div>
               <div className="relative w-full">
-                <div className="flex flex-col gap-y-6 text-xs leading-relaxed md:text-sm">
+                <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Fachinformatiker - Anwendungsentwickler
+                      Fachinformatiker - Anwendungsentwickler &#40;IHK&#41;
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
                     <ul className="flex list-none flex-col gap-y-4 text-neutral-700 dark:text-neutral-300/90">
                       <li className="leading-relaxed">
-                        key and{" "}
-                        <span className="font-semibold text-neutral-900 dark:text-neutral-200">
-                          important
-                        </span>
+                        Die Umschulung zum{" "}
+                        <span className="important-span">
+                          Fachinformatiker für Anwendungsentwicklung
+                        </span>{" "}
+                        besteht aus Phasen mit theoretischem und praktischem
+                        Unterricht sowie der Prüfung.
+                        <span className="important-span"></span>
                       </li>
                       <li className="leading-relaxed">
-                        Architected enterprise-scale, CMS-driven reusable
-                        pagebuilder blocks with dynamic configurability using
-                        Sanity and Contentful, enabling non-technical teams to
-                        manage content across 6+ production websites. Designed
-                        custom schemas and optimized GROQ queries, resulting in
-                        40% faster content delivery.
+                        Nach der Vermittlung von Grundlagenwissen und
+                        allgemeinen IT-Kompetenzen werde ich alles zum
+                        Schwerpunkt Anwendungsentwicklung lernen.
                       </li>
-                      <li className="leading-relaxed">key</li>
-                      <li className="leading-relaxed">key</li>
+                      <li className="leading-relaxed">
+                        In einem betrieblichen Praktikum als zentralem Teil der
+                        Fachinformatiker-Umschulung werde ich meine gewonnenen
+                        theoretischen Kenntnisse in der täglichen Arbeit
+                        anwenden und so wertvolle Praxis-Erfahrung sammeln.{" "}
+                      </li>
                     </ul>
                   </section>
                   <section aria-label="Technologies used">
                     <div className="flex flex-wrap gap-2">
-                      <span
-                        data-slot="badge"
-                        className="inline-flex items-center justify-center rounded-lg border px-3 py-1 w-fit whitespace-nowrap shrink-0 gap-2 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden text-black dark:text-white font-mono border-white-3 dark:bg-neutral-900 dark:border-white/[0.14] bg-white-2 [a&]:hover:bg-primary/90 text-xs md:text-sm"
-                      >
-                        TypeScript
-                      </span>
+                      <Badge variant="outline">Python</Badge>
+                      <Badge variant="outline">SQL</Badge>
+                      <Badge variant="outline">Client-Systeme</Badge>
+                      <Badge variant="outline">MS-Office</Badge>
                     </div>
                   </section>
                 </div>
@@ -103,11 +106,11 @@ export default function ExperienceSection() {
                     className="text-muted-foreground text-xs font-medium tracking-wide uppercase"
                     dateTime="MAY 2024 - OCT 2025"
                   >
-                    MAY 2024 - OCT 2025
+                    MAY 2024 - DEZ 2025
                   </time>
                   <div className="flex items-center gap-2">
                     <h2 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Developer Akademie - Fullstack Developer
+                      Developer Akademie
                     </h2>
                   </div>
                   <div className="font-outfit flex flex-col gap-2">
@@ -124,33 +127,78 @@ export default function ExperienceSection() {
               </div>
               <div className="hidden md:block"></div>
               <div className="relative w-full">
-                <div className="flex flex-col gap-y-6 text-xs leading-relaxed md:text-sm">
+                <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Webdevelopment - Fullstack
+                      Webdevelopment - Full-stack
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
                     <ul className="flex list-none flex-col gap-y-4 text-neutral-700 dark:text-neutral-300/90">
                       <li className="leading-relaxed">
-                        key and{" "}
-                        <span className="font-semibold text-neutral-900 dark:text-neutral-200">
-                          important
+                        Abschluss des anspruchsvollen Fullstack-Programms an
+                        Deutschlands führender TÜV-zertifizierter Akademie für
+                        Webentwicklung. Erfolgreiche Umsetzung von über 12
+                        Projekten, sowohl individuell als auch im Team.{" "}
+                        <span className="important-span"></span>
+                      </li>
+                      <li className="leading-relaxed">
+                        Web-Programmierung mit{" "}
+                        <span className="important-span">
+                          HTML, CSS &#40;SCSS&#41;
+                        </span>{" "}
+                        und <span className="important-span">JavaScript</span>
+                      </li>
+                      <li className="leading-relaxed">
+                        Web Front-End Entwicklung mit{" "}
+                        <span className="important-span">Angular</span> und{" "}
+                        <span className="important-span">TypeScript</span>
+                      </li>
+                      <li className="leading-relaxed">
+                        Nutzung von Design-Frameworks wie{" "}
+                        <span className="important-span">Bootstrap</span> und{" "}
+                        <span className="important-span">Material Design</span>{" "}
+                        und umsetzung von UI/UX-Designs{" "}
+                        <span className="important-span">&#40;Figma&#41;</span>
+                      </li>
+                      <li className="leading-relaxed">
+                        Interaktion mit Datenbanken{" "}
+                        <span className="important-span">
+                          &#40;Google Firebase&#41;
+                        </span>{" "}
+                        und integration von{" "}
+                        <span className="important-span">REST APIs</span> zur
+                        Datenkommunikation
+                      </li>
+                      <li className="leading-relaxed">
+                        Versionskontrolle mit{" "}
+                        <span className="important-span">
+                          Git &#40;GitHub&#41;
+                        </span>{" "}
+                        und Agiles Projektmanagement für Entwicklung im Team
+                        <span className="important-span">
+                          {" "}
+                          &#40;SCRUM, Kanban&#41;
                         </span>
                       </li>
-                      <li className="leading-relaxed">key</li>
-                      <li className="leading-relaxed">key</li>
-                      <li className="leading-relaxed">key</li>
                     </ul>
                   </section>
                   <section aria-label="Technologies used">
                     <div className="flex flex-wrap gap-2">
-                      <span
-                        data-slot="badge"
-                        className="inline-flex items-center justify-center rounded-lg border px-3 py-1 w-fit whitespace-nowrap shrink-0 gap-2 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden text-black dark:text-white font-mono border-white-3 dark:bg-neutral-900 dark:border-white/[0.14] bg-white-2 [a&]:hover:bg-primary/90 text-xs md:text-sm"
-                      >
-                        TypeScript
-                      </span>
+                      <Badge variant="outline">Angular</Badge>
+                      <Badge variant="outline">JavaScript</Badge>
+                      <Badge variant="outline">TypeScript</Badge>
+                      <Badge variant="outline">Python</Badge>
+                      <Badge variant="outline">Django</Badge>
+                      <Badge variant="outline">HTML</Badge>
+                      <Badge variant="outline">SCSS</Badge>
+                      <Badge variant="outline">Bootstrap</Badge>
+                      <Badge variant="outline">Material Design</Badge>
+                      <Badge variant="outline">Figma</Badge>
+                      <Badge variant="outline">Firebase</Badge>
+                      <Badge variant="outline">REST APIs</Badge>
+                      <Badge variant="outline">Git</Badge>
+                      <Badge variant="outline">SCRUM</Badge>
                     </div>
                   </section>
                 </div>

@@ -14,8 +14,8 @@ export default function ProjectsPage() {
           fill
           decoding="async"
           priority
-          className="absolute inset-x-0 top-10 z-[-1] mx-auto overflow-hidden opacity-70 h-auto md:w-full md:max-w-[68rem] object-contain"
-          sizes="(max-width: 1200px) 100vw, 1088px"
+          sizes="90vw"
+          className="mx-auto overflow-hidden opacity-70 h-auto md:w-full md:max-w-[68rem] object-cover object-[center_90px] lg:object-[center_120px]"
         />
       </div>
 

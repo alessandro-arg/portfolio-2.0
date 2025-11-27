@@ -244,6 +244,10 @@
   min-height: 100vh;
 }
 
+.important-span {
+  @apply font-semibold text-neutral-900 dark:text-neutral-200;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

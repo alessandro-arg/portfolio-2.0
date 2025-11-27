@@ -2,21 +2,12 @@ import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import ContactSection from "../contact/ContactSection";
 import { Facebook } from "lucide-react";
 import Image from "next/image";
+import BackgroundFade from "@/components/ui/background-fade";
 
 export default function Links() {
   return (
     <>
-      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <Image
-          src="/images/nature-bg.webp"
-          alt="nature background"
-          fill
-          priority
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
-          decoding="async"
-          sizes="100vw"
-        />
-      </div>
+      <BackgroundFade />
       <section className="mx-auto w-full max-w-7xl overflow-x-hidden">
         <div className="relative mx-auto min-h-[75vh] max-w-lg overflow-x-hidden px-4">
           <div className="relative mx-auto flex flex-col items-center justify-center gap-4 overflow-hidden pt-50 pb-6">

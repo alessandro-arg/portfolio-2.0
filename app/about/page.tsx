@@ -5,21 +5,12 @@ import GithubSection from "./GithubSection";
 import ContactSection from "../contact/ContactSection";
 import ImageCarousel from "./ui/ImageCarousel";
 import Image from "next/image";
+import BackgroundFade from "@/components/ui/background-fade";
 
 export default function AboutPage() {
   return (
     <>
-      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <Image
-          src="/images/nature-bg.webp"
-          alt="nature background"
-          fill
-          priority
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
-          decoding="async"
-          sizes="100vw"
-        />
-      </div>
+      <BackgroundFade />
       <div className="relative mx-auto max-w-6xl px-4 pt-28 pb-12 md:pt-36 md:pb-20">
         <h2 className="relative z-2 text-5xl font-medium self-center tracking-tight text-balance sm:text-5xl md:text-6xl text-center mb-10 lg:mb-0 lg:text-left lg:max-w-lg [text-shadow:rgba(255,255,255,0.05)_0px_4px_8px,rgba(255,255,255,0.25)_0px_8px_30px]">
           <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">

@@ -1,6 +1,7 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ContactSection from "../contact/ContactSection";
 import Image from "next/image";
+import BackgroundFade from "@/components/ui/background-fade";
 
 interface SetupIcon {
   title: string;
@@ -34,17 +35,7 @@ const tools: SetupIcon[] = [
 export default function MySetup() {
   return (
     <>
-      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
-        <Image
-          src="/images/nature-bg.webp"
-          alt="nature background"
-          fill
-          priority
-          className="pointer-events-none absolute inset-0 z-[-1] h-[450px] w-full object-cover mix-blend-overlay select-none grayscale"
-          decoding="async"
-          sizes="100vw"
-        />
-      </div>
+      <BackgroundFade />
       <main className="px-4 py-16 pt-36 md:px-1 container">
         <h2 className="relative z-2 mb-12 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:mb-20 md:text-6xl text-center max-w-xl mx-auto [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
           <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">

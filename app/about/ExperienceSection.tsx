@@ -24,7 +24,7 @@ export default function ExperienceSection() {
               colorTo="#16b1ff"
               className="pe-2 tracking-tight italic"
             >
-              Ideas to life
+              ideas to life
             </AnimatedGradientText>
           </span>
         </h2>

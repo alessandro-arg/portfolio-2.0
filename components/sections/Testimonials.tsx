@@ -38,6 +38,15 @@ export const testimonialGradients = {
       #3A0A23 115%
     )
   `,
+  orange: `
+    linear-gradient(
+      180deg,
+      #3A230A 0%,
+      #8B5627 60%,
+      #6B431F 90%,
+      #3A230A 115%
+    )
+  `,
 };
 
 const testimonials = [
@@ -51,10 +60,18 @@ const testimonials = [
   },
   {
     quote:
+      "He combines technical skill with genuine passion, and it shows in everything he works on. You can always count on him to go the extra mile and approach challenges with positivity and professionalism.",
+    name: "Alessandro Raucci",
+    title: "A good old friend with fresh new solutions.",
+    role: "Backend Developer • Clanius Consulting SRL",
+    bg: testimonialGradients.orange,
+  },
+  {
+    quote:
       "Working with Alessandro was always constructive and inspiring. He has a solid technical understanding, creative ideas and a solution-oriented way of thinking. Reliable, a team player and committed - with him, every project is a succes.",
     name: "Eid Aden",
     title: "Consistent and clean work in every project.",
-    role: "Software Engineer • DA",
+    role: "Software Engineer • Developer Akademie",
     bg: testimonialGradients.violet,
   },
   {
@@ -70,7 +87,7 @@ const testimonials = [
       "He worked quickly and with great commitment, never limited himself to just 'his' tasks, and repeatedly contributed clever ideas that noticeably advanced our project.",
     name: "Judith Lenz",
     title: "Working with Alessandro in the team was inspiring.",
-    role: "Developer • Developer Akdemie",
+    role: "Frontend Developer • Developer Akdemie",
     bg: testimonialGradients.pink,
   },
 ];

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +32,7 @@ export const InfiniteTestimonialsCarousel: React.FC<
   const autoplayTimer = useRef<number | null>(null);
   const isHoveredRef = useRef(false);
   const isDraggingRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const clearAutoplay = useCallback(() => {
     if (autoplayTimer.current !== null) {
@@ -64,11 +65,13 @@ export const InfiniteTestimonialsCarousel: React.FC<
 
     const onPointerDown = () => {
       isDraggingRef.current = true;
+      setIsDragging(true);
       clearAutoplay();
     };
 
     const onPointerUp = () => {
       isDraggingRef.current = false;
+      setIsDragging(false);
       startAutoplay();
     };
 
@@ -114,7 +117,10 @@ export const InfiniteTestimonialsCarousel: React.FC<
         ref={emblaRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="embla__viewport overflow-hidden"
+        className={cn(
+          "embla__viewport overflow-hidden cursor-grab",
+          isDragging ? "cursor-grabbing" : "cursor-grab"
+        )}
       >
         <ul className="embla__container flex gap-4 px-[15px]">
           {items.map((item, index) => (
@@ -124,7 +130,6 @@ export const InfiniteTestimonialsCarousel: React.FC<
             >
               <article
                 className={cn(
-                  // 👇 your original fixed size styles
                   "relative flex h-[370px] w-[300px] flex-col justify-between overflow-hidden",
                   "rounded-xl p-5 antialiased select-none text-white",
                   "md:h-[440px] md:w-[400px] md:rounded-2xl lg:px-6 lg:py-7"

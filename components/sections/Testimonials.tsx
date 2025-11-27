@@ -1,6 +1,45 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { InfiniteTestimonialsCarousel } from "../ui/infinite-testimonials-carousel";
 
+export const testimonialGradients = {
+  blue: `
+    linear-gradient(
+      180deg,
+      #0A2733 0%,
+      #185B75 60%,
+      #15485C 90%,
+      #0A2733 115%
+    )
+  `,
+  violet: `
+    linear-gradient(
+      180deg,
+      #300A41 0%,
+      #67278F 60%,
+      #532170 90%,
+      #300A41 115%
+    )
+  `,
+  green: `
+    linear-gradient(
+      180deg,
+      #082E1A 0%,
+      #186639 60%,
+      #12502E 90%,
+      #082E1A 115%
+    )
+  `,
+  pink: `
+    linear-gradient(
+      180deg,
+      #3A0A23 0%,
+      #8B2756 60%,
+      #6B1F43 90%,
+      #3A0A23 115%
+    )
+  `,
+};
+
 const testimonials = [
   {
     quote:
@@ -8,7 +47,7 @@ const testimonials = [
     name: "Selahattin Safra",
     title: "Efficient, innovative, and a pleasure to work with.",
     role: "System Engineer • Letec IT Solutions",
-    bg: "linear-gradient(#2b5876, #4e4376)",
+    bg: testimonialGradients.blue,
   },
   {
     quote:
@@ -16,7 +55,7 @@ const testimonials = [
     name: "Eid Aden",
     title: "Consistent and clean work in every project.",
     role: "Software Engineer • DA",
-    bg: "linear-gradient(#2c3e50, #4ca1af)",
+    bg: testimonialGradients.violet,
   },
   {
     quote:
@@ -24,7 +63,7 @@ const testimonials = [
     name: "Marco Marrocu",
     title: "A frontend developer who transforms visions into reality.",
     role: "Supervisor • Imperial Auto",
-    bg: "linear-gradient(#314755, #26a0da)",
+    bg: testimonialGradients.green,
   },
   {
     quote:
@@ -32,23 +71,7 @@ const testimonials = [
     name: "Judith Lenz",
     title: "Working with Alessandro in the team was inspiring.",
     role: "Developer • Developer Akdemie",
-    bg: "linear-gradient(#373b44, #4286f4)",
-  },
-  {
-    quote:
-      "Working with Alessandro is a fantastic experience. He's not only highly skilled in frontend technologies but also brings a refreshing creativity to every project. His ability to solve complex problems quickly and effectively makes him a key asset to the team.",
-    name: "Selahattin Safra",
-    title: "Efficient, innovative, and a pleasure to work with.",
-    role: "System Engineer • Letec IT Solutions",
-    bg: "linear-gradient(#2b5876, #4e4376)",
-  },
-  {
-    quote:
-      "Working with Alessandro was always constructive and inspiring. He has a solid technical understanding, creative ideas and a solution-oriented way of thinking. Reliable, a team player and committed - with him, every project is a succes.",
-    name: "Eid Aden",
-    title: "Consistent and clean work in every project.",
-    role: "Software Engineer • DA",
-    bg: "linear-gradient(#2c3e50, #4ca1af)",
+    bg: testimonialGradients.pink,
   },
 ];
 

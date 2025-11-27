@@ -83,7 +83,7 @@ export default function ContactSection({
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
             <span className="z-10 px-3 text-black transition-colors duration-300 dark:text-white dark:group-hover:text-black">
-              Let's Connect
+              Let&lsquo;s Connect
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight

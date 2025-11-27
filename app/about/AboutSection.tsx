@@ -66,13 +66,13 @@ export default function AboutSection() {
           <div className="relative grid aspect-square w-52 place-content-center lg:me-10 lg:mt-20 lg:w-[500px]">
             {/* keep the exact “absolute + inset + rotate” look while using next/image */}
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile-img.webp"
               alt="Alessandro pic"
               fill
               className="absolute inset-0 rotate-3 rounded-[58px] object-cover"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 1024px) 208px, 500px"
+              sizes="80vw"
             />
           </div>
         </section>

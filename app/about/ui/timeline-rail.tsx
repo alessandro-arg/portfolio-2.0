@@ -90,7 +90,7 @@ function TimelineRail() {
           >
             {/* Perfect circular cover */}
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile-img.webp"
               alt="profile"
               fill
               className="block object-cover object-center select-none"

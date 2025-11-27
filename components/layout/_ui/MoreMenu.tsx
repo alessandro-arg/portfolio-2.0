@@ -31,7 +31,7 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
               className={cn(
                 "relative bg-transparent px-0 py-0 h-auto",
                 "text-sm font-medium",
-                "text-gray-600 dark:text-gray-300",
+                "text-neutral-800 dark:text-gray-300",
                 "hover:text-black dark:hover:text-white"
               )}
             >

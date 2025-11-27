@@ -144,7 +144,7 @@ export default function Hero() {
               New
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
-              <strong className="font-medium dark:text-white text-black">
+              <strong className="font-medium dark:text-white text-zinc-600">
                 Coordina
               </strong>{" "}
               is now live! Try it out
@@ -160,14 +160,14 @@ export default function Hero() {
 
         {/* Text*/}
         <motion.h2
-          className="font-instrument tracking-normal my-2 w-full py-px text-center text-3xl sm:text-4xl leading-snug! text-balance text-zinc-700 opacity-90 md:text-5xl lg:text-7xl dark:text-zinc-100"
+          className="font-instrument tracking-normal my-2 w-full py-px text-center text-3xl sm:text-4xl leading-snug! text-balance text-zinc-800 opacity-90 md:text-5xl lg:text-7xl dark:text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
           I design and develop apps <br />
           that are{" "}
-          <span className="tracking-normal bg-linear-to-b from-zinc-500 via-zinc-600 to-zinc-900 bg-clip-text font-normal text-transparent italic dark:from-zinc-600 dark:via-zinc-200 dark:to-white">
+          <span className="tracking-normal bg-linear-to-b from-zinc-300 via-zinc-700 to-zinc-900 bg-clip-text font-normal text-transparent italic dark:from-zinc-600 dark:via-zinc-200 dark:to-white">
             fast, responsive, and scalable
           </span>
         </motion.h2>
@@ -177,7 +177,7 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          <span className="text-neutral-700 dark:text-neutral-300 flex items-center justify-center">
+          <span className="text-zinc-800 dark:text-neutral-300 flex items-center justify-center">
             Hello, I&apos;m Alessandro
           </span>
           <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
@@ -191,7 +191,7 @@ export default function Hero() {
               className="transition-transform duration-300 hover:rotate-6 hover:scale-110"
             />
           </div>
-          <span className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <span className="text-zinc-800 dark:text-neutral-300 leading-relaxed">
             a Fullstack Developer
           </span>
         </motion.h1>

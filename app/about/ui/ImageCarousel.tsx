@@ -7,19 +7,19 @@ import Image from "next/image";
 const ImageCarousel = () => {
   const images = [
     {
-      src: "/images/profile.jpg",
+      src: "/images/profile-img.webp",
       title: "Developer",
       alt: "Developer",
     },
     {
-      src: "/images/nature-bg.webp",
+      src: "/images/snowboard.webp",
       title: "Snowboarder",
       alt: "Snowboarder",
     },
     {
-      src: "/images/chess_mockup.webp",
-      title: "Gamer",
-      alt: "Gamer",
+      src: "/images/travel.webp",
+      title: "Traveler",
+      alt: "Traveler",
     },
   ];
 
@@ -130,7 +130,7 @@ const ImageCarousel = () => {
                       draggable={false}
                       loading="lazy"
                       decoding="async"
-                      sizes="(min-width: 1024px) 300px, (min-width: 768px) 240px, (min-width: 640px) 200px, 160px"
+                      sizes="90vw"
                     />
                   </div>
 

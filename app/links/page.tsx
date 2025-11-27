@@ -21,11 +21,12 @@ export default function Links() {
         <div className="relative mx-auto min-h-[75vh] max-w-lg overflow-x-hidden px-4">
           <div className="relative mx-auto flex flex-col items-center justify-center gap-4 overflow-hidden pt-50 pb-6">
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile-img.webp"
               alt="profile picture"
-              width={120}
-              height={120}
-              className="rounded-full object-cover object-center h-[120px] w-[120px]"
+              width={150}
+              height={150}
+              className="rounded-full object-cover object-center h-[150px] w-[150px]"
+              sizes="90vw"
               priority
             />
             <h1 className="font-semibold text-xl">Alessandro Argenziano</h1>
@@ -86,11 +87,11 @@ export default function Links() {
             </a>
             <a
               href="mailto:contact@alessandro-argenziano.com"
-              className="group relative flex w-fit items-center justify-between rounded-full bg-black/20 text-black opacity-90 hover:bg-black/30 dark:bg-white/20 dark:text-white dark:hover:bg-white/30"
+              className="group relative flex w-fit items-center justify-between rounded-full bg-neutral-200 text-black opacity-90 hover:bg-neutral-300 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800 transition"
               referrerPolicy="no-referrer"
               target="_blank"
             >
-              <span className="pl-4 font-light text-base">
+              <span className="pl-4 font-normals text-base">
                 contact@alessandro-argenziano.com
               </span>
               <div className="relative mr-1 size-9 overflow-hidden rounded-full bg-transparent">
@@ -134,7 +135,7 @@ export default function Links() {
           <div className="flex flex-col gap-4 py-3">
             <a
               href="https://www.linkedin.com/in/alessandro-argenziano/"
-              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414]"
+              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414] hover:bg-neutral-100 dark:hover:bg-neutral-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -160,7 +161,7 @@ export default function Links() {
             </a>
             <a
               href="https://www.instagram.com/alessandro_7.5r/"
-              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414]"
+              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414]"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -173,7 +174,7 @@ export default function Links() {
             </a>
             <a
               href="https://github.com/alessandro-arg"
-              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414]"
+              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414] hover:bg-neutral-100 dark:hover:bg-neutral-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -201,7 +202,7 @@ export default function Links() {
             </a>
             <a
               href="https://www.instagram.com/alessandro_7.5r/"
-              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414]"
+              className="relative flex h-14 w-full items-center justify-center rounded-xl border border-white-3 bg-white-2 px-8 py-4 transition-colors duration-300 dark:border-neutral-700 dark:bg-[#151414] hover:bg-neutral-100 dark:hover:bg-neutral-800"
               rel="noopener noreferrer"
               target="_blank"
             >

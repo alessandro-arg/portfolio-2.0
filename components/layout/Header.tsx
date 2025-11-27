@@ -197,7 +197,7 @@ export default function Header() {
             <Logo className="w-10 h-10" />
           </Link>
 
-          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-black/10 bg-black/10 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-white/10">
+          <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-neutral-400/10 bg-neutral-300/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-neutral-400/20 dark:bg-neutral-800/80">
             {/* Nav */}
             <ul className="hidden items-center gap-6 md:flex">
               {menuItems.map((item) => {
@@ -207,7 +207,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       aria-label={item.ariaLabel}
-                      className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                      className="text-sm text-neutral-800 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
                     >
                       {item.label}
                     </Link>

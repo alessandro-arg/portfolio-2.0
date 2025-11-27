@@ -10,7 +10,6 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import { Analytics } from "@vercel/analytics/next";
 import "fumadocs-ui/style.css";
 import "./globals.css";
-import ConsoleEasterEgg from "@/components/ui/console-easter-egg";
 import { Suspense } from "react";
 
 const geistSans = Geist({
@@ -86,7 +85,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
-        <ConsoleEasterEgg />
         <ThemeProvider>
           <Suspense fallback={null}>
             {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}

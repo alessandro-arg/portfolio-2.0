@@ -4,7 +4,6 @@ import SocialButtons from "./ui/social-buttons";
 import GithubSection from "./GithubSection";
 import ContactSection from "../contact/ContactSection";
 import ImageCarousel from "./ui/ImageCarousel";
-import Image from "next/image";
 import BackgroundFade from "@/components/ui/background-fade";
 
 export default function AboutPage() {

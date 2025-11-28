@@ -15,49 +15,65 @@ interface Goal {
 
 const goals: Goal[] = [
   {
-    id: "skydive",
-    title: "Go skydiving",
-    description: "Jump from 4,000m and savor that 60s freefall.",
+    id: "github",
+    title: "Get 50+ followers on GitHub",
+    description: "",
     images: [],
     isChecked: false,
-    hasImage: true,
+    hasImage: false,
   },
   {
     id: "surf-portugal",
     title: "Learn to surf in Portugal",
     description: "A week in Ericeira catching green waves.",
-    images: ["/images/test1.png"],
+    images: [],
     isChecked: false,
-    hasImage: true,
+    hasImage: false,
   },
   {
     id: "aurora",
     title: "See the Northern Lights",
-    description: "Chase auroras around Tromsø in winter.",
-    images: [],
-    isChecked: true,
-    hasImage: false,
-  },
-  {
-    id: "tmb",
-    title: "Hike the Tour du Mont Blanc",
-    description: "10 days around Mont Blanc with huts and fondue.",
+    description: "",
     images: [],
     isChecked: false,
-    hasImage: true,
+    hasImage: false,
   },
   {
     id: "iceland-roadtrip",
     title: "Drive Iceland's Ring Road",
     description: "7-10 days, waterfalls, black sand beaches & hot springs.",
-    images: ["/images/test2.png"],
+    images: [],
     isChecked: false,
+    hasImage: false,
+  },
+  {
+    id: "snowboard",
+    title: "Do my first backflip on a snowboard",
+    description: "",
+    images: [],
+    isChecked: false,
+    hasImage: false,
+  },
+  {
+    id: "portfolio",
+    title: "Create a portfolio website",
+    description: "October 2025, https://alessandro-argenziano.com",
+    images: ["/images/portfolio.webp"],
+    isChecked: true,
     hasImage: true,
+  },
+  {
+    id: "remote-job",
+    title: "Get a Remote Job",
+    description: "",
+    images: [],
+    isChecked: false,
+    hasImage: false,
   },
   {
     id: "red-sea-scuba",
     title: "Scuba dive the Red Sea",
-    description: "Get Advanced Open Water and dive Ras Mohammed.",
+    description: "",
     images: [],
     isChecked: false,
     hasImage: false,
@@ -65,34 +81,34 @@ const goals: Goal[] = [
   {
     id: "kyoto-sakura",
     title: "Cherry blossom season in Kyoto",
-    description: "Philosopher's Path at full bloom.",
-    images: ["/images/test3.png"],
-    isChecked: true,
-    hasImage: true,
-  },
-  {
-    id: "cappadocia-balloon",
-    title: "Hot air balloon over Cappadocia",
-    description: "Sunrise flight over fairy chimneys.",
-    images: [],
-    isChecked: true,
-    hasImage: false,
-  },
-  {
-    id: "publish-story",
-    title: "Publish a short story",
-    description: "Submit to a lit mag and get one acceptance.",
+    description: "",
     images: [],
     isChecked: false,
     hasImage: false,
   },
   {
-    id: "half-marathon",
-    title: "Run a half-marathon",
-    description: "Finish sub 2 hours — steady pacing and vibes only.",
+    id: "open-source",
+    title: "First OpenSource contribution",
+    description: "",
     images: [],
     isChecked: false,
-    hasImage: true,
+    hasImage: false,
+  },
+  {
+    id: "skydive",
+    title: "Go skydiving",
+    description: "Jump from 4,000m and savor that 60s freefall.",
+    images: [],
+    isChecked: false,
+    hasImage: false,
+  },
+  {
+    id: "worl-trip",
+    title: "6 months Worldtrip",
+    description: "",
+    images: [],
+    isChecked: false,
+    hasImage: false,
   },
 ];
 
@@ -153,15 +169,15 @@ export default function BucketList() {
                   {goal.images.map((src, idx) => (
                     <div
                       key={`${goal.id}-img-${idx}`}
-                      className="relative overflow-hidden rounded-lg border border-white/10 h-10 w-10"
+                      className="relative overflow-hidden rounded-lg border border-white/10 h-10 w-10 flex items-center justify-center"
                     >
                       <Image
                         src={src}
                         alt={`${goal.title} ${idx + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-cover object-center"
                         loading="lazy"
-                        sizes="40px"
+                        sizes="90vw"
                       />
                     </div>
                   ))}

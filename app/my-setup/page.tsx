@@ -55,17 +55,15 @@ export default function MySetup() {
         <div className="mx-auto my-20 max-w-5xl">
           <div className="relative overflow-hidden rounded-2xl border-1 border-neutral-200/50 shadow-lg dark:border-white/10">
             <Image
-              src="/images/mac-m4-air.avif"
-              alt="MacBook"
+              src="/images/setup.webp"
+              alt="Setup by u/dee306"
               width={800}
-              height={600}
+              height={400}
               className="w-full h-auto object-cover"
-              loading="lazy"
+              sizes="90vw"
+              priority
             />
           </div>
-          <h3 className="mt-2 text-center font-light text-base text-neutral-900 dark:text-neutral-100">
-            MacBook Air
-          </h3>
         </div>
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-10 text-left font-bold text-2xl text-neutral-900 dark:text-neutral-100">

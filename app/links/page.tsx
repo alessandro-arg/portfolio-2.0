@@ -32,7 +32,7 @@ export default function Links() {
           </div>
           <div className="mx-auto justify-center items-center sm:justify-normal mb-4 flex flex-col sm:flex-row w-fit gap-4 sm:gap-2 md:text-sm">
             <a
-              href="https://alessandro-argenziano.com"
+              href="https://www.alessandro-argenziano.com"
               className="group relative flex w-fit items-center justify-between rounded-full bg-black text-white opacity-90 hover:bg-black/80 dark:bg-neutral-200 dark:text-black dark:hover:bg-neutral-300"
               referrerPolicy="no-referrer"
               target="_blank"

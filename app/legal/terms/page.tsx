@@ -37,7 +37,7 @@ export default function Terms() {
           <p>
             Welcome to{" "}
             <a
-              href="https://alessandro-argenziano.com"
+              href="https://www.alessandro-argenziano.com"
               className="text-sky-600 dark:text-sky-400 underline hover:no-underline"
             >
               https://alessandro-argenziano.com

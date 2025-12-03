@@ -57,7 +57,7 @@ const goals: Goal[] = [
   {
     id: "portfolio",
     title: "Create a portfolio website",
-    description: "October 2025, https://alessandro-argenziano.com",
+    description: "October 2025, https://www.alessandro-argenziano.com",
     images: ["/images/portfolio.webp"],
     isChecked: true,
     hasImage: true,

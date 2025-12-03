@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
           <p>
             This website (
             <a
-              href="https://alessandro-argenziano.com"
+              href="https://www.alessandro-argenziano.com"
               className="text-sky-600 dark:text-sky-400 underline hover:no-underline"
             >
               https://alessandro-argenziano.com

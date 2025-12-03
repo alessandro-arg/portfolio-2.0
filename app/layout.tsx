@@ -49,17 +49,24 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alessandro-argenziano.com"),
-  title: "Alessandro - Portfolio",
+  metadataBase: new URL("https://www.alessandro-argenziano.com"),
+  alternates: {
+    canonical: "https://www.alessandro-argenziano.com",
+  },
+  title: "Alessandro Argenziano",
   description: "Fullstack Developer • Angular • Next.js • React",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/icons/icon1.png", type: "image/png" },
-      { url: "/icons/icon0.svg", type: "image/svg+xml" },
-      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.ico?v=2" },
+      { url: "/icons/icon1.png?v=2", type: "image/png" },
+      { url: "/icons/icon0.svg?v=2", type: "image/svg+xml" },
+      {
+        url: "/icons/favicon-96x96.png?v=2",
+        sizes: "96x96",
+        type: "image/png",
+      },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+    apple: [{ url: "/apple-icon.png?v=2", sizes: "180x180" }],
   },
   manifest: "/icons/manifest.json",
   appleWebApp: {

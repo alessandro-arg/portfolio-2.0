@@ -109,7 +109,7 @@ export const InfiniteTestimonialsCarousel: React.FC<
     <div
       className={cn(
         "relative z-20 w-full max-w-7xl overflow-hidden",
-        "[mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]",
+        "mask-[linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]",
         className
       )}
     >
@@ -130,33 +130,38 @@ export const InfiniteTestimonialsCarousel: React.FC<
             >
               <article
                 className={cn(
-                  "relative flex h-[370px] w-[300px] flex-col justify-between overflow-hidden",
-                  "rounded-xl p-5 antialiased select-none text-white",
-                  "md:h-[440px] md:w-[400px] md:rounded-2xl lg:px-6 lg:py-7"
+                  "relative h-[370px] w-[300px] overflow-hidden rounded-xl",
+                  "p-px dark:p-0.5 select-none antialiased",
+                  "md:h-[440px] md:w-[400px] md:rounded-2xl"
                 )}
-                style={{
-                  background: item.bg,
-                }}
+                style={{ background: item.bg }}
               >
                 <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-[2px] -z-10 rounded-2xl opacity-40"
-                />
+                  className={cn(
+                    "flex h-full w-full flex-col justify-between",
+                    "rounded-[inherit] bg-white/85 backdrop-blur",
+                    "text-neutral-900",
+                    "md:px-6 md:py-7 px-5 py-5",
+                    "dark:bg-neutral-950/95 dark:text-neutral-50"
+                  )}
+                >
+                  <div>
+                    <h4 className="mb-5 text-lg font-bold tracking-wide md:text-2xl font-instrument">
+                      {item.title}
+                    </h4>
+                    <p className="mb-3 line-clamp-7 text-base font-extralight tracking-tight md:line-clamp-10 md:text-lg">
+                      {item.quote}
+                    </p>
+                  </div>
 
-                <div>
-                  <h4 className="mb-5 text-lg font-bold tracking-wide md:text-2xl font-instrument">
-                    {item.title}
-                  </h4>
-                  <p className="mb-3 line-clamp-7 text-base font-extralight tracking-tight md:line-clamp-10 md:text-lg">
-                    {item.quote}
-                  </p>
-                </div>
-
-                <div>
-                  <span className="text-base font-bold tracking-wide md:text-xl">
-                    {item.name}
-                  </span>
-                  <p className="text-sm md:text-base opacity-80">{item.role}</p>
+                  <div>
+                    <span className="text-base font-bold tracking-wide md:text-xl">
+                      {item.name}
+                    </span>
+                    <p className="text-sm md:text-base opacity-80">
+                      {item.role}
+                    </p>
+                  </div>
                 </div>
               </article>
             </li>

@@ -22,7 +22,10 @@ export type TechKey =
   | "next"
   | "react"
   | "appwrite"
-  | "react-query";
+  | "react-query"
+  | "framer"
+  | "gsap"
+  | "vercel";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =
@@ -49,6 +52,7 @@ export type Project = {
   slug?: string;
   calloutTitle?: string;
   calloutDescription?: string;
+  gettingStarted?: boolean;
   useCases?: string[];
   whyBuilt?: string;
   learnings?: string[];

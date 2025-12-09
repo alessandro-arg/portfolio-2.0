@@ -19,6 +19,7 @@ type ProjectWithExtras = Project & {
   useCases?: string[];
   whyBuilt?: string;
   learnings?: string[];
+  gettingStarted?: boolean;
 };
 
 export function generateStaticParams() {
@@ -54,7 +55,9 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = projectsData.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const { useCases, whyBuilt, learnings } = project as ProjectWithExtras;
+  const { useCases, whyBuilt, learnings, gettingStarted } =
+    project as ProjectWithExtras;
+  const showGettingStarted = gettingStarted !== false;
 
   // Build the TOC dynamically based on available data
   const sections: TocItem[] = [];
@@ -90,27 +93,29 @@ export default async function ProjectPage({ params }: PageProps) {
     });
   }
 
-  // Getting Started (always)
-  sections.push({
-    id: "getting-started",
-    title: "⚙️ Getting Started",
-    depth: 2,
-  });
-  sections.push({
-    id: "clone-the-repository",
-    title: "Clone the repository",
-    depth: 3,
-  });
-  sections.push({
-    id: "install-dependencies",
-    title: "Install dependencies",
-    depth: 3,
-  });
-  sections.push({
-    id: "build-and-run-locally",
-    title: "Build and run locally",
-    depth: 3,
-  });
+  // Getting Started (optional)
+  if (showGettingStarted) {
+    sections.push({
+      id: "getting-started",
+      title: "⚙️ Getting Started",
+      depth: 2,
+    });
+    sections.push({
+      id: "clone-the-repository",
+      title: "Clone the repository",
+      depth: 3,
+    });
+    sections.push({
+      id: "install-dependencies",
+      title: "Install dependencies",
+      depth: 3,
+    });
+    sections.push({
+      id: "build-and-run-locally",
+      title: "Build and run locally",
+      depth: 3,
+    });
+  }
 
   // Challenges & Learnings (optional)
   if (learnings) {
@@ -140,7 +145,7 @@ export default async function ProjectPage({ params }: PageProps) {
     <main className="relative mx-auto w-full">
       <div
         className="absolute inset-0 z-[-1] h-[300px] w-full overflow-hidden
-             [mask-image:linear-gradient(rgba(0,0,0,0.5)_10%,rgba(0,0,0,0)_100%)] opacity-100"
+             mask-[linear-gradient(rgba(0,0,0,0.5)_10%,rgba(0,0,0,0)_100%)] opacity-100"
         aria-hidden="true"
       >
         <Image
@@ -337,7 +342,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     height={967}
                     priority
                     decoding="async"
-                    className="!my-0 rounded-[8px] lg:my-0"
+                    className="!my-0 rounded-xl lg:my-0"
                   />
                 </div>
               ) : null}
@@ -456,62 +461,78 @@ export default async function ProjectPage({ params }: PageProps) {
                 </>
               ) : null}
 
-              <h2
-                id="getting-started"
-                className="flex scroll-m-28 flex-row items-center gap-2"
-              >
-                <a data-card href="#️-getting-started" className="peer">
-                  ⚙️ Getting Started
-                </a>
-              </h2>
-
-              {/* Steps look */}
-              <div className="fd-steps">
-                <div className="fd-step">
-                  <h3
-                    id="clone-the-repository"
+              {showGettingStarted && (
+                <>
+                  <h2
+                    id="getting-started"
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
-                    <a data-card href="#clone-the-repository" className="peer">
-                      Clone the repository
+                    <a data-card href="#️-getting-started" className="peer">
+                      ⚙️ Getting Started
                     </a>
-                  </h3>
-                  {/* Clone the repository */}
-                  <CopyFigure
-                    caption="Terminal"
-                    code={`git clone ${
-                      project.github ?? "https://example.com/repo.git"
-                    } && cd ${project.slug}`}
-                  />
-                </div>
+                  </h2>
 
-                <div className="fd-step">
-                  <h3
-                    id="install-dependencies"
-                    className="flex scroll-m-28 flex-row items-center gap-2"
-                  >
-                    <a data-card href="#install-dependencies" className="peer">
-                      Install dependencies
-                    </a>
-                  </h3>
-                  <CopyFigure caption="Terminal" code={`npm install`} />
-                </div>
+                  {/* Steps look */}
+                  <div className="fd-steps">
+                    <div className="fd-step">
+                      <h3
+                        id="clone-the-repository"
+                        className="flex scroll-m-28 flex-row items-center gap-2"
+                      >
+                        <a
+                          data-card
+                          href="#clone-the-repository"
+                          className="peer"
+                        >
+                          Clone the repository
+                        </a>
+                      </h3>
+                      {/* Clone the repository */}
+                      <CopyFigure
+                        caption="Terminal"
+                        code={`git clone ${
+                          project.github ?? "https://example.com/repo.git"
+                        } && cd ${project.slug}`}
+                      />
+                    </div>
 
-                <div className="fd-step">
-                  <h3
-                    id="build-and-run-locally"
-                    className="flex scroll-m-28 flex-row items-center gap-2"
-                  >
-                    <a data-card href="#build-and-run-locally" className="peer">
-                      Build and run locally
-                    </a>
-                  </h3>
-                  <CopyFigure
-                    caption="Terminal"
-                    code={`npm run build && npm run serve`}
-                  />
-                </div>
-              </div>
+                    <div className="fd-step">
+                      <h3
+                        id="install-dependencies"
+                        className="flex scroll-m-28 flex-row items-center gap-2"
+                      >
+                        <a
+                          data-card
+                          href="#install-dependencies"
+                          className="peer"
+                        >
+                          Install dependencies
+                        </a>
+                      </h3>
+                      <CopyFigure caption="Terminal" code={`npm install`} />
+                    </div>
+
+                    <div className="fd-step">
+                      <h3
+                        id="build-and-run-locally"
+                        className="flex scroll-m-28 flex-row items-center gap-2"
+                      >
+                        <a
+                          data-card
+                          href="#build-and-run-locally"
+                          className="peer"
+                        >
+                          Build and run locally
+                        </a>
+                      </h3>
+                      <CopyFigure
+                        caption="Terminal"
+                        code={`npm run build && npm run serve`}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
               {/* Challenges & Learnings (optional) */}
               {learnings?.length ? (

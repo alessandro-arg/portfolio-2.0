@@ -13,6 +13,9 @@ import {
   siReact,
   siAppwrite,
   siReactquery,
+  siFramer,
+  siGsap,
+  siVercel,
 } from "simple-icons/icons";
 
 // Define each icon and optionally override its default color
@@ -72,6 +75,21 @@ const ICONS: Record<
     title: siReactquery.title,
     hex: siReactquery.hex,
     path: siReactquery.path,
+  },
+  framer: {
+    title: siFramer.title,
+    hex: siFramer.hex,
+    path: siFramer.path,
+  },
+  gsap: {
+    title: siGsap.title,
+    hex: siGsap.hex,
+    path: siGsap.path,
+  },
+  vercel: {
+    title: siVercel.title,
+    hex: siVercel.hex,
+    path: siVercel.path,
   },
 };
 

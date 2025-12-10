@@ -58,7 +58,7 @@ const goals: Goal[] = [
     id: "portfolio",
     title: "Create a portfolio website",
     description: "October 2025, https://www.alessandro-argenziano.com",
-    images: ["/images/portfolio.webp"],
+    images: ["/images/portfolio_mockup.webp"],
     isChecked: true,
     hasImage: true,
   },
@@ -144,7 +144,7 @@ export default function BucketList() {
                   "mt-1 size-5 shrink-0 rounded border",
                   "border-white-3 dark:border-white/20",
                   goal.isChecked
-                    ? "bg-gradient-to-br from-[#3ebeb1] to-[#1ba0e2] text-white"
+                    ? "bg-linear-to-br from-[#3ebeb1] to-[#1ba0e2] text-white"
                     : "",
                   "grid place-items-center",
                 ].join(" ")}

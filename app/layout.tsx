@@ -51,7 +51,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alessandro-argenziano.com"),
   alternates: {
-    canonical: "https://www.alessandro-argenziano.com",
+    canonical: "./",
   },
   title: "Alessandro Argenziano",
   description: "Fullstack Developer • Angular • Next.js • React",

@@ -1,9 +1,22 @@
 export default function NotFound() {
   return (
     <main
-      style={{ padding: "4rem 1rem", textAlign: "center", minHeight: "100vh" }}
+      style={{
+        minHeight: "100dvh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+      }}
     >
-      <h1>404 — Page not found</h1>
+      <h1
+        style={{
+          fontSize: "30px",
+        }}
+      >
+        404
+      </h1>
       <p>Sorry, we couldn&apos;t find that page.</p>
     </main>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projectsData } from "../projects.data";
+import { projectsData } from "../data";
 import { ProjectTOC, type TocItem } from "../_components/ProjectTOC";
 import { TechBadge } from "../_components/TechBadge";
 import ContactSection from "@/app/contact/ContactSection";

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { ArrowRight } from "lucide-react";
-import { projectsData } from "./projects.data";
+import { projectsData } from "./data";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectInfoPanel } from "./ProjectInfoPanel";
 import Link from "next/link";

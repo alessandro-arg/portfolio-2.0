@@ -16,6 +16,7 @@ import {
   siFramer,
   siGsap,
   siVercel,
+  siShadcnui,
 } from "simple-icons/icons";
 
 // Define each icon and optionally override its default color
@@ -90,6 +91,11 @@ const ICONS: Record<
     title: siVercel.title,
     hex: siVercel.hex,
     path: siVercel.path,
+  },
+  "shadcn-ui": {
+    title: siShadcnui.title,
+    hex: siShadcnui.hex,
+    path: siShadcnui.path,
   },
 };
 

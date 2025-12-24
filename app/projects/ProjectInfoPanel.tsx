@@ -15,7 +15,7 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
   if (!project) return null;
 
   const badgeClass =
-    "inline-flex items-center justify-center rounded-lg border px-3 py-1 text-sm w-fit whitespace-nowrap shrink-0 gap-2 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-all overflow-hidden text-black dark:text-white font-mono border-white-3 dark:bg-neutral-900 dark:border-white/[0.14] bg-white-2";
+    "inline-flex items-center justify-center rounded-lg border px-3 py-1.5 text-xs w-fit whitespace-nowrap shrink-0 gap-2 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-all overflow-hidden text-black dark:text-white font-mono border-white-3 dark:bg-neutral-900 dark:border-white/[0.14] bg-white-2 font-base";
 
   const accent = getAccentColor(project.theme);
   const { title, description, technologies = [] } = project;
@@ -24,7 +24,7 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
   return (
     <div className="flex">
       <div
-        className="my-4 mr-4 h-[2px] min-w-6"
+        className="my-4 mr-4 h-0.5 min-w-6"
         style={{ background: accent }}
         aria-hidden="true"
       />
@@ -61,12 +61,12 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
         )}
 
         {technologies.length > 0 && (
-          <div className="mt-10 flex flex-wrap gap-3 text-sm">
+          <div className="mt-10 flex flex-wrap gap-3 text-sm uppercase">
             {technologies.map((tech, i) => (
               <span
                 key={`${tech}-${i}`}
                 data-slot="badge"
-                className={`${badgeClass} hover:-translate-y-[1px]`}
+                className={`${badgeClass} hover:-translate-y-px`}
               >
                 <TechIcon tech={tech} size={16} className="mr-1" />
                 {TECH_LABELS[tech]}

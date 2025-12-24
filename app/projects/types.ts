@@ -25,7 +25,8 @@ export type TechKey =
   | "react-query"
   | "framer"
   | "gsap"
-  | "vercel";
+  | "vercel"
+  | "shadcn-ui";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =

@@ -116,10 +116,10 @@ export default function ProjectsSection({
           <div className="bg-white-1/50 size-[25px] overflow-hidden rounded-full border border-neutral-300 transition-all duration-500 group-hover:bg-neutral-200 dark:border-white/10 dark:bg-white/5 dark:group-hover:bg-white/10">
             <div className="flex w-12 -translate-x-1/2 transition-transform duration-500 ease-in-out group-hover:translate-x-0">
               <span className="flex size-6">
-                <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
+                <ArrowRight className="m-auto size-3.5" aria-hidden="true" />
               </span>
               <span className="flex size-6">
-                <ArrowRight className="m-auto size-[14px]" aria-hidden="true" />
+                <ArrowRight className="m-auto size-3.5" aria-hidden="true" />
               </span>
             </div>
           </div>

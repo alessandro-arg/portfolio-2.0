@@ -67,7 +67,7 @@ export default function Hero() {
   return (
     <section className="relative h-[800px] lg:h-[900px] w-full overflow-x-clip z-0 pb-30 sm:pb-20">
       {/*Background rings and orbs*/}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <div className="absolute inset-0 mask-[linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div className="size-[350px] sm:size-[450px] hero-ring"></div>
         <div className="size-[550px] sm:size-[750px] hero-ring"></div>
         <div className="size-[750px] sm:size-[1050px] hero-ring"></div>
@@ -124,39 +124,39 @@ export default function Hero() {
 
       <div
         ref={ringRef}
-        className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
+        className="pointer-events-none absolute inset-0 mask-[radial-gradient(600px_circle_at_50%_50%,#000_10%,transparent_60%)]"
       />
 
       {/*Hero*/}
       <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 pt-20 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
-        <Link
-          href="https://coordina.alessandro-argenziano.com"
+        {/* <Link
+          href="https://vibe.alessandro-argenziano.com"
           target="__blank"
+        > */}
+        <motion.div
+          className="group mb-2 sm:mb-0 flex cursor-default items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
         >
-          <motion.div
-            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
-          >
-            <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
-              New
-            </span>
-            <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
-              <strong className="font-medium dark:text-white text-zinc-600">
-                Coordina
-              </strong>{" "}
-              is now live!
-              <ArrowRight
-                size={24}
-                strokeWidth={3}
-                absoluteStrokeWidth
-                className="mr-1 mt-0.5 size-3.5 text-black ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70 group-hover:dark:text-white transition-all duration-300"
-              />
-            </AnimatedShinyText>
-          </motion.div>
-        </Link>
+          <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
+            Coming Soon
+          </span>
+          <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
+            <strong className="font-medium dark:text-white text-zinc-600">
+              Vibe
+            </strong>
+            • AI website builder
+            <ArrowRight
+              size={24}
+              strokeWidth={3}
+              absoluteStrokeWidth
+              className="mr-1 mt-0.5 size-3.5 text-black ease-in-out group-hover:translate-x-0.5 hover:duration-300 dark:text-neutral-100/70 group-hover:dark:text-white transition-all duration-300"
+            />
+          </AnimatedShinyText>
+        </motion.div>
+        {/* </Link> */}
 
         {/* Text*/}
         <motion.h2

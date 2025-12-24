@@ -281,7 +281,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
               {/* Tech badges */}
               {project.technologies?.length ? (
-                <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">
+                <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm uppercase">
                   {project.techDesc?.map((t, i) => (
                     <TechBadge key={`${t.name}-${i}`}>{t.name}</TechBadge>
                   ))}

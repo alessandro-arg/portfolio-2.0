@@ -137,7 +137,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
 
         <div
           ref={viewRef}
-          className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-4px),transparent)] py-3 pb-8"
+          className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-4px),transparent)] py-3 pb-8"
         >
           {/* We still use Fumadocs providers for anchor links & scroll sync,
               but we IGNORE its visual "active" styling */}
@@ -156,10 +156,10 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
                       href={it.url}
                       className={clsx(
                         "prose relative py-1.5 text-sm transition-colors",
-                        "[overflow-wrap:anywhere] first:pt-0 last:pb-0",
+                        "wrap-anywhere first:pt-0 last:pb-0",
                         // Neutral base color (don't rely on Fumadocs data-[active=true])
                         "text-fd-muted-foreground hover:text-fd-accent-foreground",
-                        // Our own highlight rules:
+                        // Own highlight rules:
                         (isMulti || isPrimary) && "text-fd-primary font-medium"
                       )}
                       data-fuma="toc-item"

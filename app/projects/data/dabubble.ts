@@ -76,12 +76,12 @@ export const dabubble: Project = {
   theme: {
     angle: 10,
     stops: [
-      { color: "#7E22CE", at: "49.9%" },
-      { color: "#7E22CE", at: "81.7%" },
-      { color: "#C084FC", at: "99.88%" },
-      { color: "#F9D793", at: "113.5%" },
+      { color: "#4F5DFF", at: "25%" },
+      { color: "#6C7BFF", at: "55%" },
+      { color: "#8A96FF", at: "90%" },
+      { color: "#A8B1FF", at: "115%" },
     ],
-    primary: "#6366F1",
+    primary: "#6C7BFF",
   },
   calloutTitle:
     "💬 Real-time team chat with channels, DMs, threads, and reactions",

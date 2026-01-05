@@ -11,7 +11,15 @@ export const coordina: Project = {
   liveLink: "https://coordina.alessandro-argenziano.com",
   slug: "coordina",
   github: "https://github.com/alessandro-arg/coordina",
-  technologies: ["next", "react", "ts", "tailwind", "appwrite", "react-query"],
+  technologies: [
+    "next",
+    "react",
+    "ts",
+    "tailwind",
+    "appwrite",
+    "shadcn-ui",
+    "react-query",
+  ],
   techDesc: [
     {
       name: "Next.js",
@@ -42,6 +50,12 @@ export const coordina: Project = {
       description:
         "- Handles auth, databases, and storage for multi-workspace data, permissions, and secure project/task persistence.",
       link: "https://appwrite.io/",
+    },
+    {
+      name: "shadcn/ui",
+      description:
+        "- Prebuilt accessible UI primitives (dialogs, buttons, dropdowns, tables) to keep the interface polished without heavy custom components.",
+      link: "https://ui.shadcn.com/",
     },
     {
       name: "React Query",
@@ -82,12 +96,12 @@ export const coordina: Project = {
   theme: {
     angle: 10,
     stops: [
-      { color: "#FF7A1A", at: "30%" },
-      { color: "#FF8C33", at: "60%" },
-      { color: "#FFA64D", at: "90%" },
-      { color: "#FFC066", at: "115%" },
+      { color: "#0F4CD8", at: "25%" },
+      { color: "#155DFB", at: "55%" },
+      { color: "#3B7BFF", at: "90%" },
+      { color: "#6FA0FF", at: "115%" },
     ],
-    primary: "#FF7A1A",
+    primary: "#155DFB",
   },
   calloutTitle:
     "📋 Plan, prioritize, and track your projects in one cohesive workspace",

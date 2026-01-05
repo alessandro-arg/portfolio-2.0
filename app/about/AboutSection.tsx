@@ -15,7 +15,7 @@ export default function AboutSection() {
               Know about me
             </p>
 
-            <h2 className="relative z-[2] text-5xl font-medium tracking-tight sm:text-5xl md:text-6xl text-center lg:text-left mb-8 text-balance [text-shadow:0px_4px_8px_rgba(255,255,255,0.05),0px_8px_30px_rgba(255,255,255,0.25)]">
+            <h2 className="relative z-2 text-5xl font-medium tracking-tight sm:text-5xl md:text-6xl text-center lg:text-left mb-8 text-balance [text-shadow:0px_4px_8px_rgba(255,255,255,0.05),0px_8px_30px_rgba(255,255,255,0.25)]">
               <span className="font-instrument">
                 <span>Full-Stack Developer and a little bit of </span>
                 <AnimatedGradientText
@@ -28,7 +28,7 @@ export default function AboutSection() {
               </span>
             </h2>
 
-            <div className="relative z-[5] mx-auto flex max-w-xl flex-col gap-8 text-center text-base font-light tracking-wider text-black/80 lg:mx-0 lg:max-w-[550px] lg:text-left lg:text-lg dark:text-neutral-200">
+            <div className="relative z-5 mx-auto flex max-w-xl flex-col gap-8 text-center text-base font-light tracking-wider text-black/80 lg:mx-0 lg:max-w-[550px] lg:text-left lg:text-lg dark:text-neutral-200">
               <p>
                 {`I'm Alessandro Argenziano, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans Angular, React, Next.js, and Django, and I'm always ready to learn more.`}
               </p>
@@ -48,13 +48,13 @@ export default function AboutSection() {
                 <div className="flex w-12 -translate-x-1/2 transition-transform duration-500 ease-in-out group-hover:translate-x-0">
                   <span className="flex size-6">
                     <ArrowRight
-                      className="m-auto size-[14px]"
+                      className="m-auto size-3.5"
                       aria-hidden="true"
                     />
                   </span>
                   <span className="flex size-6">
                     <ArrowRight
-                      className="m-auto size-[14px]"
+                      className="m-auto size-3.5"
                       aria-hidden="true"
                     />
                   </span>

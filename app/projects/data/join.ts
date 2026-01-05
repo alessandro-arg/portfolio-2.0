@@ -70,11 +70,12 @@ export const join: Project = {
   theme: {
     angle: 10,
     stops: [
-      { color: "#2932CB", at: "49.9%" },
-      { color: "#2932CB", at: "81.7%" },
-      { color: "#7980FF", at: "99.88%" },
-      { color: "#F9D793", at: "113.5%" },
+      { color: "#1F2937", at: "25%" },
+      { color: "#2B3647", at: "55%" },
+      { color: "#3A475C", at: "90%" },
+      { color: "#4B5A73", at: "115%" },
     ],
+    primary: "#2B3647",
   },
   calloutTitle: "🧩 Visual Kanban board for organizing tasks and workflows",
   calloutDescription:

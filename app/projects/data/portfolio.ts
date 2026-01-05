@@ -9,7 +9,16 @@ export const portfolio: Project = {
   src: "/images/portfolio_mockup.webp",
   href: "/projects/portfolio",
   slug: "portfolio",
-  technologies: ["next", "react", "ts", "tailwind", "framer", "gsap", "vercel"],
+  technologies: [
+    "next",
+    "react",
+    "ts",
+    "tailwind",
+    "shadcn-ui",
+    "framer",
+    "gsap",
+    "vercel",
+  ],
   techDesc: [
     {
       name: "Next.js",
@@ -36,19 +45,25 @@ export const portfolio: Project = {
       link: "https://tailwindcss.com/",
     },
     {
-      name: "Framer Motion & GSAP",
+      name: "Framer Motion",
       description:
-        "- Motion libraries for smooth section transitions, hover interactions, and subtle micro-animations that make the UI feel alive without hurting performance.",
+        "- Motion librarie for smooth section transitions, hover interactions, and subtle micro-animations that make the UI feel alive without hurting performance.",
       link: "https://www.framer.com/motion/",
     },
     {
-      name: "Fumadocs & Shiki",
+      name: "Fumadocs",
       description:
         "- Documentation and syntax-highlighting tooling for the “More” and resource pages, letting me treat my portfolio like a tiny personal docs hub.",
       link: "https://fumadocs.vercel.app/",
     },
     {
-      name: "Resend & Vercel Analytics",
+      name: "shadcn/ui",
+      description:
+        "- Prebuilt accessible UI primitives (dialogs, buttons, dropdowns, tables) to keep the interface polished without heavy custom components.",
+      link: "https://ui.shadcn.com/",
+    },
+    {
+      name: "Resend",
       description:
         "- Email and analytics integrations for reliable contact form delivery and insight into how visitors browse projects and sections.",
       link: "https://resend.com/",

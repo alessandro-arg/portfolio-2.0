@@ -17,6 +17,10 @@ import {
   siGsap,
   siVercel,
   siShadcnui,
+  siTrpc,
+  siPrisma,
+  siClerk,
+  siCoderabbit,
 } from "simple-icons/icons";
 
 // Define each icon and optionally override its default color
@@ -96,6 +100,26 @@ const ICONS: Record<
     title: siShadcnui.title,
     hex: siShadcnui.hex,
     path: siShadcnui.path,
+  },
+  trpc: {
+    title: siTrpc.title,
+    hex: siTrpc.hex,
+    path: siTrpc.path,
+  },
+  prisma: {
+    title: siPrisma.title,
+    hex: siPrisma.hex,
+    path: siPrisma.path,
+  },
+  clerk: {
+    title: siClerk.title,
+    hex: siClerk.hex,
+    path: siClerk.path,
+  },
+  "code-rabbit": {
+    title: siCoderabbit.title,
+    hex: siCoderabbit.hex,
+    path: siCoderabbit.path,
   },
 };
 

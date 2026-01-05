@@ -26,7 +26,11 @@ export type TechKey =
   | "framer"
   | "gsap"
   | "vercel"
-  | "shadcn-ui";
+  | "shadcn-ui"
+  | "trpc"
+  | "prisma"
+  | "clerk"
+  | "code-rabbit";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =

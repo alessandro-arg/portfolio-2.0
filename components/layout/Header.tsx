@@ -180,7 +180,11 @@ export default function Header() {
 
   return (
     <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
-      <ProgressiveBlur height="150px" position="top" />
+      <ProgressiveBlur
+        height="125px"
+        position="top"
+        className="h-[120px] sm:h-[150px] "
+      />
       <div className="relative w-full max-w-full md:max-w-4xl lg:max-w-7xl flex justify-center items-center mx-auto px-4 sm:px-6">
         {/* The floating shell we animate with GSAP */}
         <div
@@ -217,7 +221,7 @@ export default function Header() {
                       {active && (
                         <motion.span
                           layoutId={underlineLayoutId}
-                          className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-[#16b1ff]"
+                          className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-[#16b1ff]"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}

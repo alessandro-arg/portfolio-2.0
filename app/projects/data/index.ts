@@ -6,11 +6,13 @@ import { archivio } from "./archivio";
 import { dabubble } from "./dabubble";
 import { chess } from "./chess";
 import { join } from "./join";
+import { vibe } from "./vibe";
 
 export const projectsData: Project[] = [
+  vibe,
   coordina,
-  portfolio,
   archivio,
+  portfolio,
   dabubble,
   chess,
   join,

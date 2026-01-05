@@ -76,12 +76,12 @@ export const chess: Project = {
   theme: {
     angle: 10,
     stops: [
-      { color: "#14B8A6", at: "49.9%" },
-      { color: "#14B8A6", at: "81.7%" },
-      { color: "#5EEAD4", at: "99.88%" },
-      { color: "#F9D793", at: "113.5%" },
+      { color: "#4BBBF3", at: "25%" },
+      { color: "#74CCF7", at: "55%" },
+      { color: "#9ADAF9", at: "90%" },
+      { color: "#C0E9FC", at: "115%" },
     ],
-    primary: "#14B8A6",
+    primary: "#74CCF7",
   },
   calloutTitle: "♟️ Play online with friends or against Stockfish AI bots",
   calloutDescription:

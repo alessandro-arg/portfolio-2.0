@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
 
 export default function ContactCTA({
-  children = "Let’s chat",
+  children = "Let's chat",
   className,
 }: {
   children?: ReactNode;

@@ -23,7 +23,7 @@ export default function Contact() {
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
       const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI’d like to connect about..."
+        "Hi Alessandro,\n\nI'd like to talk about..."
       );
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 

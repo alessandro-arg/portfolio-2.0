@@ -81,7 +81,7 @@ function TimelineRail() {
       <div className="relative h-full w-full">
         {/* Sticky avatar: locks to 50% of viewport, stays inside rail bounds */}
         <div
-          className="sticky -left-0.5 z-10 flex"
+          className="sticky -left-0.5 z-10 hidden sm:flex"
           style={{ top: `calc(50vh - ${Math.max(avatarH, 36) / 2}px)` }}
         >
           <div

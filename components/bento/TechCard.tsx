@@ -42,11 +42,11 @@ export function SmallTerminal() {
       <Terminal>
         <TypingAnimation delay={0}>$ ls</TypingAnimation>
         <AnimatedSpan delay={800} className="text-blue-500">
-          Also learning MongoDB
+          learning python && django
         </AnimatedSpan>
-        <TypingAnimation delay={1600}>$ cd Documents</TypingAnimation>
+        <TypingAnimation delay={1600}>$ cd home</TypingAnimation>
         <AnimatedSpan delay={3200} className="text-green-500">
-          /home/user/alessandro
+          /user/alessandro
         </AnimatedSpan>
       </Terminal>
     </div>
@@ -75,7 +75,7 @@ const skillsRow2: SkillItem[] = [
 const skillsRow3: SkillItem[] = [
   { img: siClerk },
   { img: siBetterauth },
-  { img: siShadcnui },
+  { img: siShadcnui, colorClass: "dark:text-white" },
   { img: siVercel, colorClass: "text-black dark:text-white" },
   { img: siFirebase },
   { img: siFigma },
@@ -125,7 +125,7 @@ export default function TechCard() {
         </h3>
 
         {/* Middle: marquees */}
-        <div className="pt-4 cursor-default flex flex-col gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
+        <div className="pt-4 cursor-default flex flex-col gap-4 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]">
           {/* Row 1 – left → right */}
           <Marquee className="[--duration:40s] [--gap:1.5rem]">
             {skillsRow1.map(({ img, colorClass }, idx) => (

@@ -61,7 +61,8 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Fachinformatiker - Anwendungsentwickler &#40;IHK&#41;
+                      Fachinformatiker - Anwendungsentwickler <br /> &#40;IHK
+                      FIAE&#41;
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
@@ -130,7 +131,7 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Webdevelopment - Full-stack
+                      Full-stack Webdevelopment
                     </h3>
                   </header>
                   <section aria-label="Key achievements">

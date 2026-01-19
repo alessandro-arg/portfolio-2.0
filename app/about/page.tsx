@@ -38,8 +38,8 @@ export default function AboutPage() {
               learn more.
             </p>
             <p>
-              When I&apos;m not immersed in work, I&apos;m exploring new ideas
-              and staying curious.
+              When I&apos;m not immersed in work, I explore new mountains
+              cruising on nice fresh Powder or doing some 360s in a Snowpark.
             </p>
             <p>I believe in waking up each day eager to make a difference!</p>
             <SocialButtons />

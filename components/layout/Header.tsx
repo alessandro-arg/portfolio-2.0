@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
 import { MoreMenu } from "./_ui/MoreMenu";
-import { MobileMore } from "./_ui/MobileMore";
+// import { MobileMore } from "./_ui/MobileMore";
 import { moreLinks } from "./more.data";
 import { Logo } from "../ui/logo";
 
@@ -138,7 +138,7 @@ export default function Header() {
         duration: 0.8,
         ease: "power3.out",
         delay: 0.5,
-      }
+      },
     );
   }, []);
 
@@ -356,13 +356,6 @@ export default function Header() {
                   </Link>
                 </motion.li>
               ))}
-
-              <motion.li
-                variants={linkVariants}
-                className="w-full flex justify-center items-center"
-              >
-                <MobileMore onNavigate={closeMobile} />
-              </motion.li>
 
               {/* Mobile Contact button - Changed to button with combined handler */}
               <motion.li variants={linkVariants} className="mt-2">

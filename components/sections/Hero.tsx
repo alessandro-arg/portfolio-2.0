@@ -37,7 +37,7 @@ export default function Hero() {
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
       const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI’d like to connect about..."
+        "Hi Alessandro,\n\nI’d like to connect about...",
       );
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 
@@ -60,12 +60,12 @@ export default function Hero() {
     gsap.fromTo(
       ringRef.current,
       { scale: 0.9, opacity: 0.6 },
-      { scale: 1, opacity: 1, duration: 1.2, ease: "power3.out" }
+      { scale: 1, opacity: 1, duration: 1.2, ease: "power3.out" },
     );
   }, []);
 
   return (
-    <section className="relative h-[800px] lg:h-[900px] w-full overflow-x-clip z-0 pb-30 sm:pb-20">
+    <section className="relative h-[700px] lg:h-[900px] w-full overflow-x-clip z-0 pb-30 sm:pb-20">
       {/*Background rings and orbs*/}
       <div className="absolute inset-0 mask-[linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div className="size-[350px] sm:size-[450px] hero-ring"></div>
@@ -177,7 +177,7 @@ export default function Hero() {
           <span className="text-zinc-800 dark:text-neutral-300 flex items-center justify-center">
             Hello, I&apos;m Alessandro
           </span>
-          <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-12 lg:mx-3">
+          <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-10 md:h-12 lg:mx-3">
             <Image
               src="/images/profile-img.webp"
               alt="Alessandro"
@@ -225,7 +225,7 @@ export default function Hero() {
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center gap-2 py-2 text-base font-normal text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90"
+            className="hidden sm:flex items-center gap-2 py-2 text-base font-normal text-black dark:text-white/75 outline-hidden transition-all duration-300 cursor-pointer hover:text-black/60 dark:hover:text-white/90"
             aria-live="polite"
           >
             {copied ? (

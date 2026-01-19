@@ -59,7 +59,7 @@ export default function ContactForm({
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -104,7 +104,7 @@ export default function ContactForm({
             </div>
           </div>
         ),
-        { duration: 3000 }
+        { duration: 3000 },
       );
       onSubmitted?.();
     } catch (err) {
@@ -126,7 +126,7 @@ export default function ContactForm({
             </div>
           </div>
         ),
-        { duration: 3000 }
+        { duration: 3000 },
       );
     } finally {
       setIsSubmitting(false);
@@ -278,7 +278,7 @@ export default function ContactForm({
       >
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !formData.name}
           className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap text-md disabled:pointer-events-none disabled:opacity-50 shadow-xs py-3 px-6 rounded-md group relative w-full overflow-hidden bg-[#16b1ff95] hover:bg-[#16b1ff] font-normal text-white transition-all duration-300"
         >
           {isSubmitting ? (

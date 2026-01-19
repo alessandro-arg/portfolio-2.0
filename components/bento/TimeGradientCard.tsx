@@ -2,7 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CloudRain, Moon, Sun, Sunrise, Sunset } from "lucide-react";
+import {
+  CloudRain,
+  Moon,
+  Sun,
+  Sunrise,
+  Sunset,
+  Snowflake,
+  CableCar,
+} from "lucide-react";
 
 type TimeOfDay = "dawn" | "morning" | "day" | "evening" | "dusk" | "night";
 
@@ -12,6 +20,7 @@ interface TimeData {
   date: string;
   timeOfDay: TimeOfDay;
   greeting: string;
+  status: string;
 }
 
 // Flip Number Component
@@ -47,8 +56,35 @@ const TimeGradientCard = () => {
     date: "",
     timeOfDay: "day",
     greeting: "",
+    status: "",
   });
   const [mounted, setMounted] = useState(false);
+
+  const isWeekend = (d: Date) => {
+    const day = d.getDay();
+    return day === 0 || day === 6;
+  };
+
+  const getStatusFromGreeting = (greeting: string, weekend: boolean) => {
+    if (weekend) return "SNOWBOARDING";
+
+    switch (greeting) {
+      case "Good Night":
+        return "Sleeping";
+
+      case "Good Morning":
+        return "Learning";
+
+      case "Good Afternoon":
+        return "Learning";
+
+      case "Good Evening":
+        return "Available";
+
+      default:
+        return "Available";
+    }
+  };
 
   const getTimeOfDay = (hour: number): TimeOfDay => {
     if (hour >= 5 && hour < 7) return "dawn";
@@ -60,8 +96,10 @@ const TimeGradientCard = () => {
   };
 
   const getGreeting = (hour: number): string => {
+    if (hour >= 0 && hour < 5) return "Good Night";
     if (hour >= 5 && hour < 12) return "Good Morning";
     if (hour >= 12 && hour < 18) return "Good Afternoon";
+    if (hour >= 22 && hour < 24) return "Good Night";
     return "Good Evening";
   };
 
@@ -73,6 +111,7 @@ const TimeGradientCard = () => {
       const hour = now.getHours();
       const timeOfDay = getTimeOfDay(hour);
       const greeting = getGreeting(hour);
+      const weekend = isWeekend(now);
 
       setTimeData({
         hours: String(hour).padStart(2, "0"),
@@ -84,6 +123,7 @@ const TimeGradientCard = () => {
         }),
         timeOfDay,
         greeting,
+        status: getStatusFromGreeting(greeting, weekend),
       });
     };
 
@@ -148,7 +188,8 @@ const TimeGradientCard = () => {
     night: Moon,
   };
 
-  const Icon = icons[timeData.timeOfDay];
+  const weekend = new Date().getDay() === 0 || new Date().getDay() === 6;
+  const Icon = weekend ? CableCar : icons[timeData.timeOfDay];
   const colors = accentColors[timeData.timeOfDay];
 
   // Minimal floating particles
@@ -240,9 +281,18 @@ const TimeGradientCard = () => {
         {/* Top Section - Icon and Date */}
         <div className="flex items-start justify-between">
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            initial={{ scale: 0, rotate: weekend ? -30 : -180 }}
+            animate={{
+              scale: 1,
+              rotate: weekend ? [0, 10, -10, 0] : 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 15,
+              repeat: weekend ? Infinity : 0,
+              repeatDelay: 3,
+            }}
             className="relative"
           >
             <div className="relative bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-3 border border-black/10 dark:border-white/10">
@@ -311,20 +361,48 @@ const TimeGradientCard = () => {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [1, 0.7, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className={`w-2 h-2 ${colors.dot} rounded-full shadow-lg`}
-            />
+            {timeData.status === "SNOWBOARDING" ? (
+              <div className="flex items-center gap-1.5">
+                <motion.div
+                  initial={{ opacity: 0, y: 2 }}
+                  animate={{ opacity: [0.4, 1, 0.4], y: [0, -3, 0] }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Snowflake className={`w-4 h-4 ${colors.icon}`} />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: -2 }}
+                  animate={{ opacity: [0.4, 1, 0.4], y: [0, 3, 0] }}
+                  transition={{
+                    duration: 2.1,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Snowflake className={`w-4 h-4 ${colors.icon}`} />
+                </motion.div>
+              </div>
+            ) : (
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.7, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className={`w-2 h-2 ${colors.dot} rounded-full shadow-lg`}
+              />
+            )}
             <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-medium">
-              Available
+              {timeData.status}
             </span>
           </motion.div>
         </div>

@@ -90,6 +90,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
         <ThemeProvider>

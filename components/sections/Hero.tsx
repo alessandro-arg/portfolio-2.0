@@ -132,7 +132,7 @@ export default function Hero() {
         {/*Small CTA Button*/}
         <Link href="https://vibe.alessandro-argenziano.com" target="__blank">
           <motion.div
-            className="group mb-2 sm:mb-0 flex cursor-default items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
@@ -177,7 +177,7 @@ export default function Hero() {
           <span className="text-zinc-800 dark:text-neutral-300 flex items-center justify-center">
             Hello, I&apos;m Alessandro
           </span>
-          <div className="mx-2 w-16 cursor-pointer overflow-hidden rounded-3xl md:w-20 h-10 md:h-12 lg:mx-3">
+          <div className="mx-2 w-16 cursor-default overflow-hidden rounded-3xl md:w-20 h-10 md:h-12 lg:mx-3">
             <Image
               src="/images/profile-img.webp"
               alt="Alessandro"

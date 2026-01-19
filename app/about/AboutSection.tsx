@@ -30,12 +30,18 @@ export default function AboutSection() {
 
             <div className="relative z-5 mx-auto flex max-w-xl flex-col gap-8 text-center text-base font-light tracking-wider text-black/80 lg:mx-0 lg:max-w-[550px] lg:text-left lg:text-lg dark:text-neutral-200">
               <p>
-                {`I'm Alessandro Argenziano, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans Angular, React, Next.js, and Django, and I'm always ready to learn more.`}
+                I&apos;m Alessandro Argenziano, a full-stack developer
+                passionate about creating dynamic web experiences. From frontend
+                to backend, I thrive on solving complex problems with clean,
+                efficient code. My expertise spans Angular, React, and Next.js,
+                and I&apos;m always ready to learn more.
               </p>
               <p>
-                {`When I'm not immersed in work, I'm exploring new ideas and staying curious. Life's about balance, and I love embracing every part of it.`}
+                When I&apos;m not immersed in work, I&apos;m exploring new ideas
+                or new mountains and staying curious. Life&apos;s about balance,
+                and I love embracing every part of it, expecially in a Snowpark.
               </p>
-              <p>I believe in waking up each day to make a difference!</p>
+              <p>I believe small daily progress leads to big results.</p>
               <SocialButtons />
             </div>
 

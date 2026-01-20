@@ -56,7 +56,7 @@ export default function Attribution() {
                 I would like to express my thanks to all of websites that
                 inspired me to build this website.
               </p>
-              <p>Thanks y'all!</p>
+              <p>Thanks y&apos;all!</p>
             </div>
             <div className="mt-6 flex flex-col gap-y-2">
               <p>Best,</p>

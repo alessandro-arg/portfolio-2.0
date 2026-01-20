@@ -1,12 +1,11 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import ContactSection from "../contact/ContactSection";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Attribution() {
   return (
     <>
-      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
+      <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 mask-[linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
         <Image
           src="/images/nature-bg.webp"
           alt="nature background"
@@ -44,17 +43,7 @@ export default function Attribution() {
               <p>
                 The first version of this website was created in 2025. I was
                 learning how to build a Multi-Page Application with Next.js back
-                then. This version is actually open-source, so feel free to use
-                it.
-                <br />
-                You can find the source code on my{" "}
-                <Link
-                  href={"https://github.com/alessandro-arg/portfolio-2.0"}
-                  target="_blank"
-                  className="text-black dark:text-neutral-300"
-                >
-                  GitHub Profile
-                </Link>
+                then. This version is not gonna be an open-source project.
               </p>
               <p>
                 In 2024 i created my first portfolio using Angular and
@@ -65,8 +54,9 @@ export default function Attribution() {
               </p>
               <p>
                 I would like to express my thanks to all of websites that
-                inspired me to build this website. So, THANK YOU!
+                inspired me to build this website.
               </p>
+              <p>Thanks y'all!</p>
             </div>
             <div className="mt-6 flex flex-col gap-y-2">
               <p>Best,</p>

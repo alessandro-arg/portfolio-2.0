@@ -16,19 +16,24 @@ const tools: SetupIcon[] = [
     src: "/setup/vscode_logo.png",
   },
   {
+    title: "Notion",
+    href: "https://notion.com",
+    src: "/setup/notion_logo.png",
+  },
+  {
     title: "GitHub",
     href: "https://github.com",
     src: "/setup/github_logo.png",
   },
   {
+    title: "RemNote",
+    href: "https://www.remnote.com/",
+    src: "/setup/remnote_logo.png",
+  },
+  {
     title: "Spotify",
     href: "https://spotify.com",
     src: "/setup/spotify_logo.png",
-  },
-  {
-    title: "Notion",
-    href: "https://notion.com",
-    src: "/setup/notion_logo.png",
   },
 ];
 
@@ -53,7 +58,7 @@ export default function MySetup() {
           </span>
         </h2>
         <div className="mx-auto my-20 max-w-5xl">
-          <div className="relative overflow-hidden rounded-2xl border-1 border-neutral-200/50 shadow-lg dark:border-white/10">
+          <div className="relative overflow-hidden rounded-2xl border border-neutral-200/50 shadow-lg dark:border-white/10">
             <Image
               src="/images/setup.webp"
               alt="Setup by u/dee306"

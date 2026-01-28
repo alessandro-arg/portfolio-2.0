@@ -63,7 +63,7 @@ const testimonials = [
       "He combines technical skill with genuine passion, and it shows in everything he works on. You can always count on him to go the extra mile and approach challenges with positivity and professionalism.",
     name: "Alessandro Raucci",
     title: "A good old friend with fresh new solutions.",
-    role: "Backend Developer • Clanius Consulting SRL",
+    role: "Backend Developer • NTT Data",
     bg: testimonialGradients.orange,
   },
   {

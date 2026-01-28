@@ -110,7 +110,7 @@ export const InfiniteTestimonialsCarousel: React.FC<
       className={cn(
         "relative z-20 w-full max-w-7xl overflow-hidden",
         "mask-[linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]",
-        className
+        className,
       )}
     >
       <div
@@ -119,7 +119,7 @@ export const InfiniteTestimonialsCarousel: React.FC<
         onMouseLeave={handleMouseLeave}
         className={cn(
           "embla__viewport overflow-hidden cursor-grab",
-          isDragging ? "cursor-grabbing" : "cursor-grab"
+          isDragging ? "cursor-grabbing" : "cursor-grab",
         )}
       >
         <ul className="embla__container flex gap-4 px-[15px]">
@@ -132,17 +132,17 @@ export const InfiniteTestimonialsCarousel: React.FC<
                 className={cn(
                   "relative h-[370px] w-[300px] overflow-hidden rounded-xl",
                   "p-px dark:p-0.5 select-none antialiased",
-                  "md:h-[440px] md:w-[400px] md:rounded-2xl"
+                  "md:h-[440px] md:w-[400px] md:rounded-2xl",
                 )}
                 style={{ background: item.bg }}
               >
                 <div
                   className={cn(
                     "flex h-full w-full flex-col justify-between",
-                    "rounded-[inherit] bg-white/85 backdrop-blur",
-                    "text-neutral-900",
+                    "rounded-[inherit] bg-white/20 backdrop-blur",
+                    "text-neutral-300 dark:text-neutral-900",
                     "md:px-6 md:py-7 px-5 py-5",
-                    "dark:bg-neutral-950/95 dark:text-neutral-50"
+                    "dark:bg-neutral-950/30 dark:text-neutral-50 backdrop-blur",
                   )}
                 >
                   <div>

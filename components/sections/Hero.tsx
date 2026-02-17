@@ -130,21 +130,21 @@ export default function Hero() {
       {/*Hero*/}
       <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 pt-20 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
-        <Link href="https://vibe.alessandro-argenziano.com" target="__blank">
+        {/*<Link href="https://vibe.alessandro-argenziano.com" target="__blank">*/}
           <motion.div
-            className="group mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-base dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+            className="group font-mono mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-sm dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
           >
             <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
-              New!
+              Coming soon
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
               <strong className="font-medium dark:text-white text-zinc-600">
-                Vibe
+               Altair
               </strong>
-              • AI website builder
+              • AI supported IDE
               <ArrowRight
                 size={24}
                 strokeWidth={3}
@@ -153,7 +153,7 @@ export default function Hero() {
               />
             </AnimatedShinyText>
           </motion.div>
-        </Link>
+        {/*</Link>*/}
 
         {/* Text*/}
         <motion.h2
@@ -169,7 +169,7 @@ export default function Hero() {
           </span>
         </motion.h2>
         <motion.h1
-          className="font-semibold tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
+          className="font-semibold font-mono tracking-normal relative z-20 mt-4 mb-7 flex flex-col gap-2 items-center justify-center text-center text-xl sm:flex-row md:text-xl lg:mt-7 lg:text-2xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}

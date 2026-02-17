@@ -29,6 +29,7 @@ import {
   siPrisma,
   siFigma,
   siPython,
+  siPostman,
 } from "simple-icons/icons";
 
 type SkillItem = {
@@ -38,7 +39,7 @@ type SkillItem = {
 
 export function SmallTerminal() {
   return (
-    <div className="w-[300px] h-50 absolute -bottom-15 group-hover:-bottom-10 group-hover:scale-105 transition-all duration-500">
+    <div className="w-[300px] h-50 absolute -bottom-10 sm:-bottom-15 group-hover:-bottom-10 group-hover:scale-105 transition-all duration-500">
       <Terminal>
         <TypingAnimation delay={0}>$ ls</TypingAnimation>
         <AnimatedSpan delay={800} className="text-blue-500">
@@ -59,26 +60,25 @@ const skillsRow1: SkillItem[] = [
   { img: siNextdotjs, colorClass: "text-black dark:text-white" },
   { img: siAngular, colorClass: "text-[#DD1100]" },
   { img: siTailwindcss },
-  { img: siFramer },
   { img: siGithub, colorClass: "text-black dark:text-white" },
 ];
 
 const skillsRow2: SkillItem[] = [
   { img: siDjango, colorClass: "dark:text-white" },
   { img: siJavascript },
+  { img: siFigma },
   { img: siPrisma },
   { img: siPython },
-  { img: siGit },
-  { img: siStripe },
+  { img: siPostman },
 ];
 
 const skillsRow3: SkillItem[] = [
   { img: siClerk },
-  { img: siBetterauth },
   { img: siShadcnui, colorClass: "dark:text-white" },
-  { img: siVercel, colorClass: "text-black dark:text-white" },
   { img: siFirebase },
-  { img: siFigma },
+  { img: siGit },
+  { img: siBetterauth },
+  { img: siVercel, colorClass: "text-black dark:text-white" },
 ];
 
 function SkillPill({

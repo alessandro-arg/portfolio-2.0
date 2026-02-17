@@ -22,30 +22,26 @@ const skillsRow1 = [
   "angular",
   "react",
   "nextjs",
-  "tailwind",
   "ts",
   "js",
   "py",
-  "postman",
 ];
 
 const skillsRow2 = [
   "vercel",
-  "postgresql",
+  "tailwind",
   "firebase",
   "nodejs",
-  "prisma",
+  "postman",
   "django",
-  "git",
 ];
 
 const skillsRow3 = [
-  "npm",
   "figma",
   "html",
   "css",
+  "git",
   "github",
-  "vscode",
 ];
 
 const mobileSkills = [
@@ -58,18 +54,14 @@ const mobileSkills = [
   "py",
   "postman",
   "vercel",
-  "postgresql",
   "firebase",
   "nodejs",
-  "prisma",
   "django",
   "git",
-   "npm",
   "figma",
   "html",
   "css",
   "github",
-  "vscode",
 ];
 
 interface SkillIconProps {
@@ -188,7 +180,7 @@ export default function Skills() {
     >
       <section className="relative w-full overflow-x-clip">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-y-visible overflow-x-clip">
-          <div className="absolute left-1/2 top-[var(--ripple-y)] -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-[90vw] aspect-square">
+          <div className="absolute left-1/2 top-(--ripple-y) -translate-x-1/2 -translate-y-1/2 w-[700px] max-w-[90vw] aspect-square">
             <Ripple className="absolute inset-0 w-full h-full opacity-65 select-none rounded-full" />
           </div>
         </div>

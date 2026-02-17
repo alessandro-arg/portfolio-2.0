@@ -19,11 +19,11 @@ export default function Footer() {
               <Logo className="w-18 h-18 select-none" />
             </Link>
             <p className="w-60 text-base leading-5 dark:text-gray-300">
-              I&apos;m Alessandro - a Full-stack developer and problem solver.
+              I&apos;m Alessandro - a Fullstack developer and problem solver.
               Thanks for checking out my site!
             </p>
           </div>
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:gap-16 lg:gap-32 max-sm:bg-primary/[0.05] rounded-3xl p-5">
+          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:gap-16 lg:gap-32 max-sm:bg-primary/5 rounded-3xl p-5">
             {footerCategories.map((cat) => (
               <FooterLinks key={cat.title} category={cat} />
             ))}

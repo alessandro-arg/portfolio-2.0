@@ -1,7 +1,7 @@
 "use client";
 
 import createGlobe from "cobe";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 
 type RGB = [number, number, number];
@@ -19,6 +19,13 @@ const DEFAULT_THETA = 0.38;
 const CITIES: Country[] = [
   { key: "germany", label: "Germany", flag: "🇩🇪", lat: 47.6231, lng: 8.2172 },
   { key: "italy", label: "Italy", flag: "🇮🇹", lat: 40.8522, lng: 14.2681 },
+  {
+    key: "switzerland",
+    label: "Switzerland",
+    flag: "🇨🇭",
+    lat: 47.3769,
+    lng: 8.5417,
+  },
 ];
 
 export type GlobeProps = {
@@ -61,6 +68,26 @@ export function Globe({
     (lat * Math.PI) / 180,
   ];
 
+  // ✅ Keep markers always in sync with CITIES (Switzerland included)
+  const markers = useMemo(
+    () =>
+      CITIES.map((c) => ({
+        location: [c.lat, c.lng] as [number, number],
+        size: 0.15,
+      })),
+    [],
+  );
+
+  // ✅ Switzerland button should appear "on top": render it separately
+  const switzerland = useMemo(
+    () => CITIES.find((c) => c.key === "switzerland"),
+    [],
+  );
+  const otherCities = useMemo(
+    () => CITIES.filter((c) => c.key !== "switzerland"),
+    [],
+  );
+
   useEffect(() => {
     const initial =
       CITIES.find((c) => c.key === defaultCountryKey) ?? CITIES[0];
@@ -100,10 +127,10 @@ export function Globe({
       baseColor: colors.base ?? [1, 1, 1],
       markerColor: colors.marker ?? [0.1, 0.6, 1],
       glowColor: colors.glow ?? [1.15, 1.15, 1.2],
-      markers: [
-        { location: [47.6231, 8.2172], size: 0.15 },
-        { location: [40.8522, 14.2681], size: 0.15 },
-      ],
+
+      // ✅ Now includes Switzerland too
+      markers,
+
       onRender: (state) => {
         const [focusPhi] = focusRef.current;
 
@@ -116,7 +143,6 @@ export function Globe({
           if (distPositive < distNegative) phi += distPositive * 0.08;
           else phi -= distNegative * 0.08;
 
-          // stop snapping when close enough
           if (
             Math.abs(((phi - focusPhi + Math.PI) % (2 * Math.PI)) - Math.PI) <
             0.002
@@ -124,6 +150,7 @@ export function Globe({
             snapRef.current = false;
           }
         }
+
         theta = horizontalOnly ? DEFAULT_THETA : theta;
 
         currentPhiRef.current = phi;
@@ -154,6 +181,7 @@ export function Globe({
       canvas.style.cursor = "grabbing";
       (e.target as Element).setPointerCapture?.(e.pointerId);
     };
+
     const onPointerMove = (e: PointerEvent) => {
       if (!draggingRef.current) return;
       const deltaX = e.clientX - startX;
@@ -162,6 +190,7 @@ export function Globe({
       currentPhiRef.current = startPhi + deltaX * rotPerPx;
       focusRef.current = [currentPhiRef.current, currentThetaRef.current];
     };
+
     const onPointerUp = () => {
       draggingRef.current = false;
       canvas.style.cursor = "grab";
@@ -178,37 +207,63 @@ export function Globe({
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
     };
-  }, [colors.base, colors.glow, colors.marker, height, horizontalOnly, isDark]);
+  }, [
+    colors.base,
+    colors.glow,
+    colors.marker,
+    height,
+    horizontalOnly,
+    isDark,
+    markers,
+  ]);
 
   const selectCity = (country: Country) => {
     setActiveKey(country.key);
-    // set snap target and enable one-time easing
     focusRef.current = locationToAngles(country.lat, country.lng);
     snapRef.current = true;
   };
 
+  const CityButton = ({ c }: { c: Country }) => {
+    const isActive = c.key === activeKey;
+
+    return (
+      <button
+        key={c.key}
+        onClick={() => selectCity(c)}
+        className={clsx(
+          "z-50 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 transition-all duration-150",
+          isActive
+            ? "bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/40 ring-inset dark:text-sky-400"
+            : "bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800",
+        )}
+      >
+        <span>{c.flag}</span>
+        <span className="font-mono">{c.label}</span>
+      </button>
+    );
+  };
+
   return (
     <div ref={containerRef} className="relative w-full" style={{ height }}>
-      {/* Buttons row */}
-      <div className="absolute mx-auto w-full flex flex-wrap justify-center items-center gap-2 -top-12 sm:-top-4 lg:-top-4">
-        {CITIES.map((c) => {
-          const isActive = c.key === activeKey;
-          return (
-            <button
-              key={c.key}
-              onClick={() => selectCity(c)}
-              className={clsx(
-                "z-50 flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 transition-all duration-150",
-                isActive
-                  ? "bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/40 ring-inset dark:text-sky-400"
-                  : "bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800"
-              )}
-            >
-              <span>{c.flag}</span>
-              <span className="font-mono">{c.label}</span>
-            </button>
-          );
-        })}
+      {/* ✅ Buttons (pushed higher + Switzerland on its own row) */}
+      <div
+        className={clsx(
+          "absolute inset-x-0 z-50 flex flex-col items-center gap-2",
+          // moved further up to reduce overlap with globe:
+          "-top-20 sm:-top-16 lg:-top-18",
+        )}
+      >
+        {switzerland ? (
+          <div className="flex justify-center">
+            <CityButton c={switzerland} />
+          </div>
+        ) : null}
+
+        <div className="flex flex-wrap justify-center items-center gap-2">
+          {otherCities.map((c) => (
+            <CityButton key={c.key} c={c} />
+          ))}
+        </div>
       </div>
 
       {/* Globe canvas */}

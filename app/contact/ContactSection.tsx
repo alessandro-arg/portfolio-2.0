@@ -30,16 +30,16 @@ export default function ContactSection({
         "relative z-0 flex w-full justify-center overflow-x-hidden bg-cover bg-center px-4 py-20",
         noTopMargin ? null : "mt-40",
         mtClassName,
-        className
+        className,
       )}
     >
       <div className="absolute inset-0 bg-[url('/images/cta-bg.webp')] bg-cover bg-center opacity-40 -z-10"></div>
       <div className="pointer-events-none absolute inset-0">
         {/* Top shadow */}
-        <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/10 to-background"></div>
+        <div className="absolute top-0 left-0 w-full h-40 bg-linear-to-b from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-background via-background/10 to-background"></div>
         {/* Bottom shadow */}
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>
       </div>
       <div className="relative z-10 mx-auto flex w-full container flex-col items-center justify-center gap-y-2 py-10 text-center ">
         <Logo className="w-20 h-20 select-none" />

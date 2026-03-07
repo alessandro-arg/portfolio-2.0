@@ -130,7 +130,7 @@ export default function Hero() {
       {/*Hero*/}
       <div className="relative z-20 mx-auto mt-20 sm:mt-40 mb-2 pt-20 flex max-w-full flex-col items-center justify-center px-3 md:mt-36 md:max-w-4xl lg:max-w-5xl">
         {/*Small CTA Button*/}
-        {/*<Link href="https://vibe.alessandro-argenziano.com" target="__blank">*/}
+        <Link href="https://altair.alessandro-argenziano.com" target="__blank">
           <motion.div
             className="group font-mono mb-2 sm:mb-0 flex cursor-pointer items-center rounded-full border border-black/5 hover:border-neutral-00 bg-black/10 text-sm backdrop-blur-xs lg:text-sm dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
             initial={{ y: 20, opacity: 0 }}
@@ -138,11 +138,11 @@ export default function Hero() {
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
           >
             <span className="mx-1 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
-              Coming soon
+              New!
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
               <strong className="font-medium dark:text-white text-zinc-600">
-               Altair
+                Altair
               </strong>
               • AI supported IDE
               <ArrowRight
@@ -153,7 +153,7 @@ export default function Hero() {
               />
             </AnimatedShinyText>
           </motion.div>
-        {/*</Link>*/}
+        </Link>
 
         {/* Text*/}
         <motion.h2

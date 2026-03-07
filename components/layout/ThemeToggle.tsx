@@ -38,7 +38,7 @@ export function ThemeToggle({
   const containerPadding = 4; // p-1 => 4px
   const pillLeft = useMemo(
     () => (isDark ? containerPadding + size : containerPadding),
-    [isDark, size]
+    [isDark, size],
   );
 
   // Keyboard support: use left/right arrows to switch themes
@@ -74,7 +74,7 @@ export function ThemeToggle({
             "top-1 bottom-1", // match container padding for perfect fit
             "backdrop-blur-sm",
             // soft gradient fill that works in light & dark
-            "bg-gradient-to-b from-foreground/10 to-foreground/15 dark:from-white/10 dark:to-white/15",
+            "bg-linear-to-b from-foreground/10 to-foreground/15 dark:from-white/10 dark:to-white/15",
             // thin inner ring for definition
             "ring-1 ring-foreground/10 dark:ring-white/10",
             // shadow stack for premium depth

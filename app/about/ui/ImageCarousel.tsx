@@ -38,7 +38,7 @@ const ImageCarousel = () => {
 
   const handleDragEnd = (
     e: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
+    info: PanInfo,
   ) => {
     const threshold = 50;
 
@@ -117,7 +117,7 @@ const ImageCarousel = () => {
               >
                 <div className="relative">
                   <div
-                    className="relative aspect-[4/5] w-[160px] sm:w-[200px] md:w-[240px] lg:w-[300px] overflow-hidden rounded-3xl"
+                    className="relative aspect-4/5 w-40 sm:w-[200px] md:w-60 lg:w-[300px] overflow-hidden rounded-3xl"
                     style={{
                       boxShadow: "rgba(0, 0, 0, 0.5) 0px 10px 30px",
                     }}

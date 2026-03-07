@@ -32,7 +32,7 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
                 "relative bg-transparent px-0 py-0 h-auto",
                 "text-sm font-medium",
                 "text-neutral-800 dark:text-gray-300",
-                "hover:text-black dark:hover:text-white"
+                "hover:text-black dark:hover:text-white",
               )}
             >
               More
@@ -43,7 +43,7 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
               {active && (
                 <motion.span
                   layoutId={underlineLayoutId}
-                  className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-[#16b1ff]"
+                  className="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-[#16b1ff]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
             className={cn(
               "border border-black/10 dark:border-white/10",
               "bg-white/90 dark:bg-neutral-900/90 backdrop-blur",
-              "shadow-xl"
+              "shadow-xl",
             )}
           >
             <ul className="flex w-[320px] flex-col gap-2 p-2 md:w-[340px] lg:w-[360px]">

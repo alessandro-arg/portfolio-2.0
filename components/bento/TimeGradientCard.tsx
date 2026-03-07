@@ -10,6 +10,10 @@ import {
   Sunset,
   Snowflake,
   CableCar,
+  TentTree,
+  Trees,
+  TreePine,
+  TreeDeciduous,
 } from "lucide-react";
 
 type TimeOfDay = "dawn" | "morning" | "day" | "evening" | "dusk" | "night";
@@ -65,8 +69,17 @@ const TimeGradientCard = () => {
     return day === 0 || day === 6;
   };
 
-  const getStatusFromGreeting = (greeting: string, weekend: boolean) => {
-    if (weekend) return "SNOWBOARDING";
+  const getStatusFromGreeting = (
+    greeting: string,
+    weekend: boolean,
+    season: string,
+  ) => {
+    if (weekend) {
+      if (season === "winter") return "SNOWBOARDING";
+      if (season === "spring") return "HIKING";
+      if (season === "summer") return "SWIMMING";
+      if (season === "autumn") return "EXPLORING";
+    }
 
     switch (greeting) {
       case "Good Night":
@@ -84,6 +97,15 @@ const TimeGradientCard = () => {
       default:
         return "Available";
     }
+  };
+
+  const getSeason = (date: Date) => {
+    const month = date.getMonth();
+
+    if (month >= 2 && month <= 4) return "spring";
+    if (month >= 5 && month <= 7) return "summer";
+    if (month >= 8 && month <= 10) return "autumn";
+    return "winter";
   };
 
   const getTimeOfDay = (hour: number): TimeOfDay => {
@@ -112,6 +134,7 @@ const TimeGradientCard = () => {
       const timeOfDay = getTimeOfDay(hour);
       const greeting = getGreeting(hour);
       const weekend = isWeekend(now);
+      const season = getSeason(now);
 
       setTimeData({
         hours: String(hour).padStart(2, "0"),
@@ -123,7 +146,7 @@ const TimeGradientCard = () => {
         }),
         timeOfDay,
         greeting,
-        status: getStatusFromGreeting(greeting, weekend),
+        status: getStatusFromGreeting(greeting, weekend, season),
       });
     };
 
@@ -188,9 +211,22 @@ const TimeGradientCard = () => {
     night: Moon,
   };
 
-  const weekend = new Date().getDay() === 0 || new Date().getDay() === 6;
-  const Icon = weekend ? CableCar : icons[timeData.timeOfDay];
-  const colors = accentColors[timeData.timeOfDay];
+  const now = new Date();
+  const weekend = now.getDay() === 0 || now.getDay() === 6;
+  const season = getSeason(now);
+
+  const Icon = weekend
+    ? season === "winter"
+      ? CableCar
+      : TentTree
+    : icons[timeData.timeOfDay];
+  const colors =
+    weekend && season === "spring"
+      ? {
+          icon: "text-green-600",
+          dot: "text-yellow-600",
+        }
+      : accentColors[timeData.timeOfDay];
 
   // Minimal floating particles
   const particles = [
@@ -287,11 +323,23 @@ const TimeGradientCard = () => {
               rotate: weekend ? [0, 10, -10, 0] : 0,
             }}
             transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 15,
-              repeat: weekend ? Infinity : 0,
-              repeatDelay: 3,
+              scale: {
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+              },
+              rotate: weekend
+                ? {
+                    duration: 0.6,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                  }
+                : {
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  },
             }}
             className="relative"
           >
@@ -361,7 +409,35 @@ const TimeGradientCard = () => {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-2"
           >
-            {timeData.status === "SNOWBOARDING" ? (
+            {timeData.status === "HIKING" ? (
+              <div className="flex items-center gap-1.5">
+                <motion.div
+                  initial={{ opacity: 0, y: 2 }}
+                  animate={{ opacity: [0.5, 1, 0.5], y: [0, -2, 0] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <TreePine className={`w-4 h-4 text-amber-400`} />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: -2 }}
+                  animate={{ opacity: [0.4, 0.9, 0.4], y: [0, 2, 0] }}
+                  transition={{
+                    duration: 2.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <TreeDeciduous
+                    className={`w-4 h-4 text-green-600 dark:text-green-500`}
+                  />
+                </motion.div>
+              </div>
+            ) : timeData.status === "SNOWBOARDING" ? (
               <div className="flex items-center gap-1.5">
                 <motion.div
                   initial={{ opacity: 0, y: 2 }}
@@ -374,12 +450,11 @@ const TimeGradientCard = () => {
                 >
                   <Snowflake className={`w-4 h-4 ${colors.icon}`} />
                 </motion.div>
-
                 <motion.div
-                  initial={{ opacity: 0, y: -2 }}
-                  animate={{ opacity: [0.4, 1, 0.4], y: [0, 3, 0] }}
+                  initial={{ opacity: 0, y: 2 }}
+                  animate={{ opacity: [0.4, 0.9, 0.4], y: [0, -3, 0] }}
                   transition={{
-                    duration: 2.1,
+                    duration: 2.4,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}

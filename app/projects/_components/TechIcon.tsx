@@ -21,6 +21,7 @@ import {
   siPrisma,
   siClerk,
   siCoderabbit,
+  siCodemirror,
 } from "simple-icons/icons";
 
 // Define each icon and optionally override its default color
@@ -121,10 +122,35 @@ const ICONS: Record<
     hex: siCoderabbit.hex,
     path: siCoderabbit.path,
   },
+  "ai-sdk": {
+    title: "AI-SDK",
+    hex: "",
+    path: "",
+  },
+  inngest: {
+    title: "Inngest",
+    hex: "",
+    path: "",
+  },
+  codemirror: {
+    title: siCodemirror.title,
+    hex: siCodemirror.hex,
+    path: siCodemirror.path,
+  },
+  webcontainers: {
+    title: "WebContainers",
+    hex: "",
+    path: "",
+  },
+  zustand: {
+    title: "Zustand",
+    hex: "",
+    path: "",
+  },
 };
 
 export const TECH_LABELS: Record<TechKey, string> = Object.fromEntries(
-  Object.entries(ICONS).map(([key, value]) => [key, value.title])
+  Object.entries(ICONS).map(([key, value]) => [key, value.title]),
 ) as Record<TechKey, string>;
 
 export const TechIcon: FC<{

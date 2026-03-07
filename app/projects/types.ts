@@ -30,7 +30,12 @@ export type TechKey =
   | "trpc"
   | "prisma"
   | "clerk"
-  | "code-rabbit";
+  | "code-rabbit"
+  | "ai-sdk"
+  | "inngest"
+  | "codemirror"
+  | "webcontainers"
+  | "zustand";
 
 /** New: supports both legacy string points and rich points with description */
 export type ProjectPoint =

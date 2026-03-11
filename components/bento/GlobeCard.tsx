@@ -12,7 +12,7 @@ export default function GlobeCard() {
       <div className="absolute inset-x-0 size-full flex items-center -bottom-55">
         <Globe
           defaultCountryKey="germany"
-          height="55vh"
+          height="100%"
           horizontalOnly
           isDark={theme === "dark"}
           colors={

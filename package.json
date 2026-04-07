@@ -25,7 +25,7 @@
     "class-variance-authority": "^0.7.1",
     "cobe": "^0.6.5",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.23.21",
+    "framer-motion": "^12.38.0",
     "fumadocs-core": "^15.8.5",
     "fumadocs-ui": "^15.8.5",
     "gsap": "^3.13.0",

@@ -15,8 +15,9 @@ import { Logo } from "../ui/logo";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
-  { href: "/about", label: "About", ariaLabel: "Learn about us" },
-  { href: "/projects", label: "Projects", ariaLabel: "View our projects" },
+  { href: "/about", label: "About", ariaLabel: "About me" },
+  { href: "/projects", label: "Projects", ariaLabel: "View my projects" },
+  { href: "/blog", label: "Blog", ariaLabel: "My personal blog" },
 ];
 
 const panelSpring: Transition = {

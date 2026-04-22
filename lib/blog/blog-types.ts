@@ -13,6 +13,7 @@ export type BlogFrontmatter = {
 export type BlogPostMeta = BlogFrontmatter & {
   slug: string;
   readingTime: string;
+  rawDate: string;
 };
 
 export type BlogPost = BlogPostMeta & {

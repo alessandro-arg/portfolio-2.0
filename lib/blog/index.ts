@@ -6,6 +6,14 @@ import readingTime from "reading-time";
 
 const BLOG_CONTENT_PATH = path.join(process.cwd(), "content", "blog");
 
+function formatDate(date: string): string {
+  return new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(date));
+}
+
 function getAllMdxFiles(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
@@ -16,7 +24,11 @@ function getAllMdxFiles(dir: string): string[] {
       return getAllMdxFiles(fullPath);
     }
 
-    if (entry.isFile() && entry.name.endsWith(".mdx")) {
+    if (
+      entry.isFile() &&
+      entry.name.endsWith(".mdx") &&
+      !entry.name.startsWith("_")
+    ) {
       return [fullPath];
     }
 
@@ -38,7 +50,12 @@ export function getAllPosts(): BlogPostMeta[] {
     const stats = readingTime(content);
 
     return {
-      ...(data as Omit<BlogPostMeta, "slug" | "readingTime">),
+      ...(data as Omit<
+        BlogPostMeta,
+        "slug" | "readingTime" | "date" | "rawDate"
+      >),
+      rawDate: data.date as string,
+      date: formatDate(data.date as string),
       slug: filePathToSlug(filePath),
       readingTime: stats.text,
     };
@@ -46,7 +63,9 @@ export function getAllPosts(): BlogPostMeta[] {
 
   return posts
     .filter((post) => post.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort(
+      (a, b) => new Date(b.rawDate).getTime() - new Date(a.rawDate).getTime(),
+    );
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
@@ -61,7 +80,12 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const stats = readingTime(content);
 
   return {
-    ...(data as Omit<BlogPost, "slug" | "content" | "readingTime">),
+    ...(data as Omit<
+      BlogPost,
+      "slug" | "content" | "readingTime" | "date" | "rawDate"
+    >),
+    rawDate: data.date as string,
+    date: formatDate(data.date as string),
     slug,
     content,
     readingTime: stats.text,

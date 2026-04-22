@@ -3,6 +3,8 @@ import { getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/components/blog/mdx-components";
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 export async function generateMetadata({
   params,
@@ -40,7 +42,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <main className="container py-16 md:py-24">
-      <article className="mx-auto max-w-3xl">
+      <article className="mx-auto max-w-3xl lg:max-w-4xl">
+        <Link
+          href="/blog"
+          className="mb-8 inline-flex text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          ← Back to Blog
+        </Link>
         <header className="mb-10 space-y-4">
           <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
             <span>{post.date}</span>
@@ -53,9 +61,22 @@ export default async function BlogPostPage({ params }: PageProps) {
           </h1>
 
           <p className="text-lg text-muted-foreground">{post.description}</p>
+
+          {post.cover ? (
+            <div className="mt-6 overflow-hidden rounded-2xl border border-border">
+              <Image
+                src={post.cover}
+                alt={post.title}
+                width={1200}
+                height={630}
+                className="h-auto w-full object-cover"
+                priority
+              />
+            </div>
+          ) : null}
         </header>
 
-        <div className="blog-prose">
+        <div className="blog-prose mx-auto max-w-3xl">
           <MDXRemote
             source={post.content}
             components={mdxComponents}

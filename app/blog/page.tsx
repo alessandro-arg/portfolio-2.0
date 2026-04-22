@@ -8,112 +8,94 @@ export const metadata: Metadata = {
   description: "Developer journal documenting my road to DevOps.",
 };
 
+const topicColors: Record<string, string> = {
+  css: "text-orange-400",
+  js: "text-yellow-400",
+  javascript: "text-yellow-400",
+  html: "text-sky-400",
+  typescript: "text-blue-400",
+  devops: "text-green-400",
+  linux: "text-purple-400",
+  docker: "text-cyan-400",
+  git: "text-red-400",
+  default: "text-muted-foreground",
+};
+
+function getTopicColor(topic: string) {
+  return topicColors[topic.toLowerCase()] ?? topicColors.default;
+}
+
 export default function BlogPage() {
   const posts = getAllPosts();
   const featuredPost = posts[0];
   const restPosts = posts.slice(1);
 
   return (
-    <main className="container py-16 md:py-24">
-      <div className="mx-auto max-w-4xl">
-        <header className="mb-12 space-y-4">
-          <p className="text-sm text-muted-foreground">Developer Journal</p>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+    <main className="min-h-screen bg-background text-foreground mt-20">
+      {/* Header */}
+      <header className="border-b border-border px-8 py-12 md:px-16">
+        <div className="max-w-7xl mx-auto">
+          <p className="font-mono text-xs text-muted-foreground mb-2 tracking-widest uppercase">
+            Developer Journal
+          </p>
+          <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-4">
             Blog
           </h1>
-          <p className="max-w-2xl text-muted-foreground">
-            Notes from my road to DevOps: what I am learning, building, testing,
-            and understanding along the way.
+          <p className="font-mono text-sm text-muted-foreground max-w-xl">
+            Notes from my road to DevOps: what I&apos;m learning, building,
+            testing, and understanding along the way.
           </p>
-        </header>
+        </div>
+      </header>
 
-        <div className="space-y-10">
-          {featuredPost ? (
-            <article className="rounded-2xl border border-border bg-card p-8">
-              {featuredPost.cover ? (
-                <div className="mb-6 overflow-hidden rounded-2xl border border-border">
-                  <Image
-                    src={featuredPost.cover}
-                    alt={featuredPost.title}
-                    width={1200}
-                    height={630}
-                    className="h-auto w-full object-cover"
-                    priority
-                  />
-                </div>
-              ) : null}
-              <p className="mb-3 text-sm text-muted-foreground">Latest Post</p>
-
-              <div className="mb-3 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <span>{featuredPost.date}</span>
-                <span>{featuredPost.readingTime}</span>
-                <span>{featuredPost.topic}</span>
+      {/* Post grid */}
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-b border-border">
+          {posts.map((post, i) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className={[
+                "group relative block p-6 border-border transition-colors duration-150",
+                "hover:bg-accent/30",
+                // right borders except last in row
+                i % 4 !== 3 ? "border-r" : "",
+                // bottom border for all except last row
+                i < posts.length - (posts.length % 4 || 4) ? "border-b" : "",
+              ].join(" ")}
+            >
+              {/* Topic + date row */}
+              <div className="flex items-center gap-3 mb-4">
+                <span
+                  className={`font-mono text-xs font-bold uppercase tracking-widest ${getTopicColor(post.topic)}`}
+                >
+                  {post.topic}
+                </span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {post.date}
+                </span>
               </div>
 
-              <h2 className="mb-3 text-3xl font-semibold">
-                <Link href={`/blog/${featuredPost.slug}`}>
-                  {featuredPost.title}
-                </Link>
+              {/* Title */}
+              <h2 className="font-mono text-base md:text-lg font-semibold leading-snug text-foreground group-hover:text-foreground transition-colors">
+                {post.title}
               </h2>
 
-              <>
-                <p className="mb-4 text-muted-foreground">
-                  {featuredPost.description}
-                </p>
-
-                {featuredPost.tags?.length ? (
-                  <div className="flex flex-wrap gap-2">
-                    {featuredPost.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-              </>
-            </article>
-          ) : null}
-
-          <div className="space-y-6">
-            {restPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="rounded-xl border border-border bg-card p-6 transition-colors hover:bg-accent/40"
-              >
-                <div className="mb-3 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                  <span>{post.date}</span>
-                  <span>{post.readingTime}</span>
-                </div>
-
-                <h2 className="mb-2 text-2xl font-semibold">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                </h2>
-
-                <>
-                  <p className="mb-4 text-muted-foreground">
-                    {post.description}
-                  </p>
-
-                  {post.tags?.length ? (
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
-                </>
-              </article>
-            ))}
-          </div>
+              {/* Reading time — revealed on hover */}
+              <p className="mt-4 font-mono text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                {post.readingTime}
+              </p>
+            </Link>
+          ))}
         </div>
+
+        {posts.length === 0 && (
+          <div className="px-8 py-24 text-center">
+            <p className="font-mono text-sm text-muted-foreground">
+              No posts published yet.
+            </p>
+          </div>
+        )}
       </div>
     </main>
   );

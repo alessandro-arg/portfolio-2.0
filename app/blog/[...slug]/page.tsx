@@ -30,9 +30,25 @@ type PageProps = {
   params: Promise<{ slug: string[] }>;
 };
 
+const topicColors: Record<string, string> = {
+  css: "text-orange-400",
+  js: "text-yellow-400",
+  javascript: "text-yellow-400",
+  html: "text-sky-400",
+  typescript: "text-blue-400",
+  devops: "text-green-400",
+  linux: "text-purple-400",
+  docker: "text-cyan-400",
+  git: "text-red-400",
+  default: "text-muted-foreground",
+};
+
+function getTopicColor(topic: string) {
+  return topicColors[topic.toLowerCase()] ?? topicColors.default;
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-
   const joinedSlug = slug.join("/");
   const post = getPostBySlug(joinedSlug);
 
@@ -41,60 +57,134 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="container py-16 md:py-24">
-      <article className="mx-auto max-w-3xl lg:max-w-4xl">
-        <Link
-          href="/blog"
-          className="mb-8 inline-flex text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          ← Back to Blog
-        </Link>
-        <header className="mb-10 space-y-4">
-          <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-            <span>{post.date}</span>
-            <span>{post.readingTime}</span>
-            <span>{post.topic}</span>
-          </div>
-
-          <h1 className="text-4xl font-mono font-semibold tracking-tight md:text-5xl">
+    <main className="min-h-screen bg-background text-foreground">
+      {/* Top bar with back */}
+      <div className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <div className="max-w-7xl mx-auto px-8 md:px-16 py-3 flex items-center gap-4">
+          <Link
+            href="/blog"
+            className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 group"
+          >
+            <span className="group-hover:-translate-x-0.5 transition-transform">
+              ←
+            </span>
+            Back
+          </Link>
+          <span className="text-border">|</span>
+          <span className="font-mono text-xs text-muted-foreground truncate max-w-xs md:max-w-md">
             {post.title}
-          </h1>
+          </span>
+        </div>
+      </div>
 
-          <p className="text-lg text-muted-foreground">{post.description}</p>
+      <div className="max-w-7xl mx-auto px-8 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-0">
+          {/* Left sidebar — meta */}
+          <aside className="lg:border-r border-border py-12 lg:pr-12 lg:sticky lg:top-14 lg:self-start">
+            <div className="space-y-6">
+              <div>
+                <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
+                  Topic
+                </p>
+                <span
+                  className={`font-mono text-sm font-bold uppercase tracking-widest ${getTopicColor(post.topic)}`}
+                >
+                  {post.topic}
+                </span>
+              </div>
 
-          {post.cover ? (
-            <div className="mt-6 overflow-hidden rounded-2xl border border-border">
-              <Image
-                src={post.cover}
-                alt={post.title}
-                width={1200}
-                height={630}
-                className="h-auto w-full object-cover"
-                priority
+              <div>
+                <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
+                  Published
+                </p>
+                <p className="font-mono text-sm text-foreground">{post.date}</p>
+              </div>
+
+              {post.updated && (
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
+                    Updated
+                  </p>
+                  <p className="font-mono text-sm text-foreground">
+                    {post.updated}
+                  </p>
+                </div>
+              )}
+
+              <div>
+                <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
+                  Read time
+                </p>
+                <p className="font-mono text-sm text-foreground">
+                  {post.readingTime}
+                </p>
+              </div>
+
+              {post.tags && post.tags.length > 0 && (
+                <div>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-2">
+                    Tags
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-xs border border-border px-2 py-0.5 text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </aside>
+
+          {/* Main content */}
+          <article className="py-12 lg:pl-12 min-w-0">
+            <header className="mb-10 border-b border-border pb-10">
+              <h1 className="font-mono text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4">
+                {post.title}
+              </h1>
+              <p className="font-mono text-base text-muted-foreground">
+                {post.description}
+              </p>
+
+              {post.cover && (
+                <div className="mt-8 overflow-hidden border border-border">
+                  <Image
+                    src={post.cover}
+                    alt={post.title}
+                    width={1200}
+                    height={630}
+                    className="h-auto w-full object-cover"
+                    priority
+                  />
+                </div>
+              )}
+            </header>
+
+            <div className="blog-prose">
+              <MDXRemote
+                source={post.content}
+                components={mdxComponents}
+                options={{
+                  mdxOptions: {
+                    rehypePlugins: [
+                      [
+                        (await import("rehype-pretty-code")).default,
+                        {
+                          theme: "github-dark",
+                        },
+                      ],
+                    ],
+                  },
+                }}
               />
             </div>
-          ) : null}
-        </header>
-
-        <div className="blog-prose mx-auto max-w-3xl">
-          <MDXRemote
-            source={post.content}
-            components={mdxComponents}
-            options={{
-              mdxOptions: {
-                rehypePlugins: [
-                  [
-                    (await import("rehype-pretty-code")).default,
-                    {
-                      theme: "github-dark",
-                    },
-                  ],
-                ],
-              },
-            }}
-          />
+          </article>
         </div>
-      </article>
+      </div>
     </main>
   );
 }

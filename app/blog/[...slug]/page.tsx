@@ -5,6 +5,7 @@ import { mdxComponents } from "@/components/blog/mdx-components";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export async function generateMetadata({
   params,
@@ -106,7 +107,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           <aside className="lg:border-l border-border lg:pl-12 lg:sticky lg:top-14 lg:self-start pt-10 pb-62">
             <div className="space-y-6">
-              <a
+              <Link
                 href="/blog"
                 className="group gap-1 relative inline-flex items-center before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-[''] before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] hover:before:origin-left hover:before:scale-x-100 text-lg"
               >
@@ -115,7 +116,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="group-hover: pointer-events-none translate-x-0 transition-all duration-300 [motion-reduce:transition-none] group-hover:-translate-x-1 group-hover:opacity-100"
                 />
                 Back
-              </a>
+              </Link>
               <div>
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Title

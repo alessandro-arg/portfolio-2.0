@@ -86,6 +86,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     >),
     rawDate: data.date as string,
     date: formatDate(data.date as string),
+    updated: formatDate(data.date as string),
     slug,
     content,
     readingTime: stats.text,

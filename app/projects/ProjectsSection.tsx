@@ -20,12 +20,12 @@ export default function ProjectsSection({
 
   const displayedProjects = useMemo(
     () => (showCTA ? projectsData.slice(0, 3) : projectsData),
-    [showCTA]
+    [showCTA],
   );
 
   const ids = useMemo(
     () => displayedProjects.map((p, i) => p.slug ?? `p-${i}`),
-    [displayedProjects]
+    [displayedProjects],
   );
 
   useEffect(() => {

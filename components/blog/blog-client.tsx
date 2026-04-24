@@ -41,7 +41,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
             <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-5 leading-none">
               Blog
             </h1>
-            <p className="font-mono text-sm text-muted-foreground max-w-md leading-relaxed">
+            <p className="font-mono text-base text-muted-foreground max-w-lg leading-relaxed">
               Notes from my road to DevOps: what I&apos;m learning, building,
               testing, and understanding along the way.
             </p>
@@ -56,7 +56,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
                   key={topic}
                   onClick={() => setActive(topic)}
                   className={[
-                    "font-mono text-sm px-1 py-0.5 transition-colors duration-100 cursor-pointer",
+                    "font-mono text-base px-1 py-0.5 transition-colors duration-100 cursor-pointer",
                     isActive
                       ? "bg-foreground text-background"
                       : "text-muted-foreground hover:text-foreground",
@@ -123,7 +123,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
 
                   {/* Title — centered */}
                   <div className="flex-1 flex items-center justify-center">
-                    <h2 className="font-mono text-base md:text-lg font-semibold mx-3 text-foreground text-center transition-transform duration-200 group-hover:scale-105 origin-center">
+                    <h2 className="font-mono text-2xl md:text-3xl font-semibold mx-3 text-foreground text-center transition-transform duration-200 group-hover:scale-105 origin-center">
                       {post.title}
                     </h2>
                   </div>

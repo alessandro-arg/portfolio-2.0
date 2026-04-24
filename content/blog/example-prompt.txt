@@ -1,0 +1,39 @@
+EXAMPLE
+
+## First Prompt (raw draft)
+
+Use and follow the rules in your sources.
+
+THEMA: My first Docker container on Ubuntu
+LERNINHALT: installed docker, learned images vs containers, ran nginx
+PROBLEME: permission denied with docker.sock
+ERKENNTNISSE: docker group fixes permissions, containers are isolated processes
+TOPIC: devops journey
+TAGS: docker, linux, container
+DATE: 2026-04-24
+UPDATED: 2026-04-24
+BLOG_URL: https://alessandro-argenziano.com/blog/{topic}/{title}
+BILDER: yes
+VIDEOS: no
+KEYWORDS: docker ubuntu beginner
+
+Generate the post + LinkedIn post.
+Keine Emojis.
+
+## Second Prompt (editor pass)
+
+Improve authenticity.
+Reduce AI sounding phrases.
+Make it feel like a real junior dev wrote it.
+Keep MDX format.
+
+Also improve the LinkedIn post:
+
+more natural
+less corporate
+more personal curiosity tone
+
+-remove fluff
+-improve flow
+-sharpen technical wording
+-make more human

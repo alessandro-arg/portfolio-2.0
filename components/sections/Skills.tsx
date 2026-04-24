@@ -12,160 +12,65 @@ type CSSWithVars = CSSProperties & {
   [key: `--${string}`]: string | number;
 };
 
-function useIsMounted() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted;
-}
+const skillsRow1 = ["angular", "react", "nextjs", "ts", "js"];
 
-const skillsRow1 = [
-  "angular",
-  "react",
-  "nextjs",
-  "ts",
-  "js",
-  "py",
-];
+const skillsRow2 = ["firebase", "nodejs", "py", "django", "postman"];
 
-const skillsRow2 = [
-  "vercel",
-  "tailwind",
-  "firebase",
-  "nodejs",
-  "postman",
-  "django",
-];
-
-const skillsRow3 = [
-  "figma",
-  "html",
-  "css",
-  "git",
-  "github",
-];
+const skillsRow3 = ["vercel", "tailwind", "figma", "git", "github"];
 
 const mobileSkills = [
   "angular",
   "react",
   "nextjs",
-  "tailwind",
   "ts",
   "js",
-  "py",
-  "postman",
-  "vercel",
   "firebase",
   "nodejs",
+  "py",
   "django",
-  "git",
+  "postman",
+  "vercel",
+  "tailwind",
   "figma",
-  "html",
-  "css",
+  "git",
   "github",
 ];
 
 interface SkillIconProps {
   skill: string;
   index: number;
-  total: number;
-  scrollProgress: MotionValue<number>;
+  visible: boolean;
 }
 
-const seededRandom = (seed: number) => {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-};
-
-const SkillIcon = ({ skill, index, scrollProgress }: SkillIconProps) => {
-  const mounted = useIsMounted();
-
-  // deterministic randoms
-  const randomValues = useMemo(() => {
-    const randomDelay = seededRandom(index * 123) * 0.15;
-    const randomYOffset = (seededRandom(index * 456) - 0.5) * 80;
-    const randomRotation = seededRandom(index * 789) * 90 + 90;
-    return { randomDelay, randomYOffset, randomRotation };
-  }, [index]);
-
-  const { randomDelay, randomYOffset, randomRotation } = randomValues;
-  const fromLeft = index % 2 === 0;
-
-  const startPoint = Math.max(0, 0.2 - randomDelay);
-  const midPoint = 0.5;
-
-  const x = useTransform(
-    scrollProgress,
-    [0, startPoint, midPoint],
-    [fromLeft ? -250 : 250, fromLeft ? -250 : 250, 0]
-  );
-  const y = useTransform(
-    scrollProgress,
-    [0, startPoint, midPoint],
-    [randomYOffset, randomYOffset, 0]
-  );
-  const rotate = useTransform(
-    scrollProgress,
-    [0, startPoint, midPoint],
-    [
-      fromLeft ? -randomRotation : randomRotation,
-      fromLeft ? -randomRotation : randomRotation,
-      0,
-    ]
-  );
-  const opacity = useTransform(
-    scrollProgress,
-    [0, startPoint, startPoint + 0.1, 1],
-    [0, 0, 1, 1]
-  );
-
-  const src = `https://skillicons.dev/icons?i=${skill}&theme=dark&titles=true`;
-
-  return (
-    <motion.div style={mounted ? { x, y, rotate, opacity } : undefined}>
-      <Image
-        src={src}
-        alt={skill}
-        width={48}
-        height={48}
-        className="w-10 h-10 md:w-12 md:h-12"
-        draggable={false}
-        unoptimized
-      />
-    </motion.div>
-  );
-};
+const SkillIcon = ({ skill }: { skill: string }) => (
+  <Image
+    src={`https://skillicons.dev/icons?i=${skill}&theme=dark&titles=true`}
+    alt={skill}
+    width={56}
+    height={56}
+    className="w-12 h-12 md:w-14 md:h-14"
+    draggable={false}
+    unoptimized
+  />
+);
 
 interface SkillRowProps {
   skills: string[];
-  scrollProgress: MotionValue<number>;
   className?: string;
 }
 
-const SkillRow = ({ skills, scrollProgress, className }: SkillRowProps) => {
-  return (
-    <div
-      className={`flex justify-center flex-wrap gap-4 mb-4 ${className ?? ""}`}
-    >
-      {skills.map((skill, index) => (
-        <SkillIcon
-          key={skill}
-          skill={skill}
-          index={index}
-          total={skills.length}
-          scrollProgress={scrollProgress}
-        />
-      ))}
-    </div>
-  );
-};
+const SkillRow = ({ skills, className }: SkillRowProps) => (
+  <div
+    className={`flex justify-center flex-wrap gap-4 mb-4 ${className ?? ""}`}
+  >
+    {skills.map((skill) => (
+      <SkillIcon key={skill} skill={skill} />
+    ))}
+  </div>
+);
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
 
   const sectionStyle: CSSWithVars = {
     "--ripple-y": "clamp(0.5rem, 16vw, 0.5rem)",
@@ -175,7 +80,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative mx-auto flex h-full container flex-col mt-60 w-full py-20 cursor-default"
+      className="relative mx-auto flex h-full container flex-col mt-40 w-full py-20 cursor-default"
       style={sectionStyle}
     >
       <section className="relative w-full overflow-x-clip">
@@ -204,18 +109,14 @@ export default function Skills() {
         <div className="relative z-10 box-border flex flex-col items-center justify-center gap-4 p-[2vw]">
           {/* Desktop */}
           <div className="font-geist w-full max-w-5xl text-center hidden md:block">
-            <SkillRow skills={skillsRow1} scrollProgress={scrollYProgress} />
-            <SkillRow skills={skillsRow2} scrollProgress={scrollYProgress} />
-            <SkillRow skills={skillsRow3} scrollProgress={scrollYProgress} />
+            <SkillRow skills={skillsRow1} />
+            <SkillRow skills={skillsRow2} />
+            <SkillRow skills={skillsRow3} />
           </div>
 
           {/* Mobile */}
           <div className="font-geist w-full max-w-5xl text-center md:hidden">
-            <SkillRow
-              skills={mobileSkills}
-              scrollProgress={scrollYProgress}
-              className="gap-2 mb-2"
-            />
+            <SkillRow skills={mobileSkills} className="gap-2 mb-2" />
           </div>
         </div>
       </section>

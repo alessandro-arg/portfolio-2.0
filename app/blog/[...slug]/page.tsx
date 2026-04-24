@@ -58,13 +58,20 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground my-27">
+    <main className="min-h-screen bg-background text-foreground my-10 md:my-27">
       <div className="max-w-7xl mx-auto px-8 md:px-16 py-14">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-0">
           {/* Main content */}
-          <article className="pb-20 lg:pr-12 min-w-0">
-            <header className="mb-10 border-b border-border pb-10">
-              <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-5 leading-none">
+          <article className="pb-10 sm:pb-20 lg:pr-12 min-w-0">
+            <header className="relative mb-10 border-b border-border pb-10">
+              <Link
+                href="/blog"
+                className="absolute top-0 right-0 gap-1 inline-flex items-center text-xl md:hidden"
+              >
+                <ArrowLeft size={18} className="pointer-events-none" />
+                Back
+              </Link>
+              <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-5 leading-none pt-10">
                 {post.title}
               </h1>
               <p className="font-mono text-lg text-muted-foreground leading-relaxed">
@@ -73,7 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </header>
 
             {post.cover && (
-              <div className="mt-8 overflow-hidden border border-border">
+              <div className="mt-8 overflow-hidden border border-border rounded-xl">
                 <Image
                   src={post.cover}
                   alt={post.title}
@@ -85,7 +92,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             )}
 
-            <div className="blog-prose">
+            <div className="blog-prose border-b border-border pb-12 md:pb-0 md:border-none">
               <MDXRemote
                 source={post.content}
                 components={mdxComponents}
@@ -105,11 +112,18 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           </article>
 
-          <aside className="lg:border-l border-border lg:pl-12 lg:sticky lg:top-14 lg:self-start pt-10 pb-62">
+          <aside className="lg:border-l border-border lg:pl-12 lg:sticky lg:top-14 lg:self-start pt-5 md:pt-10 md:pb-62">
             <div className="space-y-6">
               <Link
                 href="/blog"
-                className="group gap-1 relative inline-flex items-center before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-[''] before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] hover:before:origin-left hover:before:scale-x-100 text-lg"
+                className="gap-1 flex items-center justify-end text-xl md:hidden w-full"
+              >
+                <ArrowLeft size={20} className="pointer-events-none" />
+                Back
+              </Link>
+              <Link
+                href="/blog"
+                className="group gap-1 relative md:inline-flex items-center before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-[''] before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] hover:before:origin-left hover:before:scale-x-100 text-lg hidden"
               >
                 <ArrowLeft
                   size={16}
@@ -117,7 +131,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 />
                 Back
               </Link>
-              <div>
+              <div className="hidden md:block">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Title
                 </p>

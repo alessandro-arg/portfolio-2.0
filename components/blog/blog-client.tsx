@@ -9,24 +9,30 @@ function getCardTopicStyle(topic: string): {
   style?: React.CSSProperties;
 } {
   const t = topic.toLowerCase();
-  if (["frontend"].includes(t)) return { className: "text-destructive" };
+
+  if (t === "frontend") return { className: "text-destructive" };
   if (["js", "javascript"].includes(t)) return { className: "text-yellow-400" };
   if (["ts", "typescript"].includes(t)) return { className: "text-blue-400" };
-  if (["backend"].includes(t)) return { className: "text-green-400" };
-  if (["devops-journey", "docker", "linux", "git"].includes(t))
-    return { className: "", style: { color: "#16b1ff" } };
+  if (t === "backend") return { className: "text-green-400" };
+  if (t === "devops-journey")
+    return {
+      className: "",
+      style: { color: "#16b1ff" },
+    };
   return { className: "text-muted-foreground" };
 }
 
 export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
   const topics = [
-    "All posts",
+    "all posts",
     ...Array.from(new Set(posts.map((p) => p.topic))),
   ];
-  const [active, setActive] = useState("All posts");
+  const [active, setActive] = useState("all posts");
 
   const filtered =
-    active === "All posts" ? posts : posts.filter((p) => p.topic === active);
+    active === "all posts"
+      ? posts
+      : posts.filter((p) => p.topic.toLowerCase() === active.toLowerCase());
 
   return (
     <>

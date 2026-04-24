@@ -316,7 +316,7 @@ body {
 }
 
 .blog-prose p {
-  @apply my-4 text-foreground leading-8;
+  @apply my-4 text-foreground leading-8 text-lg;
 }
 
 .blog-prose ul {
@@ -340,12 +340,12 @@ body {
 }
 
 .blog-prose code {
-  @apply font-mono;
+  @apply font-mono text-sm;
 }
 
 .blog-prose p code,
 .blog-prose li code {
-  @apply rounded-md border border-border bg-muted px-1.5 py-0.5 text-sm;
+  @apply rounded-md border border-border bg-muted px-1.5 py-0.5 text-xs;
 }
 
 .blog-prose blockquote {

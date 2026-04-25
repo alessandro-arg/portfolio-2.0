@@ -300,7 +300,7 @@ body {
 .blog-prose h2,
 .blog-prose h3,
 .blog-prose h4 {
-  @apply font-mono font-semibold tracking-tight text-foreground;
+  @apply font-mono font-semibold tracking-normal text-foreground;
 }
 
 .blog-prose h1 {
@@ -308,31 +308,31 @@ body {
 }
 
 .blog-prose h2 {
-  @apply mt-10 mb-4 text-3xl;
+  @apply mt-8 mb-4 text-3xl;
 }
 
 .blog-prose h3 {
-  @apply mt-8 mb-3 text-2xl;
+  @apply mt-3 mb-1 text-2xl;
 }
 
 .blog-prose p {
-  @apply my-4 text-foreground leading-8 text-lg;
+  @apply my-4 text-foreground leading-8 text-lg font-light tracking-wider;
 }
 
 .blog-prose ul {
-  @apply my-4 list-disc pl-6;
+  @apply my-4 list-disc pl-6 text-lg tracking-wider;
 }
 
 .blog-prose ol {
-  @apply my-4 list-decimal pl-6;
+  @apply my-4 list-decimal pl-6 text-lg tracking-wider;
 }
 
 .blog-prose li {
-  @apply my-2 text-foreground leading-7;
+  @apply my-2 text-foreground leading-7 text-lg tracking-wider;
 }
 
 .blog-prose a {
-  @apply text-foreground underline underline-offset-4;
+  @apply text-foreground underline underline-offset-4 text-lg tracking-wider;
 }
 
 .blog-prose pre {
@@ -340,12 +340,12 @@ body {
 }
 
 .blog-prose code {
-  @apply font-mono text-sm;
+  @apply font-mono text-base;
 }
 
 .blog-prose p code,
 .blog-prose li code {
-  @apply rounded-md border border-border bg-muted px-1.5 py-0.5 text-xs;
+  @apply rounded-md border border-border bg-muted px-1.5 py-0.5 text-base;
 }
 
 .blog-prose blockquote {

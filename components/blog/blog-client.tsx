@@ -48,8 +48,8 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
               Blog
             </h1>
             <p className="font-mono text-base text-muted-foreground max-w-lg leading-relaxed">
-              Notes from my road to DevOps: what I&apos;m learning, building,
-              testing, and understanding along the way.
+              Notes from my journey: what I&apos;m learning, building, testing,
+              and understanding along the way.
             </p>
           </div>
 

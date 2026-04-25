@@ -58,11 +58,11 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground my-10 md:my-27">
+    <main className="min-h-screen bg-background text-foreground my-10 sm:my-27">
       <div className="max-w-7xl mx-auto px-8 md:px-16 py-14">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-0">
           {/* Main content */}
-          <article className="pb-10 sm:pb-20 lg:pr-12 min-w-0">
+          <article className="pb-10 lg:pb-20 lg:pr-12 min-w-0">
             <header className="relative mb-10 border-b border-border pb-10">
               <Link
                 href="/blog"
@@ -131,15 +131,15 @@ export default async function BlogPostPage({ params }: PageProps) {
                 />
                 Back
               </Link>
-              <div className="hidden md:block">
+              <div className="hidden md:block pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Title
                 </p>
-                <span className="font-mono text-sm font-bold">
+                <span className="font-mono text-base font-normal tracking-normal">
                   {post.title}
                 </span>
               </div>
-              <div>
+              <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Topic
                 </p>
@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </span>
               </div>
 
-              <div>
+              <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Published
                 </p>
@@ -158,7 +158,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
 
               {post.updated && (
-                <div>
+                <div className="pointer-events-none">
                   <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                     Updated
                   </p>
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               )}
 
-              <div>
+              <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
                   Read time
                 </p>
@@ -178,7 +178,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
 
               {post.tags && post.tags.length > 0 && (
-                <div>
+                <div className="pointer-events-none">
                   <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-2">
                     Tags
                   </p>

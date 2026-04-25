@@ -154,7 +154,7 @@ export default function TechCard() {
 
         {/* Bottom: animated terminal */}
         <div className="flex items-center justify-center py-2 overflow-hidden">
-          <div className="absolute h-70 w-70 rounded-full bg-blue-500 blur-3xl -bottom-40"></div>
+          <div className="absolute h-70 w-70 rounded-full bg-blue-500 blur-3xl -bottom-40" />
           <SmallTerminal />
         </div>
       </div>

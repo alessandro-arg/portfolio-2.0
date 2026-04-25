@@ -76,7 +76,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
         </div>
 
         {/* Mobile filters — horizontal scroll */}
-        <div className="md:hidden flex gap-2 overflow-x-auto px-8 pb-4 scrollbar-none">
+        <div className="md:hidden flex gap-2 overflow-x-auto pb-4 px-2 items-center justify-center scrollbar-none">
           {topics.map((topic) => {
             const isActive = active === topic;
             return (

@@ -296,6 +296,37 @@ body {
   background-size: 100%;
 }
 
+/* ---------- CORNER BRACKETS ----------- */
+
+.corner-bracket-box {
+  position: relative;
+}
+
+.corner-bracket-box::before,
+.corner-bracket-box::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+}
+
+/* Top-left */
+.corner-bracket-box::before {
+  top: -4px;
+  left: -4px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+/* Bottom-right */
+.corner-bracket-box::after {
+  bottom: -4px;
+  right: -4px;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+}
+
 /* ---------- BLOG ----------- */
 
 .blog-prose {

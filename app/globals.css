@@ -290,6 +290,12 @@ body {
   }
 }
 
+.noise-white-15 {
+  background-image: url(/images/noise-white-15.png);
+  background-repeat: repeat;
+  background-size: 100%;
+}
+
 /* ---------- BLOG ----------- */
 
 .blog-prose {

@@ -343,7 +343,7 @@ export default function Header() {
             {/* Centered big links with staggered slide-in */}
             <motion.ul
               variants={listVariants}
-              className="flex flex-1 items-center justify-center flex-col gap-6 px-6 text-center"
+              className="flex flex-1 items-center flex-col gap-6 px-6 text-center mt-25"
             >
               {menuItems.map((item) => (
                 <motion.li key={item.href} variants={linkVariants}>

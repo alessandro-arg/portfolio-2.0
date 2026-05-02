@@ -7,7 +7,7 @@ import { TechIcon, TECH_LABELS } from "./_components/TechIcon";
 
 function normalizePoints(points: ProjectPoint[] | undefined) {
   return (points ?? []).map((p) =>
-    typeof p === "string" ? { title: p, description: undefined } : p
+    typeof p === "string" ? { title: p, description: undefined } : p,
   );
 }
 
@@ -36,7 +36,7 @@ export function ProjectInfoPanel({ project }: { project: Project | null }) {
         </div>
 
         {description && (
-          <p className="text-primary/90 my-2 text-base font-light">
+          <p className="text-primary/90 my-2 text-base font-light line-clamp-3 min-h-[75px]">
             {description}
           </p>
         )}

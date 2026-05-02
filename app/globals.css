@@ -289,3 +289,107 @@ body {
     font-size: 16px;
   }
 }
+
+.noise-white-15 {
+  background-image: url(/images/noise-white-15.png);
+  background-repeat: repeat;
+  background-size: 100%;
+}
+
+/* ---------- CORNER BRACKETS ----------- */
+
+.corner-bracket-box {
+  position: relative;
+}
+
+.corner-bracket-box::before,
+.corner-bracket-box::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+}
+
+/* Top-left */
+.corner-bracket-box::before {
+  top: -4px;
+  left: -4px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+/* Bottom-right */
+.corner-bracket-box::after {
+  bottom: -4px;
+  right: -4px;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+}
+
+/* ---------- BLOG ----------- */
+
+.blog-prose {
+  @apply w-full;
+}
+
+.blog-prose h1,
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4 {
+  @apply font-mono font-semibold tracking-normal text-foreground;
+}
+
+.blog-prose h1 {
+  @apply mt-8 mb-4 text-4xl font-mono;
+}
+
+.blog-prose h2 {
+  @apply mt-8 mb-4 text-3xl;
+}
+
+.blog-prose h3 {
+  @apply mt-3 mb-1 text-2xl;
+}
+
+.blog-prose p {
+  @apply my-4 text-foreground leading-8 text-lg font-light tracking-wider;
+}
+
+.blog-prose ul {
+  @apply my-4 list-disc pl-6 text-lg tracking-wider;
+}
+
+.blog-prose ol {
+  @apply my-4 list-decimal pl-6 text-lg tracking-wider;
+}
+
+.blog-prose li {
+  @apply my-2 text-foreground leading-7 text-lg tracking-wider;
+}
+
+.blog-prose a {
+  @apply text-foreground underline underline-offset-4 text-lg tracking-wider;
+}
+
+.blog-prose pre {
+  @apply my-6 overflow-x-auto rounded-2xl border border-border bg-card p-4;
+}
+
+.blog-prose code {
+  @apply font-mono text-base;
+}
+
+.blog-prose p code,
+.blog-prose li code {
+  @apply rounded-md border border-border bg-muted px-1.5 py-0.5 text-base;
+}
+
+.blog-prose blockquote {
+  @apply my-6 border-l-3 border-border pl-4 text-muted-foreground;
+}
+
+.blog-prose img,
+.blog-prose video {
+  @apply my-8 block max-w-full rounded-xl border border-border;
+}

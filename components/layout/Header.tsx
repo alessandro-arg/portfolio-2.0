@@ -15,8 +15,9 @@ import { Logo } from "../ui/logo";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
-  { href: "/about", label: "About", ariaLabel: "Learn about us" },
-  { href: "/projects", label: "Projects", ariaLabel: "View our projects" },
+  { href: "/about", label: "About", ariaLabel: "About me" },
+  { href: "/projects", label: "Projects", ariaLabel: "View my projects" },
+  { href: "/blog", label: "Blog", ariaLabel: "My personal blog" },
 ];
 
 const panelSpring: Transition = {
@@ -342,7 +343,7 @@ export default function Header() {
             {/* Centered big links with staggered slide-in */}
             <motion.ul
               variants={listVariants}
-              className="flex flex-1 items-center justify-center flex-col gap-6 px-6 text-center"
+              className="flex flex-1 items-center flex-col gap-6 px-6 text-center mt-25"
             >
               {menuItems.map((item) => (
                 <motion.li key={item.href} variants={linkVariants}>

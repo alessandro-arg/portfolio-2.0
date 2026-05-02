@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const baseUrl = "https://www.alessandro-argenziano.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastMod = new Date("2025-12-10");
+  const lastMod = new Date("2026-04-23");
 
   return [
     {

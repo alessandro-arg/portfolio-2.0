@@ -122,7 +122,6 @@ export default function Terms() {
           </h3>
           <p className="space-y-1">
             <span className="block">Alessandro Argenziano</span>
-            <span className="block">Kirchstrasse 2</span>
             <span className="block">79801 Hohentengen, Germany</span>
             <span className="block">
               Email:{" "}
@@ -137,7 +136,7 @@ export default function Terms() {
           </p>
 
           <p className="text-xs text-neutral-500 dark:text-neutral-400 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-            Last updated: October 2025
+            Last updated: May 2026
           </p>
         </div>
       </main>

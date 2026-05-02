@@ -28,12 +28,12 @@ export default function ContactSection({
       id="contact"
       className={cn(
         "relative z-0 flex w-full justify-center overflow-x-hidden bg-cover bg-center px-4 py-20",
-        noTopMargin ? null : "mt-40",
+        noTopMargin ? null : "mt-20",
         mtClassName,
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[url('/images/cta-bg.webp')] bg-cover bg-center opacity-40 -z-10"></div>
+      <div className="absolute inset-0 noise-white-15 -z-10" />
       <div className="pointer-events-none absolute inset-0">
         {/* Top shadow */}
         <div className="absolute top-0 left-0 w-full h-40 bg-linear-to-b from-background/50 via-background/25 to-background/10 dark:from-background/70 dark:via-background/40 dark:to-transparent"></div>

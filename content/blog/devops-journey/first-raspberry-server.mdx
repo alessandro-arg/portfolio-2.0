@@ -1,0 +1,110 @@
+---
+title: "My first small Server"
+description: "The Raspberry Pi is set up and Ubuntu Server is installed. Finally i have a tiny homelab where i can learn Linux and Bash properly."
+date: "2026-05-02"
+updated: "2026-05-02"
+topic: "devops-journey"
+tags:
+  - linux
+  - hombelab
+published: true
+cover: "/blog/devops-journey/pi.png"
+---
+
+I had wanted to build my own homelab for a while. Not just buying things and putting them somewhere, but really working with them. I have been using Windows for ten years, and I don’t miss it. But at the same time, I realized I’ve only ever known that one environment. Now I want to explore other systems, other ways of working and other perspectives.
+
+My goal is to better understand Linux and gradually work my way into topics like containers, cloud and later Kubernetes.
+
+I decided to use a Raspberry Pi, installed Ubuntu Server and consciously decided: no GUI.
+I want to use only the CLI.
+
+## What I did
+
+My setup:
+
+- Raspberry Pi 4 Model B with 4 GB RAM
+- 32 GB microSD Karte
+- connected via LAN
+- laptop power supply with 5V / 3A / 15W
+
+The microSD card is only temporary. I will soon switch to more storage and a NVMe.
+
+As operating system I chose Ubuntu Server 24 LTS. I read that it is good for getting started: widely used, good documentation and without unnecessary interface. Nice!
+
+I installed the OS with the Raspberry Pi Imager, then inserted the SD card and booted directly.
+I also used a micro-HDMI for the first time. A bit smaller than expected.
+
+Installation went smoothly, network worked immediately and the Pi started right away.
+After that came the first basics commands in the terminal:
+
+```bash
+whoami   - prints username
+hostname - prints the name of the connected computer
+pwd      - 'print working directory', shows current location in the file system
+ls       - shows files and folders in the current directory
+date     - prints current date and time
+echo     - print text to the terminal
+cat      - display the contents of a file
+uptime   - show how long the system has been running
+touch    - create an empty file
+rm       - remove a file, no confirmation, no trash bin
+history  - show all commands you've run
+which    - show the location of a command
+```
+
+Sure, nothing special, but i understood that using a Linux system directly through the terminal allows me to use a shell to send commands to the kernel. It’s cool.
+
+## What I learned
+
+### CLI feels dry at first, but is direct.
+
+At the beginning the terminal looks unspectacular. But once you use commands yourself, you quickly notice how directly you work with the system.
+
+### Linux feels different than normal desktop usage.
+
+You don’t just click through menus, you have to understand what you are doing. That’s exactly what I find interesting. This is a pretty drastic change: from a comfortable desktop experience on Windows to a pure CLI-based workflow on Linux. But I actually like it. It feels more direct and somehow more "real".
+
+You are more independent, not annoyed by app recommendations, don’t have to create an account and above all there is no telemetry. Just you and your hardware.
+
+### Hardware suddenly becomes relevant.
+
+Power supply, storage, RAM, LAN, permissions. Things I hardly think about on a normal day suddenly play a direct role here.
+
+### Starting is more important than planning perfectly.
+
+I have not deployed any container yet and built no cluster, BUT I started!
+
+I also decided for myself that I will use AI only for research and explanations. I don’t want shortcuts when it comes to actually doing things. I want to understand what’s happening, even if it takes longer.
+
+This is something I want to commit to. If I go down this path, I want to do it the hard way.
+
+I will now focus on Linux and Bash for a while. Once I internalize that, the fun really begins!
+
+<img
+  src="/blog/devops-journey/ubuntu.png"
+  alt="test"
+  width={1200}
+  height={630}
+  className="h-auto w-full object-cover border border-border"
+/>
+
+## Next steps
+
+Next I want to become more confident working with Linux:
+
+- understand the file system
+- learn permissions and users
+- check processes
+- practice Bash commands
+- configure SSH properly
+- install Docker on the Pi
+
+After that I want to see how far I can get with self-hosting.
+
+### Conclusion
+
+This was not a big project, but a good start.
+
+I now have my own small system where I can test things, break them and fix them again. That’s exactly how I learn best.
+
+With that said, let’s see what breaks next!

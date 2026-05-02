@@ -22,6 +22,7 @@ export const footerCategories: FooterCategory[] = [
     links: [
       { name: "Bucket List", href: "/bucket-list" },
       { name: "My Setup", href: "/my-setup" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   {

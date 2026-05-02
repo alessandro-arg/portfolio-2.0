@@ -65,7 +65,7 @@ Wichtig:
 
 ## Sprache
 
-Schreibe standardmäßig auf Deutsch.
+Schreibe standardmäßig auf English.
 
 ---
 
@@ -90,7 +90,7 @@ TAGS:
 Sinnvoll von der Tags liste hinzufügen.
 
 DATE:
-Das datum nehmen, in dem der text geschrieben worden ist. 
+Das datum nehmen, in dem der text geschrieben worden ist.
 
 UPDATED:
 {{UPDATED}}
@@ -147,16 +147,19 @@ Nur passende Tags wählen. Keine irrelevanten Tags hinzufügen.
 Nutze exakt dieses Format:
 
 ---
+
 title: ""
 description: ""
 date: "yyyy-mm-dd"
 updated: "yyyy-mm-dd"
 topic: ""
 tags:
-  - example
-  - example2
-published: true
-cover: ""
+
+- example
+- example2
+  published: true
+  cover: ""
+
 ---
 
 cover IMMER leer lassen.
@@ -208,7 +211,6 @@ Kurze Intro / Kontext
 ## Nächste Schritte
 
 ## Fazit
-
 
 Nach dem fertigen MDX-Post zusätzlich:
 

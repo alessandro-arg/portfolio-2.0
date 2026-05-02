@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "fumadocs-ui/style.css";
 import "./globals.css";
 import { Suspense } from "react";
+import SmoothScroll from "@/components/ui/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,6 +98,7 @@ export default function RootLayout({
           <Suspense fallback={null}>
             {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}
             <ContactModalProvider>
+              <SmoothScroll />
               <Header />
 
               {/* page content needs some top padding so it's not covered by the fixed header */}

@@ -3,9 +3,7 @@
 import type { CSSProperties } from "react";
 import { AnimatedGradientText } from "../ui/animated-gradient-text";
 import { Ripple } from "../ui/ripple";
-import { motion, useScroll, useTransform } from "framer-motion";
-import type { MotionValue } from "framer-motion";
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 type CSSWithVars = CSSProperties & {
@@ -35,12 +33,6 @@ const mobileSkills = [
   "git",
   "github",
 ];
-
-interface SkillIconProps {
-  skill: string;
-  index: number;
-  visible: boolean;
-}
 
 const SkillIcon = ({ skill }: { skill: string }) => (
   <Image

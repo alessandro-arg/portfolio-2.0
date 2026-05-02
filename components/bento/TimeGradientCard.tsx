@@ -11,7 +11,6 @@ import {
   Snowflake,
   CableCar,
   TentTree,
-  Trees,
   TreePine,
   TreeDeciduous,
 } from "lucide-react";

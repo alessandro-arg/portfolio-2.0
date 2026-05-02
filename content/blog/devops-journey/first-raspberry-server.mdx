@@ -1,6 +1,6 @@
 ---
 title: "My first small Server"
-description: "The Raspberry Pi is set up and Ubuntu Server is installed. Finally my homelab for Linux. Containers will come later."
+description: "The Raspberry Pi is set up and Ubuntu Server is installed. Finally i have a tiny homelab where i can learn Linux and Bash properly."
 date: "2026-05-02"
 updated: "2026-05-02"
 topic: "devops-journey"
@@ -11,12 +11,12 @@ published: true
 cover: "/blog/devops-journey/pi.png"
 ---
 
-I had wanted to build my own homelab for a while. Not just buying things and putting them somewhere, but really working with them. I have been using Windows for ten years, and I don’t miss it. But at the same time, I realized I’ve only ever known that one environment. Now I want to explore other systems, other ways of working and other perspectives around it.
+I had wanted to build my own homelab for a while. Not just buying things and putting them somewhere, but really working with them. I have been using Windows for ten years, and I don’t miss it. But at the same time, I realized I’ve only ever known that one environment. Now I want to explore other systems, other ways of working and other perspectives.
 
 My goal is to better understand Linux and gradually work my way into topics like containers, cloud and later Kubernetes.
 
 I decided to use a Raspberry Pi, installed Ubuntu Server and consciously decided: no GUI.
-I want to use only the CLI!
+I want to use only the CLI.
 
 ## What I did
 
@@ -27,9 +27,9 @@ My setup:
 - connected via LAN
 - laptop power supply with 5V / 3A / 15W
 
-The microSD card is only temporary. I will soon switch to NVMe...
+The microSD card is only temporary. I will soon switch to more storage and a NVMe.
 
-As operating system I chose Ubuntu Server. I read that it is good for getting started: widely used, good documentation and without unnecessary interface. Nice!
+As operating system I chose Ubuntu Server 24 LTS. I read that it is good for getting started: widely used, good documentation and without unnecessary interface. Nice!
 
 I installed the OS with the Raspberry Pi Imager, then inserted the SD card and booted directly.
 I also used a micro-HDMI for the first time. A bit smaller than expected.
@@ -38,18 +38,21 @@ Installation went smoothly, network worked immediately and the Pi started right 
 After that came the first basics commands in the terminal:
 
 ```bash
-ssh user@ip
-ip a
-pwd
-ls
-touch
-mv
-cp
-sudo apt update
-sudo apt upgrade
+whoami   - prints username
+hostname - prints the name of the connected computer
+pwd      - 'print working directory', shows current location in the file system
+ls       - shows files and folders in the current directory
+date     - prints current date and time
+echo     - print text to the terminal
+cat      - display the contents of a file
+uptime   - show how long the system has been running
+touch    - create an empty file
+rm       - remove a file, no confirmation, no trash bin
+history  - show all commands you've run
+which    - show the location of a command
 ```
 
-Sure, nothing special, but using a Linux system directly through the terminal allows me to use a shell to send commands to the kernel. I think that’s cool.
+Sure, nothing special, but i understood that using a Linux system directly through the terminal allows me to use a shell to send commands to the kernel. It’s cool.
 
 ## What I learned
 

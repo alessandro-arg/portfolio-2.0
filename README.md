@@ -1,5 +1,5 @@
 <h1>
-  Portfolio²
+  Portfolio
 </h1>
 
 A modern, performance-focused **developer portfolio** with polished UI, smooth motion, and full internationalization support.

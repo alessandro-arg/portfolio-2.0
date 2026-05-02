@@ -54,7 +54,7 @@ export function TestimonialsMarquee({
             key={i}
             className="flex flex-col justify-between items-start p-6 border border-dashed border-stone-300 dark:border-border w-[300px] min-w-[300px] max-w-xs bg-stone-100 dark:bg-primary/5 flex-shrink-0"
           >
-            <p className="mb-4 text-stone-500 dark:text-stone-400 text-base text-start">
+            <p className="mb-4 text-stone-500 dark:text-primary/80 text-base text-start">
               &ldquo;{t.quote}&rdquo;
             </p>
             <div className="flex flex-row justify-center items-center gap-4 mt-4">

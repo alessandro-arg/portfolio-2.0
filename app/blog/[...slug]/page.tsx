@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import remarkGfm from "remark-gfm";
 
 export async function generateMetadata({
   params,
@@ -98,6 +99,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 components={mdxComponents}
                 options={{
                   mdxOptions: {
+                    remarkPlugins: [remarkGfm],
                     rehypePlugins: [
                       [
                         (await import("rehype-pretty-code")).default,

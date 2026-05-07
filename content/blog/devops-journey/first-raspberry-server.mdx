@@ -1,14 +1,14 @@
 ---
-title: "My first small Server"
+title: "My first small Ubuntu Server"
 description: "The Raspberry Pi is set up and Ubuntu Server is installed. Finally i have a tiny homelab where i can learn Linux and Bash properly."
 date: "2026-05-02"
-updated: "2026-05-02"
+updated: "2026-05-06"
 topic: "devops-journey"
 tags:
   - linux
   - hombelab
 published: true
-cover: "/blog/devops-journey/pi.png"
+cover: "/blog/devops-journey/01-pi-server/cover.png"
 ---
 
 I had wanted to build my own homelab for a while. Not just buying things and putting them somewhere, but really working with them. I have been using Windows for ten years, and I don’t miss it. But at the same time, I realized I’ve only ever known that one environment. Now I want to explore other systems, other ways of working and other perspectives.
@@ -29,7 +29,7 @@ My setup:
 
 The microSD card is only temporary. I will soon switch to more storage and a NVMe.
 
-As operating system I chose Ubuntu Server 24 LTS. I read that it is good for getting started: widely used, good documentation and without unnecessary interface. Nice!
+As operating system I chose <Hl>Ubuntu Server 24.04 LTS</Hl>. I read that it is good for getting started: widely used, good documentation and without unnecessary interface. Nice!
 
 I installed the OS with the Raspberry Pi Imager, then inserted the SD card and booted directly.
 I also used a micro-HDMI for the first time. A bit smaller than expected.
@@ -66,10 +66,6 @@ You don’t just click through menus, you have to understand what you are doing.
 
 You are more independent, not annoyed by app recommendations, don’t have to create an account and above all there is no telemetry. Just you and your hardware.
 
-### Hardware suddenly becomes relevant.
-
-Power supply, storage, RAM, LAN, permissions. Things I hardly think about on a normal day suddenly play a direct role here.
-
 ### Starting is more important than planning perfectly.
 
 I have not deployed any container yet and built no cluster, BUT I started!
@@ -81,7 +77,7 @@ This is something I want to commit to. If I go down this path, I want to do it t
 I will now focus on Linux and Bash for a while. Once I internalize that, the fun really begins!
 
 <img
-  src="/blog/devops-journey/ubuntu.png"
+  src="/blog/devops-journey/01-pi-server/ubuntu.png"
   alt="test"
   width={1200}
   height={630}
@@ -95,16 +91,12 @@ Next I want to become more confident working with Linux:
 - understand the file system
 - learn permissions and users
 - check processes
-- practice Bash commands
-- configure SSH properly
-- install Docker on the Pi
+- practice bash commands
 
-After that I want to see how far I can get with self-hosting.
-
-### Conclusion
+## Conclusion
 
 This was not a big project, but a good start.
 
 I now have my own small system where I can test things, break them and fix them again. That’s exactly how I learn best.
 
-With that said, let’s see what breaks next!
+With that said, let’s see what breaks next.

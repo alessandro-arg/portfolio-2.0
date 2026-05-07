@@ -376,6 +376,11 @@ body {
   @apply my-6 overflow-x-auto rounded-2xl border border-border bg-card p-4;
 }
 
+:root:not(.dark) .blog-prose pre {
+  background-color: #f6f8fa !important;
+  border-color: #e5e5e5 !important;
+}
+
 .blog-prose code {
   @apply font-mono text-base;
 }

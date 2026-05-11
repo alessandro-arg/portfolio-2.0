@@ -34,6 +34,10 @@ const testimonials = [
   },
 ];
 
+/**
+ * Displays the testimonials section with a gradient heading
+ * and an animated marquee of colleague feedback.
+ */
 export default function Testimonials() {
   return (
     <section

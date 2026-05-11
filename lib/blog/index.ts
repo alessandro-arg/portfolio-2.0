@@ -6,6 +6,9 @@ import readingTime from "reading-time";
 
 const BLOG_CONTENT_PATH = path.join(process.cwd(), "content", "blog");
 
+/**
+ * Formats a raw date string into a readable blog post date.
+ */
 function formatDate(date: string): string {
   return new Intl.DateTimeFormat("en", {
     year: "numeric",
@@ -14,6 +17,9 @@ function formatDate(date: string): string {
   }).format(new Date(date));
 }
 
+/**
+ * Recursively reads a directory and returns all public `.mdx` blog files.
+ */
 function getAllMdxFiles(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
@@ -36,11 +42,17 @@ function getAllMdxFiles(dir: string): string[] {
   });
 }
 
+/**
+ * Converts an absolute blog content file path into a URL-safe slug.
+ */
 function filePathToSlug(filePath: string): string {
   const relativePath = path.relative(BLOG_CONTENT_PATH, filePath);
   return relativePath.replace(/\.mdx$/, "").replace(/\\/g, "/");
 }
 
+/**
+ * Loads all published blog posts, enriches them with metadata, and sorts them by newest first.
+ */
 export function getAllPosts(): BlogPostMeta[] {
   const files = getAllMdxFiles(BLOG_CONTENT_PATH);
 
@@ -68,6 +80,9 @@ export function getAllPosts(): BlogPostMeta[] {
     );
 }
 
+/**
+ * Loads a single blog post by slug and returns its metadata with MDX content.
+ */
 export function getPostBySlug(slug: string): BlogPost | null {
   const filePath = path.join(BLOG_CONTENT_PATH, `${slug}.mdx`);
 

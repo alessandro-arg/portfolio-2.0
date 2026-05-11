@@ -9,6 +9,9 @@ import TimeGradientCard from "../bento/TimeGradientCard";
 import type { BlogPostMeta } from "@/lib/blog/blog-types";
 import BlogCard from "../bento/BlogCard";
 
+/**
+ * Renders the responsive bento-style feature grid for the homepage.
+ */
 export default function Grid({ posts }: { posts: BlogPostMeta[] }) {
   const features = [
     {

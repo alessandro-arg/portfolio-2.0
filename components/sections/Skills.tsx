@@ -34,6 +34,9 @@ const mobileSkills = [
   "github",
 ];
 
+/**
+ * Renders a single skill icon from the external skillicons.dev service.
+ */
 const SkillIcon = ({ skill }: { skill: string }) => (
   <Image
     src={`https://skillicons.dev/icons?i=${skill}&theme=dark&titles=true`}
@@ -51,6 +54,9 @@ interface SkillRowProps {
   className?: string;
 }
 
+/**
+ * Renders a responsive row of skill icons.
+ */
 const SkillRow = ({ skills, className }: SkillRowProps) => (
   <div
     className={`flex justify-center flex-wrap gap-4 mb-4 ${className ?? ""}`}
@@ -61,6 +67,10 @@ const SkillRow = ({ skills, className }: SkillRowProps) => (
   </div>
 );
 
+/**
+ * Displays the skills section with animated background effects
+ * and responsive skill icon layouts for desktop and mobile.
+ */
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
 

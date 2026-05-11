@@ -17,6 +17,11 @@ import { useContactModal } from "@/app/contact/ContactModalProvider";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
+/**
+ * Main hero section component for the landing page.
+ * Displays animated background visuals, introduction text,
+ * CTA buttons, and interactive contact actions.
+ */
 export default function Hero() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = React.useState(false);
@@ -29,6 +34,11 @@ export default function Hero() {
     };
   }, []);
 
+  /**
+   * Handles copying the contact email to the clipboard,
+   * updates the copied state, and displays a toast notification
+   * with a quick action to open the default mail client.
+   */
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL);

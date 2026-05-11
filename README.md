@@ -9,27 +9,29 @@ https://alessandro-argenziano.com
 
 ### ✨ Key Features
 
-| Feature | Description |
-| --- | --- |
-| **⚡ Next.js + Turbopack** | Fast dev/build workflow and modern App Router architecture. |
-| **🎨 Modern UI System** | Tailwind CSS v4 + shadcn/ui + Radix UI primitives. |
-| **🧠 Motion & Effects** | Framer Motion, GSAP, particles, carousels and micro-interactions. |
-| **🌍 i18n Ready** | Multi-language support with `next-intl`. |
-| **🌗 Theme Switching** | Dark/light mode with `next-themes`. |
-| **📈 SEO + Analytics** | SEO metadata with `next-seo` + usage insights via Vercel Analytics. |
-| **✉️ Email Delivery** | Contact flow using Resend + React Email. |
-| **📦 Data Fetching** | Client data fetching with SWR where needed. |
+| Feature                    | Description                                                         |
+| -------------------------- | ------------------------------------------------------------------- |
+| **⚡ Next.js + Turbopack** | Fast dev/build workflow and modern App Router architecture.         |
+| **🎨 Modern UI System**    | Tailwind CSS v4 + shadcn/ui + Radix UI primitives.                  |
+| **🧠 Motion & Effects**    | Framer Motion, GSAP, particles, carousels and micro-interactions.   |
+| **🌍 Dev Journal**         | Blog posts with .mdx files.                                         |
+| **🌗 Theme Switching**     | Dark/light mode with `next-themes`.                                 |
+| **📈 SEO + Analytics**     | SEO metadata with `next-seo` + usage insights via Vercel Analytics. |
+| **✉️ Email Delivery**      | Contact flow using Resend + React Email.                            |
+| **📦 Data Fetching**       | Client data fetching with SWR where needed.                         |
 
 ##
 
 ### 🛠 Tech Stack (Complete & Accurate)
 
 #### Core
+
 - **Next.js** `^15.5.7`
 - **React** `^19.2.1`
 - **TypeScript** `^5`
 
 #### UI / Styling
+
 - **Tailwind CSS** `^4.1.13`
 - **shadcn/ui** (`shadcn` `^3.5.0`)
 - **Radix UI** (Accordion, Navigation Menu, Separator, Slot, Switch, Tooltip, Icons)
@@ -37,6 +39,7 @@ https://alessandro-argenziano.com
 - **tw-animate-css**
 
 #### Animation / Visuals
+
 - **Framer Motion** `^12.23.21` (+ `motion` `^12.23.24`)
 - **GSAP** `^3.13.0`
 - **tsParticles** (`@tsparticles/react`, `@tsparticles/engine`, `@tsparticles/slim`)
@@ -44,21 +47,26 @@ https://alessandro-argenziano.com
 - **Cobe** (3D globe)
 
 #### Content / Docs / Code Rendering
+
 - **fumadocs** (`fumadocs-core`, `fumadocs-ui`)
 - **Shiki** (syntax highlighting)
 
 #### Internationalization
+
 - **next-intl** `^4.3.9`
 
 #### SEO / Analytics
+
 - **next-seo** `^6.8.0`
 - **@vercel/analytics** `^1.5.0`
 
 #### Email
+
 - **Resend** `^6.2.2`
 - **React Email** (`@react-email/components`, `@react-email/render`)
 
 #### Utilities / UI Enhancements
+
 - **lucide-react**
 - **sonner** (toasts)
 - **react-countup**
@@ -67,9 +75,11 @@ https://alessandro-argenziano.com
 - **simple-icons**
 
 #### Data Fetching
+
 - **SWR** `^2.3.6`
 
 #### Tooling
+
 - **ESLint** `^9` + `eslint-config-next`
 - **SVGR** (`@svgr/webpack`)
 - **PostCSS** + `@tailwindcss/postcss`

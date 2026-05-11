@@ -4,6 +4,10 @@ import {
 } from "@/components/ui/scroll-based-velocity";
 import StarIcon from "@/components/icons/star.svg";
 
+/**
+ * Renders an animated horizontal scrolling marquee
+ * showcasing core development and product qualities.
+ */
 export default function ScrollBasedVelocity() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">

@@ -21,6 +21,10 @@ type Props = {
   underlineLayoutId?: string;
 };
 
+/**
+ * Renders the desktop "More" navigation dropdown with icon-based links
+ * and an animated active underline when one of its routes is selected.
+ */
 export function MoreMenu({ active, underlineLayoutId }: Props) {
   return (
     <NavigationMenu className="relative">

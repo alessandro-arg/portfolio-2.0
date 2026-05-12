@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
  */
 export function ThemeToggle({
   className,
-  size = 26, // icon button square size in px
+  size = 26,
 }: {
   className?: string;
   size?: number;
@@ -25,7 +25,6 @@ export function ThemeToggle({
 
   useEffect(() => setMounted(true), []);
 
-  // Determine active theme safely after mount
   const active = mounted
     ? theme === "system"
       ? resolvedTheme
@@ -33,15 +32,16 @@ export function ThemeToggle({
     : undefined;
   const isLight = active === "light";
   const isDark = active === "dark";
-
-  // Layout constants (mirror the container padding so the pill lines up perfectly)
-  const containerPadding = 4; // p-1 => 4px
+  const containerPadding = 4;
   const pillLeft = useMemo(
     () => (isDark ? containerPadding + size : containerPadding),
     [isDark, size],
   );
 
-  // Keyboard support: use left/right arrows to switch themes
+  /**
+   * Handles keyboard navigation for switching themes
+   * using the left and right arrow keys.
+   */
   function onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     if (e.key === "ArrowLeft") setTheme("light");
     if (e.key === "ArrowRight") setTheme("dark");
@@ -51,7 +51,6 @@ export function ThemeToggle({
     <div
       className={[
         "relative flex items-center rounded-full p-1 ring-1 ring-border",
-        // subtle background to better showcase the pill (optional—remove if not desired)
         "bg-background/40 dark:bg-background/30",
         "backdrop-blur-[2px]",
         className ?? "",
@@ -61,7 +60,6 @@ export function ThemeToggle({
       data-theme-toggle
       tabIndex={0}
       onKeyDown={onKeyDown}
-      // prevent text selection when toggling rapidly
       style={{ userSelect: "none", WebkitUserSelect: "none" }}
     >
       {/* Sliding pill (curved + glow) */}
@@ -71,19 +69,15 @@ export function ThemeToggle({
           layout
           className={[
             "absolute rounded-full",
-            "top-1 bottom-1", // match container padding for perfect fit
+            "top-1 bottom-1",
             "backdrop-blur-sm",
-            // soft gradient fill that works in light & dark
             "bg-linear-to-b from-foreground/10 to-foreground/15 dark:from-white/10 dark:to-white/15",
-            // thin inner ring for definition
             "ring-1 ring-foreground/10 dark:ring-white/10",
-            // shadow stack for premium depth
             "shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_10px_rgba(0,0,0,0.08)]",
           ].join(" ")}
           style={{
             width: size,
             left: pillLeft,
-            // subtle outer glow that adapts to theme
             boxShadow:
               active === "dark"
                 ? "0 0 24px rgba(255,255,255,0.12)"
@@ -96,7 +90,6 @@ export function ThemeToggle({
             mass: 0.5,
           }}
         >
-          {/* extra inner glow (radial), no pointer hit */}
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 rounded-full"

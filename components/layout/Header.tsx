@@ -36,6 +36,9 @@ const panelVariants: Variants = {
   exit: { x: "-100%", opacity: 0, transition: { duration: 0.25 } },
 };
 
+/**
+ * Tracks the user's scroll direction after a configurable movement threshold.
+ */
 function useScrollDirection(threshold = 6) {
   const [dir, setDir] = useState<"up" | "down">("up");
   const lastY = useRef(0);
@@ -65,6 +68,10 @@ function useScrollDirection(threshold = 6) {
   return dir;
 }
 
+/**
+ * Renders the main responsive site header with desktop navigation,
+ * mobile drawer navigation, scroll-aware visibility, and contact modal access.
+ */
 export default function Header() {
   const dir = useScrollDirection(8);
   const pathname = usePathname();
@@ -73,7 +80,6 @@ export default function Header() {
   const [hash, setHash] = useState<string>("");
   const { openModal } = useContactModal();
 
-  // Track hash for section links (#about, #more, #contact)
   useEffect(() => {
     const update = () => setHash(window.location.hash || "");
     update();
@@ -81,23 +87,25 @@ export default function Header() {
     return () => window.removeEventListener("hashchange", update);
   }, []);
 
-  // Mobile
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((s) => !s), []);
 
-  // Handler for contact button - combines modal opening (and optionally mobile menu closing)
+  /**
+   * Opens the contact modal from the desktop navigation.
+   */
   const handleContactClick = useCallback(() => {
     openModal();
   }, [openModal]);
 
-  // Handler for mobile contact button - closes menu and opens modal
+  /**
+   * Closes the mobile menu and opens the contact modal.
+   */
   const handleMobileContactClick = useCallback(() => {
     closeMobile();
     openModal();
   }, [closeMobile, openModal]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (!mobileOpen) return;
     const { overflow } = getComputedStyle(document.body);
@@ -114,7 +122,6 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  // Close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeMobile();
@@ -123,12 +130,16 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [closeMobile]);
 
-  // Mount animation + show/hide on scroll with GSAP
+  /**
+   * Mount animation + show/hide on scroll with GSAP
+   */
   useEffect(() => {
     if (!barRef.current) return;
     const el = barRef.current;
 
-    // enter animation
+    /**
+     * Enter the animation
+     */
     gsap.fromTo(
       el,
       { y: -40, opacity: 0, filter: "blur(6px)" },
@@ -143,7 +154,9 @@ export default function Header() {
     );
   }, []);
 
-  // Show/hide on scroll
+  /**
+   * Show/hide on scroll
+   */
   useEffect(() => {
     if (!barRef.current) return;
     const el = barRef.current;
@@ -166,6 +179,9 @@ export default function Header() {
     exit: { x: -24, opacity: 0, transition: { duration: 0.15 } },
   };
 
+  /**
+   * Checks whether a navigation item matches the current route or hash.
+   */
   const isItemActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href.startsWith("/#")) {
@@ -175,6 +191,10 @@ export default function Header() {
     return pathname === href;
   };
 
+  /**
+   * Normalizes route paths by removing trailing slashes,
+   * while preserving the root path.
+   */
   const normalize = (p: string) => (p !== "/" ? p.replace(/\/+$/, "") : "/");
   const current = normalize(pathname);
   const moreActive = moreLinks.some((l) => normalize(l.href) === current);
@@ -217,7 +237,7 @@ export default function Header() {
                       {item.label}
                     </Link>
 
-                    {/* animated underline */}
+                    {/* Animated underline */}
                     <AnimatePresence>
                       {active && (
                         <motion.span
@@ -276,7 +296,7 @@ export default function Header() {
               className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 bg-transparent cursor-pointer"
             >
               <span className="sr-only">Open menu</span>
-              {/* simple burger icon */}
+              {/* Simple burger icon */}
               <svg
                 width="22"
                 height="22"
@@ -296,7 +316,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* MOBILE FULLSCREEN PANEL (no backdrop) */}
+      {/* Mobile panel (no backdrop) */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside

@@ -9,6 +9,10 @@ import {
 } from "@/components/ui/accordion";
 import { moreLinks } from "../more.data";
 
+/**
+ * Renders the mobile version of the "More" navigation menu
+ * using an accordion with expandable navigation links.
+ */
 export function MobileMore({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Accordion

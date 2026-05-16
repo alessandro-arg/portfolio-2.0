@@ -18,7 +18,7 @@ VIDEOS: no
 KEYWORDS: docker ubuntu beginner
 
 Generate the post + LinkedIn post.
-Keine Emojis.
+No Emojis.
 
 ## Second Prompt (editor pass)
 

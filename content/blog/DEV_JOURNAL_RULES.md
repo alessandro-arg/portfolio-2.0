@@ -135,10 +135,11 @@ Nutze nur relevante Tags aus dieser Liste:
 - cloud
 - azure
 - homelab
+- bash
 
 Nur passende Tags wählen. Keine irrelevanten Tags hinzufügen.
 
-3–5 Tags reichen meistens.
+2–4 Tags reichen meistens.
 
 ---
 
@@ -166,21 +167,13 @@ cover IMMER leer lassen.
 
 ---
 
-## Cover Image unter Frontmatter
-
-Direkt nach dem Frontmatter immer:
-
-![Cover image](cover)
-
----
-
 ## MDX Komponenten
 
 ### Bilder
 
 Wenn Bilder gewünscht oder sinnvoll:
 
-<Image src="/test.png" />
+<img src="/test.png" />
 
 Oder mit echtem Dateinamen aus Input.
 
@@ -200,17 +193,17 @@ Nutze diese Struktur:
 
 # Titel
 
-Kurze Intro / Kontext
+Kurze Intro / Kontext wie zum beispiel
 
-## Was ich gemacht habe
+## What i did
 
-## Probleme unterwegs
+## Problems on the way
 
-## Was ich gelernt habe
+## What i learned
 
-## Nächste Schritte
+## Conclusion
 
-## Fazit
+Benutze was relatives zu dem abschnitt.
 
 Nach dem fertigen MDX-Post zusätzlich:
 

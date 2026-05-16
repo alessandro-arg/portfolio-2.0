@@ -1,46 +1,37 @@
 ---
-title: "Viewing & Manipulating Files on Linux"
+title: "Viewing & Manipulating Files"
 description: "Learning how to inspect files, search logs and understand disk usage directly from the Linux terminal."
-date: "2026-05-16"
-updated: "2026-05-16"
+date: "2026-05-18"
+updated: "2026-05-18"
 topic: "devops-journey"
 tags:
   - linux
   - devops
   - homelab
 published: true
-cover: ""
+cover: "/blog/devops-journey/03-viewing-files/cover.png"
 ---
 
-# Viewing & Manipulating Files on Linux
+In the last post I talked about filesystem and package management. This week I spent more time learning how files work, view file contents, search for text, and understand file informations in a simple way. <br />
+Not editing files yet. More like understanding how to inspect them, search through them and figure out what is happening on the system itself.
 
-I spent some more time exploring Linux fundamentals, especially around files and directories.
+I wanted to explore the `/etc` directory a bit more and understand how people actually investigate Linux systems from the terminal. I watched some videos from Mischa van den Burg, who explains Linux and DevOps topics in a very practical way.
 
-Coming from Windows, I was always used to opening a program first before I could inspect a file properly. On Linux, it feels very different. You can investigate almost everything directly from the terminal, even without opening an editor.
+Normally, if I want to open a file like .xlsx on Windows, I need Excel or another GUI application. On Linux, you can inspect a lot of things directly from the terminal without opening a graphical program first. That still feels weird to me sometimes, but also really powerful.
 
-My goal this time was simple: understand how to inspect files, search through logs and get information about what is happening on a system.
+## What I did
 
-I mainly explored the `/etc` directory and watched some videos from DevOps Engineer Mischa van den Burg, which helped me understand why these commands are so important in real environments.
+The first commands I played around with were `cat` and `grep`.
 
-## Was ich gemacht habe
-
-One thing that immediately stood out to me is how powerful simple commands already are.
-
-With `cat`, I can directly print file contents into the terminal:
+`cat` simply prints the file content into the terminal.
 
 ```bash
 cat /etc/passwd
 ```
 
-That sounds basic, but it changes how you interact with a system. Instead of opening an editor, you can quickly inspect configuration files or logs directly from the shell.
+That sounds basic, but it changes how you interact with a system. When working on servers, especially without a desktop environment, being able to inspect files quickly becomes really important.
 
-I also learned about `head` and `tail`.
-
-```bash
-head /etc/passwd
-tail /etc/passwd
-```
-
+We also have `head` and `tail`. <br />
 By default they show the first or last 10 lines, but you can customize it:
 
 ```bash
@@ -48,17 +39,18 @@ head -20 /etc/passwd
 tail -20 /etc/passwd
 ```
 
-What I found really cool was `tail -f`.
+The command that stood out the most for me was this one:
 
 ```bash
 tail -f /var/log/syslog
 ```
 
-This lets you watch files in real time while they are changing. I immediately understood why this is useful for logs and debugging.
+The `-f` means follow. <br />
+So instead of printing the file once, Linux keeps watching the file and updates the terminal in real time whenever something changes.
 
-Another big topic was `grep`.
+Watching logs live like this felt really cool honestly. I immediately understood why people use this for debugging servers and applications.
 
-I already heard about it many times before, but now I finally started using it myself.
+I also spent a lot of time experimenting with `grep`.
 
 ```bash
 grep "error" /var/log/syslog
@@ -66,55 +58,27 @@ grep "error" /var/log/syslog
 
 This searches for all lines containing `"error"`.
 
-I also tested different flags:
+Then I tried different flags:
 
-```bash
-grep -i "error" /var/log/syslog
-```
-
-Ignore uppercase and lowercase.
-
-```bash
-grep -n "error" /var/log/syslog
-```
-
-Show line numbers.
-
-```bash
-grep -v "error" /var/log/syslog
-```
-
-Show lines that do NOT match.
-
-```bash
-grep -r "error" /etc
-```
-
-Search recursively through directories.
+- `grep -i` → ignores uppercase and lowercase, finds lines with "ERROR" too
+- `grep -n` → show line numbers
+- `grep -v` → show lines that do NOT match
+- `grep -r` → search recursively through directories
+- `grep -c` → count the matches
+- `grep -B` and `grep -A` → show the lines before or after the match
+- `grep -C` → combines the -B and the -A flags
 
 I also learned that `grep` supports patterns and not only plain text.
 
-```bash
-^
-```
+- `^` → means 'starts with' ("^error")
+- `$` → means 'ends with' ("err$")
+- `[0-9]` → matches any digits
 
-Means "starts with".
+I definitely need more practice with patterns and regex later, but I can already see how useful this is.
 
-```bash
-$
-```
+Another thing I was wondering was:
 
-Means "ends with".
-
-```bash
-[0-9]
-```
-
-Matches digits.
-
-This was the moment where Linux started feeling less like "just commands" and more like an actual toolkit for investigating systems.
-
-I also wanted to understand what kind of files exist on Linux systems.
+## What type of file is this?
 
 For that I used the `file` command:
 
@@ -125,11 +89,13 @@ file /bin/ls
 Output:
 
 ```bash
-/bin/ls: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked...
+/bin/ls: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV),
+dynamically linked, interpreter /lib/ld-linux-aarch64.so.1,
+BuildID[sha1]=19a53698c72a1d765f961ccd04bff6665434c0f5,
+for GNU/Linux 3.7.0, stripped
 ```
 
-I found this surprisingly interesting.
-
+I found this super interesting. <br />
 You immediately see:
 
 - executable type
@@ -145,9 +111,21 @@ For even more details, I used `stat`.
 stat /etc/passwd
 ```
 
-This shows permissions, timestamps, ownership, inode information and much more.
+This shows permissions, timestamps, ownership, inode information and much more:
 
-I also learned about `wc`:
+```bash
+File: /etc/passwd Size: 1769 Blocks: 8 IO Block: 4096 regular file
+Device: 179,2 Inode: 6561 Links: 1
+Access: (0644/-rw-r--r--) Uid: ( 0/ root) Gid: ( 0/ root)
+Access: 2026-05-15 22:35:01.775430044 +0200
+Modify: 2026-05-11 22:32:14.652197778 +0200
+Change: 2026-05-11 22:32:14.658197728 +0200
+Birth: 2026-05-11 22:32:14.652197778 +0200
+```
+
+### Words, Lines and Characters
+
+For this, we got `wc`.
 
 ```bash
 wc /etc/passwd
@@ -155,47 +133,28 @@ wc /etc/passwd
 
 And the flags:
 
-```bash
-wc -l
-wc -w
-wc -c
-```
+- `wc -l`
+- `wc -w`
+- `wc -c`
 
 For counting lines, words and characters separately.
 
+### Disk usage & Disk free
+
 At the end I explored storage related commands:
 
-```bash
-du -h
-```
+- `du -sh` → disk usage
+- `df -sh` → disk free space
 
-Disk usage.
+The `-h` flag makes the output human-readable, which is definitely easier to understand than raw bytes, and the `-s` flag to summarize the output.
 
-```bash
-df -h
-```
-
-Disk free space.
-
-The `-h` flag makes the output human-readable, which is definitely easier to understand than raw bytes.
-
+The `df` command shows all mounted filesystems and their space usage. <br />
 I can already tell these commands will become part of my daily workflow later.
 
-<Image src="/blog/devops-journey/linux-terminal-files.png" />
+## What I learned
 
-## Probleme unterwegs
-
-No major problems this time.
-
-Most of the session was exploration and experimentation.
-
-I mainly tried commands against real directories and logs on my Raspberry Pi to better understand what they actually do.
-
-## Was ich gelernt habe
-
-I think this was one of the first moments where Linux started feeling practical instead of theoretical.
-
-Before that, the terminal still felt a bit abstract to me.
+Most of the session was exploration and experimentation. <br />
+I mainly tried commands against real directories and logs to better understand what they actually do.
 
 Now I slowly understand why Linux administrators and DevOps engineers work so heavily in the shell. You can inspect almost everything directly from the command line without needing a GUI.
 
@@ -206,11 +165,7 @@ A few things that stood out to me:
 - Linux exposes a lot of system information directly through files
 - commands like `stat`, `file`, `du` and `df` help understand what is actually happening on the machine
 
-None of this feels advanced yet, but it feels foundational.
-
-And honestly, I like that.
-
-## Nächste Schritte
+## Next steps
 
 Next I want to continue exploring:
 
@@ -222,10 +177,8 @@ Next I want to continue exploring:
 
 I also want to spend more time navigating around system directories to understand what belongs where.
 
-## Fazit
+## Conclusion
 
-This session was less about building something and more about learning how to inspect and understand a Linux system.
+This session was less about building something and more about learning how to inspect and understand a Linux system. Small commands, but huge difference in understanding.
 
-Small commands, but huge difference in understanding.
-
-I can already feel that getting comfortable with files, logs and shell tools is going to be essential for everything later in DevOps and infrastructure work.
+I can already feel that getting comfortable with files, logs and shell tools is going to be essential for everything later in infrastructure work.

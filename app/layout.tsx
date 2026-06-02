@@ -13,6 +13,7 @@ import { Suspense } from "react";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import "fumadocs-ui/style.css";
 import "./globals.css";
+import { getLocale } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,14 +80,16 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className="relative"
       data-scroll-behavior="smooth"

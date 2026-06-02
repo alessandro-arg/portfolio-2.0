@@ -12,6 +12,7 @@ import { MoreMenu } from "./_ui/MoreMenu";
 // import { MobileMore } from "./_ui/MobileMore";
 import { moreLinks } from "./more.data";
 import { Logo } from "../ui/logo";
+import LanguageSwitcher from "./_ui/LanguageSwitcher";
 
 const menuItems = [
   { href: "/", label: "Home", ariaLabel: "Go to home page" },
@@ -265,7 +266,11 @@ export default function Header() {
                 />
               </li>
 
-              {/* Contact button - Changed to button with onClick */}
+              <li>
+                <LanguageSwitcher />
+              </li>
+
+              {/* Contact button */}
               <motion.li
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.97, y: 0 }}
@@ -395,6 +400,8 @@ export default function Header() {
                   Contact
                 </button>
               </motion.li>
+
+              <LanguageSwitcher />
             </motion.ul>
           </motion.aside>
         )}

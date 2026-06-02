@@ -24,7 +24,7 @@ const EMAIL = "contact@alessandro-argenziano.com";
  * CTA buttons, and interactive contact actions.
  */
 export default function Hero() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("Hero");
   const ringRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -247,7 +247,7 @@ export default function Hero() {
             ) : (
               <Copy className="h-5 w-5" aria-hidden="true" />
             )}
-            {copied ? "Copied to clipboard" : EMAIL}
+            {copied ? t("copied") : EMAIL}
           </button>
         </motion.div>
       </div>

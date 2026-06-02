@@ -1,5 +1,5 @@
 {
-  "HomePage": {
+  "Hero": {
     "title": "I design and develop apps",
     "title2": "that are",
     "t_span": "fast, responsive, and scalable",
@@ -8,6 +8,7 @@
     "small_cta_content": "Developer Journal",
     "greeting": "Hello, I'm Alessandro",
     "role": "a Fullstack Developer",
-    "cta_button": "Let's Connect"
+    "cta_button": "Let's Connect",
+    "copied": "Copied to clipboard"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "HomePage": {
+  "Hero": {
     "title": "Ich entwerfe und entwickle",
     "title2": "",
     "t_span": "schnelle und skalierbare Apps",
@@ -8,6 +8,7 @@
     "small_cta_content": "Entwicklertagebuch",
     "greeting": "Hallo, ich bin Alessandro",
     "role": "ein Fullstack Developer",
-    "cta_button": "Kontakt aufnehmen"
+    "cta_button": "Kontakt aufnehmen",
+    "copied": "In Zwischenablage kopiert"
   }
 }

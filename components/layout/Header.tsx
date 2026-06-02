@@ -211,7 +211,7 @@ export default function Header() {
         {/* The floating shell we animate with GSAP */}
         <div
           ref={barRef}
-          className="pointer-events-auto w-full flex items-center justify-end md:justify-center py-3 z-40"
+          className="pointer-events-auto relative w-full flex items-center justify-end md:justify-center py-3 z-40"
           style={{ willChange: "transform" }}
         >
           {/* Name/Logo */}
@@ -222,6 +222,11 @@ export default function Header() {
           >
             <Logo className="w-10 h-10" />
           </Link>
+
+          {/* Language Switcher */}
+          <div className="absolute right-6 top-3 hidden md:block">
+            <LanguageSwitcher />
+          </div>
 
           <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-neutral-400/10 bg-neutral-300/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-neutral-400/20 dark:bg-neutral-800/80">
             {/* Nav */}
@@ -264,10 +269,6 @@ export default function Header() {
                   active={moreActive}
                   underlineLayoutId={underlineLayoutId}
                 />
-              </li>
-
-              <li>
-                <LanguageSwitcher />
               </li>
 
               {/* Contact button */}
@@ -341,7 +342,8 @@ export default function Header() {
             exit="exit"
           >
             {/* Top bar with close */}
-            <div className="flex items-center justify-end px-7 py-7">
+            <div className="flex items-center justify-between px-7 py-7">
+              <LanguageSwitcher />
               <button
                 type="button"
                 aria-label="Close menu"
@@ -400,8 +402,6 @@ export default function Header() {
                   Contact
                 </button>
               </motion.li>
-
-              <LanguageSwitcher />
             </motion.ul>
           </motion.aside>
         )}

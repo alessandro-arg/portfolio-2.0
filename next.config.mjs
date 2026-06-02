@@ -1,3 +1,5 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {
@@ -8,7 +10,7 @@ const nextConfig = {
             loader: "@svgr/webpack",
             options: {
               svgo: true,
-              dimensions: false, // drop width/height attributes
+              dimensions: false,
               svgoConfig: { plugins: ["removeDimensions"] },
             },
           },
@@ -19,4 +21,5 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

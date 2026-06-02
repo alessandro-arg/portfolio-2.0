@@ -5,6 +5,9 @@
     "t_span": "schnelle und skalierbare Apps",
     "small_cta": "Neu!",
     "small_cta_title": "Blog",
-    "small_cta_content": "Entwicklertagebuch"
+    "small_cta_content": "Entwicklertagebuch",
+    "greeting": "Hallo, ich bin Alessandro",
+    "role": "ein Fullstack Developer",
+    "cta_button": "Kontakt aufnehmen"
   }
 }

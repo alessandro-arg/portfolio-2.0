@@ -189,7 +189,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 60 }}
         >
           <span className="text-zinc-800 dark:text-neutral-300 flex items-center justify-center">
-            Hello, I&apos;m Alessandro
+            {t("greeting")}
           </span>
           <div className="mx-2 w-16 rounded-lg cursor-default overflow-hidden md:w-20 h-10 md:h-12 lg:mx-3 border border-border">
             <Image
@@ -203,7 +203,7 @@ export default function Hero() {
             />
           </div>
           <span className="text-zinc-800 dark:text-neutral-300 leading-relaxed">
-            a Fullstack Developer
+            {t("role")}
           </span>
         </motion.h1>
         <motion.div
@@ -221,7 +221,7 @@ export default function Hero() {
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
             <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-black dark:text-white dark:group-hover:text-black">
-              Let&apos;s Connect
+              {t("cta_button")}
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight

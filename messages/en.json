@@ -5,6 +5,9 @@
     "t_span": "fast, responsive, and scalable",
     "small_cta": "New!",
     "small_cta_title": "Blog",
-    "small_cta_content": "Developer Journal"
+    "small_cta_content": "Developer Journal",
+    "greeting": "Hello, I'm Alessandro",
+    "role": "a Fullstack Developer",
+    "cta_button": "Let's Connect"
   }
 }

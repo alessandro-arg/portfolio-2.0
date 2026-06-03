@@ -91,6 +91,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((s) => !s), []);
+  const [languageCloseSignal, setLanguageCloseSignal] = useState(0);
 
   /**
    * Opens the contact modal from the desktop navigation.
@@ -161,6 +162,11 @@ export default function Header() {
   useEffect(() => {
     if (!barRef.current) return;
     const el = barRef.current;
+
+    if (dir === "down") {
+      setLanguageCloseSignal((prev) => prev + 1);
+    }
+
     gsap.to(el, {
       y: dir === "down" ? -80 : 8,
       duration: 0.45,
@@ -225,7 +231,7 @@ export default function Header() {
 
           {/* Language Switcher */}
           <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex items-center">
-            <LanguageSwitcher />
+            <LanguageSwitcher closeSignal={languageCloseSignal} />
           </div>
 
           <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-neutral-400/10 bg-neutral-300/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-neutral-400/20 dark:bg-neutral-800/80">
@@ -344,7 +350,10 @@ export default function Header() {
             {/* Top bar with close */}
             <div className="flex items-center justify-between px-7 py-7">
               <div className="scale-110 origin-left">
-                <LanguageSwitcher align="left" />
+                <LanguageSwitcher
+                  align="left"
+                  closeSignal={languageCloseSignal}
+                />
               </div>
               <button
                 type="button"

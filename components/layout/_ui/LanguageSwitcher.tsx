@@ -15,10 +15,12 @@ type Locale = (typeof languages)[number]["code"];
 
 type LanguageSwitcherProps = {
   align?: "left" | "right";
+  closeSignal?: number;
 };
 
 export default function LanguageSwitcher({
   align = "right",
+  closeSignal,
 }: LanguageSwitcherProps) {
   const router = useRouter();
   const locale = useLocale() as Locale;
@@ -44,6 +46,10 @@ export default function LanguageSwitcher({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [closeSignal]);
 
   const current = languages.find((l) => l.code === locale) ?? languages[0];
 

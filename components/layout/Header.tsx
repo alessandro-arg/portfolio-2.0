@@ -224,7 +224,7 @@ export default function Header() {
           </Link>
 
           {/* Language Switcher */}
-          <div className="absolute right-6 top-3 hidden md:block">
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex items-center">
             <LanguageSwitcher />
           </div>
 
@@ -343,7 +343,9 @@ export default function Header() {
           >
             {/* Top bar with close */}
             <div className="flex items-center justify-between px-7 py-7">
-              <LanguageSwitcher />
+              <div className="scale-110 origin-left">
+                <LanguageSwitcher align="left" />
+              </div>
               <button
                 type="button"
                 aria-label="Close menu"

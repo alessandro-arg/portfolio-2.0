@@ -13,13 +13,7 @@ import { MoreMenu } from "./_ui/MoreMenu";
 import { moreLinks } from "./more.data";
 import { Logo } from "../ui/logo";
 import LanguageSwitcher from "./_ui/LanguageSwitcher";
-
-const menuItems = [
-  { href: "/", label: "Home", ariaLabel: "Go to home page" },
-  { href: "/about", label: "About", ariaLabel: "About me" },
-  { href: "/projects", label: "Projects", ariaLabel: "View my projects" },
-  { href: "/blog", label: "Blog", ariaLabel: "My personal blog" },
-];
+import { useTranslations } from "next-intl";
 
 const panelSpring: Transition = {
   type: "spring",
@@ -74,12 +68,20 @@ function useScrollDirection(threshold = 6) {
  * mobile drawer navigation, scroll-aware visibility, and contact modal access.
  */
 export default function Header() {
+  const t = useTranslations("Header");
   const dir = useScrollDirection(8);
   const pathname = usePathname();
   const barRef = useRef<HTMLDivElement>(null);
   const underlineLayoutId = useMemo(() => "nav-underline", []);
   const [hash, setHash] = useState<string>("");
   const { openModal } = useContactModal();
+
+  const menuItems = [
+    { href: "/", label: t("home"), ariaLabel: t("ariaHome") },
+    { href: "/about", label: t("about"), ariaLabel: t("ariaAbout") },
+    { href: "/projects", label: t("projects"), ariaLabel: t("ariaProjects") },
+    { href: "/blog", label: t("blog"), ariaLabel: t("ariaBlog") },
+  ];
 
   useEffect(() => {
     const update = () => setHash(window.location.hash || "");
@@ -224,7 +226,7 @@ export default function Header() {
           <Link
             href="/"
             className="absolute left-6 top-4 select-none text-base font-semibold tracking-tight sm:text-lg"
-            aria-label="Go to homepage"
+            aria-label={t("homepage")}
           >
             <Logo className="w-10 h-10" />
           </Link>
@@ -291,9 +293,9 @@ export default function Header() {
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
                     "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Open contact form"
+                  aria-label={t("openContactForm")}
                 >
-                  Contact
+                  {t("contact")}
                 </button>
               </motion.li>
             </ul>
@@ -301,13 +303,13 @@ export default function Header() {
             {/* Mobile burger */}
             <button
               type="button"
-              aria-label="Open menu"
+              aria-label={t("openMenu")}
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
               onClick={toggleMobile}
               className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 bg-transparent cursor-pointer"
             >
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">{t("openMenu")}</span>
               {/* Simple burger icon */}
               <svg
                 width="22"
@@ -357,7 +359,7 @@ export default function Header() {
               </div>
               <button
                 type="button"
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
                 onClick={closeMobile}
                 className="inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 cursor-pointer"
               >
@@ -408,9 +410,9 @@ export default function Header() {
                     "shadow-[2px_3px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_3px_0_0_rgba(255,255,255,0.15)]",
                     "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Open contact form"
+                  aria-label={t("openContactForm")}
                 >
-                  Contact
+                  {t("contact")}
                 </button>
               </motion.li>
             </motion.ul>

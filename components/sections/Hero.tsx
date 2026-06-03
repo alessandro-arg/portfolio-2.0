@@ -48,22 +48,20 @@ export default function Hero() {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
-      const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI’d like to connect about...",
-      );
+      const body = encodeURIComponent(t("email_template"));
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 
-      toast("Copied to clipboard!", {
-        description: "Email address copied successfully.",
+      toast(t("copied"), {
+        description: t("email_copied_successfully"),
         action: {
-          label: "Send Email",
+          label: t("send_email"),
           onClick: () => {
             window.open(mailtoUrl, "_blank", "noopener,noreferrer");
           },
         },
       });
     } catch {
-      toast.warning("Something went wrong.");
+      toast.warning(t("copy_error"));
     }
   };
 

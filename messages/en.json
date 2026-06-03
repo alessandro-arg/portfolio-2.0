@@ -1,4 +1,27 @@
 {
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "more": "More",
+    "contact": "Contact",
+    "links_title": "Links",
+    "links_description": "All my links are here",
+    "bucket_list_title": "Bucket List",
+    "bucket_list_description": "Things to do at least once in my life",
+    "my_setup_title": "My Setup",
+    "my_setup_description": "My digital workspace",
+    "ariaHome": "Go to home page",
+    "ariaAbout": "About me",
+    "ariaProjects": "View my projects",
+    "ariaBlog": "My personal blog",
+    "homepage": "Go to homepage",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openContactForm": "Open contact form"
+  },
+
   "Hero": {
     "title": "I design and develop apps",
     "title2": "that are",
@@ -9,6 +32,29 @@
     "greeting": "Hello, I'm Alessandro",
     "role": "a Fullstack Developer",
     "cta_button": "Let's Connect",
-    "copied": "Copied to clipboard"
+    "copied": "Copied to clipboard!",
+    "email_copied_successfully": "Email address copied successfully.",
+    "send_email": "Send Email",
+    "copy_error": "Something went wrong.",
+    "email_template": "Hi Alessandro,\n\nI’d like to connect about..."
+  },
+
+  "Footer": {
+    "general": "General",
+    "resources": "Resources",
+    "more": "More",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "bucket_list": "Bucket List",
+    "my_setup": "My Setup",
+    "blog": "Blog",
+    "links": "Links",
+    "attribution": "Attribution",
+    "description": "I'm Alessandro - a Fullstack developer and problem solver. Thanks for checking out my site!",
+    "all_rights_reserved": ". All rights reserved",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Terms & Conditions",
+    "return_to_top": "Return to the top"
   }
 }

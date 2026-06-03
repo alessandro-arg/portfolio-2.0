@@ -1,4 +1,27 @@
 {
+  "Header": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "blog": "Blog",
+    "more": "Mehr",
+    "contact": "Kontakt",
+    "links_title": "Links",
+    "links_description": "Alle meine Links findest du hier",
+    "bucket_list_title": "Bucket List",
+    "bucket_list_description": "Mindestens einmal im Leben",
+    "my_setup_title": "Mein Setup",
+    "my_setup_description": "Mein digitaler Arbeitsplatz",
+    "ariaHome": "Zur Startseite wechseln",
+    "ariaAbout": "Über mich",
+    "ariaProjects": "Meine Projekte ansehen",
+    "ariaBlog": "Mein persönlicher Blog",
+    "homepage": "Zur Startseite wechseln",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "openContactForm": "Kontaktformular öffnen"
+  },
+
   "Hero": {
     "title": "Ich entwerfe und entwickle",
     "title2": "",
@@ -9,6 +32,29 @@
     "greeting": "Hallo, ich bin Alessandro",
     "role": "ein Fullstack Developer",
     "cta_button": "Kontakt aufnehmen",
-    "copied": "In Zwischenablage kopiert"
+    "copied": "In Zwischenablage kopiert!",
+    "email_copied_successfully": "E-Mail-Adresse erfolgreich kopiert.",
+    "send_email": "E-Mail senden",
+    "copy_error": "Etwas ist schiefgelaufen.",
+    "email_template": "Hallo Alessandro,\n\nIch würde mich gerne über Folgendes mit dir austauschen..."
+  },
+
+  "Footer": {
+    "general": "Allgemein",
+    "resources": "Ressourcen",
+    "more": "Mehr",
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "bucket_list": "Bucket List",
+    "my_setup": "Mein Setup",
+    "blog": "Blog",
+    "links": "Links",
+    "attribution": "Inspiration",
+    "description": "Ich bin Alessandro - Fullstack Entwickler und Problemlöser. Danke für dein besuch!",
+    "all_rights_reserved": "",
+    "privacy_policy": "Datenschutzerklärung",
+    "terms_conditions": "Impressum",
+    "return_to_top": "Nach oben"
   }
 }

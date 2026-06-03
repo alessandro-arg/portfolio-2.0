@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageSquare, User, Send, CircleX } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 type ContactFormProps = {
   className?: string;
@@ -16,6 +17,7 @@ export default function ContactForm({
   className,
   onSubmitted,
 }: ContactFormProps) {
+  const t = useTranslations("ContactForm");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,26 +35,26 @@ export default function ContactForm({
     const letterCount = (name.match(/\p{L}/gu) || []).length; // count letters only
 
     if (!name) {
-      newErrors.name = "Name is required";
+      newErrors.name = t("name_required");
     } else if (!onlyLettersAndSpaces) {
-      newErrors.name = "Only letters and spaces are allowed";
+      newErrors.name = t("name_letters_only");
     } else if (letterCount < 3) {
-      newErrors.name = "Name must have at least 3 letters";
+      newErrors.name = t("name_min_letters");
     }
 
     // --- EMAIL: custom regex; requires @, something after @, and .something
     const email = formData.email.trim();
     const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/; // simple & robust for your rule
     if (!email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("email_required");
     } else if (!emailRegex.test(email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("email_invalid");
     }
 
     // --- MESSAGE: unchanged
-    if (!formData.message.trim()) newErrors.message = "Message is required";
+    if (!formData.message.trim()) newErrors.message = t("message_required");
     else if (formData.message.trim().length < 10)
-      newErrors.message = "Message must be at least 10 characters";
+      newErrors.message = t("message_min_length");
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -80,7 +82,7 @@ export default function ContactForm({
       if (!res.ok) {
         const { error } = await res
           .json()
-          .catch(() => ({ error: "Unknown error" }));
+          .catch(() => ({ error: t("unknown_error") }));
         throw new Error(error || `Request failed with ${res.status}`);
       }
       setIsSubmitting(false);
@@ -91,15 +93,15 @@ export default function ContactForm({
             <button
               onClick={() => toast.dismiss(id)}
               className="absolute top-2 right-2 p-1 rounded hover:opacity-80 focus:outline-none"
-              aria-label="Close"
+              aria-label={t("close")}
             >
               <CircleX className="w-5 h-5" />
             </button>
 
             <div className="pr-20">
-              <div className="font-medium">Message sent successfully!</div>
+              <div className="font-medium">{t("message_sent")}</div>
               <p className="text-sm opacity-90">
-                I&apos;ll write you back soon 👀
+                {t("message_sent_description")}
               </p>
             </div>
           </div>
@@ -115,13 +117,13 @@ export default function ContactForm({
             <button
               onClick={() => toast.dismiss(id)}
               className="absolute top-2 right-2 p-1 rounded hover:opacity-80 focus:outline-none"
-              aria-label="Close"
+              aria-label={t("close")}
             >
               <CircleX className="w-5 h-5" />
             </button>
 
             <div className="pr-20">
-              <div className="font-medium">Something went wrong!</div>
+              <div className="font-medium">{t("something_went_wrong")}</div>
               <p className="text-sm opacity-90">${String(err)}</p>
             </div>
           </div>
@@ -151,7 +153,7 @@ export default function ContactForm({
           htmlFor="name"
           className="block text-sm font-medium text-foreground mb-2"
         >
-          Name
+          {t("name")}
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -167,7 +169,7 @@ export default function ContactForm({
             className={`w-full pl-10 pr-4 py-3 bg-secondary/50 border ${
               errors.name ? "border-destructive" : "border-border"
             } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200`}
-            placeholder="Your name"
+            placeholder={t("name_placeholder")}
           />
         </div>
         <div className="w-full h-5 mt-1">
@@ -187,7 +189,7 @@ export default function ContactForm({
           htmlFor="email"
           className="block text-sm font-medium text-foreground mb-2"
         >
-          Email
+          {t("email")}
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -204,7 +206,7 @@ export default function ContactForm({
             className={`w-full pl-10 pr-4 py-3 bg-secondary/50 border ${
               errors.email ? "border-destructive" : "border-border"
             } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200`}
-            placeholder="email@example.com"
+            placeholder={t("email_placeholder")}
           />
         </div>
         <div className="w-full h-5 mt-1">
@@ -225,7 +227,7 @@ export default function ContactForm({
             htmlFor="message"
             className="block text-sm font-medium text-foreground"
           >
-            Message
+            {t("message")}
           </label>
           <span
             id="message-counter"
@@ -258,7 +260,7 @@ export default function ContactForm({
             className={`w-full pl-10 pr-4 py-3 bg-secondary/50 border ${
               errors.message ? "border-destructive" : "border-border"
             } rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200 resize-none`}
-            placeholder="What would you like to discuss?"
+            placeholder={t("message_placeholder")}
           />
         </div>
 
@@ -288,11 +290,11 @@ export default function ContactForm({
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
               />
-              Sending...
+              {t("sending")}
             </>
           ) : (
             <>
-              Send Message
+              {t("send_message")}
               <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
             </>
           )}

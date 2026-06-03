@@ -86,6 +86,33 @@
     "section_title_2": "HAPPEN!",
     "section_cta_button": "Let's Connect",
     "section_p": "I'm available for full-time roles.",
-    "section_p_2": "I create dynamic web applications, and\ndeliver smooth user experiences."
+    "section_p_2": "I create dynamic web applications, and\ndeliver smooth user experiences.",
+    "modal_title": "Get in Touch",
+    "modal_subtitle": "Have a project in mind? Let's talk about it.",
+    "modal_or": "Or",
+    "modal_email_span": "Send me an email directly"
+  },
+
+  "ContactForm": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "name_placeholder": "Your name",
+    "email_placeholder": "email@example.com",
+    "message_placeholder": "What would you like to discuss?",
+    "send_message": "Send Message",
+    "sending": "Sending...",
+    "close": "Close",
+    "name_required": "Name is required",
+    "name_letters_only": "Only letters and spaces are allowed",
+    "name_min_letters": "Name must have at least 3 letters",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email address",
+    "message_required": "Message is required",
+    "message_min_length": "Message must be at least 10 characters",
+    "message_sent": "Message sent successfully!",
+    "message_sent_description": "I'll get back to you soon!",
+    "something_went_wrong": "Something went wrong!",
+    "unknown_error": "Unknown error"
   }
 }

@@ -85,7 +85,34 @@
     "section_title": "LASS ES UNS ",
     "section_title_2": "UMSETZEN!",
     "section_cta_button": "Kontakt aufnehmen",
-    "section_p": "Offen für neue berufliche Herausforderungen.",
-    "section_p_2": "Ich entwickle dynamische Apps,\nmit Fokus auf UI/UX und Performance."
+    "section_p": "Offen für neue Herausforderungen.",
+    "section_p_2": "Ich entwickle dynamische Apps,\nmit Fokus auf UI/UX und Performance.",
+    "modal_title": "Schreib mir",
+    "modal_subtitle": "Du hast eine Projektidee? Lass uns darüber sprechen.",
+    "modal_or": "Oder",
+    "modal_email_span": "Sende mir direkt eine E-Mail"
+  },
+
+  "ContactForm": {
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "name_placeholder": "Dein Name",
+    "email_placeholder": "email@beispiel.de",
+    "message_placeholder": "Worüber möchtest du sprechen?",
+    "send_message": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "close": "Schließen",
+    "name_required": "Name ist erforderlich",
+    "name_letters_only": "Nur Buchstaben und Leerzeichen sind erlaubt",
+    "name_min_letters": "Name muss mindestens 3 Buchstaben enthalten",
+    "email_required": "E-Mail ist erforderlich",
+    "email_invalid": "Bitte gib eine gültige E-Mail-Adresse ein",
+    "message_required": "Eine Nachricht ist erforderlich",
+    "message_min_length": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+    "message_sent": "Nachricht erfolgreich gesendet!",
+    "message_sent_description": "Ich melde mich bald bei dir!",
+    "something_went_wrong": "Etwas ist schiefgelaufen!",
+    "unknown_error": "Unbekannter Fehler"
   }
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, Github, Linkedin } from "lucide-react";
 import ContactForm from "./ContactForm";
+import { useTranslations } from "next-intl";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface ContactModalProps {
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const t = useTranslations("Contact");
   const [isShort, setIsShort] = useState(false);
   const [isEvenShorter, setIsEvenShorter] = useState(false);
 
@@ -100,7 +102,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       transition={{ delay: 0.12 }}
                       className="text-xl sm:text-3xl font-semibold text-foreground mb-1.5 sm:mb-2"
                     >
-                      Get in Touch
+                      {t("modal_title")}
                     </motion.h2>
                     <motion.p
                       initial={{ opacity: 0, y: -8 }}
@@ -108,7 +110,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       transition={{ delay: 0.16 }}
                       className="text-sm sm:text-base text-muted-foreground"
                     >
-                      Have a project in mind? Let&apos;s talk about it.
+                      {t("modal_subtitle")}
                     </motion.p>
                   </div>
 
@@ -128,7 +130,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       </div>
                       <div className="relative flex justify-center text-[10px] sm:text-xs uppercase">
                         <span className="bg-card px-2 text-muted-foreground">
-                          Or
+                          {t("modal_or")}
                         </span>
                       </div>
                     </motion.div>
@@ -153,7 +155,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 contact@alessandro-argenziano.com
                               </span>
                               <span className="text-xs text-muted-foreground">
-                                Send me an email directly
+                                {t("modal_email_span")}
                               </span>
                             </div>
                           </div>

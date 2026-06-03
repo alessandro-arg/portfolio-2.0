@@ -56,5 +56,36 @@
     "privacy_policy": "Privacy Policy",
     "terms_conditions": "Terms & Conditions",
     "return_to_top": "Return to the top"
+  },
+
+  "BentoGrid": {
+    "tech_card_title": "Technologies I use\nand love",
+    "blog_card_subtitle": "Developer\nJournal",
+    "blog_card_title": "Latest from\nthe blog",
+    "blog_card_all_posts": "All posts",
+    "globe_card_title": "I'm very flexible with\ntime zone comunications",
+    "switzerland": "Switzerland",
+    "germany": "Germany",
+    "italy": "Italy",
+    "copy_email_card": "Let's work together on your next project",
+    "copy_email_card_sm": "Write me an email",
+    "good_night": "Good Night",
+    "good_morning": "Good Morning",
+    "good_afternoon": "Good Afternoon",
+    "good_evening": "Good Evening",
+    "available": "Available"
+  },
+
+  "Contact": {
+    "page_title": "Get in",
+    "page_title_2": "touch",
+    "page_subtitle": "Contact",
+    "section_eyebrow": "FROM CONCEPT TO ",
+    "section_eyebrow_2": "CREATION",
+    "section_title": "LET's MAKE IT ",
+    "section_title_2": "HAPPEN!",
+    "section_cta_button": "Let's Connect",
+    "section_p": "I'm available for full-time roles.",
+    "section_p_2": "I create dynamic web applications, and\ndeliver smooth user experiences."
   }
 }

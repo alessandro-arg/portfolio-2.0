@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { BlogPostMeta } from "@/lib/blog/blog-types";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function getTopicColor(topic: string): string {
   const t = topic.toLowerCase();
@@ -47,23 +48,24 @@ function PostTile({
 
 export default function BlogCard({ posts }: { posts: BlogPostMeta[] }) {
   const [latest, second] = posts;
+  const t = useTranslations("BentoGrid");
 
   return (
     <div className="absolute inset-0 flex overflow-hidden">
       <div className="flex flex-col justify-between w-full md:w-[50%] lg:w-[34%] border-r border-border px-4 py-8">
         <div className="flex items-start flex-col">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2 px-4">
-            Developer Journal
+          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2 px-4 whitespace-pre-line">
+            {t("blog_card_subtitle")}
           </p>
-          <h3 className="bg-linear-to-b from-black to-[#5db6e3] dark:to-[#83d6ff90] bg-clip-text px-4 text-2xl sm:text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white">
-            Latest from <br /> the blog
+          <h3 className="bg-linear-to-b from-black to-[#5db6e3] dark:to-[#83d6ff90] bg-clip-text px-4 text-2xl sm:text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white whitespace-pre-line">
+            {t("blog_card_title")}
           </h3>
         </div>
         <Link
           href="/blog"
           className="max-w-fit flex items-center gap-1 hover:bg-foreground hover:text-background font-mono text-base px-1 py-0.5 mx-3 text-muted-foreground transition-colors duration-200"
         >
-          All posts
+          {t("blog_card_all_posts")}
           <ArrowRight size={16} />
         </Link>
       </div>

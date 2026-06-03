@@ -221,6 +221,16 @@
   --shiki-punctuation: #e1e4e8;
 }
 
+::selection {
+  background-color: #16b1ff95;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #16b1ff95;
+  color: white;
+}
+
 .halftone {
   -webkit-mask-image: radial-gradient(circle, #0000 50%, #000 0);
   mask-image: radial-gradient(circle, #0000 50%, #000 0);

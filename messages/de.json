@@ -1,6 +1,6 @@
 {
   "Header": {
-    "home": "Startseite",
+    "home": "Home",
     "about": "Über mich",
     "projects": "Projekte",
     "blog": "Blog",
@@ -36,7 +36,7 @@
     "email_copied_successfully": "E-Mail-Adresse erfolgreich kopiert.",
     "send_email": "E-Mail senden",
     "copy_error": "Etwas ist schiefgelaufen.",
-    "email_template": "Hallo Alessandro,\n\nIch würde mich gerne über Folgendes mit dir austauschen..."
+    "email_template": "Hallo Alessandro,\n\nIch würde gerne..."
   },
 
   "Footer": {
@@ -56,5 +56,36 @@
     "privacy_policy": "Datenschutzerklärung",
     "terms_conditions": "Impressum",
     "return_to_top": "Nach oben"
+  },
+
+  "BentoGrid": {
+    "tech_card_title": "Mein\nTechnologie-Stack",
+    "blog_card_subtitle": "Entwickler\nTagebuch",
+    "blog_card_title": "Neue\nBeiträge",
+    "blog_card_all_posts": "Alle posts",
+    "globe_card_title": "Flexibel bei Zeitzonen\nund Kommunikation",
+    "switzerland": "Schweiz",
+    "germany": "Deutschland",
+    "italy": "Italien",
+    "copy_email_card": "Gemeinsam dein nächstes Projekt umsetzen",
+    "copy_email_card_sm": "Schreibe mir eine email",
+    "good_night": "Gute Nacht",
+    "good_morning": "Guten Morgen",
+    "good_afternoon": "Guten Tag",
+    "good_evening": "Guten Abend",
+    "available": "Verfügbar"
+  },
+
+  "Contact": {
+    "page_title": "Schreib mir",
+    "page_title_2": "gerne",
+    "page_subtitle": "Kontakt",
+    "section_eyebrow": "VON DER IDEE ZUM ",
+    "section_eyebrow_2": "ERGEBNIS",
+    "section_title": "LASS ES UNS ",
+    "section_title_2": "UMSETZEN!",
+    "section_cta_button": "Kontakt aufnehmen",
+    "section_p": "Offen für neue berufliche Herausforderungen.",
+    "section_p_2": "Ich entwickle dynamische Apps,\nmit Fokus auf UI/UX und Performance."
   }
 }

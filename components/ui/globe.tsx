@@ -3,13 +3,15 @@
 import createGlobe from "cobe";
 import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 type RGB = [number, number, number];
 
 type Country = {
   key: string;
   label: string;
-  flag: string;
+  flag_src: string;
   lat: number;
   lng: number;
 };
@@ -17,12 +19,24 @@ type Country = {
 const DEFAULT_THETA = 0.38;
 
 const CITIES: Country[] = [
-  { key: "germany", label: "Germany", flag: "🇩🇪", lat: 47.6231, lng: 8.2172 },
-  { key: "italy", label: "Italy", flag: "🇮🇹", lat: 40.8522, lng: 14.2681 },
+  {
+    key: "germany",
+    label: "germany",
+    flag_src: "/flags/DE.svg",
+    lat: 47.6231,
+    lng: 8.2172,
+  },
+  {
+    key: "italy",
+    label: "italy",
+    flag_src: "/flags/IT.svg",
+    lat: 40.8522,
+    lng: 14.2681,
+  },
   {
     key: "switzerland",
-    label: "Switzerland",
-    flag: "🇨🇭",
+    label: "switzerland",
+    flag_src: "/flags/CH.svg",
     lat: 47.3769,
     lng: 8.5417,
   },
@@ -127,8 +141,6 @@ export function Globe({
       baseColor: colors.base ?? [1, 1, 1],
       markerColor: colors.marker ?? [0.1, 0.6, 1],
       glowColor: colors.glow ?? [1.15, 1.15, 1.2],
-
-      // ✅ Now includes Switzerland too
       markers,
 
       onRender: (state) => {
@@ -225,6 +237,7 @@ export function Globe({
 
   const CityButton = ({ c }: { c: Country }) => {
     const isActive = c.key === activeKey;
+    const t = useTranslations("BentoGrid");
 
     return (
       <button
@@ -237,19 +250,23 @@ export function Globe({
             : "bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800",
         )}
       >
-        <span>{c.flag}</span>
-        <span className="font-mono">{c.label}</span>
+        <Image
+          src={c.flag_src}
+          alt={t(c.label)}
+          width={16}
+          height={16}
+          className="w-auto h-auto"
+        />
+        <span className="font-mono">{t(c.label)}</span>
       </button>
     );
   };
 
   return (
     <div ref={containerRef} className="relative w-full" style={{ height }}>
-      {/* ✅ Buttons (pushed higher + Switzerland on its own row) */}
       <div
         className={clsx(
           "absolute inset-x-0 z-50 flex flex-col items-center gap-2",
-          // moved further up to reduce overlap with globe:
           "-top-20 sm:-top-16 lg:-top-18",
         )}
       >

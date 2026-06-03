@@ -8,10 +8,12 @@ import { toast } from "sonner";
 import React from "react";
 import { CheckCheck, Copy } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
 export default function Contact() {
+  const t = useTranslations();
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -22,22 +24,20 @@ export default function Contact() {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
-      const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI'd like to talk about..."
-      );
+      const body = encodeURIComponent(t("Hero.email_template"));
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 
-      toast("Copied to clipboard!", {
-        description: "Email address copied successfully.",
+      toast(t("Hero.copied"), {
+        description: t("Hero.email_copied_successfully"),
         action: {
-          label: "Send Email",
+          label: t("Hero.send_email"),
           onClick: () => {
             window.open(mailtoUrl, "_blank", "noopener,noreferrer");
           },
         },
       });
     } catch {
-      toast.warning("Something went wrong.");
+      toast.warning(t("Hero.copy_error"));
     }
   };
   return (
@@ -57,16 +57,16 @@ export default function Contact() {
         <div className="mt-24 mb-6 flex w-full flex-col items-center text-balance">
           <h2 className="relative z-2 mb-0 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:text-6xl text-center [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
             <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">
-              Contact
+              {t("Contact.page_subtitle")}
             </p>
             <span className="font-instrument">
-              <span className="">Get in </span>{" "}
+              <span className="">{t("Contact.page_title")}</span>{" "}
               <AnimatedGradientText
                 colorFrom="#4aeedd"
                 colorTo="#16b1ff"
                 className="tracking-normal w-full"
               >
-                touch
+                {t("Contact.page_title_2")}
               </AnimatedGradientText>
             </span>
           </h2>
@@ -81,14 +81,13 @@ export default function Contact() {
             ) : (
               <Copy className="h-5 w-5" aria-hidden="true" />
             )}
-            {copied ? "Copied to clipboard" : EMAIL}
+            {copied ? t("Hero.copied") : EMAIL}
           </button>
           <div className="mt-4 flex gap-3">
             <SocialButtons />
           </div>
         </div>
         <div className="mt-30 flex justify-center">
-          {/* Inline (no modal) */}
           <ContactForm className="w-full max-w-md" />
         </div>
       </section>

@@ -3,10 +3,12 @@ import { toast } from "sonner";
 import { SparklesCore } from "../ui/sparkles";
 import { CheckCheck, Copy } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
 export default function CopyEmailCard() {
+  const t = useTranslations();
   const { theme } = useTheme();
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -18,21 +20,19 @@ export default function CopyEmailCard() {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
-      const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI’d like to connect about..."
-      );
+      const body = encodeURIComponent(t("Hero.email_template"));
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 
-      toast("Copied to clipboard!", {
-        description: "Email address copied successfully.",
+      toast(t("Hero.copied"), {
+        description: t("Hero.email_copied_successfully"),
         action: {
-          label: "Send Email",
+          label: t("Hero.send_email"),
           onClick: () =>
             window.open(mailtoUrl, "_blank", "noopener,noreferrer"),
         },
       });
     } catch {
-      toast.warning("Something went wrong.");
+      toast.warning(t("Hero.copy_error"));
     }
   };
 
@@ -57,7 +57,7 @@ export default function CopyEmailCard() {
           />
         </div>
         <h3 className="w-full bg-linear-to-b from-black to-[#5db6e3] dark:to-[#83d6ff90] bg-clip-text px-4 text-center text-3xl font-semibold tracking-normal text-transparent select-none dark:from-white max-w-80 -translate-y-4 py-2">
-          Let&apos;s work together on your next project
+          {t("BentoGrid.copy_email_card")}
         </h3>
         <div className="relative flex">
           <button
@@ -72,11 +72,13 @@ export default function CopyEmailCard() {
               <Copy className="h-5 w-5" aria-hidden="true" />
             )}
             {copied ? (
-              "Copied to clipboard"
+              t("Hero.copied")
             ) : (
               <>
                 <span className="hidden md:inline">{EMAIL}</span>
-                <span className="inline md:hidden">Write me an email</span>
+                <span className="inline md:hidden">
+                  {t("BentoGrid.copy_email_card_sm")}
+                </span>
               </>
             )}
           </button>

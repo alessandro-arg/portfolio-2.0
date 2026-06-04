@@ -219,5 +219,78 @@
     "section_8_title": "8. Contact",
     "email_label": "Email:",
     "last_updated": "Last updated: June 2026"
+  },
+
+  "InfiniteRow": {
+    "velocity_accessible": "Accessible",
+    "velocity_dynamic": "Dynamic",
+    "velocity_engaging": "Engaging",
+    "velocity_scalable": "Scalable",
+    "velocity_secure": "Secure",
+    "velocity_responsive": "Responsive",
+    "velocity_seo": "SEO",
+    "velocity_reliable": "Reliable",
+    "velocity_interactive": "Interactive"
+  },
+
+  "Skills": {
+    "eyebrow": "My Skills",
+    "title": "The secret",
+    "highlight": "sauce"
+  },
+
+  "Attribution": {
+    "eyebrow": "Attribution",
+    "title_line_1": "Journey to create",
+    "title_line_2": "this ",
+    "highlight": "website",
+    "intro": "Hello! Welcome to my website.",
+    "text_1": "The first version of this website was created in 2025. I was learning how to build a Multi-Page Application with Next.js back then. This version is not gonna be an open-source project.",
+    "text_2": "In 2024 I created my first portfolio using Angular and TypeScript. While learning how to use Next.js, I thought it was time for an evolution. I completely redesigned the site to better showcase my current front-end and back-end development capabilities, focusing on a clean aesthetic and animations.",
+    "text_3": "I would like to express my thanks to all of websites that inspired me to build this website.",
+    "thanks": "Thanks y'all!",
+    "best": "Best,"
+  },
+
+  "Links": {
+    "badge_1": "Developer",
+    "badge_2": "Problem Solver"
+  },
+
+  "Setup": {
+    "eyebrow": "My tools",
+    "title": "The",
+    "highlight": "setup",
+    "setup_image_alt": "Setup by Alessandro"
+  },
+
+  "BucketList": {
+    "eyebrow": "The bucket list",
+    "title": "Things I'll do",
+    "highlight": "at least once",
+    "github_title": "Get 50+ followers on GitHub",
+    "github_description": "",
+    "surf_portugal_title": "Learn to surf in Portugal",
+    "surf_portugal_description": "A week in Ericeira catching green waves.",
+    "aurora_title": "See the Northern Lights",
+    "aurora_description": "",
+    "iceland_roadtrip_title": "Drive Iceland's Ring Road",
+    "iceland_roadtrip_description": "7-10 days, waterfalls, black sand beaches & hot springs.",
+    "snowboard_title": "Do my first backflip on a snowboard",
+    "snowboard_description": "",
+    "portfolio_title": "Create a portfolio website",
+    "portfolio_description": "October 2025",
+    "remote_job_title": "Get a Remote Job",
+    "remote_job_description": "",
+    "red_sea_scuba_title": "Scuba dive the Red Sea",
+    "red_sea_scuba_description": "",
+    "kyoto_sakura_title": "Cherry blossom season in Kyoto",
+    "kyoto_sakura_description": "",
+    "open_source_title": "First OpenSource contribution",
+    "open_source_description": "",
+    "skydive_title": "Go skydiving",
+    "skydive_description": "Jump from 4,000m and savor that 60s freefall.",
+    "world_trip_title": "6 months Worldtrip",
+    "world_trip_description": ""
   }
 }

@@ -156,7 +156,7 @@
     "landing_about_highlight": "allem",
     "landing_about_text_1": "Ich bin Alessandro, ein Full-Stack Entwickler mit Leidenschaft für dynamische Apps. Vom Frontend bis zum Backend liebe ich es, komplexe Probleme mit sauberem und effizientem Code zu lösen. Meine Erfahrung umfasst Angular, React und Next.js, und ich bin immer bereit, Neues zu lernen.",
     "landing_about_text_2": "Wenn ich nicht gerade in der Arbeit vertieft bin, entdecke ich neue Ideen oder neue Berge und bleibe neugierig. Im Leben geht es um Balance, und ich liebe es, jeden Teil davon zu genießen, besonders im Snowpark.",
-    "landing_about_text_3": "Ich glaube daran, dass kleine tägliche Fortschritte zu großen Ergebnissen führen.",
+    "landing_about_text_3": "Ich glaube dass kleine tägliche Fortschritte zu großen Ergebnissen führen können.",
     "landing_about_cta": "Berufserfahrung",
     "developer": "Entwickler",
     "snowboarder": "Snowboarder",
@@ -207,7 +207,7 @@
     "section_2_title": "2. Zweck der Website",
     "section_2_text": "Diese Portfolio-Website dient dazu, meine persönlichen Arbeiten, Projekte und meinen beruflichen Hintergrund zu präsentieren. Alle Inhalte werden ausschließlich zu Informationszwecken bereitgestellt und stellen keine professionelle oder rechtliche Beratung dar.",
     "section_3_title": "3. Geistiges Eigentum",
-    "section_3_text": "Sofern nicht anders angegeben, gehören alle Materialien auf dieser Website – einschließlich Texte, Bilder, Design und Code – Alessandro Argenziano. Sie dürfen Inhalte ausschließlich für persönliche, nicht-kommerzielle Zwecke ansehen und teilen. Eine Vervielfältigung oder Verbreitung ohne ausdrückliche Genehmigung ist untersagt.",
+    "section_3_text": "Sofern nicht anders angegeben, gehören alle Materialien auf dieser Website - einschließlich Texte, Bilder, Design und Code - Alessandro Argenziano. Sie dürfen Inhalte ausschließlich für persönliche, nicht-kommerzielle Zwecke ansehen und teilen. Eine Vervielfältigung oder Verbreitung ohne ausdrückliche Genehmigung ist untersagt.",
     "section_4_title": "4. Externe Links",
     "section_4_text": "Diese Website kann Links zu externen Websites enthalten. Ich bin nicht verantwortlich für die Inhalte oder Datenschutzpraktiken dieser Websites Dritter. Der Besuch solcher Links erfolgt auf eigene Verantwortung.",
     "section_5_title": "5. Haftungsbeschränkung",
@@ -221,5 +221,78 @@
     "section_8_title": "8. Kontakt",
     "email_label": "E-Mail:",
     "last_updated": "Zuletzt aktualisiert: Juni 2026"
+  },
+
+  "InfiniteRow": {
+    "velocity_accessible": "Barrierefrei",
+    "velocity_dynamic": "Dynamisch",
+    "velocity_engaging": "Ansprechend",
+    "velocity_scalable": "Skalierbar",
+    "velocity_secure": "Sicher",
+    "velocity_responsive": "Responsiv",
+    "velocity_seo": "SEO",
+    "velocity_reliable": "Zuverlässig",
+    "velocity_interactive": "Interaktiv"
+  },
+
+  "Skills": {
+    "eyebrow": "Meine Skills",
+    "title": "Mein technisches",
+    "highlight": "Fundament"
+  },
+
+  "Attribution": {
+    "eyebrow": "Inspiration",
+    "title_line_1": "Der Weg zu diesem",
+    "title_line_2": "",
+    "highlight": "Portfolio",
+    "intro": "Hallo! Willkommen auf meiner Website.",
+    "text_1": "Die erste Version dieser Website entstand im Jahr 2025. Damals habe ich gelernt, wie man eine Multi-Page-Application mit Next.js erstellt. Diese Version wird kein Open-Source-Projekt sein.",
+    "text_2": "Im Jahr 2024 habe ich mein erstes Portfolio mit Angular und TypeScript erstellt. Während ich gelernt habe, mit Next.js zu arbeiten, war für mich klar, dass es Zeit für eine Weiterentwicklung ist. Ich habe die Website komplett neu gestaltet, um meine aktuellen Fähigkeiten in der Frontend- und Backend-Entwicklung besser zu präsentieren, mit Fokus auf eine klare Ästhetik und Animationen.",
+    "text_3": "Ich möchte mich bei allen Websites bedanken, die mich beim Aufbau dieser Website inspiriert haben.",
+    "thanks": "Vielen Dank an euch alle!",
+    "best": "Beste Grüße,"
+  },
+
+  "Links": {
+    "badge_1": "Entwickler",
+    "badge_2": "Problemlöser"
+  },
+
+  "Setup": {
+    "eyebrow": "Meine Tools",
+    "title": "Mein",
+    "highlight": "Setup",
+    "setup_image_alt": "Setup von Alessandro"
+  },
+
+  "BucketList": {
+    "eyebrow": "Die Bucket List",
+    "title": "Dinge, die ich",
+    "highlight": "mindestens einmal tun werde",
+    "github_title": "50+ Follower auf GitHub erreichen",
+    "github_description": "",
+    "surf_portugal_title": "Surfen in Portugal lernen",
+    "surf_portugal_description": "Eine Woche in Ericeira und grüne Wellen erwischen.",
+    "aurora_title": "Die Nordlichter sehen",
+    "aurora_description": "",
+    "iceland_roadtrip_title": "Islands Ringstraße fahren",
+    "iceland_roadtrip_description": "7-10 Tage, Wasserfälle, schwarze Sandstrände & heiße Quellen.",
+    "snowboard_title": "Meinen ersten Backflip auf dem Snowboard machen",
+    "snowboard_description": "",
+    "portfolio_title": "Eine Portfolio-Website erstellen",
+    "portfolio_description": "Oktober 2025",
+    "remote_job_title": "Einen Remote Job bekommen",
+    "remote_job_description": "",
+    "red_sea_scuba_title": "Im Roten Meer tauchen",
+    "red_sea_scuba_description": "",
+    "kyoto_sakura_title": "Kirschblütenzeit in Kyoto erleben",
+    "kyoto_sakura_description": "",
+    "open_source_title": "Erster Open-Source-Beitrag",
+    "open_source_description": "",
+    "skydive_title": "Fallschirmspringen gehen",
+    "skydive_description": "Aus 4.000 m springen und den 60-sekündigen freien Fall genießen.",
+    "world_trip_title": "6 Monate Weltreise",
+    "world_trip_description": ""
   }
 }

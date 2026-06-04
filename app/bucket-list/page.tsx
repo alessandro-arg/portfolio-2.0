@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import ContactSection from "../contact/ContactSection";
 import Image from "next/image";
 import BackgroundFade from "@/components/ui/background-fade";
+import { useTranslations } from "next-intl";
 
 interface Goal {
   id: string;
@@ -13,106 +14,108 @@ interface Goal {
   hasImage: boolean;
 }
 
-const goals: Goal[] = [
-  {
-    id: "github",
-    title: "Get 50+ followers on GitHub",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "surf-portugal",
-    title: "Learn to surf in Portugal",
-    description: "A week in Ericeira catching green waves.",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "aurora",
-    title: "See the Northern Lights",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "iceland-roadtrip",
-    title: "Drive Iceland's Ring Road",
-    description: "7-10 days, waterfalls, black sand beaches & hot springs.",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "snowboard",
-    title: "Do my first backflip on a snowboard",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "portfolio",
-    title: "Create a portfolio website",
-    description: "October 2025, https://www.alessandro-argenziano.com",
-    images: ["/images/portfolio_mockup.webp"],
-    isChecked: true,
-    hasImage: true,
-  },
-  {
-    id: "remote-job",
-    title: "Get a Remote Job",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "red-sea-scuba",
-    title: "Scuba dive the Red Sea",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "kyoto-sakura",
-    title: "Cherry blossom season in Kyoto",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "open-source",
-    title: "First OpenSource contribution",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "skydive",
-    title: "Go skydiving",
-    description: "Jump from 4,000m and savor that 60s freefall.",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-  {
-    id: "worl-trip",
-    title: "6 months Worldtrip",
-    description: "",
-    images: [],
-    isChecked: false,
-    hasImage: false,
-  },
-];
-
 export default function BucketList() {
+  const t = useTranslations("BucketList");
+
+  const goals: Goal[] = [
+    {
+      id: "github",
+      title: t("github_title"),
+      description: t("github_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "surf-portugal",
+      title: t("surf_portugal_title"),
+      description: t("surf_portugal_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "aurora",
+      title: t("aurora_title"),
+      description: t("aurora_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "iceland-roadtrip",
+      title: t("iceland_roadtrip_title"),
+      description: t("iceland_roadtrip_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "snowboard",
+      title: t("snowboard_title"),
+      description: t("snowboard_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "portfolio",
+      title: t("portfolio_title"),
+      description: t("portfolio_description"),
+      images: ["/images/portfolio_mockup.webp"],
+      isChecked: true,
+      hasImage: true,
+    },
+    {
+      id: "remote-job",
+      title: t("remote_job_title"),
+      description: t("remote_job_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "red-sea-scuba",
+      title: t("red_sea_scuba_title"),
+      description: t("red_sea_scuba_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "kyoto-sakura",
+      title: t("kyoto_sakura_title"),
+      description: t("kyoto_sakura_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "open-source",
+      title: t("open_source_title"),
+      description: t("open_source_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "skydive",
+      title: t("skydive_title"),
+      description: t("skydive_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+    {
+      id: "world-trip",
+      title: t("world_trip_title"),
+      description: t("world_trip_description"),
+      images: [],
+      isChecked: false,
+      hasImage: false,
+    },
+  ];
+
   return (
     <>
       <BackgroundFade />

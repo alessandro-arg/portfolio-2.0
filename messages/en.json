@@ -114,5 +114,64 @@
     "message_sent_description": "I'll get back to you soon!",
     "something_went_wrong": "Something went wrong!",
     "unknown_error": "Unknown error"
+  },
+
+  "Testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "Colleagues' thoughts",
+    "highlight": "about me"
+  },
+
+  "Experience": {
+    "eyebrow": "The experience",
+    "title": "Experience that brings",
+    "highlight": "ideas to life",
+    "gfn": {
+      "title": "Fachinformatiker - Anwendungsentwickler",
+      "subtitle": "(IHK FIAE)",
+      "items": {
+        "one": "The retraining program to become an <important>IT Specialist for App Development</important> consists of theoretical and practical learning phases as well as the final exam.",
+        "two": "After building fundamental knowledge and general IT skills, I will focus on everything related to development. I will also work with Networks, Databases, Data analysis and much more.",
+        "three": "As a central part of the program, I will complete a company internship where I can apply my theoretical knowledge in daily work and gain valuable practical experience."
+      }
+    },
+    "developerAkademie": {
+      "title": "Full-stack Web Development",
+      "items": {
+        "one": "Completed the demanding full-stack program at Germany's leading TÜV-certified academy for web development. Successfully built more than 12 projects, both individually and as part of a team.",
+        "two": "Web programming with <important>HTML, CSS (SCSS)</important> and <important>JavaScript</important>.",
+        "three": "Frontend web development with <important>Angular</important> and <important>TypeScript</important>.",
+        "four": "Using design frameworks such as <important>Bootstrap</important> and <important>Material Design</important>, as well as implementing UI/UX designs <important>(Figma)</important>.",
+        "five": "Working with databases <important>(Google Firebase)</important> and integrating <important>REST APIs</important> for data communication.",
+        "six": "Version control with <important>Git (GitHub)</important> and agile project management for team-based development <important>(SCRUM, Kanban)</important>."
+      }
+    }
+  },
+
+  "About": {
+    "landing_about_eyebrow": "Know about me",
+    "landing_about_title": "Full-Stack Developer and a little bit of",
+    "landing_about_highlight": "everything",
+    "landing_about_text_1": "I'm Alessandro, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans Angular, React, and Next.js, and I'm always ready to learn more.",
+    "landing_about_text_2": "When I'm not immersed in work, I'm exploring new ideas or new mountains and staying curious. Life is about balance, and I love embracing every part of it, especially in a snowpark.",
+    "landing_about_text_3": "I believe small daily progress leads to big results.",
+    "landing_about_cta": "Work Experience",
+    "developer": "Developer",
+    "snowboarder": "Snowboarder",
+    "traveler": "Traveler",
+    "about_page_eyebrow": "More about me",
+    "about_page_title": "I'm Alessandro, a\ncreative",
+    "about_page_highlight": "developer",
+    "about_page_text_1": "I'm Alessandro, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I solve complex problems with clean, efficient code. My expertise spans Python, Angular, Typescript and React, and I'm always motivated to learn more.",
+    "about_page_text_2": "When I'm not immersed in work, I explore new mountains, cruising through fresh powder or doing 360s in a snowpark.",
+    "about_page_text_3": "I believe in waking up each day eager to make a difference!"
+  },
+
+  "GitHub": {
+    "loading": "Loading contribution data...",
+    "error": "Failed to load GitHub activity: {error}",
+    "eyebrow": "Developer Insights",
+    "title": "GitHub",
+    "highlight": "activity"
   }
 }

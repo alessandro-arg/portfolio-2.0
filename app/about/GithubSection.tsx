@@ -5,6 +5,7 @@ import ActivityCalendar from "react-activity-calendar";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { User, Star, BookOpen, GitFork } from "lucide-react";
 import StatsCard from "./ui/StatsCard";
+import { useTranslations } from "next-intl";
 
 interface GitHubActivity {
   date: string;
@@ -35,6 +36,7 @@ type GitHubDay = {
 const username = "alessandro-arg";
 
 const GitHubActivitySection = () => {
+  const t = useTranslations("GitHub");
   const [data, setData] = useState<GitHubActivity[]>([]);
   const [stats, setStats] = useState<Partial<ActivityApi>>({});
   const [loading, setLoading] = useState(true);
@@ -42,7 +44,7 @@ const GitHubActivitySection = () => {
 
   const fetchContributionLevels = async (user: string) => {
     const response = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/${user}?y=last`
+      `https://github-contributions-api.jogruber.de/v4/${user}?y=last`,
     );
     if (!response.ok) throw new Error("Failed to fetch contribution levels");
     const result = await response.json();
@@ -51,7 +53,7 @@ const GitHubActivitySection = () => {
         date: day.date,
         count: day.count,
         level: day.level,
-      })
+      }),
     );
     return contributions;
   };
@@ -70,8 +72,6 @@ const GitHubActivitySection = () => {
       try {
         setLoading(true);
         setError(null);
-
-        // run both in parallel
         const [levels, statsResult] = await Promise.all([
           fetchContributionLevels(username),
           fetchActivityStats(username),
@@ -97,7 +97,7 @@ const GitHubActivitySection = () => {
     return (
       <div className="text-center">
         <p className="text-neutral-600 dark:text-neutral-400 mb-8">
-          Loading contribution data...
+          {t("loading")}
         </p>
         <div className="flex justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-800 dark:border-white"></div>
@@ -110,7 +110,7 @@ const GitHubActivitySection = () => {
     return (
       <div className="text-center">
         <p className="text-red-600 dark:text-red-400">
-          Failed to load GitHub activity: {error}
+          {t("error", { error })}
         </p>
       </div>
     );
@@ -189,6 +189,7 @@ function StatsGrid({ username }: { username: string }) {
 }
 
 export default function GithubSection() {
+  const t = useTranslations("GitHub");
   return (
     <section
       id="github"
@@ -196,16 +197,16 @@ export default function GithubSection() {
     >
       <h2 className="relative z-2 text-5xl font-medium tracking-tight text-balance sm:text-5xl md:text-6xl mb-12 md:mb-12 text-center [text-shadow:rgba(255,255,255,0.05)_0px_4px_8px,rgba(255,255,255,0.25)_0px_8px_30px]">
         <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">
-          Developer Insights
+          {t("eyebrow")}
         </p>
         <span className="font-instrument">
-          <span>GitHub </span>
+          <span>{t("title")} </span>
           <AnimatedGradientText
             colorFrom="#4aeedd"
             colorTo="#16b1ff"
             className="pe-2 tracking-tight italic"
           >
-            activity
+            {t("highlight")}
           </AnimatedGradientText>
         </span>
       </h2>

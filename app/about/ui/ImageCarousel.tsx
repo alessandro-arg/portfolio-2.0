@@ -3,23 +3,26 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const ImageCarousel = () => {
+  const t = useTranslations("About");
+
   const images = [
     {
       src: "/images/profile-img.webp",
-      title: "Developer",
-      alt: "Developer",
+      title: t("developer"),
+      alt: t("developer"),
     },
     {
       src: "/images/snowboard.webp",
-      title: "Snowboarder",
-      alt: "Snowboarder",
+      title: t("snowboarder"),
+      alt: t("snowboarder"),
     },
     {
       src: "/images/travel.webp",
-      title: "Traveler",
-      alt: "Traveler",
+      title: t("traveler"),
+      alt: t("traveler"),
     },
   ];
 

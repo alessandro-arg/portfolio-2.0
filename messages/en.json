@@ -173,5 +173,51 @@
     "eyebrow": "Developer Insights",
     "title": "GitHub",
     "highlight": "activity"
+  },
+
+  "PrivacyPolicy": {
+    "eyebrow": "Legal",
+    "title": "Privacy ",
+    "highlight": "policy",
+    "intro_before_link": "This website (",
+    "intro_after_link": ") is operated by Alessandro Argenziano. I take your privacy seriously and handle your personal data responsibly and in accordance with applicable data protection laws.",
+    "section_1_title": "1. Data Collection",
+    "section_1_text": "This portfolio website does not actively collect personal data except when you contact me via email or contact form. In that case, I only collect the information you provide (such as your name, email address, and message) to respond to your inquiry.",
+    "section_2_title": "2. Use of Personal Data",
+    "section_2_text": "Any personal information you share will only be used to communicate with you regarding your request and will not be shared with third parties unless required by law.",
+    "section_3_title": "3. Cookies & Analytics",
+    "section_3_text": "This site may use basic cookies or analytics tools to improve user experience and website performance. These tools collect anonymized data such as browser type, visit duration, and visited pages.",
+    "section_4_title": "4. Your Rights",
+    "section_4_text": "You have the right to request access, correction, or deletion of your personal data. For any privacy-related inquiries, please contact me directly.",
+    "section_5_title": "5. Contact",
+    "email_label": "Email:",
+    "last_updated": "Last updated: June 2026"
+  },
+
+  "Terms": {
+    "eyebrow": "Legal",
+    "title": "Terms & ",
+    "highlight": "conditions",
+    "intro_before_link": "Welcome to ",
+    "intro_after_link": ". These Terms and Conditions outline the rules and regulations for using this website, operated by Alessandro Argenziano.",
+    "section_1_title": "1. Acceptance of Terms",
+    "section_1_text": "By accessing and using this website, you accept these Terms and Conditions in full. If you disagree with any part of these terms, please do not use this website.",
+    "section_2_title": "2. Purpose of the Website",
+    "section_2_text": "This portfolio site is intended to present my personal work, projects, and professional background. All content is provided for informational purposes only and does not constitute professional or legal advice.",
+    "section_3_title": "3. Intellectual Property",
+    "section_3_text": "Unless otherwise stated, all materials on this website — including text, images, design, and code — are owned by Alessandro Argenziano. You may view and share content for personal, non-commercial purposes only. Reproduction or distribution without permission is prohibited.",
+    "section_4_title": "4. External Links",
+    "section_4_text": "This website may contain links to external sites. I am not responsible for the content or privacy practices of those third-party websites. Visiting such links is at your own discretion.",
+    "section_5_title": "5. Limitation of Liability",
+    "section_5_text": "I make no warranties regarding the accuracy or completeness of the information presented on this website. I am not liable for any damages or losses arising from the use of this site or its content.",
+    "section_6_title": "6. Privacy and Data Protection",
+    "section_6_before_link": "Please refer to the ",
+    "section_6_link": "Privacy Policy",
+    "section_6_after_link": " to learn more about how I handle your personal information in compliance with the General Data Protection Regulation (GDPR).",
+    "section_7_title": "7. Changes to These Terms",
+    "section_7_text": "I may update these Terms and Conditions occasionally to reflect new features or legal requirements. Updates will be posted on this page with the revised date.",
+    "section_8_title": "8. Contact",
+    "email_label": "Email:",
+    "last_updated": "Last updated: June 2026"
   }
 }

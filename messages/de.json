@@ -175,5 +175,51 @@
     "eyebrow": "Entwickler Einblicke",
     "title": "GitHub",
     "highlight": "Aktivität"
+  },
+
+  "PrivacyPolicy": {
+    "eyebrow": "Rechtliches",
+    "title": "Datenschutz",
+    "highlight": "erklärung",
+    "intro_before_link": "Diese Website (",
+    "intro_after_link": ") wird von Alessandro Argenziano betrieben. Ich nehme den Schutz Ihrer persönlichen Daten ernst und verarbeite Ihre personenbezogenen Daten verantwortungsvoll sowie gemäß den geltenden Datenschutzgesetzen.",
+    "section_1_title": "1. Datenerhebung",
+    "section_1_text": "Diese Portfolio-Website erhebt keine personenbezogenen Daten aktiv, außer wenn Sie mich per E-Mail oder über das Kontaktformular kontaktieren. In diesem Fall erhebe ich nur die Informationen, die Sie bereitstellen (wie Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht), um Ihre Anfrage zu beantworten.",
+    "section_2_title": "2. Verwendung personenbezogener Daten",
+    "section_2_text": "Alle personenbezogenen Informationen, die Sie übermitteln, werden ausschließlich zur Kommunikation mit Ihnen bezüglich Ihrer Anfrage verwendet und nicht an Dritte weitergegeben, es sei denn, dies ist gesetzlich vorgeschrieben.",
+    "section_3_title": "3. Cookies & Analyse",
+    "section_3_text": "Diese Website kann grundlegende Cookies oder Analyse-Tools verwenden, um die Nutzererfahrung und die Leistung der Website zu verbessern. Diese Tools erfassen anonymisierte Daten wie Browsertyp, Besuchsdauer und besuchte Seiten.",
+    "section_4_title": "4. Ihre Rechte",
+    "section_4_text": "Sie haben das Recht, Auskunft über Ihre personenbezogenen Daten sowie deren Berichtigung oder Löschung zu verlangen. Für datenschutzbezogene Anfragen kontaktieren Sie mich bitte direkt.",
+    "section_5_title": "5. Kontakt",
+    "email_label": "E-Mail:",
+    "last_updated": "Zuletzt aktualisiert: Juni 2026"
+  },
+
+  "Terms": {
+    "eyebrow": "Rechtliches",
+    "title": "Impre",
+    "highlight": "ssum",
+    "intro_before_link": "Willkommen auf ",
+    "intro_after_link": ". Diese Nutzungsbedingungen legen die Regeln und Bestimmungen für die Nutzung dieser Website fest, die von Alessandro Argenziano betrieben wird.",
+    "section_1_title": "1. Annahme der Bedingungen",
+    "section_1_text": "Durch den Zugriff auf diese Website und deren Nutzung akzeptieren Sie diese Nutzungsbedingungen vollständig. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, nutzen Sie diese Website bitte nicht.",
+    "section_2_title": "2. Zweck der Website",
+    "section_2_text": "Diese Portfolio-Website dient dazu, meine persönlichen Arbeiten, Projekte und meinen beruflichen Hintergrund zu präsentieren. Alle Inhalte werden ausschließlich zu Informationszwecken bereitgestellt und stellen keine professionelle oder rechtliche Beratung dar.",
+    "section_3_title": "3. Geistiges Eigentum",
+    "section_3_text": "Sofern nicht anders angegeben, gehören alle Materialien auf dieser Website – einschließlich Texte, Bilder, Design und Code – Alessandro Argenziano. Sie dürfen Inhalte ausschließlich für persönliche, nicht-kommerzielle Zwecke ansehen und teilen. Eine Vervielfältigung oder Verbreitung ohne ausdrückliche Genehmigung ist untersagt.",
+    "section_4_title": "4. Externe Links",
+    "section_4_text": "Diese Website kann Links zu externen Websites enthalten. Ich bin nicht verantwortlich für die Inhalte oder Datenschutzpraktiken dieser Websites Dritter. Der Besuch solcher Links erfolgt auf eigene Verantwortung.",
+    "section_5_title": "5. Haftungsbeschränkung",
+    "section_5_text": "Ich übernehme keine Gewähr für die Richtigkeit oder Vollständigkeit der auf dieser Website bereitgestellten Informationen. Ich hafte nicht für Schäden oder Verluste, die aus der Nutzung dieser Website oder ihrer Inhalte entstehen.",
+    "section_6_title": "6. Datenschutz",
+    "section_6_before_link": "Weitere Informationen darüber, wie ich Ihre personenbezogenen Daten gemäß der Datenschutz-Grundverordnung (DSGVO) verarbeite, finden Sie in der ",
+    "section_6_link": "Datenschutzerklärung",
+    "section_6_after_link": ".",
+    "section_7_title": "7. Änderungen dieser Bedingungen",
+    "section_7_text": "Ich kann diese Nutzungsbedingungen gelegentlich aktualisieren, um neue Funktionen oder rechtliche Anforderungen zu berücksichtigen. Änderungen werden auf dieser Seite zusammen mit dem aktualisierten Datum veröffentlicht.",
+    "section_8_title": "8. Kontakt",
+    "email_label": "E-Mail:",
+    "last_updated": "Zuletzt aktualisiert: Juni 2026"
   }
 }

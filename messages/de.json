@@ -306,7 +306,11 @@
     "about_title": "Über mich",
     "about_description": "Erfahre mehr über mich und meine Arbeit",
     "blog_title": "Blog",
-    "blog_description": "Lese die neuesten Einträge aus meinem Entwickler Journal"
+    "blog_description": "Lese die neuesten Einträge aus meinem Entwickler Journal",
+    "Blog": {
+      "not_found_title": "Post nicht gefunden",
+      "not_found_description": "Der Beitrag existiert nicht oder wurde verschoben."
+    }
   },
 
   "TOC": {
@@ -343,5 +347,27 @@
     "over_6_months": "(vor über 6 Monaten)",
     "over_1_year": "(vor über 1 Jahr)",
     "over_years": "(vor über {years} Jahren)"
+  },
+
+  "Blog": {
+    "eyebrow": "Entwickler Journal",
+    "title": "Blog",
+    "description": "Notizen von meinem Weg: was ich lerne, baue, teste und unterwegs besser verstehe.",
+    "all_posts": "all posts",
+    "no_posts": "Keine Beiträge für \"{topic}\".",
+    "read_time": "{minutes} Min. Lesezeit",
+    "metadata_title": "Blog",
+    "metadata_description": "Entwickler-Journal über meinen Weg zu DevOps und mehr."
+  },
+
+  "BlogPost": {
+    "not_found": "Beitrag nicht gefunden",
+    "back": "Zurück",
+    "title": "Titel",
+    "topic": "Thema",
+    "published": "Veröffentlicht",
+    "updated": "Aktualisiert",
+    "read_time": "Lesezeit",
+    "tags": "Tags"
   }
 }

@@ -10,6 +10,8 @@ function getTopicColor(topic: string): string {
   if (t === "frontend") return "text-destructive";
   if (t === "backend") return "text-green-400";
   if (t === "devops-journey") return "text-[#16b1ff]";
+  if (t === "linux") return "text-yellow-400";
+  if (t === "python") return "text-green-400";
   return "text-muted-foreground";
 }
 
@@ -20,6 +22,8 @@ function PostTile({
   post: BlogPostMeta;
   className?: string;
 }) {
+  const t = useTranslations("Blog");
+
   return (
     <Link
       key={post.slug}
@@ -40,7 +44,7 @@ function PostTile({
         </h2>
       </div>
       <p className="font-mono text-xs text-muted-foreground mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        {post.readingTime}
+        {t("read_time", { minutes: post.readingTime })}
       </p>
     </Link>
   );

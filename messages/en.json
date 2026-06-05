@@ -304,7 +304,11 @@
     "about_title": "About me",
     "about_description": "Learn more about who I am and what I do",
     "blog_title": "Blog",
-    "blog_description": "Read the latest posts on my developer journal"
+    "blog_description": "Read the latest posts on my developer journal",
+    "Blog": {
+      "not_found_title": "Post not found",
+      "not_found_description": "The article you are looking for does not exist."
+    }
   },
 
   "TOC": {
@@ -341,5 +345,27 @@
     "over_6_months": "(over 6 months ago)",
     "over_1_year": "(over 1 yr ago)",
     "over_years": "(over {years} yrs ago)"
+  },
+
+  "Blog": {
+    "eyebrow": "Developer Journal",
+    "title": "Blog",
+    "description": "Notes from my journey: what I'm learning, building, testing, and understanding along the way.",
+    "all_posts": "all posts",
+    "no_posts": "No posts for \"{topic}\".",
+    "read_time": "{minutes} min read",
+    "metadata_title": "Blog",
+    "metadata_description": "Developer journal documenting my road to DevOps and more."
+  },
+
+  "BlogPost": {
+    "not_found": "Post not found",
+    "back": "Back",
+    "title": "Title",
+    "topic": "Topic",
+    "published": "Published",
+    "updated": "Updated",
+    "read_time": "Read time",
+    "tags": "Tags"
   }
 }

@@ -1,14 +1,20 @@
 import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
 import { BlogClient } from "@/components/blog/blog-client";
+import { getLocale, getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Developer journal documenting my road to DevOps and more.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Blog");
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+  return {
+    title: t("metadata_title"),
+    description: t("metadata_description"),
+  };
+}
+
+export default async function BlogPage() {
+  const locale = await getLocale();
+  const posts = getAllPosts(locale);
 
   return (
     <main className="min-h-screen bg-background text-foreground my-20">

@@ -1,0 +1,101 @@
+---
+title: "Mein erster kleiner Ubuntu Server"
+description: "Der Raspberry Pi ist eingerichtet und Ubuntu Server ist installiert. Endlich habe ich ein kleines Homelab, in dem ich Linux und Bash richtig lernen kann."
+date: "2026-05-02"
+updated: "2026-05-06"
+topic: "devops-journey"
+tags:
+  - linux
+  - homelab
+published: true
+cover: "/blog/devops-journey/01-pi-server/cover.png"
+---
+
+Ich wollte schon länger mein eigenes Homelab aufbauen. Nicht einfach nur Dinge kaufen und irgendwo hinstellen, sondern wirklich damit arbeiten. Ich nutze seit zehn Jahren Windows und vermisse es nicht. Gleichzeitig habe ich aber gemerkt, dass ich bisher eigentlich nur diese eine Umgebung wirklich kenne. Jetzt möchte ich andere Systeme, andere Arbeitsweisen und andere Perspektiven kennenlernen.
+
+Mein Ziel ist es, Linux besser zu verstehen und mich Schritt für Schritt in Themen wie Container, Cloud und später Kubernetes einzuarbeiten.
+
+Ich habe mich für einen Raspberry Pi entschieden, Ubuntu Server installiert und bewusst gesagt: keine GUI.
+Ich möchte nur die CLI verwenden.
+
+### Mein Setup
+
+- Raspberry Pi 4 Model B mit 4 GB RAM
+- 32 GB microSD Karte
+- verbunden via LAN
+- Laptop Netzteil mit 5V / 3A / 15W
+
+Die microSD-Karte ist nur vorübergehend. Ich werde bald auf mehr Speicher und eine NVMe wechseln.
+
+Als Betriebssystem habe ich <Hl>Ubuntu Server 24.04 LTS</Hl> gewählt. Ich habe gelesen, dass es gut für den Einstieg ist: weit verbreitet, gute Dokumentation und ohne unnötige Oberfläche. Nice!
+
+## Was ich gemacht habe
+
+Ich habe das Betriebssystem mit dem Raspberry Pi Imager installiert, anschließend die SD-Karte eingesetzt und direkt gebootet.
+Ich habe außerdem zum ersten Mal micro-HDMI verwendet. Etwas kleiner als erwartet.
+
+Die Installation lief problemlos, das Netzwerk funktionierte sofort und der Pi startete direkt.
+Danach kamen die ersten grundlegenden Befehle im Terminal:
+
+- <Hl>whoami</Hl> → gibt den Benutzernamen aus
+- <Hl>hostname</Hl> → gibt den Namen des verbundenen Computers aus
+- <Hl>pwd</Hl> → 'print working directory', zeigt den aktuellen Ort im Datei-
+  system
+- <Hl>ls</Hl> → zeigt Dateien und Ordner im aktuellen Verzeichnis
+- <Hl>date</Hl> → gibt das aktuelle Datum und die aktuelle Uhrzeit aus
+- <Hl>echo</Hl> → gibt Text im Terminal aus
+- <Hl>uptime</Hl> → zeigt, wie lange das System bereits läuft
+- <Hl>touch</Hl> → erstellt eine leere Datei
+- <Hl>rm</Hl> → entfernt eine Datei, ohne Bestätigung und ohne Papierkorb
+- <Hl>history</Hl> → zeigt alle Befehle, die du ausgeführt hast
+- <Hl>which</Hl> → zeigt den Speicherort eines Befehls
+
+Klar, nichts Besonderes, aber ich habe verstanden, dass ich bei der direkten Nutzung eines Linux-Systems über das Terminal eine Shell verwende, um Befehle an den Kernel zu senden. Schon cool.
+
+## Was ich gelernt habe
+
+### CLI fühlt sich am Anfang trocken an, ist aber direkt.
+
+Am Anfang wirkt das Terminal unspektakulär. Aber sobald man selbst Befehle verwendet, merkt man schnell, wie direkt man mit dem System arbeitet.
+
+### Linux fühlt sich anders an als normale Desktop-Nutzung.
+
+Man klickt sich nicht einfach durch Menüs, sondern muss verstehen, was man tut. Genau das finde ich interessant. Das ist eine ziemlich drastische Veränderung: von einer Desktop-Erfahrung unter Windows zu einem reinen CLI-basierten Workflow unter Linux. Aber ich mag es tatsächlich.<br/>
+Es fühlt sich direkter und irgendwie „echter“ an.
+
+Man ist unabhängiger, wird nicht von App-Empfehlungen genervt, muss kein Konto erstellen und vor allem gibt es keine Telemetrie. Nur du und deine Hardware.
+
+### Anzufangen ist wichtiger als perfekt zu planen.
+
+Ich habe noch keinen Container deployed und keinen Cluster gebaut, ABER ich habe angefangen!
+
+Ich habe außerdem für mich entschieden, dass ich KI nur für Recherche und Erklärungen verwenden werde. Ich möchte keine Abkürzungen nehmen, wenn es darum geht, Dinge wirklich selbst umzusetzen. Ich will verstehen, was passiert, auch wenn es länger dauert.
+
+Dazu möchte ich mich verpflichten. Wenn ich diesen Weg gehe, dann möchte ich ihn auf die harte Art gehen.
+
+Ich werde mich jetzt eine Zeit lang auf <Hl>Linux</Hl> und <Hl>Bash</Hl> konzentrieren. Sobald ich das verinnerlicht habe, beginnt der Spaß erst richtig!
+
+<img
+  src="/blog/devops-journey/01-pi-server/ubuntu.png"
+  alt="test"
+  width={1200}
+  height={630}
+  className="h-auto w-full object-cover border border-border"
+/>
+
+## Nächste Schritte
+
+Als Nächstes möchte ich sicherer im Umgang mit Linux werden:
+
+- das Dateisystem verstehen
+- Berechtigungen und Benutzer lernen
+- Prozesse überprüfen
+- Bash-Befehle üben
+
+## Fazit
+
+Das war kein großes Projekt, aber ein guter Anfang.
+
+Ich habe jetzt mein eigenes kleines System, auf dem ich Dinge testen, kaputt machen und wieder reparieren kann. Genau so lerne ich am besten.
+
+Und damit: Mal sehen, was als Nächstes kaputtgeht.

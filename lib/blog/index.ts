@@ -6,11 +6,21 @@ import readingTime from "reading-time";
 
 const BLOG_CONTENT_PATH = path.join(process.cwd(), "content", "blog");
 
+type Locale = "en" | "de";
+
+function normalizeLocale(locale?: string): Locale {
+  return locale === "de" ? "de" : "en";
+}
+
+function getBlogContentPath(locale?: string) {
+  return path.join(BLOG_CONTENT_PATH, normalizeLocale(locale));
+}
+
 /**
  * Formats a raw date string into a readable blog post date.
  */
-function formatDate(date: string): string {
-  return new Intl.DateTimeFormat("en", {
+function formatDate(date: string, locale: Locale): string {
+  return new Intl.DateTimeFormat(locale === "de" ? "de-DE" : "en", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -21,6 +31,8 @@ function formatDate(date: string): string {
  * Recursively reads a directory and returns all public `.mdx` blog files.
  */
 function getAllMdxFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
   return entries.flatMap((entry) => {
@@ -45,16 +57,20 @@ function getAllMdxFiles(dir: string): string[] {
 /**
  * Converts an absolute blog content file path into a URL-safe slug.
  */
-function filePathToSlug(filePath: string): string {
-  const relativePath = path.relative(BLOG_CONTENT_PATH, filePath);
+function filePathToSlug(filePath: string, locale: Locale): string {
+  const localePath = getBlogContentPath(locale);
+  const relativePath = path.relative(localePath, filePath);
+
   return relativePath.replace(/\.mdx$/, "").replace(/\\/g, "/");
 }
 
 /**
  * Loads all published blog posts, enriches them with metadata, and sorts them by newest first.
  */
-export function getAllPosts(): BlogPostMeta[] {
-  const files = getAllMdxFiles(BLOG_CONTENT_PATH);
+export function getAllPosts(locale?: string): BlogPostMeta[] {
+  const normalizedLocale = normalizeLocale(locale);
+  const contentPath = getBlogContentPath(normalizedLocale);
+  const files = getAllMdxFiles(contentPath);
 
   const posts = files.map((filePath) => {
     const raw = fs.readFileSync(filePath, "utf-8");
@@ -67,9 +83,9 @@ export function getAllPosts(): BlogPostMeta[] {
         "slug" | "readingTime" | "date" | "rawDate"
       >),
       rawDate: data.date as string,
-      date: formatDate(data.date as string),
-      slug: filePathToSlug(filePath),
-      readingTime: stats.text,
+      date: formatDate(data.date as string, normalizedLocale),
+      slug: filePathToSlug(filePath, normalizedLocale),
+      readingTime: String(Math.ceil(stats.minutes)),
     };
   });
 
@@ -83,8 +99,12 @@ export function getAllPosts(): BlogPostMeta[] {
 /**
  * Loads a single blog post by slug and returns its metadata with MDX content.
  */
-export function getPostBySlug(slug: string): BlogPost | null {
-  const filePath = path.join(BLOG_CONTENT_PATH, `${slug}.mdx`);
+export function getPostBySlug(slug: string, locale?: string): BlogPost | null {
+  const normalizedLocale = normalizeLocale(locale);
+  const filePath = path.join(
+    getBlogContentPath(normalizedLocale),
+    `${slug}.mdx`,
+  );
 
   if (!fs.existsSync(filePath)) {
     return null;
@@ -100,10 +120,10 @@ export function getPostBySlug(slug: string): BlogPost | null {
       "slug" | "content" | "readingTime" | "date" | "rawDate"
     >),
     rawDate: data.date as string,
-    date: formatDate(data.date as string),
-    updated: formatDate(data.date as string),
+    date: formatDate(data.date as string, normalizedLocale),
+    updated: formatDate(data.date as string, normalizedLocale),
     slug,
     content,
-    readingTime: stats.text,
+    readingTime: String(Math.ceil(stats.minutes)),
   };
 }

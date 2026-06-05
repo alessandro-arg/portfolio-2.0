@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { BlogPostMeta } from "../../lib/blog/blog-types";
+import { useTranslations } from "next-intl";
 
 function getCardTopicStyle(topic: string): {
   className: string;
@@ -12,6 +13,8 @@ function getCardTopicStyle(topic: string): {
 
   if (t === "frontend") return { className: "text-destructive" };
   if (["js", "javascript"].includes(t)) return { className: "text-yellow-400" };
+  if (t === "linux") return { className: "text-yellow-400" };
+  if (t === "python") return { className: "text-green-400" };
   if (["ts", "typescript"].includes(t)) return { className: "text-blue-400" };
   if (t === "backend") return { className: "text-green-400" };
   if (t === "devops-journey")
@@ -23,14 +26,17 @@ function getCardTopicStyle(topic: string): {
 }
 
 export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
+  const t = useTranslations("Blog");
+  const allPostsLabel = t("all_posts");
+
   const topics = [
-    "all posts",
+    allPostsLabel,
     ...Array.from(new Set(posts.map((p) => p.topic))),
   ];
-  const [active, setActive] = useState("all posts");
+  const [active, setActive] = useState(allPostsLabel);
 
   const filtered =
-    active === "all posts"
+    active === allPostsLabel
       ? posts
       : posts.filter((p) => p.topic.toLowerCase() === active.toLowerCase());
 
@@ -42,14 +48,13 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
           {/* Left: title + description */}
           <div>
             <p className="font-mono text-xs text-muted-foreground mb-3 tracking-widest uppercase">
-              Developer Journal
+              {t("eyebrow")}
             </p>
             <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-5 leading-none">
-              Blog
+              {t("title")}
             </h1>
             <p className="font-mono text-base text-muted-foreground max-w-lg leading-relaxed">
-              Notes from my journey: what I&apos;m learning, building, testing,
-              and understanding along the way.
+              {t("description")}
             </p>
           </div>
 
@@ -123,7 +128,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
                       </span>
                     </div>
                     <span className="font-mono text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0 ml-2">
-                      {post.readingTime}
+                      {t("read_time", { minutes: post.readingTime })}
                     </span>
                   </div>
 
@@ -140,7 +145,7 @@ export function BlogClient({ posts }: { posts: BlogPostMeta[] }) {
         ) : (
           <div className="px-8 py-24 text-center border-t border-border">
             <p className="font-mono text-sm text-muted-foreground">
-              No posts for &quot;{active}&quot;.
+              {t("no_posts", { topic: active })}
             </p>
           </div>
         )}

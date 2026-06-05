@@ -1,0 +1,185 @@
+---
+title: "Dateien anzeigen & bearbeiten"
+description: "Ich habe gelernt, wie man Dateien direkt im Linux-Terminal inspiziert, Logs durchsucht und die Speicherbelegung versteht."
+date: "2026-05-18"
+updated: "2026-05-18"
+topic: "linux"
+tags:
+  - linux
+  - homelab
+  - bash
+published: true
+cover: "/blog/linux/03-viewing-files/cover.png"
+---
+
+Im letzten Beitrag habe ich über das Dateisystem und Paketverwaltung gesprochen. Diese Woche habe ich mehr Zeit damit verbracht zu lernen, wie Dateien funktionieren, wie man Dateiinhalte anzeigt, nach Text sucht und Dateiinformationen auf einfache Weise versteht.
+
+Noch geht es nicht darum, Dateien zu bearbeiten. Eher darum zu verstehen, wie man sie inspiziert, durchsucht und herausfindet, was auf dem System selbst passiert.
+
+Ich wollte das Verzeichnis `/etc` etwas genauer erkunden und verstehen, wie Menschen Linux-Systeme tatsächlich direkt vom Terminal aus untersuchen. Ich habe mir einige Videos von Mischa van den Burg angesehen, der Linux- und DevOps-Themen sehr praxisnah erklärt.
+
+Normalerweise brauche ich unter Windows Excel oder eine andere GUI-Anwendung, wenn ich eine Datei wie .xlsx öffnen möchte. Unter Linux kann man viele Dinge direkt im Terminal inspizieren, ohne zuerst ein grafisches Programm zu öffnen. Das fühlt sich für mich manchmal immer noch ungewohnt an, aber auch wirklich mächtig.
+
+## Was ich gemacht habe
+
+Die ersten Befehle, mit denen ich herumgespielt habe, waren `cat` und `grep`.
+
+`cat` gibt einfach den Dateiinhalt im Terminal aus.
+
+```bash
+cat /etc/passwd
+```
+
+Das klingt simpel, verändert aber die Art, wie man mit einem System interagiert. Wenn man auf Servern arbeitet, besonders ohne Desktop-Umgebung, wird es sehr wichtig, Dateien schnell inspizieren zu können.
+
+Außerdem gibt es `head` und `tail`. <br />
+Standardmäßig zeigen sie die ersten oder letzten 10 Zeilen an, aber man kann das anpassen:
+
+```bash
+head -20 /etc/passwd
+tail -20 /etc/passwd
+```
+
+Der Befehl, der mir am meisten aufgefallen ist, war dieser:
+
+```bash
+tail -f /var/log/syslog
+```
+
+Das `-f` steht für follow. <br />
+Anstatt die Datei nur einmal auszugeben, beobachtet Linux die Datei weiter und aktualisiert das Terminal in Echtzeit, sobald sich etwas ändert.
+
+Logs live auf diese Weise zu beobachten, fand ich ehrlich gesagt richtig cool. Ich habe sofort verstanden, warum Menschen das zum Debuggen von Servern und Anwendungen verwenden.
+
+Ich habe auch viel Zeit damit verbracht, mit `grep` zu experimentieren.
+
+```bash
+grep "error" /var/log/syslog
+```
+
+Das sucht nach allen Zeilen, die `"error"` enthalten.
+
+Danach habe ich verschiedene Flags ausprobiert:
+
+- `grep -i` → ignoriert Groß- und Kleinschreibung und findet auch Zeilen mit "ERROR"
+- `grep -n` → zeigt Zeilennummern an
+- `grep -v` → zeigt Zeilen an, die NICHT übereinstimmen
+- `grep -r` → sucht rekursiv durch Verzeichnisse
+- `grep -c` → zählt die Treffer
+- `grep -B` und `grep -A` → zeigt die Zeilen vor oder nach dem Treffer
+- `grep -C` → kombiniert die Flags -B und -A
+
+Ich habe auch gelernt, dass `grep` Muster unterstützt und nicht nur einfachen Text.
+
+- `^` → bedeutet 'beginnt mit' ("^error")
+- `$` → bedeutet 'endet mit' ("err$")
+- `[0-9]` → findet beliebige Ziffern
+
+Ich brauche später definitiv mehr Übung mit Mustern und Regex, aber ich sehe jetzt schon, wie nützlich das ist.
+
+Eine andere Sache, die ich mich gefragt habe, war:
+
+## Was für ein Dateityp ist das?
+
+Dafür habe ich den Befehl `file` verwendet:
+
+```bash
+file /bin/ls
+```
+
+Ausgabe:
+
+```bash
+/bin/ls: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV),
+dynamically linked, interpreter /lib/ld-linux-aarch64.so.1,
+BuildID[sha1]=19a53698c72a1d765f961ccd04bff6665434c0f5,
+for GNU/Linux 3.7.0, stripped
+```
+
+Das fand ich super interessant. <br />
+Man sieht sofort:
+
+- ausführbarer Dateityp
+- CPU-Architektur
+- Linking-Informationen
+- Zielbetriebssystem
+
+Ohne irgendetwas zu öffnen.
+
+Für noch mehr Details habe ich `stat` verwendet.
+
+```bash
+stat /etc/passwd
+```
+
+Das zeigt Berechtigungen, Zeitstempel, Besitzrechte, Inode-Informationen und vieles mehr:
+
+```bash
+File: /etc/passwd Size: 1769 Blocks: 8 IO Block: 4096 regular file
+Device: 179,2 Inode: 6561 Links: 1
+Access: (0644/-rw-r--r--) Uid: ( 0/ root) Gid: ( 0/ root)
+Access: 2026-05-15 22:35:01.775430044 +0200
+Modify: 2026-05-11 22:32:14.652197778 +0200
+Change: 2026-05-11 22:32:14.658197728 +0200
+Birth: 2026-05-11 22:32:14.652197778 +0200
+```
+
+### Wörter, Zeilen und Zeichen
+
+Dafür gibt es `wc`.
+
+```bash
+wc /etc/passwd
+```
+
+Und die Flags:
+
+- `wc -l`
+- `wc -w`
+- `wc -c`
+
+Um Zeilen, Wörter und Zeichen separat zu zählen.
+
+### Speicherbelegung & freier Speicherplatz
+
+Am Ende habe ich Befehle rund um Speicherplatz erkundet:
+
+- `du -sh` → disk usage
+- `df -sh` → disk free space
+
+Das Flag `-h` macht die Ausgabe menschenlesbar, was definitiv einfacher zu verstehen ist als rohe Bytes, und das Flag `-s` fasst die Ausgabe zusammen.
+
+Der Befehl `df` zeigt alle eingehängten Dateisysteme und deren Speicherbelegung. <br />
+Ich kann jetzt schon sagen, dass diese Befehle später Teil meines täglichen Workflows werden.
+
+## Was ich gelernt habe
+
+Der größte Teil dieser Session bestand aus Erkunden und Experimentieren. <br />
+Ich habe Befehle hauptsächlich auf echten Verzeichnissen und Logs ausprobiert, um besser zu verstehen, was sie tatsächlich tun.
+
+Jetzt verstehe ich langsam, warum Linux-Administratoren und DevOps Engineers so viel in der Shell arbeiten. Man kann fast alles direkt über die Kommandozeile inspizieren, ohne eine GUI zu benötigen.
+
+Ein paar Dinge, die mir besonders aufgefallen sind:
+
+- Logs lassen sich mit `tail -f` viel einfacher untersuchen
+- `grep` ist unglaublich mächtig
+- Linux stellt viele Systeminformationen direkt über Dateien bereit
+- Befehle wie `stat`, `file`, `du` und `df` helfen zu verstehen, was tatsächlich auf der Maschine passiert
+
+## Nächste Schritte
+
+Als Nächstes möchte ich weiter folgende Themen erkunden:
+
+- Berechtigungen und Besitzrechte
+- Benutzer und Gruppen
+- Pipes und Umleitungen
+- Prozessverwaltung
+- mehr echte Log-Analyse
+
+Außerdem möchte ich mehr Zeit damit verbringen, mich in Systemverzeichnissen zu bewegen, um zu verstehen, was wohin gehört.
+
+## Fazit
+
+In dieser Session ging es weniger darum, etwas zu bauen, sondern mehr darum zu lernen, wie man ein Linux-System inspiziert und versteht. Kleine Befehle, aber ein großer Unterschied im Verständnis.
+
+Ich merke jetzt schon, dass es für alles Spätere im Bereich Infrastruktur essenziell sein wird, sich mit Dateien, Logs und Shell-Tools wohlzufühlen.

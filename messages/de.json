@@ -1,0 +1,373 @@
+{
+  "Header": {
+    "home": "Home",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "blog": "Blog",
+    "more": "Mehr",
+    "contact": "Kontakt",
+    "links_title": "Links",
+    "links_description": "Alle meine Links findest du hier",
+    "bucket_list_title": "Bucket List",
+    "bucket_list_description": "Mindestens einmal im Leben",
+    "my_setup_title": "Mein Setup",
+    "my_setup_description": "Mein digitaler Arbeitsplatz",
+    "ariaHome": "Zur Startseite wechseln",
+    "ariaAbout": "Über mich",
+    "ariaProjects": "Meine Projekte ansehen",
+    "ariaBlog": "Mein persönlicher Blog",
+    "homepage": "Zur Startseite wechseln",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "openContactForm": "Kontaktformular öffnen"
+  },
+
+  "Hero": {
+    "title": "Ich entwerfe und entwickle",
+    "title2": "",
+    "t_span": "schnelle und skalierbare Apps",
+    "small_cta": "Neu!",
+    "small_cta_title": "Blog",
+    "small_cta_content": "Entwicklertagebuch",
+    "greeting": "Hallo, ich bin Alessandro",
+    "role": "ein Fullstack Developer",
+    "cta_button": "Kontakt aufnehmen",
+    "copied": "In Zwischenablage kopiert!",
+    "email_copied_successfully": "E-Mail-Adresse erfolgreich kopiert.",
+    "send_email": "E-Mail senden",
+    "copy_error": "Etwas ist schiefgelaufen.",
+    "email_template": "Hallo Alessandro,\n\nIch würde gerne..."
+  },
+
+  "Footer": {
+    "general": "Allgemein",
+    "resources": "Ressourcen",
+    "more": "Mehr",
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "bucket_list": "Bucket List",
+    "my_setup": "Mein Setup",
+    "blog": "Blog",
+    "links": "Links",
+    "attribution": "Inspiration",
+    "description": "Ich bin Alessandro - Fullstack Entwickler und Problemlöser. Danke für dein besuch!",
+    "all_rights_reserved": "",
+    "privacy_policy": "Datenschutzerklärung",
+    "terms_conditions": "Impressum",
+    "return_to_top": "Nach oben"
+  },
+
+  "BentoGrid": {
+    "tech_card_title": "Mein\nTechnologie-Stack",
+    "blog_card_subtitle": "Entwickler\nTagebuch",
+    "blog_card_title": "Neue\nBeiträge",
+    "blog_card_all_posts": "Alle posts",
+    "globe_card_title": "Flexibel bei Zeitzonen\nund Kommunikation",
+    "switzerland": "Schweiz",
+    "germany": "Deutschland",
+    "italy": "Italien",
+    "copy_email_card": "Gemeinsam dein nächstes Projekt umsetzen",
+    "copy_email_card_sm": "Schreibe mir eine email",
+    "good_night": "Gute Nacht",
+    "good_morning": "Guten Morgen",
+    "good_afternoon": "Guten Tag",
+    "good_evening": "Guten Abend",
+    "available": "Verfügbar"
+  },
+
+  "Contact": {
+    "page_title": "Schreib mir",
+    "page_title_2": "gerne",
+    "page_subtitle": "Kontakt",
+    "section_eyebrow": "VON DER IDEE ZUM ",
+    "section_eyebrow_2": "ERGEBNIS",
+    "section_title": "LASS ES UNS ",
+    "section_title_2": "UMSETZEN!",
+    "section_cta_button": "Kontakt aufnehmen",
+    "section_p": "Offen für neue Herausforderungen.",
+    "section_p_2": "Ich entwickle dynamische Apps,\nmit Fokus auf UI/UX und Performance.",
+    "modal_title": "Schreib mir",
+    "modal_subtitle": "Du hast eine Projektidee? Lass uns darüber sprechen.",
+    "modal_or": "Oder",
+    "modal_email_span": "Sende mir direkt eine E-Mail"
+  },
+
+  "ContactForm": {
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "name_placeholder": "Dein Name",
+    "email_placeholder": "email@beispiel.de",
+    "message_placeholder": "Worüber möchtest du sprechen?",
+    "send_message": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "close": "Schließen",
+    "name_required": "Name ist erforderlich",
+    "name_letters_only": "Nur Buchstaben und Leerzeichen sind erlaubt",
+    "name_min_letters": "Name muss mindestens 3 Buchstaben enthalten",
+    "email_required": "E-Mail ist erforderlich",
+    "email_invalid": "Bitte gib eine gültige E-Mail-Adresse ein",
+    "message_required": "Eine Nachricht ist erforderlich",
+    "message_min_length": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+    "message_sent": "Nachricht erfolgreich gesendet!",
+    "message_sent_description": "Ich melde mich bald bei dir!",
+    "something_went_wrong": "Etwas ist schiefgelaufen!",
+    "unknown_error": "Unbekannter Fehler"
+  },
+
+  "Testimonials": {
+    "eyebrow": "Referenzen",
+    "title": "Was Kollegen",
+    "highlight": "über mich sagen"
+  },
+
+  "Experience": {
+    "eyebrow": "Erfahrung",
+    "title": "Beruflicher Werdegang und",
+    "highlight": "Qualifikationen",
+
+    "gfn": {
+      "title": "Fachinformatiker - Anwendungsentwickler",
+      "subtitle": "(IHK FIAE)",
+      "items": {
+        "one": "Die Umschulung zum <important>Fachinformatiker für Anwendungsentwicklung</important> besteht aus Phasen mit theoretischem und praktischem Unterricht sowie der Abschlussprüfung.",
+        "two": "Nach der Vermittlung von Grundlagenwissen und allgemeinen IT-Kompetenzen werde ich alles rund um den Schwerpunkt Anwendungsentwicklung erlernen sowie auch  Netzwerke, Datenbanken, Datenanalyse und viel mehr.",
+        "three": "In einem betrieblichen Praktikum als zentralem Bestandteil der Umschulung werde ich meine theoretischen Kenntnisse in der täglichen Arbeit anwenden und dadurch wertvolle Praxiserfahrung sammeln."
+      }
+    },
+
+    "developerAkademie": {
+      "title": "Full-Stack Webentwicklung",
+      "items": {
+        "one": "Abschluss des Fullstack-Programms an Deutschlands führender TÜV-zertifizierter Akademie für Webentwicklung. Erfolgreiche Umsetzung von über 12 Projekten, sowohl individuell als auch im Team.",
+        "two": "Webprogrammierung mit <important>HTML, CSS (SCSS)</important> und <important>JavaScript</important>.",
+        "three": "Frontend-Webentwicklung mit <important>Angular</important> und <important>TypeScript</important>.",
+        "four": "Einsatz von Design-Frameworks wie <important>Bootstrap</important> und <important>Material Design</important> sowie Umsetzung von UI/UX-Designs <important>(Figma)</important>.",
+        "five": "Arbeit mit Datenbanken <important>(Google Firebase)</important> und Integration von <important>REST APIs</important> zur Datenkommunikation.",
+        "six": "Versionskontrolle mit <important>Git (GitHub)</important> sowie agiles Projektmanagement für die Entwicklung im Team <important>(SCRUM, Kanban)</important>."
+      }
+    }
+  },
+
+  "About": {
+    "landing_about_eyebrow": "Über mich",
+    "landing_about_title": "Full-Stack Entwickler und ein bisschen von",
+    "landing_about_highlight": "allem",
+    "landing_about_text_1": "Ich bin Alessandro, ein Full-Stack Entwickler mit Leidenschaft für dynamische Apps. Vom Frontend bis zum Backend liebe ich es, komplexe Probleme mit sauberem und effizientem Code zu lösen. Meine Erfahrung umfasst Angular, React und Next.js, und ich bin immer bereit, Neues zu lernen.",
+    "landing_about_text_2": "Wenn ich nicht gerade in der Arbeit vertieft bin, entdecke ich neue Ideen oder neue Berge und bleibe neugierig. Im Leben geht es um Balance, und ich liebe es, jeden Teil davon zu genießen, besonders im Snowpark.",
+    "landing_about_text_3": "Ich glaube dass kleine tägliche Fortschritte zu großen Ergebnissen führen können.",
+    "landing_about_cta": "Berufserfahrung",
+    "developer": "Entwickler",
+    "snowboarder": "Snowboarder",
+    "traveler": "Abenteurer",
+    "about_page_eyebrow": "Mehr über mich",
+    "about_page_title": "Ich bin Alessandro, ein\nkreativer",
+    "about_page_highlight": "Entwickler",
+    "about_page_text_1": "Ich bin Alessandro, ein Full-Stack Entwickler mit Leidenschaft für dynamische Web-Erlebnisse. Vom Frontend bis zum Backend löse ich komplexe Probleme mit sauberem und effizientem Code. Meine Erfahrung umfasst Python, Typescript, Angular und React, und ich bin immer motiviert, Neues zu lernen.",
+    "about_page_text_2": "Wenn ich nicht gerade in der Arbeit vertieft bin, erkunde ich neue Berge, fahre durch frischen Powder oder versuche mir nichts im Snowpark zu brechen.",
+    "about_page_text_3": "Jeder Tag ist für mich eine neue Chance, etwas zu bewegen."
+  },
+
+  "GitHub": {
+    "loading": "Lade Daten...",
+    "error": "GitHub-Aktivität konnte nicht geladen werden: {error}",
+    "eyebrow": "Entwickler Einblicke",
+    "title": "GitHub",
+    "highlight": "Aktivität"
+  },
+
+  "PrivacyPolicy": {
+    "eyebrow": "Rechtliches",
+    "title": "Datenschutz",
+    "highlight": "erklärung",
+    "intro_before_link": "Diese Website (",
+    "intro_after_link": ") wird von Alessandro Argenziano betrieben. Ich nehme den Schutz Ihrer persönlichen Daten ernst und verarbeite Ihre personenbezogenen Daten verantwortungsvoll sowie gemäß den geltenden Datenschutzgesetzen.",
+    "section_1_title": "1. Datenerhebung",
+    "section_1_text": "Diese Portfolio-Website erhebt keine personenbezogenen Daten aktiv, außer wenn Sie mich per E-Mail oder über das Kontaktformular kontaktieren. In diesem Fall erhebe ich nur die Informationen, die Sie bereitstellen (wie Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht), um Ihre Anfrage zu beantworten.",
+    "section_2_title": "2. Verwendung personenbezogener Daten",
+    "section_2_text": "Alle personenbezogenen Informationen, die Sie übermitteln, werden ausschließlich zur Kommunikation mit Ihnen bezüglich Ihrer Anfrage verwendet und nicht an Dritte weitergegeben, es sei denn, dies ist gesetzlich vorgeschrieben.",
+    "section_3_title": "3. Cookies & Analyse",
+    "section_3_text": "Diese Website kann grundlegende Cookies oder Analyse-Tools verwenden, um die Nutzererfahrung und die Leistung der Website zu verbessern. Diese Tools erfassen anonymisierte Daten wie Browsertyp, Besuchsdauer und besuchte Seiten.",
+    "section_4_title": "4. Ihre Rechte",
+    "section_4_text": "Sie haben das Recht, Auskunft über Ihre personenbezogenen Daten sowie deren Berichtigung oder Löschung zu verlangen. Für datenschutzbezogene Anfragen kontaktieren Sie mich bitte direkt.",
+    "section_5_title": "5. Kontakt",
+    "email_label": "E-Mail:",
+    "last_updated": "Zuletzt aktualisiert: Juni 2026"
+  },
+
+  "Terms": {
+    "eyebrow": "Rechtliches",
+    "title": "Impre",
+    "highlight": "ssum",
+    "intro_before_link": "Willkommen auf ",
+    "intro_after_link": ". Diese Nutzungsbedingungen legen die Regeln und Bestimmungen für die Nutzung dieser Website fest, die von Alessandro Argenziano betrieben wird.",
+    "section_1_title": "1. Annahme der Bedingungen",
+    "section_1_text": "Durch den Zugriff auf diese Website und deren Nutzung akzeptieren Sie diese Nutzungsbedingungen vollständig. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, nutzen Sie diese Website bitte nicht.",
+    "section_2_title": "2. Zweck der Website",
+    "section_2_text": "Diese Portfolio-Website dient dazu, meine persönlichen Arbeiten, Projekte und meinen beruflichen Hintergrund zu präsentieren. Alle Inhalte werden ausschließlich zu Informationszwecken bereitgestellt und stellen keine professionelle oder rechtliche Beratung dar.",
+    "section_3_title": "3. Geistiges Eigentum",
+    "section_3_text": "Sofern nicht anders angegeben, gehören alle Materialien auf dieser Website - einschließlich Texte, Bilder, Design und Code - Alessandro Argenziano. Sie dürfen Inhalte ausschließlich für persönliche, nicht-kommerzielle Zwecke ansehen und teilen. Eine Vervielfältigung oder Verbreitung ohne ausdrückliche Genehmigung ist untersagt.",
+    "section_4_title": "4. Externe Links",
+    "section_4_text": "Diese Website kann Links zu externen Websites enthalten. Ich bin nicht verantwortlich für die Inhalte oder Datenschutzpraktiken dieser Websites Dritter. Der Besuch solcher Links erfolgt auf eigene Verantwortung.",
+    "section_5_title": "5. Haftungsbeschränkung",
+    "section_5_text": "Ich übernehme keine Gewähr für die Richtigkeit oder Vollständigkeit der auf dieser Website bereitgestellten Informationen. Ich hafte nicht für Schäden oder Verluste, die aus der Nutzung dieser Website oder ihrer Inhalte entstehen.",
+    "section_6_title": "6. Datenschutz",
+    "section_6_before_link": "Weitere Informationen darüber, wie ich Ihre personenbezogenen Daten gemäß der Datenschutz-Grundverordnung (DSGVO) verarbeite, finden Sie in der ",
+    "section_6_link": "Datenschutzerklärung",
+    "section_6_after_link": ".",
+    "section_7_title": "7. Änderungen dieser Bedingungen",
+    "section_7_text": "Ich kann diese Nutzungsbedingungen gelegentlich aktualisieren, um neue Funktionen oder rechtliche Anforderungen zu berücksichtigen. Änderungen werden auf dieser Seite zusammen mit dem aktualisierten Datum veröffentlicht.",
+    "section_8_title": "8. Kontakt",
+    "email_label": "E-Mail:",
+    "last_updated": "Zuletzt aktualisiert: Juni 2026"
+  },
+
+  "InfiniteRow": {
+    "velocity_accessible": "Barrierefrei",
+    "velocity_dynamic": "Dynamisch",
+    "velocity_engaging": "Ansprechend",
+    "velocity_scalable": "Skalierbar",
+    "velocity_secure": "Sicher",
+    "velocity_responsive": "Responsiv",
+    "velocity_seo": "SEO",
+    "velocity_reliable": "Zuverlässig",
+    "velocity_interactive": "Interaktiv"
+  },
+
+  "Skills": {
+    "eyebrow": "Meine Skills",
+    "title": "Mein technisches",
+    "highlight": "Fundament"
+  },
+
+  "Attribution": {
+    "eyebrow": "Inspiration",
+    "title_line_1": "Der Weg zu diesem",
+    "title_line_2": "",
+    "highlight": "Portfolio",
+    "intro": "Hallo! Willkommen auf meiner Website.",
+    "text_1": "Die erste Version dieser Website entstand im Jahr 2025. Damals habe ich gelernt, wie man eine Multi-Page-Application mit Next.js erstellt. Diese Version wird kein Open-Source-Projekt sein.",
+    "text_2": "Im Jahr 2024 habe ich mein erstes Portfolio mit Angular und TypeScript erstellt. Während ich gelernt habe, mit Next.js zu arbeiten, war für mich klar, dass es Zeit für eine Weiterentwicklung ist. Ich habe die Website komplett neu gestaltet, um meine aktuellen Fähigkeiten in der Frontend- und Backend-Entwicklung besser zu präsentieren, mit Fokus auf eine klare Ästhetik und Animationen.",
+    "text_3": "Ich möchte mich bei allen Websites bedanken, die mich beim Aufbau dieser Website inspiriert haben.",
+    "thanks": "Vielen Dank an euch alle!",
+    "best": "Beste Grüße,"
+  },
+
+  "Links": {
+    "badge_1": "Entwickler",
+    "badge_2": "Problemlöser"
+  },
+
+  "Setup": {
+    "eyebrow": "Meine Tools",
+    "title": "Mein",
+    "highlight": "Setup",
+    "setup_image_alt": "Setup von Alessandro"
+  },
+
+  "BucketList": {
+    "eyebrow": "Die Bucket List",
+    "title": "Das werde ich mindestens",
+    "highlight": "einmal tun",
+    "github_title": "50+ Follower auf GitHub erreichen",
+    "github_description": "",
+    "surf_portugal_title": "Surfen in Portugal lernen",
+    "surf_portugal_description": "Eine Woche in Ericeira und grüne Wellen erwischen.",
+    "aurora_title": "Die Nordlichter sehen",
+    "aurora_description": "",
+    "iceland_roadtrip_title": "Islands Ringstraße fahren",
+    "iceland_roadtrip_description": "7-10 Tage, Wasserfälle, schwarze Sandstrände & heiße Quellen.",
+    "snowboard_title": "Meinen ersten Backflip auf dem Snowboard machen",
+    "snowboard_description": "",
+    "portfolio_title": "Eine Portfolio-Website erstellen",
+    "portfolio_description": "Oktober 2025",
+    "remote_job_title": "Einen Remote Job bekommen",
+    "remote_job_description": "",
+    "red_sea_scuba_title": "Im Roten Meer tauchen",
+    "red_sea_scuba_description": "",
+    "kyoto_sakura_title": "Kirschblütenzeit in Kyoto erleben",
+    "kyoto_sakura_description": "",
+    "open_source_title": "Erster Open-Source-Beitrag",
+    "open_source_description": "",
+    "skydive_title": "Fallschirmspringen gehen",
+    "skydive_description": "Aus 4.000 m springen und den 60-sekündigen freien Fall genießen.",
+    "world_trip_title": "6 Monate Weltreise",
+    "world_trip_description": ""
+  },
+
+  "NotFound": {
+    "title": "Diese Seite konnte nicht gefunden werden",
+    "description": "Die Seite existiert nicht oder wurde verschoben.",
+    "go_home": "Zur Homepage",
+    "back": "Zurück",
+    "projects_title": "Projekte",
+    "projects_description": "Entdecke meine Projekte und Experimente",
+    "about_title": "Über mich",
+    "about_description": "Erfahre mehr über mich und meine Arbeit",
+    "blog_title": "Blog",
+    "blog_description": "Lese die neuesten Einträge aus meinem Entwickler Journal",
+    "Blog": {
+      "not_found_title": "Post nicht gefunden",
+      "not_found_description": "Der Beitrag existiert nicht oder wurde verschoben."
+    }
+  },
+
+  "TOC": {
+    "title": "Übersicht"
+  },
+
+  "Projects": {
+    "section_eyebrow": "CASE STUDIES",
+    "section_title": "Ausgewählte",
+    "section_highlight": "Projekte",
+    "section_aria_label": "Projektliste",
+    "section_cta": "Mehr Projekte ansehen"
+  },
+
+  "ProjectDetail": {
+    "toc_what_is": "🔍 Was ist {title}?",
+    "toc_key_features": "🧩 Features",
+    "toc_why_built": "📌 Hintergrund des Projekts",
+    "toc_use_cases": "💡 Anwendungsfälle",
+    "toc_tech_stack": "🧪 Tech-Stack Übersicht",
+    "toc_getting_started": "⚙️ Erste Schritte",
+    "toc_clone_repository": "Repository klonen",
+    "toc_install_dependencies": "Dependencies installieren",
+    "toc_build_run_locally": "Lokal starten",
+    "toc_challenges_learnings": "🧠 Herausforderungen",
+    "toc_see_it_action": "📸 Projekt ansehen",
+    "check_it_out": "Jetzt ansehen",
+    "not_found_title": "Projekt nicht gefunden",
+    "metadata_suffix": "Projekt"
+  },
+
+  "ProjectDate": {
+    "upcoming": "(demnächst)",
+    "over_6_months": "(vor über 6 Monaten)",
+    "over_1_year": "(vor über 1 Jahr)",
+    "over_years": "(vor über {years} Jahren)"
+  },
+
+  "Blog": {
+    "eyebrow": "Entwickler Journal",
+    "title": "Blog",
+    "description": "Notizen von meinem Weg: was ich lerne, baue, teste und unterwegs besser verstehe.",
+    "all_posts": "all posts",
+    "no_posts": "Keine Beiträge für \"{topic}\".",
+    "read_time": "{minutes} Min. Lesezeit",
+    "metadata_title": "Blog",
+    "metadata_description": "Entwickler-Journal über meinen Weg zu DevOps und mehr."
+  },
+
+  "BlogPost": {
+    "not_found": "Beitrag nicht gefunden",
+    "back": "Zurück",
+    "title": "Titel",
+    "topic": "Thema",
+    "published": "Veröffentlicht",
+    "updated": "Aktualisiert",
+    "read_time": "Lesezeit",
+    "tags": "Tags"
+  }
+}

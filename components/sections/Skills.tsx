@@ -5,6 +5,7 @@ import { AnimatedGradientText } from "../ui/animated-gradient-text";
 import { Ripple } from "../ui/ripple";
 import { useRef } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type CSSWithVars = CSSProperties & {
   [key: `--${string}`]: string | number;
@@ -72,6 +73,7 @@ const SkillRow = ({ skills, className }: SkillRowProps) => (
  * and responsive skill icon layouts for desktop and mobile.
  */
 export default function Skills() {
+  const t = useTranslations("Skills");
   const sectionRef = useRef<HTMLElement>(null);
 
   const sectionStyle: CSSWithVars = {
@@ -94,16 +96,16 @@ export default function Skills() {
 
         <h2 className="relative z-10 text-5xl font-medium tracking-tight text-balance sm:text-5xl md:text-6xl text-center mb-0 md:mb-5 size-full [text-shadow:0px_4px_8px_rgba(255,255,255,0.05),0px_8px_30px_rgba(255,255,255,0.25)]">
           <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">
-            My Skills
+            {t("eyebrow")}
           </p>
           <span className="font-instrument">
-            <span>The secret </span>
+            <span>{t("title")} </span>
             <AnimatedGradientText
               colorFrom="#4aeedd"
               colorTo="#16b1ff"
               className="pe-2 tracking-tight italic"
             >
-              sauce
+              {t("highlight")}
             </AnimatedGradientText>
           </span>
         </h2>

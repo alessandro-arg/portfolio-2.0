@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { moreLinks } from "../more.data";
 import { Link2, Goal, Laptop } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const Icons = { Link2, Goal, Laptop };
 
@@ -26,6 +27,8 @@ type Props = {
  * and an animated active underline when one of its routes is selected.
  */
 export function MoreMenu({ active, underlineLayoutId }: Props) {
+  const t = useTranslations("Header");
+
   return (
     <NavigationMenu className="relative">
       <NavigationMenuList>
@@ -39,7 +42,7 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
                 "hover:text-black dark:hover:text-white",
               )}
             >
-              More
+              {t("more")}
             </NavigationMenuTrigger>
 
             {/* animated underline when active */}
@@ -83,10 +86,10 @@ export function MoreMenu({ active, underlineLayoutId }: Props) {
                         </span>
                         <span className="flex min-w-0 flex-col text-left">
                           <span className="line-clamp-1 text-base text-black dark:text-white">
-                            {item.title}
+                            {t(item.title_key)}
                           </span>
                           <span className="mt-0.5 line-clamp-1 text-sm text-neutral-600 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white">
-                            {item.description}
+                            {t(item.description_key)}
                           </span>
                         </span>
                       </Link>

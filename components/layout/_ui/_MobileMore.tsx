@@ -8,12 +8,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { moreLinks } from "../more.data";
+import { useTranslations } from "next-intl";
 
 /**
  * Renders the mobile version of the "More" navigation menu
  * using an accordion with expandable navigation links.
  */
 export function MobileMore({ onNavigate }: { onNavigate?: () => void }) {
+  const t = useTranslations("Header");
   return (
     <Accordion
       type="single"
@@ -36,7 +38,7 @@ export function MobileMore({ onNavigate }: { onNavigate?: () => void }) {
                   onClick={onNavigate}
                   className="block p-4 text-center hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition"
                 >
-                  <div className="text-lg font-medium">{item.title}</div>
+                  <div className="text-lg font-medium">{t(item.title_key)}</div>
                 </Link>
               </li>
             ))}

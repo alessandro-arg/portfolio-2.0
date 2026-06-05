@@ -1,9 +1,11 @@
 import ContactSection from "@/app/contact/ContactSection";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Terms() {
+  const t = useTranslations("Terms");
   return (
     <>
       <div className="absolute inset-0 z-[-1] h-[450px] w-full overflow-hidden bg-neutral-100/60 dark:bg-neutral-950/80 [mask-image:linear-gradient(rgb(0,0,0)_40%,rgba(0,0,0,0)_100%)] opacity-30">
@@ -20,111 +22,82 @@ export default function Terms() {
       <main className="px-4 py-16 pt-36 md:px-1">
         <h2 className="relative z-2 text-balance font-medium text-5xl tracking-tight sm:text-5xl md:mb-36 md:text-6xl text-center max-w-xl mx-auto mb-20 [text-shadow:rgba(255,255,255,0.05)_0_4px_8px,rgba(255,255,255,0.25)_0_8px_30px]">
           <p className="mb-3 font-mono font-normal text-black/80 text-xs uppercase tracking-widest md:text-sm dark:text-white/70">
-            Legal
+            {t("eyebrow")}
           </p>
-          <span className="font-instrument">
-            <span className="md:text-6xl">Terms & </span>
+          <span className="font-instrument whitespace-pre-line truncate overflow-hidden!">
+            <span className="md:text-6xl">{t("title")}</span>
             <AnimatedGradientText
               colorFrom="#4aeedd"
               colorTo="#16b1ff"
               className="tracking-normal italic w-full"
             >
-              conditions
+              {t("highlight")}
             </AnimatedGradientText>
           </span>
         </h2>
         <div className="text-lg mx-auto max-w-xl lg:max-w-4xl leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-6">
           <p>
-            Welcome to{" "}
+            {t("intro_before_link")}{" "}
             <a
               href="https://www.alessandro-argenziano.com"
               className="text-sky-600 dark:text-sky-400 underline hover:no-underline"
             >
               https://alessandro-argenziano.com
             </a>
-            . These Terms and Conditions outline the rules and regulations for
-            using this website, operated by Alessandro Argenziano.
+            {t("intro_after_link")}
           </p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            1. Acceptance of Terms
+            {t("section_1_title")}
           </h3>
-          <p>
-            By accessing and using this website, you accept these Terms and
-            Conditions in full. If you disagree with any part of these terms,
-            please do not use this website.
-          </p>
+          <p>{t("section_1_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            2. Purpose of the Website
+            {t("section_2_title")}
           </h3>
-          <p>
-            This portfolio site is intended to present my personal work,
-            projects, and professional background. All content is provided for
-            informational purposes only and does not constitute professional or
-            legal advice.
-          </p>
+          <p>{t("section_2_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            3. Intellectual Property
+            {t("section_3_title")}
           </h3>
-          <p>
-            Unless otherwise stated, all materials on this website — including
-            text, images, design, and code — are owned by Alessandro Argenziano.
-            You may view and share content for personal, non-commercial purposes
-            only. Reproduction or distribution without permission is prohibited.
-          </p>
+          <p>{t("section_3_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            4. External Links
+            {t("section_4_title")}
           </h3>
-          <p>
-            This website may contain links to external sites. I am not
-            responsible for the content or privacy practices of those
-            third-party websites. Visiting such links is at your own discretion.
-          </p>
+          <p>{t("section_4_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            5. Limitation of Liability
+            {t("section_5_title")}
           </h3>
-          <p>
-            I make no warranties regarding the accuracy or completeness of the
-            information presented on this website. I am not liable for any
-            damages or losses arising from the use of this site or its content.
-          </p>
+          <p>{t("section_5_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            6. Privacy and Data Protection
+            {t("section_6_title")}
           </h3>
           <p>
-            Please refer to the{" "}
+            {t("section_6_before_link")}{" "}
             <Link
               href="/legal/privacy-policy"
               className="text-sky-600 dark:text-sky-400 underline hover:no-underline"
             >
-              Privacy Policy
+              {t("section_6_link")}
             </Link>
-            to learn more about how I handle your personal information in
-            compliance with the General Data Protection Regulation (GDPR).
+            {t("section_6_after_link")}
           </p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            7. Changes to These Terms
+            {t("section_7_title")}
           </h3>
-          <p>
-            I may update these Terms and Conditions occasionally to reflect new
-            features or legal requirements. Updates will be posted on this page
-            with the revised date.
-          </p>
+          <p>{t("section_7_text")}</p>
 
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mt-6">
-            8. Contact
+            {t("section_8_title")}
           </h3>
           <p className="space-y-1">
             <span className="block">Alessandro Argenziano</span>
-            <span className="block">79801 Hohentengen, Germany</span>
             <span className="block">
-              Email:{" "}
+              {t("email_label")}{" "}
               <a
                 href="mailto:contact@alessandro-argenziano.com"
                 className="text-sky-600 dark:text-sky-400 underline hover:no-underline"
@@ -132,11 +105,10 @@ export default function Terms() {
                 contact@alessandro-argenziano.com
               </a>
             </span>
-            <span className="block">Phone: +49 016092965227</span>
           </p>
 
           <p className="text-xs text-neutral-500 dark:text-neutral-400 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-            Last updated: May 2026
+            {t("last_updated")}
           </p>
         </div>
       </main>

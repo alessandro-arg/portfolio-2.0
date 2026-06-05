@@ -8,10 +8,12 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { Analytics } from "@vercel/analytics/next";
-import "fumadocs-ui/style.css";
-import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
 import { Suspense } from "react";
 import SmoothScroll from "@/components/ui/smooth-scroll";
+import "fumadocs-ui/style.css";
+import "./globals.css";
+import { getLocale } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   title: "Alessandro Argenziano",
-  description: "Fullstack Developer • Angular • Next.js • React",
+  description: "Fullstack Developer • Python • Angular • React",
   icons: {
     icon: [
       { url: "/favicon.ico?v=2" },
@@ -78,14 +80,16 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className="relative"
       data-scroll-behavior="smooth"
@@ -94,26 +98,28 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${outfitSans.variable} antialiased`}
       >
-        <ThemeProvider>
-          <Suspense fallback={null}>
-            {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}
-            <ContactModalProvider>
-              <SmoothScroll />
-              <Header />
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <Suspense fallback={null}>
+              {/* Suspense is required around any subtree that uses usePathname/useSearchParams */}
+              <ContactModalProvider>
+                <SmoothScroll />
+                <Header />
 
-              {/* page content needs some top padding so it's not covered by the fixed header */}
-              <div id="content">
-                <RootProvider>
-                  {children}
-                  <Analytics />
-                </RootProvider>
-              </div>
+                {/* page content needs some top padding so it's not covered by the fixed header */}
+                <div id="content">
+                  <RootProvider>
+                    {children}
+                    <Analytics />
+                  </RootProvider>
+                </div>
 
-              <Footer />
-              <Toaster position="bottom-right" />
-            </ContactModalProvider>
-          </Suspense>
-        </ThemeProvider>
+                <Footer />
+                <Toaster position="bottom-right" />
+              </ContactModalProvider>
+            </Suspense>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

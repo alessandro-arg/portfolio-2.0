@@ -3,8 +3,11 @@ import { FooterLinks } from "./FooterLinks";
 import { footerCategories } from "./footer.data";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { Logo } from "../ui/logo";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="mx-auto my-6 container">
       <div className="relative flex flex-col items-center g-6 mb-10 md:flex-row">
@@ -13,19 +16,18 @@ export default function Footer() {
             <Link
               href="#content"
               className="relative inline-block"
-              aria-label="return to the top"
-              title="logo"
+              aria-label={t("return_to_top")}
+              title="Logo"
             >
               <Logo className="w-18 h-18 select-none" />
             </Link>
             <p className="w-60 text-base leading-5 dark:text-gray-300">
-              I&apos;m Alessandro - a Fullstack developer and problem solver.
-              Thanks for checking out my site!
+              {t("description")}
             </p>
           </div>
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:gap-16 lg:gap-32 max-sm:bg-primary/5 rounded-3xl p-5">
             {footerCategories.map((cat) => (
-              <FooterLinks key={cat.title} category={cat} />
+              <FooterLinks key={cat.title_key} category={cat} />
             ))}
           </div>
         </div>
@@ -40,20 +42,20 @@ export default function Footer() {
             >
               Alessandro Argenziano
             </Link>
-            . All rights reserved
+            {t("all_rights_reserved")}
           </p>
-          <div className="flex items-center justify-center gap-4 sm:gap-6">
+          <div className="flex items-center justify-center gap-3.5 sm:gap-6">
             <Link
               href="/legal/privacy-policy"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
-              Privacy Policy
+              {t("privacy_policy")}
             </Link>
             <Link
               href="/legal/terms"
               className="whitespace-nowrap transition-colors hover:text-black dark:hover:text-white"
             >
-              Terms & Conditions
+              {t("terms_conditions")}
             </Link>
           </div>
         </div>

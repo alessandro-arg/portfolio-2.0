@@ -113,10 +113,12 @@ Nutze nur diese values:
 - frontend
 - backend
 - devops journey
+- linux
+- python
 
 Wenn nichts passt:
 
-- devops journey
+- linux
 
 ---
 

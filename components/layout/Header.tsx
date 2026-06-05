@@ -12,13 +12,8 @@ import { MoreMenu } from "./_ui/MoreMenu";
 // import { MobileMore } from "./_ui/MobileMore";
 import { moreLinks } from "./more.data";
 import { Logo } from "../ui/logo";
-
-const menuItems = [
-  { href: "/", label: "Home", ariaLabel: "Go to home page" },
-  { href: "/about", label: "About", ariaLabel: "About me" },
-  { href: "/projects", label: "Projects", ariaLabel: "View my projects" },
-  { href: "/blog", label: "Blog", ariaLabel: "My personal blog" },
-];
+import LanguageSwitcher from "./_ui/LanguageSwitcher";
+import { useTranslations } from "next-intl";
 
 const panelSpring: Transition = {
   type: "spring",
@@ -73,12 +68,20 @@ function useScrollDirection(threshold = 6) {
  * mobile drawer navigation, scroll-aware visibility, and contact modal access.
  */
 export default function Header() {
+  const t = useTranslations("Header");
   const dir = useScrollDirection(8);
   const pathname = usePathname();
   const barRef = useRef<HTMLDivElement>(null);
   const underlineLayoutId = useMemo(() => "nav-underline", []);
   const [hash, setHash] = useState<string>("");
   const { openModal } = useContactModal();
+
+  const menuItems = [
+    { href: "/", label: t("home"), ariaLabel: t("ariaHome") },
+    { href: "/about", label: t("about"), ariaLabel: t("ariaAbout") },
+    { href: "/projects", label: t("projects"), ariaLabel: t("ariaProjects") },
+    { href: "/blog", label: t("blog"), ariaLabel: t("ariaBlog") },
+  ];
 
   useEffect(() => {
     const update = () => setHash(window.location.hash || "");
@@ -90,6 +93,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((s) => !s), []);
+  const [languageCloseSignal, setLanguageCloseSignal] = useState(0);
 
   /**
    * Opens the contact modal from the desktop navigation.
@@ -160,6 +164,11 @@ export default function Header() {
   useEffect(() => {
     if (!barRef.current) return;
     const el = barRef.current;
+
+    if (dir === "down") {
+      setLanguageCloseSignal((prev) => prev + 1);
+    }
+
     gsap.to(el, {
       y: dir === "down" ? -80 : 8,
       duration: 0.45,
@@ -210,17 +219,22 @@ export default function Header() {
         {/* The floating shell we animate with GSAP */}
         <div
           ref={barRef}
-          className="pointer-events-auto w-full flex items-center justify-end md:justify-center py-3 z-40"
+          className="pointer-events-auto relative w-full flex items-center justify-end md:justify-center py-3 z-40"
           style={{ willChange: "transform" }}
         >
           {/* Name/Logo */}
           <Link
             href="/"
             className="absolute left-6 top-4 select-none text-base font-semibold tracking-tight sm:text-lg"
-            aria-label="Go to homepage"
+            aria-label={t("homepage")}
           >
             <Logo className="w-10 h-10" />
           </Link>
+
+          {/* Language Switcher */}
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex items-center">
+            <LanguageSwitcher closeSignal={languageCloseSignal} />
+          </div>
 
           <nav className="w-fit relative flex min-h-10 items-center justify-center rounded-full border border-neutral-400/10 bg-neutral-300/80 p-1 md:pl-6 md:pr-2 md:pb-2 md:pt-1 shadow-xl backdrop-blur-2xl dark:border-neutral-400/20 dark:bg-neutral-800/80">
             {/* Nav */}
@@ -265,7 +279,7 @@ export default function Header() {
                 />
               </li>
 
-              {/* Contact button - Changed to button with onClick */}
+              {/* Contact button */}
               <motion.li
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.97, y: 0 }}
@@ -279,9 +293,9 @@ export default function Header() {
                     "shadow-[2px_3px_0_0_#000] hover:shadow-[1px_2px_0_0_#000] transition-all",
                     "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Open contact form"
+                  aria-label={t("openContactForm")}
                 >
-                  Contact
+                  {t("contact")}
                 </button>
               </motion.li>
             </ul>
@@ -289,13 +303,13 @@ export default function Header() {
             {/* Mobile burger */}
             <button
               type="button"
-              aria-label="Open menu"
+              aria-label={t("openMenu")}
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
               onClick={toggleMobile}
               className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 bg-transparent cursor-pointer"
             >
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">{t("openMenu")}</span>
               {/* Simple burger icon */}
               <svg
                 width="22"
@@ -336,10 +350,16 @@ export default function Header() {
             exit="exit"
           >
             {/* Top bar with close */}
-            <div className="flex items-center justify-end px-7 py-7">
+            <div className="flex items-center justify-between px-7 py-7">
+              <div className="scale-110 origin-left">
+                <LanguageSwitcher
+                  align="left"
+                  closeSignal={languageCloseSignal}
+                />
+              </div>
               <button
                 type="button"
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
                 onClick={closeMobile}
                 className="inline-flex items-center justify-center rounded-full p-2 text-neutral-900 dark:text-neutral-100 cursor-pointer"
               >
@@ -390,9 +410,9 @@ export default function Header() {
                     "shadow-[2px_3px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_3px_0_0_rgba(255,255,255,0.15)]",
                     "cursor-pointer",
                   ].join(" ")}
-                  aria-label="Open contact form"
+                  aria-label={t("openContactForm")}
                 >
-                  Contact
+                  {t("contact")}
                 </button>
               </motion.li>
             </motion.ul>

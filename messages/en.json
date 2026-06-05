@@ -1,0 +1,371 @@
+{
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "more": "More",
+    "contact": "Contact",
+    "links_title": "Links",
+    "links_description": "All my links are here",
+    "bucket_list_title": "Bucket List",
+    "bucket_list_description": "Things to do at least once in my life",
+    "my_setup_title": "My Setup",
+    "my_setup_description": "My digital workspace",
+    "ariaHome": "Go to home page",
+    "ariaAbout": "About me",
+    "ariaProjects": "View my projects",
+    "ariaBlog": "My personal blog",
+    "homepage": "Go to homepage",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openContactForm": "Open contact form"
+  },
+
+  "Hero": {
+    "title": "I design and develop apps",
+    "title2": "that are",
+    "t_span": "fast, responsive, and scalable",
+    "small_cta": "New!",
+    "small_cta_title": "Blog",
+    "small_cta_content": "Developer Journal",
+    "greeting": "Hello, I'm Alessandro",
+    "role": "a Fullstack Developer",
+    "cta_button": "Let's Connect",
+    "copied": "Copied to clipboard!",
+    "email_copied_successfully": "Email address copied successfully.",
+    "send_email": "Send Email",
+    "copy_error": "Something went wrong.",
+    "email_template": "Hi Alessandro,\n\nI’d like to connect about..."
+  },
+
+  "Footer": {
+    "general": "General",
+    "resources": "Resources",
+    "more": "More",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "bucket_list": "Bucket List",
+    "my_setup": "My Setup",
+    "blog": "Blog",
+    "links": "Links",
+    "attribution": "Attribution",
+    "description": "I'm Alessandro - a Fullstack developer and problem solver. Thanks for checking out my site!",
+    "all_rights_reserved": ". All rights reserved",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Terms & Conditions",
+    "return_to_top": "Return to the top"
+  },
+
+  "BentoGrid": {
+    "tech_card_title": "Technologies I use\nand love",
+    "blog_card_subtitle": "Developer\nJournal",
+    "blog_card_title": "Latest from\nthe blog",
+    "blog_card_all_posts": "All posts",
+    "globe_card_title": "I'm very flexible with\ntime zone comunications",
+    "switzerland": "Switzerland",
+    "germany": "Germany",
+    "italy": "Italy",
+    "copy_email_card": "Let's work together on your next project",
+    "copy_email_card_sm": "Write me an email",
+    "good_night": "Good Night",
+    "good_morning": "Good Morning",
+    "good_afternoon": "Good Afternoon",
+    "good_evening": "Good Evening",
+    "available": "Available"
+  },
+
+  "Contact": {
+    "page_title": "Get in",
+    "page_title_2": "touch",
+    "page_subtitle": "Contact",
+    "section_eyebrow": "FROM CONCEPT TO ",
+    "section_eyebrow_2": "CREATION",
+    "section_title": "LET's MAKE IT ",
+    "section_title_2": "HAPPEN!",
+    "section_cta_button": "Let's Connect",
+    "section_p": "I'm available for full-time roles.",
+    "section_p_2": "I create dynamic web applications, and\ndeliver smooth user experiences.",
+    "modal_title": "Get in Touch",
+    "modal_subtitle": "Have a project in mind? Let's talk about it.",
+    "modal_or": "Or",
+    "modal_email_span": "Send me an email directly"
+  },
+
+  "ContactForm": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "name_placeholder": "Your name",
+    "email_placeholder": "email@example.com",
+    "message_placeholder": "What would you like to discuss?",
+    "send_message": "Send Message",
+    "sending": "Sending...",
+    "close": "Close",
+    "name_required": "Name is required",
+    "name_letters_only": "Only letters and spaces are allowed",
+    "name_min_letters": "Name must have at least 3 letters",
+    "email_required": "Email is required",
+    "email_invalid": "Please enter a valid email address",
+    "message_required": "Message is required",
+    "message_min_length": "Message must be at least 10 characters",
+    "message_sent": "Message sent successfully!",
+    "message_sent_description": "I'll get back to you soon!",
+    "something_went_wrong": "Something went wrong!",
+    "unknown_error": "Unknown error"
+  },
+
+  "Testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "Colleagues' thoughts",
+    "highlight": "about me"
+  },
+
+  "Experience": {
+    "eyebrow": "The experience",
+    "title": "Experience that brings",
+    "highlight": "ideas to life",
+    "gfn": {
+      "title": "Fachinformatiker - Anwendungsentwickler",
+      "subtitle": "(IHK FIAE)",
+      "items": {
+        "one": "The retraining program to become an <important>IT Specialist for App Development</important> consists of theoretical and practical learning phases as well as the final exam.",
+        "two": "After building fundamental knowledge and general IT skills, I will focus on everything related to development. I will also work with Networks, Databases, Data analysis and much more.",
+        "three": "As a central part of the program, I will complete a company internship where I can apply my theoretical knowledge in daily work and gain valuable practical experience."
+      }
+    },
+    "developerAkademie": {
+      "title": "Full-stack Web Development",
+      "items": {
+        "one": "Completed the demanding full-stack program at Germany's leading TÜV-certified academy for web development. Successfully built more than 12 projects, both individually and as part of a team.",
+        "two": "Web programming with <important>HTML, CSS (SCSS)</important> and <important>JavaScript</important>.",
+        "three": "Frontend web development with <important>Angular</important> and <important>TypeScript</important>.",
+        "four": "Using design frameworks such as <important>Bootstrap</important> and <important>Material Design</important>, as well as implementing UI/UX designs <important>(Figma)</important>.",
+        "five": "Working with databases <important>(Google Firebase)</important> and integrating <important>REST APIs</important> for data communication.",
+        "six": "Version control with <important>Git (GitHub)</important> and agile project management for team-based development <important>(SCRUM, Kanban)</important>."
+      }
+    }
+  },
+
+  "About": {
+    "landing_about_eyebrow": "Know about me",
+    "landing_about_title": "Full-Stack Developer and a little bit of",
+    "landing_about_highlight": "everything",
+    "landing_about_text_1": "I'm Alessandro, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I thrive on solving complex problems with clean, efficient code. My expertise spans Angular, React, and Next.js, and I'm always ready to learn more.",
+    "landing_about_text_2": "When I'm not immersed in work, I'm exploring new ideas or new mountains and staying curious. Life is about balance, and I love embracing every part of it, especially in a snowpark.",
+    "landing_about_text_3": "I believe small daily progress leads to big results.",
+    "landing_about_cta": "Work Experience",
+    "developer": "Developer",
+    "snowboarder": "Snowboarder",
+    "traveler": "Traveler",
+    "about_page_eyebrow": "More about me",
+    "about_page_title": "I'm Alessandro, a\ncreative",
+    "about_page_highlight": "developer",
+    "about_page_text_1": "I'm Alessandro, a full-stack developer passionate about creating dynamic web experiences. From frontend to backend, I solve complex problems with clean, efficient code. My expertise spans Python, Angular, Typescript and React, and I'm always motivated to learn more.",
+    "about_page_text_2": "When I'm not immersed in work, I explore new mountains, cruising through fresh powder or doing 360s in a snowpark.",
+    "about_page_text_3": "I believe in waking up each day eager to make a difference!"
+  },
+
+  "GitHub": {
+    "loading": "Loading contribution data...",
+    "error": "Failed to load GitHub activity: {error}",
+    "eyebrow": "Developer Insights",
+    "title": "GitHub",
+    "highlight": "activity"
+  },
+
+  "PrivacyPolicy": {
+    "eyebrow": "Legal",
+    "title": "Privacy ",
+    "highlight": "policy",
+    "intro_before_link": "This website (",
+    "intro_after_link": ") is operated by Alessandro Argenziano. I take your privacy seriously and handle your personal data responsibly and in accordance with applicable data protection laws.",
+    "section_1_title": "1. Data Collection",
+    "section_1_text": "This portfolio website does not actively collect personal data except when you contact me via email or contact form. In that case, I only collect the information you provide (such as your name, email address, and message) to respond to your inquiry.",
+    "section_2_title": "2. Use of Personal Data",
+    "section_2_text": "Any personal information you share will only be used to communicate with you regarding your request and will not be shared with third parties unless required by law.",
+    "section_3_title": "3. Cookies & Analytics",
+    "section_3_text": "This site may use basic cookies or analytics tools to improve user experience and website performance. These tools collect anonymized data such as browser type, visit duration, and visited pages.",
+    "section_4_title": "4. Your Rights",
+    "section_4_text": "You have the right to request access, correction, or deletion of your personal data. For any privacy-related inquiries, please contact me directly.",
+    "section_5_title": "5. Contact",
+    "email_label": "Email:",
+    "last_updated": "Last updated: June 2026"
+  },
+
+  "Terms": {
+    "eyebrow": "Legal",
+    "title": "Terms & ",
+    "highlight": "conditions",
+    "intro_before_link": "Welcome to ",
+    "intro_after_link": ". These Terms and Conditions outline the rules and regulations for using this website, operated by Alessandro Argenziano.",
+    "section_1_title": "1. Acceptance of Terms",
+    "section_1_text": "By accessing and using this website, you accept these Terms and Conditions in full. If you disagree with any part of these terms, please do not use this website.",
+    "section_2_title": "2. Purpose of the Website",
+    "section_2_text": "This portfolio site is intended to present my personal work, projects, and professional background. All content is provided for informational purposes only and does not constitute professional or legal advice.",
+    "section_3_title": "3. Intellectual Property",
+    "section_3_text": "Unless otherwise stated, all materials on this website — including text, images, design, and code — are owned by Alessandro Argenziano. You may view and share content for personal, non-commercial purposes only. Reproduction or distribution without permission is prohibited.",
+    "section_4_title": "4. External Links",
+    "section_4_text": "This website may contain links to external sites. I am not responsible for the content or privacy practices of those third-party websites. Visiting such links is at your own discretion.",
+    "section_5_title": "5. Limitation of Liability",
+    "section_5_text": "I make no warranties regarding the accuracy or completeness of the information presented on this website. I am not liable for any damages or losses arising from the use of this site or its content.",
+    "section_6_title": "6. Privacy and Data Protection",
+    "section_6_before_link": "Please refer to the ",
+    "section_6_link": "Privacy Policy",
+    "section_6_after_link": " to learn more about how I handle your personal information in compliance with the General Data Protection Regulation (GDPR).",
+    "section_7_title": "7. Changes to These Terms",
+    "section_7_text": "I may update these Terms and Conditions occasionally to reflect new features or legal requirements. Updates will be posted on this page with the revised date.",
+    "section_8_title": "8. Contact",
+    "email_label": "Email:",
+    "last_updated": "Last updated: June 2026"
+  },
+
+  "InfiniteRow": {
+    "velocity_accessible": "Accessible",
+    "velocity_dynamic": "Dynamic",
+    "velocity_engaging": "Engaging",
+    "velocity_scalable": "Scalable",
+    "velocity_secure": "Secure",
+    "velocity_responsive": "Responsive",
+    "velocity_seo": "SEO",
+    "velocity_reliable": "Reliable",
+    "velocity_interactive": "Interactive"
+  },
+
+  "Skills": {
+    "eyebrow": "My Skills",
+    "title": "The secret",
+    "highlight": "sauce"
+  },
+
+  "Attribution": {
+    "eyebrow": "Attribution",
+    "title_line_1": "Journey to create",
+    "title_line_2": "this ",
+    "highlight": "website",
+    "intro": "Hello! Welcome to my website.",
+    "text_1": "The first version of this website was created in 2025. I was learning how to build a Multi-Page Application with Next.js back then. This version is not gonna be an open-source project.",
+    "text_2": "In 2024 I created my first portfolio using Angular and TypeScript. While learning how to use Next.js, I thought it was time for an evolution. I completely redesigned the site to better showcase my current front-end and back-end development capabilities, focusing on a clean aesthetic and animations.",
+    "text_3": "I would like to express my thanks to all of websites that inspired me to build this website.",
+    "thanks": "Thanks y'all!",
+    "best": "Best,"
+  },
+
+  "Links": {
+    "badge_1": "Developer",
+    "badge_2": "Problem Solver"
+  },
+
+  "Setup": {
+    "eyebrow": "My tools",
+    "title": "The",
+    "highlight": "setup",
+    "setup_image_alt": "Setup by Alessandro"
+  },
+
+  "BucketList": {
+    "eyebrow": "The bucket list",
+    "title": "Things I'll do",
+    "highlight": "at least once",
+    "github_title": "Get 50+ followers on GitHub",
+    "github_description": "",
+    "surf_portugal_title": "Learn to surf in Portugal",
+    "surf_portugal_description": "A week in Ericeira catching green waves.",
+    "aurora_title": "See the Northern Lights",
+    "aurora_description": "",
+    "iceland_roadtrip_title": "Drive Iceland's Ring Road",
+    "iceland_roadtrip_description": "7-10 days, waterfalls, black sand beaches & hot springs.",
+    "snowboard_title": "Do my first backflip on a snowboard",
+    "snowboard_description": "",
+    "portfolio_title": "Create a portfolio website",
+    "portfolio_description": "October 2025",
+    "remote_job_title": "Get a Remote Job",
+    "remote_job_description": "",
+    "red_sea_scuba_title": "Scuba dive the Red Sea",
+    "red_sea_scuba_description": "",
+    "kyoto_sakura_title": "Cherry blossom season in Kyoto",
+    "kyoto_sakura_description": "",
+    "open_source_title": "First OpenSource contribution",
+    "open_source_description": "",
+    "skydive_title": "Go skydiving",
+    "skydive_description": "Jump from 4,000m and savor that 60s freefall.",
+    "world_trip_title": "6 months Worldtrip",
+    "world_trip_description": ""
+  },
+
+  "NotFound": {
+    "title": "I can't find this page",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "go_home": "Go home",
+    "back": "Go back",
+    "projects_title": "Projects",
+    "projects_description": "Browse all of my work and side projects",
+    "about_title": "About me",
+    "about_description": "Learn more about who I am and what I do",
+    "blog_title": "Blog",
+    "blog_description": "Read the latest posts on my developer journal",
+    "Blog": {
+      "not_found_title": "Post not found",
+      "not_found_description": "The article you are looking for does not exist."
+    }
+  },
+
+  "TOC": {
+    "title": "On this page"
+  },
+
+  "Projects": {
+    "section_eyebrow": "FEATURED CASE STUDIES",
+    "section_title": "Curated",
+    "section_highlight": "work",
+    "section_aria_label": "Projects list",
+    "section_cta": "See more projects"
+  },
+
+  "ProjectDetail": {
+    "toc_what_is": "🔍 What is {title}?",
+    "toc_key_features": "🧩 Key Features",
+    "toc_why_built": "📌 Why I Built This",
+    "toc_use_cases": "💡 Use Cases",
+    "toc_tech_stack": "🧪 Tech Stack Overview",
+    "toc_getting_started": "⚙️ Getting Started",
+    "toc_clone_repository": "Clone the repository",
+    "toc_install_dependencies": "Install dependencies",
+    "toc_build_run_locally": "Build and run locally",
+    "toc_challenges_learnings": "🧠 Challenges & Learnings",
+    "toc_see_it_action": "📸 See it in Action",
+    "check_it_out": "Check it out",
+    "not_found_title": "Project not found",
+    "metadata_suffix": "Project"
+  },
+
+  "ProjectDate": {
+    "upcoming": "(upcoming)",
+    "over_6_months": "(over 6 months ago)",
+    "over_1_year": "(over 1 yr ago)",
+    "over_years": "(over {years} yrs ago)"
+  },
+
+  "Blog": {
+    "eyebrow": "Developer Journal",
+    "title": "Blog",
+    "description": "Notes from my journey: what I'm learning, building, testing, and understanding along the way.",
+    "all_posts": "all posts",
+    "no_posts": "No posts for \"{topic}\".",
+    "read_time": "{minutes} min read",
+    "metadata_title": "Blog",
+    "metadata_description": "Developer journal documenting my road to DevOps and more."
+  },
+
+  "BlogPost": {
+    "not_found": "Post not found",
+    "back": "Back",
+    "title": "Title",
+    "topic": "Topic",
+    "published": "Published",
+    "updated": "Updated",
+    "read_time": "Read time",
+    "tags": "Tags"
+  }
+}

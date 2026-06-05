@@ -7,18 +7,21 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import remarkGfm from "remark-gfm";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations("BlogPost");
   const { slug } = await params;
-  const post = getPostBySlug(slug.join("/"));
+  const post = getPostBySlug(slug.join("/"), locale);
 
   if (!post) {
     return {
-      title: "Post not found",
+      title: t("not_found"),
     };
   }
 
@@ -38,8 +41,9 @@ const topicColors: Record<string, string> = {
   javascript: "text-yellow-400",
   html: "text-sky-400",
   typescript: "text-blue-400",
-  devops: "text-green-400",
-  linux: "text-purple-400",
+  "devops-journey": "text-[#16b1ff]",
+  linux: "text-yellow-400",
+  python: "text-green-400",
   docker: "text-cyan-400",
   git: "text-red-400",
   default: "text-muted-foreground",
@@ -50,9 +54,12 @@ function getTopicColor(topic: string) {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
+  const locale = await getLocale();
+  const t = await getTranslations("BlogPost");
+
   const { slug } = await params;
   const joinedSlug = slug.join("/");
-  const post = getPostBySlug(joinedSlug);
+  const post = getPostBySlug(joinedSlug, locale);
 
   if (!post) {
     notFound();
@@ -70,7 +77,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 className="absolute top-0 right-0 gap-1 inline-flex items-center text-xl md:hidden"
               >
                 <ArrowLeft size={18} className="pointer-events-none" />
-                Back
+                {t("back")}
               </Link>
               <h1 className="font-mono text-5xl md:text-7xl font-bold tracking-tight mb-5 leading-none pt-10">
                 {post.title}
@@ -121,7 +128,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 className="gap-1 flex items-center justify-end text-xl md:hidden w-full"
               >
                 <ArrowLeft size={20} className="pointer-events-none" />
-                Back
+                {t("back")}
               </Link>
               <Link
                 href="/blog"
@@ -131,11 +138,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                   size={16}
                   className="group-hover: pointer-events-none translate-x-0 transition-all duration-300 [motion-reduce:transition-none] group-hover:-translate-x-1 group-hover:opacity-100"
                 />
-                Back
+                {t("back")}
               </Link>
               <div className="hidden md:block pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                  Title
+                  {t("title")}
                 </p>
                 <span className="font-mono text-base font-normal tracking-normal">
                   {post.title}
@@ -143,7 +150,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
               <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                  Topic
+                  {t("topic")}
                 </p>
                 <span
                   className={`font-mono text-sm font-bold uppercase tracking-widest ${getTopicColor(post.topic)}`}
@@ -154,7 +161,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                  Published
+                  {t("published")}
                 </p>
                 <p className="font-mono text-sm text-foreground">{post.date}</p>
               </div>
@@ -162,7 +169,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.updated && (
                 <div className="pointer-events-none">
                   <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                    Updated
+                    {t("updated")}
                   </p>
                   <p className="font-mono text-sm text-foreground">
                     {post.updated}
@@ -172,7 +179,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               <div className="pointer-events-none">
                 <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                  Read time
+                  {t("read_time")}
                 </p>
                 <p className="font-mono text-sm text-foreground">
                   {post.readingTime}
@@ -182,7 +189,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               {post.tags && post.tags.length > 0 && (
                 <div className="pointer-events-none">
                   <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-2">
-                    Tags
+                    {t("tags")}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (

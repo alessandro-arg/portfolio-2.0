@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projectsData } from "../data";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getProjectBySlug, getProjects } from "../data/get-projects";
+import type { Project } from "../types";
 import { ProjectTOC, type TocItem } from "../_components/ProjectTOC";
 import { TechBadge } from "../_components/TechBadge";
 import ContactSection from "@/app/contact/ContactSection";
@@ -8,12 +10,9 @@ import { ProjectDate } from "../_components/ProjectDate";
 import Link from "fumadocs-core/link";
 import { Accordions, Accordion } from "fumadocs-ui/components/accordion";
 import CopyFigure from "../_components/CopyFigure";
-import ContactCTA from "../_components/ContactCTA";
 import Image from "next/image";
 
 type PageProps = { params: Promise<{ slug: string }> };
-
-type Project = (typeof projectsData)[number];
 
 type ProjectWithExtras = Project & {
   useCases?: string[];
@@ -23,18 +22,24 @@ type ProjectWithExtras = Project & {
 };
 
 export function generateStaticParams() {
-  return projectsData.filter((p) => p.slug).map((p) => ({ slug: p.slug! }));
+  return getProjects("en")
+    .filter((p) => p.slug)
+    .map((p) => ({ slug: p.slug! }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations("ProjectDetail");
   const { slug } = await params;
-  const project = projectsData.find((p) => p.slug === slug);
-  if (!project) return { title: "Project not found" };
+
+  const project = getProjectBySlug(locale, slug);
+
+  if (!project) return { title: t("not_found_title") };
 
   return {
-    title: `${project.title} - Projects`,
+    title: `${project.title} - ${t("metadata_suffix")}`,
     description: project.smallDescription ?? project.description?.slice(0, 140),
     openGraph: {
       title: project.title,
@@ -51,8 +56,12 @@ function normalizePoints(points: (string | NormalizedPoint)[] | undefined) {
 }
 
 export default async function ProjectPage({ params }: PageProps) {
+  const locale = await getLocale();
+  const t = await getTranslations("ProjectDetail");
   const { slug } = await params;
-  const project = projectsData.find((p) => p.slug === slug);
+
+  const project = getProjectBySlug(locale, slug);
+
   if (!project) notFound();
 
   const { useCases, whyBuilt, learnings, gettingStarted } =
@@ -65,30 +74,42 @@ export default async function ProjectPage({ params }: PageProps) {
   // Always show "What is"
   sections.push({
     id: "what-is",
-    title: "🔍 What is " + project.title + "?",
+    title: t("toc_what_is", { title: project.title }),
     depth: 2,
   });
 
   // Key Features (only if points exist)
   if (project.points?.length) {
-    sections.push({ id: "key-features", title: "🧩 Key Features", depth: 2 });
+    sections.push({
+      id: "key-features",
+      title: t("toc_key_features"),
+      depth: 2,
+    });
   }
 
   // Why I Built This (optional)
   if (whyBuilt) {
-    sections.push({ id: "why-built", title: "📌 Why I Built This", depth: 2 });
+    sections.push({
+      id: "why-built",
+      title: t("toc_why_built"),
+      depth: 2,
+    });
   }
 
   // Use Cases (optional)
   if (useCases?.length) {
-    sections.push({ id: "use-cases", title: "💡 Use Cases", depth: 2 });
+    sections.push({
+      id: "use-cases",
+      title: t("toc_use_cases"),
+      depth: 2,
+    });
   }
 
   // Tech Stack (only if there are technologies)
   if (project.technologies?.length) {
     sections.push({
       id: "tech-stack-overview",
-      title: "🧪 Tech Stack Overview",
+      title: t("toc_tech_stack"),
       depth: 2,
     });
   }
@@ -97,22 +118,22 @@ export default async function ProjectPage({ params }: PageProps) {
   if (showGettingStarted) {
     sections.push({
       id: "getting-started",
-      title: "⚙️ Getting Started",
+      title: t("toc_getting_started"),
       depth: 2,
     });
     sections.push({
       id: "clone-the-repository",
-      title: "Clone the repository",
+      title: t("toc_clone_repository"),
       depth: 3,
     });
     sections.push({
       id: "install-dependencies",
-      title: "Install dependencies",
+      title: t("toc_install_dependencies"),
       depth: 3,
     });
     sections.push({
       id: "build-and-run-locally",
-      title: "Build and run locally",
+      title: t("toc_build_run_locally"),
       depth: 3,
     });
   }
@@ -121,7 +142,7 @@ export default async function ProjectPage({ params }: PageProps) {
   if (learnings) {
     sections.push({
       id: "challenges-learnings",
-      title: "🧠 Challenges & Learnings",
+      title: t("toc_challenges_learnings"),
       depth: 2,
     });
   }
@@ -129,7 +150,7 @@ export default async function ProjectPage({ params }: PageProps) {
   if (project.liveLink || project.github) {
     sections.push({
       id: "see-it-in-action",
-      title: "📸 See it in Action",
+      title: t("toc_see_it_action"),
       depth: 2,
     });
   }
@@ -231,7 +252,7 @@ export default async function ProjectPage({ params }: PageProps) {
                       className="group relative flex w-fit items-center justify-between h-9 rounded-full bg-neutral-900 text-white opacity-90 dark:bg-white dark:text-black cursor-pointer"
                     >
                       <span className="pl-4 text-base font-light">
-                        Check it out
+                        {t("check_it_out")}
                       </span>
                       <div className="relative mr-1 size-9 overflow-hidden rounded-full bg-transparent">
                         <div className="absolute top-[0.85em] left-[-0.1em] grid size-full place-content-center transition-all duration-200 group-hover:translate-x-4 group-hover:-translate-y-5">
@@ -352,7 +373,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 className="flex scroll-m-28 flex-row items-center gap-2"
               >
                 <a data-card href="#-what-is" className="peer">
-                  🔍 What is {project.title}?
+                  {t("toc_what_is", { title: project.title })}
                 </a>
               </h2>
               <p>{project.description}</p>
@@ -365,7 +386,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#-key-features" className="peer">
-                      🧩 Key Features
+                      {t("toc_key_features")}
                     </a>
                   </h2>
 
@@ -406,7 +427,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#-why-i-built-this" className="peer">
-                      📌 Why I Built This
+                      {t("toc_why_built")}
                     </a>
                   </h2>
                   <p>{whyBuilt}</p>
@@ -421,7 +442,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#-use-cases" className="peer">
-                      💡 Use Cases
+                      {t("toc_use_cases")}
                     </a>
                   </h2>
                   <ul className="list-disc ps-6">
@@ -440,7 +461,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#-tech-stack-overview" className="peer">
-                      🧪 Tech Stack Overview
+                      {t("toc_tech_stack")}
                     </a>
                   </h2>
                   <ul>
@@ -468,7 +489,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#️-getting-started" className="peer">
-                      ⚙️ Getting Started
+                      {t("toc_getting_started")}
                     </a>
                   </h2>
 
@@ -484,7 +505,7 @@ export default async function ProjectPage({ params }: PageProps) {
                           href="#clone-the-repository"
                           className="peer"
                         >
-                          Clone the repository
+                          {t("toc_clone_repository")}
                         </a>
                       </h3>
                       {/* Clone the repository */}
@@ -506,7 +527,7 @@ export default async function ProjectPage({ params }: PageProps) {
                           href="#install-dependencies"
                           className="peer"
                         >
-                          Install dependencies
+                          {t("toc_install_dependencies")}
                         </a>
                       </h3>
                       <CopyFigure caption="Terminal" code={`npm install`} />
@@ -522,7 +543,7 @@ export default async function ProjectPage({ params }: PageProps) {
                           href="#build-and-run-locally"
                           className="peer"
                         >
-                          Build and run locally
+                          {t("toc_build_run_locally")}
                         </a>
                       </h3>
                       <CopyFigure
@@ -546,7 +567,7 @@ export default async function ProjectPage({ params }: PageProps) {
                       href="#-challenges--learnings"
                       className="peer"
                     >
-                      🧠 Challenges &amp; Learnings
+                      {t("toc_challenges_learnings")}
                     </a>
                   </h2>
                   <ul className="list-disc ps-6">
@@ -565,7 +586,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     className="flex scroll-m-28 flex-row items-center gap-2"
                   >
                     <a data-card href="#-see-it-in-action" className="peer">
-                      📸 See it in Action
+                      {t("toc_see_it_action")}
                     </a>
                   </h2>
                   <ul>
@@ -596,11 +617,6 @@ export default async function ProjectPage({ params }: PageProps) {
                   </ul>
                 </>
               ) : null}
-
-              <p>
-                Want to chat about this project?{" "}
-                <ContactCTA className="cursor-pointer">Let’s chat.</ContactCTA>
-              </p>
               <div id="toc-end-sentinel" aria-hidden="true" className="h-px" />
             </div>
 

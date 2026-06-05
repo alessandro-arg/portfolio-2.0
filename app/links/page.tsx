@@ -3,8 +3,11 @@ import ContactSection from "../contact/ContactSection";
 import { Facebook } from "lucide-react";
 import Image from "next/image";
 import BackgroundFade from "@/components/ui/background-fade";
+import { Badge } from "@/components/ui/badge";
+import { useTranslations } from "next-intl";
 
 export default function Links() {
+  const t = useTranslations("Links");
   return (
     <>
       <BackgroundFade />
@@ -22,12 +25,12 @@ export default function Links() {
             />
             <h1 className="font-semibold text-xl">Alessandro Argenziano</h1>
             <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs md:text-sm">
-              <span className="rounded-full px-3 py-1 bg-blue-500/80 text-primary font-medium">
-                Developer
-              </span>
-              <span className="rounded-full px-3 py-1 bg-emerald-500/80 text-primary font-medium">
-                Problem Solver
-              </span>
+              <Badge className="rounded-full px-3 py-1 bg-blue-500/50 text-primary font-medium">
+                {t("badge_1")}
+              </Badge>
+              <Badge className="rounded-full px-3 py-1 bg-emerald-500/50 text-primary font-medium">
+                {t("badge_2")}
+              </Badge>
             </div>
           </div>
           <div className="mx-auto justify-center items-center sm:justify-normal mb-4 flex flex-col sm:flex-row w-fit gap-4 sm:gap-2 md:text-sm">

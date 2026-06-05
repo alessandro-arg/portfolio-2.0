@@ -11,7 +11,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
           out to you as soon as possible.
         </p>
         <p>Have a great day,</p>
-        <p>— Alessandro</p>
+        <p>Alessandro</p>
         <hr
           style={{ margin: "20px 0", border: 0, borderTop: "1px solid #eee" }}
         />
@@ -19,7 +19,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
           If you didn’t submit this form, you can ignore this email.
         </p>
         <p style={{ fontSize: 12, color: "#888" }}>
-          This is an auto generated email, so please do not reply on this email.
+          This is auto generated, so please do not reply on this email.
         </p>
       </div>
     </Html>

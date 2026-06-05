@@ -6,6 +6,7 @@ import Magnet from "@/components/ui/magnet";
 import { cn } from "@/lib/utils";
 import { useContactModal } from "./ContactModalProvider";
 import { Logo } from "@/components/ui/logo";
+import { useTranslations } from "next-intl";
 
 type ContactSectionProps = {
   /** If true, removes the default top margin */
@@ -21,6 +22,7 @@ export default function ContactSection({
   mtClassName,
   className,
 }: ContactSectionProps) {
+  const t = useTranslations("Contact");
   const { openModal } = useContactModal();
 
   return (
@@ -56,7 +58,8 @@ export default function ContactSection({
             }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            FROM CONCEPT TO <span className="font-extrabold">CREATION</span>
+            {t("section_eyebrow")}{" "}
+            <span className="font-extrabold">{t("section_eyebrow_2")}</span>
           </motion.h3>
           <motion.h3
             className="text-nowrap text-2xl font-light tracking-wide sm:text-4xl lg:text-5xl"
@@ -71,7 +74,8 @@ export default function ContactSection({
             }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            LET&apos;s MAKE IT <span className="font-extrabold">HAPPEN!</span>
+            {t("section_title")}
+            <span className="font-extrabold">{t("section_title_2")}</span>
           </motion.h3>
         </span>
         <Magnet>
@@ -83,7 +87,7 @@ export default function ContactSection({
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
             <span className="z-10 px-3 text-black transition-colors duration-300 dark:text-white dark:group-hover:text-black">
-              Let&lsquo;s Connect
+              {t("section_cta_button")}
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight
@@ -97,12 +101,9 @@ export default function ContactSection({
             </span>
           </button>
         </Magnet>
-        <p className="text-base font-semibold lg:text-2xl">
-          I&apos;m available for full-time roles.
-        </p>
-        <p className="my-2 text-sm font-extralight tracking-wide text-balance opacity-75 lg:text-xl">
-          I create dynamic web applications, and <br />
-          deliver smooth user experiences.
+        <p className="text-base font-semibold lg:text-2xl">{t("section_p")}</p>
+        <p className="my-2 text-sm font-extralight tracking-wide text-balance opacity-75 lg:text-xl whitespace-pre-line">
+          {t("section_p_2")}
         </p>
       </div>
     </section>

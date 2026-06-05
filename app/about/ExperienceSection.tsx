@@ -4,8 +4,18 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { MapPin, Briefcase } from "lucide-react";
 import TimelineRail from "./ui/timeline-rail";
 import { Badge } from "@/components/ui/badge";
+import { useTranslations } from "next-intl";
 
 export default function ExperienceSection() {
+  const t = useTranslations("Experience");
+
+  const rich = {
+    important: (chunks: React.ReactNode) => (
+      <span className="important-span">{chunks}</span>
+    ),
+    br: () => <br />,
+  };
+
   return (
     <section
       id="experience"
@@ -15,16 +25,16 @@ export default function ExperienceSection() {
       <div className="mx-auto w-full max-w-6xl md:px-10">
         <h2 className="relative z-2 text-5xl font-medium tracking-tight sm:text-5xl md:text-6xl text-center mb-4 md:mb-0 max-w-lg mx-auto text-balance [text-shadow:rgba(255,255,255,0.05)_0px_4px_8px,rgba(255,255,255,0.25)_0px_8px_30px]">
           <p className="mb-3 font-mono text-xs font-normal tracking-widest text-black/80 uppercase md:text-sm dark:text-white/70">
-            The experience
+            {t("eyebrow")}
           </p>
           <span className="font-instrument">
-            <span>Experience that brings </span>
+            <span>{t("title")} </span>
             <AnimatedGradientText
               colorFrom="#4aeedd"
               colorTo="#16b1ff"
               className="pe-2 tracking-tight italic"
             >
-              ideas to life
+              {t("highlight")}
             </AnimatedGradientText>
           </span>
         </h2>
@@ -35,9 +45,9 @@ export default function ExperienceSection() {
                 <div className="flex flex-col items-start gap-y-3 text-sm font-light">
                   <time
                     className="text-muted-foreground text-xs font-medium tracking-wide uppercase"
-                    dateTime="OCT 2025 - Present"
+                    dateTime="JAN 2026 - Present"
                   >
-                    JAN 2026 - Present
+                    JAN 2026 - PRESENT
                   </time>
                   <div className="flex items-center gap-2">
                     <h2 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
@@ -61,38 +71,31 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Fachinformatiker - Anwendungsentwickler <br /> &#40;IHK
-                      FIAE&#41;
+                      {t("gfn.title")}
+                      <br />
+                      {t("gfn.subtitle")}
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
                     <ul className="flex list-none flex-col gap-y-4 text-neutral-700 dark:text-neutral-300/90">
                       <li className="leading-relaxed">
-                        Die Umschulung zum{" "}
-                        <span className="important-span">
-                          Fachinformatiker für Anwendungsentwicklung
-                        </span>{" "}
-                        besteht aus Phasen mit theoretischem und praktischem
-                        Unterricht sowie der Prüfung.
-                        <span className="important-span"></span>
+                        {t.rich("gfn.items.one", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Nach der Vermittlung von Grundlagenwissen und
-                        allgemeinen IT-Kompetenzen werde ich alles zum
-                        Schwerpunkt Anwendungsentwicklung lernen.
+                        {t.rich("gfn.items.two", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        In einem betrieblichen Praktikum als zentralem Teil der
-                        Fachinformatiker-Umschulung werde ich meine gewonnenen
-                        theoretischen Kenntnisse in der täglichen Arbeit
-                        anwenden und so wertvolle Praxis-Erfahrung sammeln.{" "}
+                        {t.rich("gfn.items.three", rich)}
                       </li>
                     </ul>
                   </section>
                   <section aria-label="Technologies used">
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="outline">Python</Badge>
+                      <Badge variant="outline">Datenbanken Struktur</Badge>
                       <Badge variant="outline">SQL</Badge>
+                      <Badge variant="outline">Java</Badge>
+                      <Badge variant="outline">Network</Badge>
                       <Badge variant="outline">Client-Systeme</Badge>
                       <Badge variant="outline">MS-Office</Badge>
                     </div>
@@ -131,56 +134,28 @@ export default function ExperienceSection() {
                 <div className="flex flex-col gap-y-6 text-sm leading-relaxed md:text-base">
                   <header>
                     <h3 className="font-instrument text-2xl font-bold text-neutral-900 md:text-3xl dark:text-neutral-100 tracking-wide">
-                      Full-stack Webdevelopment
+                      {t("developerAkademie.title")}
                     </h3>
                   </header>
                   <section aria-label="Key achievements">
                     <ul className="flex list-none flex-col gap-y-4 text-neutral-700 dark:text-neutral-300/90">
                       <li className="leading-relaxed">
-                        Abschluss des anspruchsvollen Fullstack-Programms an
-                        Deutschlands führender TÜV-zertifizierter Akademie für
-                        Webentwicklung. Erfolgreiche Umsetzung von über 12
-                        Projekten, sowohl individuell als auch im Team.{" "}
-                        <span className="important-span"></span>
+                        {t.rich("developerAkademie.items.one", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Web-Programmierung mit{" "}
-                        <span className="important-span">
-                          HTML, CSS &#40;SCSS&#41;
-                        </span>{" "}
-                        und <span className="important-span">JavaScript</span>
+                        {t.rich("developerAkademie.items.two", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Web Front-End Entwicklung mit{" "}
-                        <span className="important-span">Angular</span> und{" "}
-                        <span className="important-span">TypeScript</span>
+                        {t.rich("developerAkademie.items.three", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Nutzung von Design-Frameworks wie{" "}
-                        <span className="important-span">Bootstrap</span> und{" "}
-                        <span className="important-span">Material Design</span>{" "}
-                        und umsetzung von UI/UX-Designs{" "}
-                        <span className="important-span">&#40;Figma&#41;</span>
+                        {t.rich("developerAkademie.items.four", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Interaktion mit Datenbanken{" "}
-                        <span className="important-span">
-                          &#40;Google Firebase&#41;
-                        </span>{" "}
-                        und integration von{" "}
-                        <span className="important-span">REST APIs</span> zur
-                        Datenkommunikation
+                        {t.rich("developerAkademie.items.five", rich)}
                       </li>
                       <li className="leading-relaxed">
-                        Versionskontrolle mit{" "}
-                        <span className="important-span">
-                          Git &#40;GitHub&#41;
-                        </span>{" "}
-                        und Agiles Projektmanagement für Entwicklung im Team
-                        <span className="important-span">
-                          {" "}
-                          &#40;SCRUM, Kanban&#41;
-                        </span>
+                        {t.rich("developerAkademie.items.six", rich)}
                       </li>
                     </ul>
                   </section>

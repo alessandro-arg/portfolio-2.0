@@ -14,6 +14,7 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { HeroOrbit } from "../ui/hero-orbit";
 import { toast } from "sonner";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
+import { useTranslations } from "next-intl";
 
 const EMAIL = "contact@alessandro-argenziano.com";
 
@@ -23,6 +24,7 @@ const EMAIL = "contact@alessandro-argenziano.com";
  * CTA buttons, and interactive contact actions.
  */
 export default function Hero() {
+  const t = useTranslations("Hero");
   const ringRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -46,22 +48,20 @@ export default function Hero() {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => setCopied(false), 3000);
 
-      const body = encodeURIComponent(
-        "Hi Alessandro,\n\nI’d like to connect about...",
-      );
+      const body = encodeURIComponent(t("email_template"));
       const mailtoUrl = `mailto:${EMAIL}?body=${body}`;
 
-      toast("Copied to clipboard!", {
-        description: "Email address copied successfully.",
+      toast(t("copied"), {
+        description: t("email_copied_successfully"),
         action: {
-          label: "Send Email",
+          label: t("send_email"),
           onClick: () => {
             window.open(mailtoUrl, "_blank", "noopener,noreferrer");
           },
         },
       });
     } catch {
-      toast.warning("Something went wrong.");
+      toast.warning(t("copy_error"));
     }
   };
 
@@ -150,13 +150,13 @@ export default function Hero() {
             transition={{ delay: 0.5, type: "spring", stiffness: 50 }}
           >
             <span className="mx-1 pl-2 rounded-full bg-[#16b1ff90] px-1.5 text-xs leading-relaxed font-medium text-white">
-              New!
+              {t("small_cta")}
             </span>
             <AnimatedShinyText className="px-1 py-0.5 flex items-center gap-1 text-neutral-600 group-hover:dark:text-white group-hover:text-black transition-all duration-300">
               <strong className="font-medium dark:text-white text-zinc-600">
-                Blog
+                {t("small_cta_title")}
               </strong>
-              • Developer Journal
+              • {t("small_cta_content")}
               <ArrowRight
                 size={24}
                 strokeWidth={3}
@@ -174,10 +174,10 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 60 }}
         >
-          I design and develop apps <br />
-          that are{" "}
+          {t("title")} <br />
+          {t("title2")}{" "}
           <span className="tracking-normal bg-linear-to-b from-zinc-300 via-zinc-700 to-zinc-900 bg-clip-text font-normal text-transparent italic dark:from-zinc-600 dark:via-zinc-200 dark:to-white">
-            fast, responsive, and scalable
+            {t("t_span")}
           </span>
         </motion.h2>
         <motion.h1
@@ -187,7 +187,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 60 }}
         >
           <span className="text-zinc-800 dark:text-neutral-300 flex items-center justify-center">
-            Hello, I&apos;m Alessandro
+            {t("greeting")}
           </span>
           <div className="mx-2 w-16 rounded-lg cursor-default overflow-hidden md:w-20 h-10 md:h-12 lg:mx-3 border border-border">
             <Image
@@ -201,7 +201,7 @@ export default function Hero() {
             />
           </div>
           <span className="text-zinc-800 dark:text-neutral-300 leading-relaxed">
-            a Fullstack Developer
+            {t("role")}
           </span>
         </motion.h1>
         <motion.div
@@ -219,7 +219,7 @@ export default function Hero() {
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-neutral-300 dark:bg-white scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100" />
             {/* Content stays above the fill */}
             <span className="z-10 px-3 text-black transition-colors duration-300 group-hover:text-black dark:text-white dark:group-hover:text-black">
-              Let&apos;s Connect
+              {t("cta_button")}
             </span>
             <span className="z-10 flex items-center justify-center overflow-hidden rounded-full bg-black p-2 transition-colors duration-300 group-hover:bg-transparent md:p-2.5 dark:bg-white">
               <ArrowRight
@@ -245,7 +245,7 @@ export default function Hero() {
             ) : (
               <Copy className="h-5 w-5" aria-hidden="true" />
             )}
-            {copied ? "Copied to clipboard" : EMAIL}
+            {copied ? t("copied") : EMAIL}
           </button>
         </motion.div>
       </div>

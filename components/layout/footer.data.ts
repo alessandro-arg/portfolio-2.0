@@ -1,35 +1,35 @@
 export type FooterLink = {
-  name: string;
+  name_key: string;
   href: string;
 };
 
 export type FooterCategory = {
-  title: string;
+  title_key: string;
   links: FooterLink[];
 };
 
 export const footerCategories: FooterCategory[] = [
   {
-    title: "General",
+    title_key: "general",
     links: [
-      { name: "Home", href: "/" },
-      { name: "About", href: "/about" },
-      { name: "Projects", href: "/projects" },
+      { name_key: "home", href: "/" },
+      { name_key: "about", href: "/about" },
+      { name_key: "projects", href: "/projects" },
     ],
   },
   {
-    title: "Resources",
+    title_key: "resources",
     links: [
-      { name: "Bucket List", href: "/bucket-list" },
-      { name: "My Setup", href: "/my-setup" },
-      { name: "Blog", href: "/blog" },
+      { name_key: "bucket_list", href: "/bucket-list" },
+      { name_key: "my_setup", href: "/my-setup" },
+      { name_key: "blog", href: "/blog" },
     ],
   },
   {
-    title: "More",
+    title_key: "more",
     links: [
-      { name: "Links", href: "/links" },
-      { name: "Attribution", href: "/attribution" },
+      { name_key: "links", href: "/links" },
+      { name_key: "attribution", href: "/attribution" },
     ],
   },
 ];

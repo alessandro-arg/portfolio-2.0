@@ -311,5 +311,35 @@
     "title": "On this page"
   },
 
-  "Projects": {}
+  "Projects": {
+    "section_eyebrow": "FEATURED CASE STUDIES",
+    "section_title": "Curated",
+    "section_highlight": "work",
+    "section_aria_label": "Projects list",
+    "section_cta": "See more projects"
+  },
+
+  "ProjectDetail": {
+    "toc_what_is": "🔍 What is {title}?",
+    "toc_key_features": "🧩 Key Features",
+    "toc_why_built": "📌 Why I Built This",
+    "toc_use_cases": "💡 Use Cases",
+    "toc_tech_stack": "🧪 Tech Stack Overview",
+    "toc_getting_started": "⚙️ Getting Started",
+    "toc_clone_repository": "Clone the repository",
+    "toc_install_dependencies": "Install dependencies",
+    "toc_build_run_locally": "Build and run locally",
+    "toc_challenges_learnings": "🧠 Challenges & Learnings",
+    "toc_see_it_action": "📸 See it in Action",
+    "check_it_out": "Check it out",
+    "not_found_title": "Project not found",
+    "metadata_suffix": "Project"
+  },
+
+  "ProjectDate": {
+    "upcoming": "(upcoming)",
+    "over_6_months": "(over 6 months ago)",
+    "over_1_year": "(over 1 yr ago)",
+    "over_years": "(over {years} yrs ago)"
+  }
 }

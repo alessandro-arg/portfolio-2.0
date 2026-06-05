@@ -311,5 +311,37 @@
 
   "TOC": {
     "title": "Übersicht"
+  },
+
+  "Projects": {
+    "section_eyebrow": "CASE STUDIES",
+    "section_title": "Ausgewählte",
+    "section_highlight": "Projekte",
+    "section_aria_label": "Projektliste",
+    "section_cta": "Mehr Projekte ansehen"
+  },
+
+  "ProjectDetail": {
+    "toc_what_is": "🔍 Was ist {title}?",
+    "toc_key_features": "🧩 Features",
+    "toc_why_built": "📌 Hintergrund des Projekts",
+    "toc_use_cases": "💡 Anwendungsfälle",
+    "toc_tech_stack": "🧪 Tech-Stack Übersicht",
+    "toc_getting_started": "⚙️ Erste Schritte",
+    "toc_clone_repository": "Repository klonen",
+    "toc_install_dependencies": "Dependencies installieren",
+    "toc_build_run_locally": "Lokal starten",
+    "toc_challenges_learnings": "🧠 Herausforderungen",
+    "toc_see_it_action": "📸 Projekt ansehen",
+    "check_it_out": "Jetzt ansehen",
+    "not_found_title": "Projekt nicht gefunden",
+    "metadata_suffix": "Projekt"
+  },
+
+  "ProjectDate": {
+    "upcoming": "(demnächst)",
+    "over_6_months": "(vor über 6 Monaten)",
+    "over_1_year": "(vor über 1 Jahr)",
+    "over_years": "(vor über {years} Jahren)"
   }
 }

@@ -292,5 +292,24 @@
     "skydive_description": "Jump from 4,000m and savor that 60s freefall.",
     "world_trip_title": "6 months Worldtrip",
     "world_trip_description": ""
-  }
+  },
+
+  "NotFound": {
+    "title": "I can't find this page",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "go_home": "Go home",
+    "back": "Go back",
+    "projects_title": "Projects",
+    "projects_description": "Browse all of my work and side projects",
+    "about_title": "About me",
+    "about_description": "Learn more about who I am and what I do",
+    "blog_title": "Blog",
+    "blog_description": "Read the latest posts on my developer journal"
+  },
+
+  "TOC": {
+    "title": "On this page"
+  },
+
+  "Projects": {}
 }

@@ -42,7 +42,7 @@ export function SmallTerminal() {
       <Terminal>
         <TypingAnimation delay={0}>$ ls</TypingAnimation>
         <AnimatedSpan delay={800} className="text-blue-500">
-          learning python && django
+          learning python && java
         </AnimatedSpan>
         <TypingAnimation delay={1600}>$ cd home</TypingAnimation>
         <AnimatedSpan delay={3200} className="text-green-500">

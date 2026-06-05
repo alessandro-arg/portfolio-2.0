@@ -294,5 +294,22 @@
     "skydive_description": "Aus 4.000 m springen und den 60-sekündigen freien Fall genießen.",
     "world_trip_title": "6 Monate Weltreise",
     "world_trip_description": ""
+  },
+
+  "NotFound": {
+    "title": "Diese Seite konnte nicht gefunden werden",
+    "description": "Die Seite existiert nicht oder wurde verschoben.",
+    "go_home": "Zur Homepage",
+    "back": "Zurück",
+    "projects_title": "Projekte",
+    "projects_description": "Entdecke meine Projekte und Experimente",
+    "about_title": "Über mich",
+    "about_description": "Erfahre mehr über mich und meine Arbeit",
+    "blog_title": "Blog",
+    "blog_description": "Lese die neuesten Einträge aus meinem Entwickler Journal"
+  },
+
+  "TOC": {
+    "title": "Übersicht"
   }
 }

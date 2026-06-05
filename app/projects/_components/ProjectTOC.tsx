@@ -9,6 +9,7 @@ import {
   TOCItem as FumaTOCItem,
   type TOCItemType,
 } from "fumadocs-core/toc";
+import { useTranslations } from "next-intl";
 
 export type TocItem = {
   id: string;
@@ -17,6 +18,7 @@ export type TocItem = {
 };
 
 export function ProjectTOC({ items }: { items: TocItem[] }) {
+  const t = useTranslations("TOC");
   // Map to Fumadocs TOC format
   const tocItems: TOCItemType[] = useMemo(
     () =>
@@ -25,7 +27,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
         title: i.title,
         depth: i.depth ?? 2,
       })),
-    [items]
+    [items],
   );
 
   // Scroll container + list refs (for Fumadocs ScrollProvider)
@@ -57,7 +59,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
   // === Our OWN highlighting (bottom 30% band) ===
   const [multiActive, setMultiActive] = useState<Set<string>>(new Set());
   const [primaryActiveHref, setPrimaryActiveHref] = useState<string | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -122,7 +124,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
       id="nd-toc"
       className={clsx(
         "sticky pb-2 pt-12 max-xl:hidden transition-opacity duration-200",
-        isPastHalf ? "opacity-0 pointer-events-none" : "opacity-100"
+        isPastHalf ? "opacity-0 pointer-events-none" : "opacity-100",
       )}
       style={{
         top: "var(--fd-toc-top, 64px)",
@@ -131,13 +133,11 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
     >
       <div className="flex h-full w-(--fd-toc-width) max-w-full flex-col pe-4">
         <div className="h-10" />
-        <h3 className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground">
-          On this page
-        </h3>
-
+        <h3 className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground"></h3>
+        {t("title")}
         <div
           ref={viewRef}
-          className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] mask-[linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-4px),transparent)] py-3 pb-8"
+          className="relative min-h-0 text-sm ms-px overflow-auto [scrollbar-width:none] mask-linear-[to_bottom,transparent,white_12px,white_calc(100%-4px),transparent] py-3 pb-8"
         >
           {/* We still use Fumadocs providers for anchor links & scroll sync,
               but we IGNORE its visual "active" styling */}
@@ -160,7 +160,7 @@ export function ProjectTOC({ items }: { items: TocItem[] }) {
                         // Neutral base color (don't rely on Fumadocs data-[active=true])
                         "text-fd-muted-foreground hover:text-fd-accent-foreground",
                         // Own highlight rules:
-                        (isMulti || isPrimary) && "text-fd-primary font-medium"
+                        (isMulti || isPrimary) && "text-fd-primary font-medium",
                       )}
                       data-fuma="toc-item"
                       data-depth={depth}

@@ -4,14 +4,14 @@ import { useTranslations } from "next-intl";
 import { FooterCategory } from "./footer.data";
 
 export function FooterLinks({ category }: { category: FooterCategory }) {
+  const t = useTranslations("Footer");
+
   if (!category) {
     if (process.env.NODE_ENV !== "production") {
       console.error("FooterLinks: `category` prop is required.");
     }
     return null;
   }
-
-  const t = useTranslations("Footer");
 
   return (
     <div className="flex flex-col gap-2 sm:gap-4 cursor-default min-w-[250px] sm:min-w-[100px]">

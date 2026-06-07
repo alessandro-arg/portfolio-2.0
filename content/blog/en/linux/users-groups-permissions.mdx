@@ -1,0 +1,292 @@
+---
+title: "Users, Groups & Permissions"
+description: "Learning how Linux users, groups, ownership and permissions work, including chmod, sudo, root, and user management."
+date: "2026-06-08"
+updated: "2026-06-08"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/04-users-groups-permissions/cover.png"
+---
+
+In the last few weeks I haven't had as much time for Linux as I would have liked because I was busy moving into a new home. Between unpacking boxes and getting everything set up, my homelab also needed some rearranging. I even had to move my Pi upstairs and put it on top of my printer just so it could stay connected via LAN lol.
+
+Even though I was short on time, I still managed to get some hands-on experience with Linux users, groups, and permissions. It turned out to be a really interesting topic and helped me better understand how Linux manages access, security, and responsibility between different users on a system.
+
+A lot of concepts make more sense once I understood who owns a file, who is allowed to access it, and why not everybody should have root privileges.
+
+## What I did
+
+I started by looking at user management and finding out who I was currently logged in as.
+
+Commands like <Hl>who</Hl> and <Hl>w</Hl> show information about logged-in users and active sessions.
+
+I also explored the `id` command:
+
+```bash
+id
+```
+
+Example output in my case:
+
+```bash
+uid=1000(user) gid=1003(user) groups=1003(user),4(adm),20(dialout),
+24(cdrom),27(sudo),29(audio),44(video),46(plugdev),60(games),
+100(users),107(netdev),992(render),995(input),1000(gpio),1001(spi),1002(i2c)
+```
+
+This shows:
+
+- <Hl>uid</Hl> - Your user ID number
+- <Hl>gid</Hl> - Your primary group ID
+- <Hl>groups</Hl> - All groups you belong to
+
+### Understanding Users
+
+Every user has:
+
+- a username (like <Hl>user</Hl>)
+- a user Id number (like <Hl>1000</Hl>)
+- a home directory (like <Hl>/home/user</Hl>)
+- a default shell (like <Hl>/bin/bash</Hl>)
+
+User information is stored in `/etc/passwd`:
+
+```bash
+cat /etc/passwd
+```
+
+Each line represents a user:
+
+```text
+yourusername:x:1000:1000:Your Name:/home/yourusername:/bin/bash
+```
+
+The `x` means that the actual password hash is stored elsewhere, inside `/etc/shadow`.
+
+### Understanding Groups
+
+Groups allow multiple users to share access to files. We can see the groups with:
+
+```bash
+cat /etc/group
+```
+
+And each line will look like this:
+
+```bash
+sudo:x:27:yourusername
+```
+
+So we can see that the format is something like: `groupname:passowrd:gid:members`
+
+Some of the most commons groups are:
+
+- `sudo` - can use sudo commands
+- `adm` - can read log files
+- `www-data` - web server group
+- `docker` - can use docker
+
+### Creating a User
+
+After that I practiced creating and removing users:
+
+```bash
+sudo adduser testuser
+```
+
+You need to set a password and some optional info like Name, Company etc. (pressing Enter skips the optional fields, letting them empty)
+
+This creates:
+
+- a new user account
+- a home directory `/home/testuser`
+- a group with the same name
+
+### Deleting a User
+
+```bash
+sudo deluser testuser
+```
+
+To remove the user's home directory as well:
+
+```bash
+sudo deluser --remove-home testuser
+```
+
+## File Permissions
+
+Understanding the permission string shown by `ls -l` was a big challenge.
+
+For example:
+
+```bash
+ls -l /etc/passwd
+```
+
+Output:
+
+```text
+-rw-r--r-- 1 root root 1842 Dec 10 14:30 /etc/passwd
+```
+
+At first this looked completely random to me.
+
+Once I broke it down, it became much easier:
+
+```bash
+-rw-r--r--  1  root  root  1842  Dec 10 14:30  /etc/passwd
+│├─┤├─┤├─┤ │   │     │     │         │           │
+│ │  │  │  │   │     │     │         │           └── Filename
+│ │  │  │  │   │     │     │         └── Modification date
+│ │  │  │  │   │     │     └── Size in bytes
+│ │  │  │  │   │     └── Group owner
+│ │  │  │  │   └── User owner
+│ │  │  │  └── Number of hard links
+│ │  │  └── Others permissions
+│ │  └── Group permissions
+│ └── Owner permissions
+└── File type (- = file, d = directory, l = link)
+```
+
+I also had to get used to thinking about permissions from three different perspectives. Owner, group and others.
+
+That was confusing at first, but after a few tests it started to click.
+
+### The Permission Types
+
+Example:
+
+```bash
+-rw-r--r--    Regular file, owner can read/write, others can only read
+-rwxr-xr-x  Executable, owner full access, others can read/execute
+drwxr-xr-x  Directory, owner full access, others can read/enter
+-rw-------      File only owner can read/write (private)
+```
+
+### Changing Permissions: chmod
+
+One of the most useful commands I learned was `chmod`, which changes file permissions.
+
+Symbolic mode:
+
+```bash
+chmod u+x script.sh    # Add execute for user (owner)
+chmod g+w file.txt     # Add write for group
+chmod o-r file.txt     # Remove read for others
+chmod a+r file.txt     # Add read for all (a = all)
+chmod u+rwx file.txt   # Add read, write, execute for user
+```
+
+Where:
+
+- `u` = user
+- `g` = group
+- `o` = others
+- `a` = all
+- `+` = add permission
+- `-` = remove permission
+
+I also learned the numeric method.
+
+Permission values:
+
+```text
+r = 4
+w = 2
+x = 1
+```
+
+Common combinations:
+
+```bash
+chmod 755 script.sh    # rwxr-xr-x  (executable by all)
+chmod 644 file.txt     # rw-r--r--    (readable by all)
+chmod 600 secret.txt   # rw-------      (private file)
+chmod 700 private_dir  # rwx------      (private directory)
+```
+
+Before this I had seen commands like `chmod 755` many times, but I never really knew what those numbers meant. Now I understand that they are simply combinations of read, write and execute permissions.
+
+### Changing Ownership: chown
+
+Change owner:
+
+```bash
+sudo chown username file.txt
+```
+
+Change group:
+
+```bash
+sudo chgrp developers file.txt
+```
+
+Recursive (for directories):
+
+```bash
+sudo chown -R user:group directory/
+```
+
+## Sudo and Root
+
+Another interesting topic was the root user.
+
+The root (also called superuser) has UID 0 and can do basically anything on the system:
+
+- read any file
+- modify any file
+- kill any process
+- change system settings
+
+That power is exactly why people generally do not work as root all day.<br />
+A single typo can damage a system.<br />
+Running everything as root also increases security risks because malware would immediately have full access, for example.
+
+Instead, Linux uses `sudo` to temporarily elevate privileges when needed.
+
+For example:
+
+```bash
+sudo apt update        # Update packages (needs root)
+sudo vi /etc/hosts     # Edit system file (needs root)
+sudo cat /etc/shadow   # View passwords file (needs root)
+
+```
+
+### Sudo Timeout
+
+After entering your own password, sudo remembers the authentication for a short period. You won’t be asked again immediately.
+
+To clear it manually:
+
+```bash
+sudo -k
+```
+
+### Running a Root Shell
+
+To open a root shell:
+
+```bash
+sudo -i
+```
+
+This gives you a root shell. Your prompt changes from `$` to `#`.
+
+And you can return to your normal user with `exit`.
+
+<Callout type="warning">
+  Warning: Be extremely careful in a root shell. Don’t leave it open.
+</Callout>
+
+## Conclusion
+
+The connection between users, groups, ownership and permissions is much clearer now. I can see why Linux was designed this way, especially when multiple users share the same system.
+
+The biggest takeaway for me was understanding that permissions are not just about security. They are also about controlling responsibility and preventing mistakes.
+
+Next I will move on to Vi(m) basics.

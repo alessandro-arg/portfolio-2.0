@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {t("read_time")}
                 </p>
                 <p className="font-mono text-sm text-foreground">
-                  {post.readingTime}
+                  {post.readingTime} min.
                 </p>
               </div>
 

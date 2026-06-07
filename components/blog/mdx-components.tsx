@@ -87,9 +87,9 @@ function Callout({ children, type = "info" }: CalloutProps) {
   const s = calloutStyles[type];
   return (
     <div
-      className={`my-6 flex gap-3 rounded-xl border ${s.border} ${s.bg} px-4 py-3`}
+      className={`my-6 flex gap-3 rounded-xl border ${s.border} ${s.bg} px-4 items-center `}
     >
-      <span className={`mt-0.5 shrink-0 text-sm font-semibold ${s.text}`}>
+      <span className={`shrink-0 text-sm font-semibold ${s.text}`}>
         {s.icon}
       </span>
       <div className="text-sm text-muted-foreground leading-relaxed">

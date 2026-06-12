@@ -1,0 +1,174 @@
+---
+title: "Getting comfortable with vi(m)"
+description: "Learning the basics of vim, understanding why vi still matters, and getting comfortable editing files directly from the Linux CLI."
+date: "2026-06-13"
+updated: "2026-06-13"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/05-vim-basics/cover.png"
+---
+
+This week I wanted to get more comfortable editing files. <br/>
+As someone who usually spends most of the day in VS Code, opening a text editor inside a terminal felt a bit old-school at first. I knew about `nano` and `vim`, but I wasn't really sure which one made more sense to learn first.
+
+Most beginners seem to start with nano because it's simple and easy to understand. Vim has a reputation for being powerful, but also for being confusing.
+
+So why did I decide to start with vi? <br/>
+Because it's everywhere.
+
+Whether it's a Linux server, a Unix machine, macOS, a minimal Docker container, or some random embedded device, there's a good chance vi is already installed. If I SSH into a server and need to quickly fix a configuration file, I can't assume `VS Code` or `nano` will be available.
+
+As Mischa van den Burg put it:
+
+<Quote>Every Linux system has vi. Learn it once, use it forever.</Quote>
+
+That was enough to convince me.
+
+## What I Did
+
+One of the first things I learned is that on Ubuntu, `vi` is actually Vim.
+
+```bash
+ls -la /usr/bin/vi
+```
+
+Output:
+
+```bash
+lrwxrwxrwx 1 root root ... /usr/bin/vi -> /etc/alternatives/vi
+```
+
+Following the symlink:
+
+```bash
+ls -la /etc/alternatives/vi
+```
+
+Output:
+
+```bash
+lrwxrwxrwx 1 root root ... /etc/alternatives/vi -> /usr/bin/vim.basic
+```
+
+So while I type `vi`, I'm actually using Vim.
+
+That is nice while learning, but it's also good to know that many production containers don't include the full Vim experience.
+
+The famous `hjkl` navigation was another thing I finally got to try.
+
+```text
+h = left
+j = down
+k = up
+l = right
+```
+
+Honestly, it felt ridiculous at first.
+
+My brain kept reaching for the arrow keys automatically. After a while though, I started understanding why people use it. Keeping your hands on the keyboard without moving around actually feels pretty efficient. But yeah, I'm still using the arrow keys lol.
+
+## Where I Struggled
+
+The hardest part wasn't moving around files.
+
+It was understanding that vim works completely differently from editors I'm used to.
+
+At the beginning I would open a file, start typing, and then wonder why nothing was happening.
+
+That's when the whole "modes" concept finally clicked.
+
+There is:
+
+- `Normal mode` for commands
+- `Insert mode` for writing text
+
+Once I understood that, things became much less confusing.
+
+I also had a few moments where I couldn't remember how to leave Vim.
+
+```bash
+:wq
+```
+
+to save and quit.
+
+```bash
+:q!
+```
+
+to quit without saving.
+
+Simple now, but definitely not intuitive on day one.
+
+## Trying busybox vi
+
+I also spent some time looking at `busybox`.
+
+Busybox provides lightweight versions of common Linux tools and is often used in:
+
+- Docker containers
+- Embedded systems
+- Routers
+- Recovery environments
+
+To see what a minimal editor looks like, I installed busybox and tried:
+
+```bash
+busybox vi test.txt
+```
+
+The differences were immediately noticeable:
+
+- No `-- INSERT --` indicator
+- No syntax highlighting
+- Only one level of undo
+
+It feels much more basic than Vim.
+
+What I found interesting is that all the commands I've been learning still work there. That's why I'm trying to focus on the fundamentals first instead of learning lots of vim-specific shortcuts.
+
+## What I Learned
+
+At the moment, these are the commands I want to know without thinking:
+
+1. `i` - Start typing
+2. `Esc` - Leave insert mode
+3. `:wq` - Save and quit
+4. `:q!` - Quit without saving
+5. `dd` - Delete a line
+6. `u` - Undo
+
+That's honestly enough for most situations I'll run into right now.
+
+I also picked up a few extras:
+
+7. `x` - Delete a character
+8. `o` - Create a new line and start typing
+
+Nothing advanced yet, but enough to make edits without feeling completely lost.
+
+I also discovered `vimtutor`, which is probably the best resource I've found so far. Instead of watching videos, I could actually practice commands directly inside the editor on a second interface.
+
+<img src="/blog/linux/05-vim-basics/vimtutor.png" />
+
+## Conclusion
+
+I think vim gets a scarier reputation than it deserves.
+
+Sure, it's different, and the first hour can feel frustrating. But once I stopped trying to use it like VS Code and accepted that it works differently, it started making a lot more sense.
+
+I'm definitely nowhere near proficient yet, but I already feel much more comfortable opening files and making changes from the terminal.
+
+For now, my plan is simple: keep working through `vimtutor`, build some muscle memory, and stop googling how to quit vim every few weeks...
+
+### Key Takeaways
+
+- Vi is available on almost every Linux system.
+- On Ubuntu, `vi` is usually Vim behind the scenes.
+- Understanding Normal mode vs Insert mode is the biggest hurdle.
+- `hjkl` feels weird at first, but becomes surprisingly natural.
+- Busybox vi is much closer to what you'll find in lightweight containers.
+- You only need a handful of commands to start being useful.

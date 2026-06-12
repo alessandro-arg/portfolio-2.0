@@ -75,7 +75,7 @@ export const portfolio: Project = {
     {
       title: "Animationsgetriebener Hero & visuelle Identität",
       description:
-        "Landing-Bereich mit animiertem Hintergrund und einer klaren Headline, die mich als Full-Stack-Entwickler für schnelle, skalierbare Anwendungen positioniert.",
+        "Landing-Bereich mit animiertem Hintergrund und einer klaren Headline, die mich als Software Entwickler für schnelle, skalierbare Anwendungen positioniert.",
     },
     {
       title: "Ausgewählte Case Studies & Projekte",

@@ -30,7 +30,7 @@
     "small_cta_title": "Blog",
     "small_cta_content": "Entwicklertagebuch",
     "greeting": "Hallo, ich bin Alessandro",
-    "role": "ein Fullstack Developer",
+    "role": "ein Software Developer",
     "cta_button": "Kontakt aufnehmen",
     "copied": "In Zwischenablage kopiert!",
     "email_copied_successfully": "E-Mail-Adresse erfolgreich kopiert.",
@@ -51,7 +51,7 @@
     "blog": "Blog",
     "links": "Links",
     "attribution": "Inspiration",
-    "description": "Ich bin Alessandro - Fullstack Entwickler und Problemlöser. Danke für dein besuch!",
+    "description": "Ich bin Alessandro - Software Entwickler und Problemlöser. Danke für dein besuch!",
     "all_rights_reserved": "",
     "privacy_policy": "Datenschutzerklärung",
     "terms_conditions": "Impressum",
@@ -152,9 +152,9 @@
 
   "About": {
     "landing_about_eyebrow": "Über mich",
-    "landing_about_title": "Full-Stack Entwickler und ein bisschen von",
+    "landing_about_title": "Software Entwickler und ein bisschen von",
     "landing_about_highlight": "allem",
-    "landing_about_text_1": "Ich bin Alessandro, ein Full-Stack Entwickler mit Leidenschaft für dynamische Apps. Vom Frontend bis zum Backend liebe ich es, komplexe Probleme mit sauberem und effizientem Code zu lösen. Meine Erfahrung umfasst Angular, React und Next.js, und ich bin immer bereit, Neues zu lernen.",
+    "landing_about_text_1": "Ich bin Alessandro, ein Software Entwickler mit Leidenschaft für dynamische Apps. Vom Frontend bis zum Backend liebe ich es, komplexe Probleme mit sauberem und effizientem Code zu lösen. Meine Erfahrung umfasst Angular, React und Next.js, und ich bin immer bereit, Neues zu lernen.",
     "landing_about_text_2": "Wenn ich nicht gerade in der Arbeit vertieft bin, entdecke ich neue Ideen oder neue Berge und bleibe neugierig. Im Leben geht es um Balance, und ich liebe es, jeden Teil davon zu genießen, besonders im Snowpark.",
     "landing_about_text_3": "Ich glaube dass kleine tägliche Fortschritte zu großen Ergebnissen führen können.",
     "landing_about_cta": "Berufserfahrung",
@@ -164,7 +164,7 @@
     "about_page_eyebrow": "Mehr über mich",
     "about_page_title": "Ich bin Alessandro, ein\nkreativer",
     "about_page_highlight": "Entwickler",
-    "about_page_text_1": "Ich bin Alessandro, ein Full-Stack Entwickler mit Leidenschaft für dynamische Web-Erlebnisse. Vom Frontend bis zum Backend löse ich komplexe Probleme mit sauberem und effizientem Code. Meine Erfahrung umfasst Python, Typescript, Angular und React, und ich bin immer motiviert, Neues zu lernen.",
+    "about_page_text_1": "Ich bin Alessandro, ein Software Entwickler mit Leidenschaft für dynamische Web-Erlebnisse. Vom Frontend bis zum Backend löse ich komplexe Probleme mit sauberem und effizientem Code. Meine Erfahrung umfasst Python, Typescript, Angular und React, und ich bin immer motiviert, Neues zu lernen.",
     "about_page_text_2": "Wenn ich nicht gerade in der Arbeit vertieft bin, erkunde ich neue Berge, fahre durch frischen Powder oder versuche mir nichts im Snowpark zu brechen.",
     "about_page_text_3": "Jeder Tag ist für mich eine neue Chance, etwas zu bewegen."
   },

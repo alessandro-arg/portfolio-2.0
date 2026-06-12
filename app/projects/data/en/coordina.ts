@@ -5,7 +5,7 @@ export const coordina: Project = {
   smallDescription:
     "Modern project & task management with Kanban boards, calendar views, analytics, and collaborative workspaces.",
   description:
-    "Coordina is a sleek, opinionated project & task management platform. It combines Kanban boards, full-calendar scheduling, analytics dashboards, and multi-workspace collaboration into a single, fast Next.js app. Users can create projects, invite members, prioritize work with labels and due dates, and track progress over time via charts.",
+    "Coordina is a sleek, opinionated project & task management platform. It combines Kanban boards, full calendar scheduling, analytics dashboards, and multi-workspace collaboration into a single, fast Next.js app. Users can create projects, invite members, prioritize work with labels and due dates, and track progress over time via charts.",
   src: "/images/coordina_mockup.webp",
   href: "/projects/coordina",
   liveLink: "https://coordina.alessandro-argenziano.com",

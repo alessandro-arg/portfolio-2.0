@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     canonical: "./",
   },
   title: "Alessandro Argenziano",
-  description: "Fullstack Developer • Python • Angular • React",
+  description: "Software Developer • Python • Angular • React",
   icons: {
     icon: [
       { url: "/favicon.ico?v=2" },

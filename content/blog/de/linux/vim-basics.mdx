@@ -1,6 +1,6 @@
 ---
 title: "Sicheren umgang mit vi(m)"
-description: "Die Grundlagen von Vim lernen, verstehen warum vi immer noch wichtig ist und sich daran gewöhnen, Dateien direkt über die Linux-CLI zu bearbeiten."
+description: "Die Grundlagen von vim lernen, verstehen warum vi immer noch wichtig ist und mich daran gewöhnen, Dateien direkt über die Linux-CLI zu bearbeiten."
 date: "2026-06-13"
 updated: "2026-06-13"
 topic: "linux"
@@ -11,33 +11,24 @@ published: true
 cover: "/blog/linux/05-vim-basics/cover.png"
 ---
 
-Diese Woche wollte ich mich wohler dabei fühlen, Dateien zu bearbeiten. <br/>
-Als jemand, der normalerweise den Großteil des Tages in VS Code verbringt, fühlte sich ein Texteditor im Terminal zunächst etwas altmodisch an. Ich kannte `nano` und `vim`, war mir aber nicht wirklich sicher, welchen Editor ich zuerst lernen sollte.
+Als jemand, der normalerweise den Großteil des Tages in VS Code verbringt, fühlte sich ein Texteditor im Terminal etwas altmodisch an. Ich kannte `nano` und `vim`, war mir aber nicht wirklich sicher, welchen Editor ich zuerst lernen sollte.
 
-Die meisten Anfänger scheinen mit Nano anzufangen, weil es einfach und leicht verständlich ist. Vim hat den Ruf, sehr mächtig zu sein, aber auch verwirrend.
+Die meisten Anfänger scheinen mit Nano anzufangen, weil es einfach und leicht verständlich ist.
 
 Warum habe ich mich also entschieden, mit vi anzufangen? <br/>
 Weil es überall verfügbar ist.
 
-Egal ob Linux-Server, Unix-System, macOS, ein minimaler Docker-Container oder irgendein eingebettetes Gerät – die Wahrscheinlichkeit ist hoch, dass vi bereits installiert ist. Wenn ich mich per SSH auf einen Server verbinde und schnell eine Konfigurationsdatei ändern muss, kann ich nicht davon ausgehen, dass `VS Code` oder `nano` verfügbar sind.
-
-Wie Mischa van den Burg es ausdrückte:
-
-<Quote>
-  Jedes Linux-System hat vi. Lerne es einmal und nutze es für immer.
-</Quote>
-
-Das hat mich überzeugt.
+Egal ob Linux Server, Unix System, macOS, ein minimaler Docker Container oder irgendein Embedded System; vi sollte bereits installiert sein. Wenn ich mich per SSH auf einen Server verbinde und schnell eine Datei ändern muss, kann ich nicht davon ausgehen, dass `VS Code` oder `nano` verfügbar sind.
 
 ## Was ich gemacht habe
 
-Eines der ersten Dinge, die ich gelernt habe, ist, dass `vi` unter Ubuntu eigentlich Vim ist.
+Eines der ersten Dinge die ich gelernt habe ist, dass `vi` unter Ubuntu eigentlich `vim` ist.
 
 ```bash
 ls -la /usr/bin/vi
 ```
 
-Ausgabe:
+Output:
 
 ```bash
 lrwxrwxrwx 1 root root ... /usr/bin/vi -> /etc/alternatives/vi
@@ -49,17 +40,17 @@ Wenn man dem Symlink folgt:
 ls -la /etc/alternatives/vi
 ```
 
-Ausgabe:
+Output:
 
 ```bash
 lrwxrwxrwx 1 root root ... /etc/alternatives/vi -> /usr/bin/vim.basic
 ```
 
-Auch wenn ich also `vi` eingebe, benutze ich in Wirklichkeit Vim.
+Auch wenn ich also `vi` eingebe, benutze ich in eigentlich vim.
 
-Das ist beim Lernen ganz praktisch, aber es ist auch gut zu wissen, dass viele Produktionscontainer nicht die vollständige Vim-Erfahrung mitbringen.
+Das ist beim Lernen ganz praktisch, aber es ist auch gut zu wissen dass viele Container nicht die vollständige vim-experience mitbringen.
 
-Die berühmte `hjkl`-Navigation war ein weiteres Thema, das ich endlich ausprobieren konnte.
+Die berühmte "hjkl"-Navigation war mir nicht bekannt. Ich fand sie lustig und gleichzeitig seltsam.
 
 ```text
 h = links
@@ -68,28 +59,25 @@ k = hoch
 l = rechts
 ```
 
-Ganz ehrlich: Am Anfang fühlte sich das ziemlich lächerlich an.
-
-Mein Gehirn wollte automatisch ständig die Pfeiltasten benutzen. Nach einer Weile begann ich aber zu verstehen, warum viele Leute damit arbeiten. Die Hände dauerhaft auf der Tastatur zu lassen, ohne ständig zu den Pfeiltasten zu wechseln, fühlt sich tatsächlich ziemlich effizient an. Aber ja, ich benutze trotzdem noch die Pfeiltasten lol.
+Mein Gehirn wollte automatisch ständig die Pfeiltasten benutzen. Nach einer Weile habe ich verstanden, warum viele Leute damit arbeiten. Die Hände dauerhaft auf der Tastatur zu lassen, ohne ständig zu den Pfeiltasten zu wechseln, fühlt sich tatsächlich ziemlich effizient an. Aber ja, ich benutze trotzdem noch die Pfeiltasten lol.
 
 ## Wo ich Schwierigkeiten hatte
 
 Der schwierigste Teil war nicht die Navigation durch Dateien.
 
-Es war zu verstehen, dass Vim komplett anders funktioniert als die Editoren, die ich gewohnt bin.
-
+Vim funktioniert komplett anders als die Editoren die ich bis jetzt benutzt habe. <br/>
 Am Anfang habe ich eine Datei geöffnet, angefangen zu tippen und mich gefragt, warum nichts passiert.
 
-Genau da hat das ganze Konzept der "Modi" endlich Klick gemacht.
+Dann habe ich die zwei "Modes" gefunden.
 
 Es gibt:
 
 - `Normal Mode` für Befehle
 - `Insert Mode` zum Schreiben von Text
 
-Sobald ich das verstanden hatte, wurde alles deutlich weniger verwirrend.
+Jetzt alles deutlich weniger verwirrend.
 
-Ich hatte auch einige Momente, in denen ich vergessen hatte, wie man Vim wieder verlässt.
+Ich hatte auch einige Momente, in denen ich vergessen hatte, wie man vim wieder verlässt...
 
 ```bash
 :wq
@@ -111,10 +99,10 @@ Ich habe mir außerdem etwas Zeit genommen, um `busybox` anzusehen.
 
 Busybox liefert schlanke Versionen vieler Linux-Werkzeuge und wird häufig verwendet in:
 
-- Docker-Containern
-- Embedded-Systemen
+- Docker Containern
+- Embedded Systemen
 - Routern
-- Recovery-Umgebungen
+- Recovery Umgebungen
 
 Um zu sehen, wie ein minimalistischer Editor aussieht, habe ich Busybox installiert und Folgendes ausprobiert:
 
@@ -128,19 +116,19 @@ Die Unterschiede sind sofort aufgefallen:
 - Kein Syntax Highlighting
 - Nur eine Undo-Stufe
 
-Es fühlt sich deutlich einfacher an als Vim.
+Es fühlt sich ein bisschen einfacher an als vim.
 
-Interessant fand ich, dass alle Befehle, die ich gerade lerne, dort trotzdem funktionieren. Deshalb versuche ich mich zuerst auf die Grundlagen zu konzentrieren, statt direkt viele Vim-spezifische Shortcuts zu lernen.
+Alle Befehle die ich gerade lerne, funktionieren auch dort. Deshalb versuche ich mich zuerst auf die Grundlagen zu konzentrieren, statt direkt viele vim-spezifische Shortcuts zu lernen.
 
 ## Was ich gelernt habe
 
-Im Moment möchte ich diese Befehle ohne nachzudenken beherrschen:
+Im Moment möchte ich mir diese Befehle ohne nachzudenken merken:
 
 1. `i` - Mit dem Schreiben beginnen
 2. `Esc` - Insert Mode verlassen
 3. `:wq` - Speichern und beenden
 4. `:q!` - Ohne Speichern beenden
-5. `dd` - Eine Zeile löschen
+5. `dd` - Eine ganze Zeile löschen
 6. `u` - Rückgängig machen
 
 Das reicht ehrlich gesagt für die meisten Situationen, die mir aktuell begegnen werden.
@@ -158,18 +146,18 @@ Außerdem habe ich `vimtutor` entdeckt. Das ist wahrscheinlich die beste Ressour
 
 ## Fazit
 
-Ich glaube, Vim hat einen einschüchternderen Ruf, als es eigentlich verdient.
+Ich finde `vim` lässt sich einfacher bedienen als gedacht.
 
-Klar, es ist anders und die erste Stunde kann frustrierend sein. Aber sobald ich aufgehört habe, es wie VS Code benutzen zu wollen und akzeptiert habe, dass es anders funktioniert, ergab vieles deutlich mehr Sinn.
+Klar, es ist anders und die erste Stunde kann frustrierend sein. Aber sobald ich aufgehört habe, es wie VS Code benutzen zu wollen und akzeptiert habe dass es anders funktioniert, war es relativ straight forward.
 
 Von echter Routine bin ich noch weit entfernt, aber ich fühle mich jetzt schon deutlich wohler dabei, Dateien direkt im Terminal zu öffnen und zu bearbeiten.
 
-Mein Plan ist erstmal einfach: weiter mit `vimtutor` üben, Muskelgedächtnis aufbauen und aufhören, alle paar Wochen zu googeln, wie man Vim beendet...
+Mein Plan ist erstmal einfach: weiter mit `vimtutor` üben, Muscle Memory aufbauen und aufhören, alle paar Wochen zu googeln, wie man vim beendet...
 
 ### Wichtigste Erkenntnisse
 
-- Vi ist auf fast jedem Linux-System verfügbar.
-- Unter Ubuntu ist `vi` meistens Vim im Hintergrund.
+- Vi ist auf fast jedem Linux System verfügbar.
+- Unter Ubuntu ist `vi` meistens vim im Hintergrund.
 - Der größte Stolperstein ist das Verständnis von Normal Mode und Insert Mode.
 - `hjkl` fühlt sich anfangs seltsam an, wird aber überraschend natürlich.
 - Busybox vi entspricht eher dem, was man in schlanken Containern vorfindet.

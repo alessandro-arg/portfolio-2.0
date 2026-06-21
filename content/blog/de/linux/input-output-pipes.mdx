@@ -1,0 +1,357 @@
+---
+title: "Input, Output und Pipes"
+description: "Ich habe mich weiter mit Linux beschäftigt und diesmal besser verstanden, wie Commands ihre Eingaben, Ausgaben und Fehler behandeln."
+date: "2026-06-22"
+updated: "2026-06-22"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/06-input-output-pipes/cover.png"
+---
+
+Die letzten Wochen waren nicht wirklich meine produktivsten Linux-Wochen.
+
+Ich habe stattdessen ziemlich viel Zeit damit verbracht, mit meinem Uno R3 und der Arduino IDE herumzuspielen. Also ja, nicht direkt Linux, aber trotzdem technisch und spaßig. Ich wollte ein bisschen besser verstehen, wie Sensoren und Module funktionieren, besonders von der Hardware-Seite aus.
+
+Ich glaube, solche Dinge können später trotzdem nützlich sein. Vielleicht nicht direkt für Bash-Befehle, aber wenn Raspberry Pi, Linux, kleine Automatisierungsprojekte und Hardware irgendwann zusammenkommen, hilft es wahrscheinlich, beide Seiten ein wenig gesehen zu haben.
+
+Aber ich wollte meinen Linux Weg trotzdem fortsetzen, auch wenn nur in kleineren Schritten.
+
+Diesmal habe ich mir `input`, `output`, `redirects` und `pipes` angesehen.
+
+## Was ich gemacht habe
+
+Ich habe mit der grundlegenden Idee von Standard-Streams angefangen.
+
+Vorher hatte ich Begriffe wie `stdin`, `stdout` und `stderr` schon oft gesehen, aber nie wirklich angehalten und darüber nachgedacht, was sie eigentlich bedeuten.
+
+Der Teil `std` bedeutet einfach standard:
+
+```bash
+stdin   # standard input
+stdout  # standard output
+stderr  # standard error
+```
+
+Und sie haben auch File Descriptors:
+
+```bash
+0   stdin
+1   stdout
+2   stderr
+```
+
+Das war eines dieser Themen, die am Anfang sehr abstrakt wirken, aber deutlich klarer werden, sobald man `redirects` ausprobiert.
+
+Wenn ich zum Beispiel ausführe:
+
+```bash
+ls /etc > listing.txt
+```
+
+wird die normale Ausgabe von `ls /etc` in eine Datei geschrieben, statt im Terminal angezeigt zu werden.
+
+Das wichtige Detail ist, dass `>` die Datei überschreibt:
+
+```bash
+echo "Line 1" > file.txt
+```
+
+Und zwei `>>` hängen etwas an:
+
+```bash
+echo "Line 2" >> file.txt
+```
+
+Dieser Unterschied ist klein, aber auch gefährlich, wenn man nicht aufpasst. Ein Zeichen mehr oder weniger kann entscheiden, ob man den alten Inhalt behält oder überschreibt.
+
+Ich habe auch versucht, Fehler umzuleiten:
+
+```bash
+ls /does-not-exist 2> errors.txt
+```
+
+Das war der Moment, in dem die File Descriptors mehr Sinn ergeben haben. `2>` bedeutet: standard error umleiten.
+
+Davor habe ich Fehler und normale Ausgabe immer einfach als „Text im Terminal“ gesehen. Aber Linux behandelt sie als verschiedene Streams, auch wenn sie auf dem Bildschirm ähnlich aussehen.
+
+<Callout type="info">
+  Das war eines dieser kleinen, nützlichen Details für mich: stdout und stderr
+  können beide im Terminal erscheinen, sind aber nicht dasselbe.
+</Callout>
+
+## Mit Pipes spielen
+
+Nach den `redirects` habe ich mehr Zeit mit Pipes verbracht.
+
+Eine Pipe nimmt die Ausgabe eines Befehls und sendet sie als Eingabe an einen anderen Befehl.
+
+```bash
+ls /etc | head -5
+```
+
+`ls /etc` erzeugt also eine Ausgabe, und `head -5` zeigt nur die ersten fünf Zeilen.
+
+Solche Befehle kannte ich schon aus den letzten Wochen. Der erste Befehl schreibt nach stdout, und die Pipe verbindet dieses stdout mit stdin des nächsten Befehls.
+
+Ein Befehl kann sehr viel Ausgabe erzeugen, und ein anderer Befehl kann diese dann kürzen, sortieren, zählen oder verändern.
+
+Zum Beispiel:
+
+```bash
+cat /etc/passwd | grep bash | wc -l
+```
+
+Das liest `/etc/passwd`, filtert Zeilen mit `bash` und zählt sie.
+
+Ich weiß, dass es manchmal sauberere Wege gibt, solche Befehle zu schreiben, zum Beispiel indem man `grep` die Datei direkt lesen lässt. Aber zum Lernen von Pipes hat es mir sehr geholfen, es so zu schreiben.
+
+Dadurch wurde der Ablauf sichtbar:
+
+```bash
+read something | filter something | count something
+```
+
+Das ist für mein Gehirn im Moment einfacher.
+
+## Kleine Filterbefehle
+
+Ich habe mir auch einige Befehle angesehen, die häufig in Pipelines verwendet werden.
+
+Befehle wie:
+
+```bash
+sort
+uniq
+cut
+tr
+tee
+xargs
+```
+
+Diese werden auch Unix-Filter genannt, und der Name ergibt Sinn. Sie nehmen Input, verändern oder filtern ihn und geben wieder Output zurück.
+
+`sort` kannte ich bereits, aber `uniq` war interessanter, als ich erwartet hatte.
+
+Am Anfang dachte ich, `uniq` würde alle doppelten Zeilen aus einer Datei entfernen. Aber es entfernt nur doppelte Zeilen, die direkt nebeneinander stehen. Deshalb ist es in den meisten Fällen sinnvoll, es zusammen mit `sort` zu verwenden.
+
+```bash
+sort names.txt | uniq
+```
+
+Mit `-c` zählt es außerdem die Vorkommen:
+
+```bash
+sort names.txt | uniq -c
+```
+
+Das gibt eine Ausgabe wie diese:
+
+```bash
+3 Alice
+2 Bob
+1 Charlie
+```
+
+Kleiner Befehl, aber sehr nützlich.
+
+Ich habe auch wieder `cut` benutzt.
+
+```bash
+cut -d: -f1 /etc/passwd
+```
+
+Das gibt das erste Feld aus `/etc/passwd` aus und verwendet `:` als Trennzeichen.
+
+Über `cut` hatte ich schon einmal gesprochen, und es erinnert mich auch an meinen dummen `/etc/passwd`-Fehler von vor ein paar Wochen
+
+Immer noch nicht mein stolzester Linux-Moment, aber ich habe daraus gelernt.
+
+<Callout type="warning">
+  Mit Dateien wie `/etc/passwd` zu arbeiten ist nützlich zum Lernen, aber ich
+  bin bei Befehlen rund um Systemdateien jetzt definitiv vorsichtiger.
+</Callout>
+
+## tr, tee und xargs
+
+Den Befehl `tr` fand ich auch interessant.
+
+Er kann Zeichen umwandeln, zum Beispiel Großbuchstaben in Kleinbuchstaben:
+
+```bash
+echo "HELLO" | tr 'A-Z' 'a-z'
+```
+
+Ausgabe:
+
+```bash
+hello
+```
+
+Oder Leerzeichen durch neue Zeilen ersetzen:
+
+```bash
+echo "hello world" | tr ' ' '\n'
+```
+
+Ausgabe:
+
+```bash
+hello
+world
+```
+
+Und mit `-d` kann er Zeichen löschen:
+
+```bash
+echo "abc123" | tr -d '0-9'
+```
+
+Ausgabe:
+
+```bash
+abc
+```
+
+Dann gibt es noch `tee`.
+
+Diesen Befehl mag ich, weil er ein sehr reales Problem löst. Manchmal möchte ich die Ausgabe im Terminal sehen, sie aber gleichzeitig in eine Datei speichern.
+
+```bash
+ls /etc | tee listing.txt
+```
+
+Die Ausgabe geht also auf den Bildschirm und in die Datei.
+
+Das fühlt sich besonders nützlich an, wenn man längere Pipelines debuggt, weil man Zwischenausgaben speichern und trotzdem mit dem nächsten Befehl weitermachen kann.
+
+```bash
+ls /etc | tee listing.txt | head -5
+```
+
+Der letzte Befehl, den ich mir angesehen habe, war `xargs`.
+
+Die Grundidee ist, dass manche Befehle stdin nicht wirklich direkt verwenden. Sie erwarten Argumente. `xargs` nimmt Input und wandelt ihn in Argumente für einen anderen Befehl um.
+
+Beispiel:
+
+```bash
+cat names.txt | xargs echo "Hello:"
+```
+
+Oder ein Element nach dem anderen:
+
+```bash
+cat names.txt | xargs -n 1 echo "Hello:"
+```
+
+Das gibt ungefähr so etwas aus:
+
+```bash
+Hello: Charlie
+Hello: Alice
+Hello: Bob
+```
+
+Ich brauche noch mehr Übung mit `xargs`, aber ich verstehe jetzt den grundlegenden Grund, warum es existiert.
+
+## Probleme auf dem Weg
+
+Das größte Problem war nicht ein einzelner Befehl.
+
+Es war eher das mentale Modell.
+
+Am Anfang habe ich normale Ausgabe, Fehler, Dateien, Input und Pipes durcheinandergebracht. Alles ist irgendwie Text im Terminal, deshalb denkt man leicht, dass alles dasselbe ist.
+
+Ist es aber nicht.
+
+Das hier hat mir geholfen, es etwas zu trennen:
+
+```bash
+command > output.txt    # stdout
+command 2> errors.txt   # stderr
+command < input.txt     # stdin from file
+```
+
+All das sieht einfach aus, wenn es in einer Tabelle steht, aber im Terminal braucht es etwas Übung.
+
+Auch `uniq` hat mich am Anfang verwirrt.
+
+Ich dachte, es würde alle Duplikate überall entfernen. Jetzt weiß ich aber, dass es nur benachbarte Duplikate entfernt. Deshalb ist vorheriges Sortieren meistens sinnvoll:
+
+```bash
+sort names.txt | uniq
+```
+
+Und ich muss weiterhin mit `redirects` vorsichtig sein.
+
+Das hier überschreibt:
+
+```bash
+command > file.txt
+```
+
+Das hier hängt an:
+
+```bash
+command >> file.txt
+```
+
+Sehr kleiner Unterschied. Sehr anderes Ergebnis.
+
+## Was ich gelernt habe
+
+Das Wichtigste, was ich gelernt habe: Pipes sind nicht nur ein fancy Terminal-Trick.
+
+Sie sind eine Möglichkeit, kleine Workflows aus einfachen Befehlen zu bauen.
+
+Vorher habe ich mir Befehle wie diesen angesehen und dachte, das seien einfach schwierige One-Liner:
+
+```bash
+du -h /var/log/* 2>/dev/null | sort -h | tail -10
+```
+
+Jetzt kann ich ihn zumindest im Kopf aufteilen:
+
+```bash
+du -h /var/log/*    # show sizes
+2>/dev/null         # hide errors
+sort -h             # sort human-readable sizes
+tail -10            # show the last 10 lines
+```
+
+Diese kleine Kette fühlt sich schon wie eine Mini-Datenpipeline an.
+
+Ich habe auch gelernt, dass viel Linux-Arbeit nicht daraus besteht, einen riesigen Befehl zu kennen. Es geht eher darum, kleine Werkzeuge in der richtigen Reihenfolge zu kombinieren.
+
+Etwa so:
+
+```bash
+get output | filter it | sort it | count it
+```
+
+Dieses Muster fühlt sich wichtig an.
+
+Ich kann mir gut vorstellen, dass das später bei Logs, Prozessen, Docker-Ausgaben, Server-Debugging und Bash-Skripten nützlich wird.
+
+## Fazit
+
+Das war nicht meine aktivste Linux-Woche.
+
+Ich war etwas von Arduino-Sachen abgelenkt, und ehrlich gesagt hilft das Wetter auch nicht. Es ist heiß, mein Computer macht es noch schlimmer, und manchmal wäre ich lieber im Wasser als im Terminal.
+
+Aber ich habe trotzdem ein besseres Gefühl für Input, Output, Fehler, `redirects` und Pipes bekommen.
+
+Ich fühle mich damit noch nicht flüssig. Aber ich verstehe die Grundlagen besser als vorher, besonders warum stdout und stderr getrennt sind, warum `sort | uniq` ein so häufiges Muster ist und warum `tee` und `xargs` nützlich sind.
+
+Es geht nicht darum, jeden Befehl auswendig zu lernen.
+
+Es geht eher darum, das Muster zu verstehen.
+
+Als Nächstes möchte ich das mit realeren Beispielen üben.
+
+Wahrscheinlich Logs.
+
+Denn Beispiele nur zu lesen ist eine Sache. Pipes wirklich zu benutzen, um etwas in einer chaotischen Logdatei zu finden, ist wahrscheinlich der Punkt, an dem dieses Thema wirklich nützlich wird.

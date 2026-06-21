@@ -61,7 +61,7 @@ const calloutStyles = {
     border: "border-blue-500/40",
     bg: "bg-blue-500/10",
     text: "text-blue-400",
-    icon: "i",
+    icon: "",
   },
   warning: {
     border: "border-yellow-500/40",

@@ -1,0 +1,357 @@
+---
+title: "Input, Output and Pipes"
+description: "Learning stdin, stdout, stderr, redirection, pipes, and small Unix filter commands in Linux."
+date: "2026-06-22"
+updated: "2026-06-22"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/06-input-output-pipes/cover.png"
+---
+
+The last few weeks were not really my most productive Linux weeks.
+
+I spent quite a bit of time playing around with my Elegoo Arduino Uno R3 and the Arduino IDE instead. So yeah, not exactly Linux, but still something technical and fun. I wanted to understand a bit more how sensors and modules work, especially from the hardware side.
+
+I think this kind of stuff can still be useful later. Maybe not directly for Bash commands, but when Raspberry Pi, Linux, small automation projects, and hardware start coming together, it probably helps to have seen both sides a little bit.
+
+But I still wanted to continue my Linux path, even if only in smaller steps.
+
+This time I looked into `input`, `output`, `redirection`, and `pipes`.
+
+## What I did
+
+I started with the basic idea of standard streams.
+
+Before this, I had seen words like `stdin`, `stdout`, and `stderr` many times, but I never really stopped and thought about what they actually mean.
+
+The `std` part just means standard:
+
+```bash
+stdin   # standard input
+stdout  # standard output
+stderr  # standard error
+```
+
+And they also have file descriptors:
+
+```bash
+0   stdin
+1   stdout
+2   stderr
+```
+
+This was one of those topics that looked abstract in the beginning, but became much clearer when I tried redirection.
+
+For example, when I run:
+
+```bash
+ls /etc > listing.txt
+```
+
+the normal output of `ls /etc` is send into a file instead of printing it in the terminal.
+
+The important detail is that `>` overwrites the file:
+
+```bash
+echo "Line 1" > file.txt
+```
+
+And two `>>` appends to it:
+
+```bash
+echo "Line 2" >> file.txt
+```
+
+That difference is small, but also dangerous if you are not paying attention. One character more or less can decide if you keep the old content or overwrite it.
+
+I also tried redirecting errors:
+
+```bash
+ls /does-not-exist 2> errors.txt
+```
+
+This was the moment where the file descriptors started to make more sense. `2>` means: redirect standard error.
+
+Before that, I always saw errors and normal output just as “text in the terminal”. But Linux treats them as different streams, even if they look similar on the screen.
+
+<Callout type="info">
+  This was one of the useful small details for me: stdout and stderr can both
+  appear in the terminal, but they are not the same thing.
+</Callout>
+
+## Playing with pipes
+
+After redirection, I spent more time with pipes.
+
+A pipe takes the output of one command and sends it as input to another command.
+
+```bash
+ls /etc | head -5
+```
+
+So `ls /etc` produces output, and `head -5` only shows the first five lines.
+
+I already knew this kind of command from the past weeks. The first command writes to stdout, and the pipe connects that stdout to the stdin of the next command.
+
+A command can produce a lot of output, and then another command can cut it down, sort it, count it, or transform it.
+
+For example:
+
+```bash
+cat /etc/passwd | grep bash | wc -l
+```
+
+This reads `/etc/passwd`, filters lines containing `bash`, and counts them.
+
+I know there are sometimes cleaner ways to write commands like this, for example by letting `grep` read the file directly, but for learning pipes it helped me a lot to write it this way.
+
+It made the flow visible:
+
+```bash
+read something | filter something | count something
+```
+
+That is easier for my brain right now.
+
+## Small filter commands
+
+I also looked at some commands that are often used inside pipelines.
+
+Commands like:
+
+```bash
+sort
+uniq
+cut
+tr
+tee
+xargs
+```
+
+These are also called Unix filters, and the name makes sense. They take some input, change or filter it, and return output again.
+
+I already knew `sort`, but `uniq` was more interesting than I expected.
+
+At first I expected `uniq` to remove all duplicate lines from a file. But it only removes duplicate lines that are next to each other. So in most cases it makes sense to use it together with `sort`.
+
+```bash
+sort names.txt | uniq
+```
+
+With `-c`, it also counts the occurrences:
+
+```bash
+sort names.txt | uniq -c
+```
+
+That gives output like this:
+
+```bash
+3 Alice
+2 Bob
+1 Charlie
+```
+
+Small command, but very useful.
+
+I also used `cut` again.
+
+```bash
+cut -d: -f1 /etc/passwd
+```
+
+This prints the first field from `/etc/passwd`, using `:` as delimiter.
+
+I talked about `cut` before, and it also reminds me of my stupid `/etc/passwd` mistake from a few weeks ago
+
+Still not my proudest Linux moment, but I learned from it.
+
+<Callout type="warning">
+  Working with files like `/etc/passwd` is useful for learning, but I am
+  definitely more careful with commands around system files now.
+</Callout>
+
+## tr, tee, and xargs
+
+The `tr` command was also nice to try.
+
+It can translate characters, for example uppercase to lowercase:
+
+```bash
+echo "HELLO" | tr 'A-Z' 'a-z'
+```
+
+Output:
+
+```bash
+hello
+```
+
+Or it can replace spaces with new lines:
+
+```bash
+echo "hello world" | tr ' ' '\n'
+```
+
+Output:
+
+```bash
+hello
+world
+```
+
+And with `-d`, it can delete characters:
+
+```bash
+echo "abc123" | tr -d '0-9'
+```
+
+Output:
+
+```bash
+abc
+```
+
+Then there is `tee`.
+
+I like this one because it solves a very real problem. Sometimes I want to see the output in the terminal, but also save it into a file.
+
+```bash
+ls /etc | tee listing.txt
+```
+
+So the output goes to the screen and to the file.
+
+This feels especially useful when debugging longer pipelines, because I can save intermediate output while still continuing with the next command.
+
+```bash
+ls /etc | tee listing.txt | head -5
+```
+
+The last command I looked at was `xargs`.
+
+The basic idea is that some commands do not really use stdin directly. They expect arguments. `xargs` takes input and turns it into arguments for another command.
+
+Example:
+
+```bash
+cat names.txt | xargs echo "Hello:"
+```
+
+Or one item at a time:
+
+```bash
+cat names.txt | xargs -n 1 echo "Hello:"
+```
+
+That outputs something like:
+
+```bash
+Hello: Charlie
+Hello: Alice
+Hello: Bob
+```
+
+I still need more practice with `xargs`, but I get the basic reason why it exists now.
+
+## Problems on the way
+
+The biggest problem was not one single command.
+
+It was more the mental model.
+
+At the beginning I mixed up normal output, errors, files, input, and pipes. Everything is just text in the terminal, so it is easy to think it is all the same thing.
+
+But it is not.
+
+This helped me separate it a little bit:
+
+```bash
+command > output.txt    # stdout
+command 2> errors.txt   # stderr
+command < input.txt     # stdin from file
+```
+
+All of this looks simple when written in a table, but in the terminal it takes a bit of practice.
+
+Also, uniq confused me at first.
+
+I expected it to remove all duplicates everywhere. But now I know it only removes adjacent duplicates, so sorting first usually makes sense:
+
+```bash
+sort names.txt | uniq
+```
+
+And I still need to be careful with redirection.
+
+This overwrites:
+
+```bash
+command > file.txt
+```
+
+This appends:
+
+```bash
+command >> file.txt
+```
+
+Very small difference. Very different result.
+
+## What I learned
+
+The biggest thing I learned is that pipes are not just a fancy terminal trick.
+
+They are a way to build small workflows from simple commands.
+
+Before, I looked at commands like this and thought they were just difficult one-liners:
+
+```bash
+du -h /var/log/* 2>/dev/null | sort -h | tail -10
+```
+
+Now I can at least split it in my head:
+
+```bash
+du -h /var/log/*    # show sizes
+2>/dev/null         # hide errors
+sort -h             # sort human-readable sizes
+tail -10            # show the last 10 lines
+```
+
+This small chain already feels like a tiny data processing pipeline.
+
+I also learned that a lot of Linux work is not about knowing one huge command. It is more about combining small tools in the right order.
+
+Something like:
+
+```bash
+get output | filter it | sort it | count it
+```
+
+That pattern feels important.
+
+I can imagine this becoming useful later with logs, processes, Docker output, server debugging, and Bash scripts.
+
+## Conclusion
+
+This was not the most active Linux week for me.
+
+I was a bit distracted by Arduino stuff, and honestly the weather is also not helping. It is hot, my computer makes it even worse, and sometimes I would rather be in the water than in the terminal.
+
+But I still managed to get a better feeling for input, output, errors, redirection, and pipes.
+
+I do not feel fluent with it yet. But I understand the basics better than before, especially why stdout and stderr are separate, why `sort | uniq` is such a common pattern, and why `tee` and `xargs` are useful.
+
+It is not about memorizing every command.
+
+It is more about understanding the pattern.
+
+Next I want to practice this with more real examples.
+
+Probably logs.
+
+Because just reading examples is one thing. Actually using pipes to find something in a messy log file is probably where this topic starts to become really useful.

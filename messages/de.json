@@ -138,9 +138,9 @@
     },
 
     "developerAkademie": {
-      "title": "Full-Stack Webentwicklung",
+      "title": "Frontend Webentwicklung",
       "items": {
-        "one": "Abschluss des Fullstack-Programms an Deutschlands führender TÜV-zertifizierter Akademie für Webentwicklung. Erfolgreiche Umsetzung von über 12 Projekten, sowohl individuell als auch im Team.",
+        "one": "Abschluss des Frontend Programms an Deutschlands führender TÜV-zertifizierter Akademie für Webentwicklung. Erfolgreiche Umsetzung von über 12 Projekten, sowohl individuell als auch im Team.",
         "two": "Webprogrammierung mit <important>HTML, CSS (SCSS)</important> und <important>JavaScript</important>.",
         "three": "Frontend-Webentwicklung mit <important>Angular</important> und <important>TypeScript</important>.",
         "four": "Einsatz von Design-Frameworks wie <important>Bootstrap</important> und <important>Material Design</important> sowie Umsetzung von UI/UX-Designs <important>(Figma)</important>.",

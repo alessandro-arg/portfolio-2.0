@@ -1,0 +1,473 @@
+---
+title: "Linux Processes"
+description: "Learning and understanding about processes, ps, top, htop, kill, systemctl and the first steps into service management."
+date: "2026-07-05"
+updated: "2026-07-05"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/07-processes/cover.png"
+---
+
+I wanted to understand what is actually running on a Linux system.
+
+Until now, most of my Linux learning was about commands I actively type myself: moving files, changing permissions, using pipes, editing files, connecting over SSH and so on. But at some point the next question appears naturally:
+
+What is happening in the background?
+
+Every program that runs on Linux becomes a process. Even a small command like `ls` starts as a process, does its job, and exits again. Bigger programs, like SSH, cron jobs, web servers or databases, stay alive for much longer.
+
+This was not a deep dive into every detail of Linux process management, but it gave me a much better first overview of how Linux handles running programs, background jobs and services.
+
+## What I did
+
+I started with the basic idea of a process.
+
+A process is a running instance of a program. Each process has a few important pieces of information:
+
+- a `PID`, which is the unique process ID
+- a `PPID`, which is the parent process ID
+- an `owner`, which is the user running it
+- a `state`, like running, sleeping or stopped
+
+The first command I used was:
+
+```bash
+ps
+```
+
+This only shows processes attached to the current terminal.
+
+Example:
+
+```bash
+PID TTY     TIME CMD
+1234 pts/0  00:00:00 bash
+5678 pts/0  00:00:00 ps
+```
+
+At first this looks almost too simple, but it makes sense.
+
+I had a shell open, and then I ran `ps`. So Linux showed me the shell and the `ps` command itself.
+
+After that I looked at all processes:
+
+```bash
+ps aux
+```
+
+This was much more interesting.
+
+```bash
+USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+root 1  0.0 0.1 168936 11788 ? Ss Dec10 0:05 /sbin/init
+root 2  0.0 0.0 0 0 ? S Dec10 0:00 [kthreadd]
+```
+
+The flags mean roughly:
+
+```bash
+a # show processes from all users
+u # show user-oriented information
+x # include processes without a terminal
+```
+
+This made me realize how many things are running even on a small Linux system.
+
+A funny thing I noticed: the system was only using around 300 MB of memory for all of this. On Windows I would expect at least a couple of GB just for the system to feel alive. That comparison is maybe not fully fair, but it was still interesting to see how lightweight Linux can be.
+
+## Searching for processes
+
+To search for a process, I used the classic pipe approach:
+
+```bash
+ps aux | grep cron
+```
+
+This works, but it also shows the `grep` command itself sometimes.
+
+That confused me a bit at first, because I was searching for cron and suddenly my own search command was also part of the result.
+
+A cleaner command is:
+
+```bash
+pgrep cron
+```
+
+This only returns the PIDs.
+
+That was a small but useful learning moment. There are often multiple ways to do the same thing in Linux, but some tools are made exactly for one job.
+
+## Using top and htop
+
+After `ps`, I looked at real-time process viewers.
+
+```bash
+top
+```
+
+`top` updates continuously and shows CPU usage, memory usage and running processes. Some useful keys:
+
+```bash
+q # quit
+k # kill a process by PID
+M # sort by memory
+P # sort by CPU
+h # help
+```
+
+Then I used:
+
+```bash
+htop
+```
+
+`htop` feels much easier to read. It is more visual, and navigating with the keyboard feels more natural.
+
+Useful keys in htop:
+
+```bash
+F6 # sort
+F9 # kill a process
+F10 # quit
+q # quit
+```
+
+I can already see myself using `htop` more often than `top`, especially when I just want to quickly check what is using CPU or memory.
+
+I also discovered and installed `btop`, and yeah, it looks really nice. x)
+
+<img
+  src="/blog/linux/07-processes/btop.png"
+  alt="test"
+  width={1200}
+  height={630}
+  className="h-auto w-full object-cover border border-border"
+/>
+
+## Stopping and killing processes
+
+The most normal way to stop something in the terminal is still:
+
+```bash
+Ctrl + C
+```
+
+This sends an interrupt signal to the program running in the foreground.
+
+For me, `Ctrl + C` is basically the universal “stop this” shortcut in the terminal.
+
+If something is stuck or keeps running longer than expected, this is the first thing I try.
+
+If I know the PID, I can stop a process with
+
+```bash
+kill 1234  # (`1234` is an example PID)
+```
+
+This sends `SIGTERM`, which is a polite request to stop. The process still gets the chance to clean up.
+
+If that does not work, there is the force option:
+
+```bash
+kill -9 1234
+```
+
+This sends `SIGKILL`. It does not ask nicely anymore. The process gets killed immediately.
+
+I also tried killing by name:
+
+```bash
+killall top
+```
+
+And pattern matching:
+
+```bash
+pkill -f "python script.py"
+```
+
+This is powerful, but also something where I want to be careful. Killing by name or pattern can affect more processes than expected.
+
+<Callout type="warning">
+  I learned that `kill -9` should not be the first option. It is useful when
+  something really does not react anymore, but `kill` without `-9` is usually
+  the better first step.
+</Callout>
+
+## Background jobs
+
+Another part I wanted to understand was background processes in the shell.
+
+I started a simple command in the background:
+
+```bash
+sleep 60 &
+```
+
+The `&` means the command runs in the background and I get my prompt back immediately.
+
+To list background jobs:
+
+```bash
+jobs
+```
+
+Example:
+
+```bash
+[1]+ Running    sleep 60 &
+```
+
+To bring it back to the foreground:
+
+```bash
+fg %1
+```
+
+If a process is already running in the foreground, I can suspend it with:
+
+```bash
+Ctrl + Z
+```
+
+And then continue it in the background:
+
+```bash
+bg
+```
+
+This helped me understand that not everything running in my terminal has to block the terminal forever. The shell has its own job control system, and this is something I definitely want to practice more.
+
+## Checking system information
+
+I also checked some basic system information commands, because process management makes more sense when I can also see the system resources.
+
+Kernel and system info:
+
+```bash
+uname -a
+```
+
+Uptime and load averages:
+
+```bash
+uptime
+```
+
+Memory usage:
+
+```bash
+free -h
+```
+
+The important part here was learning that `available` memory is often more useful than just looking at `free`.
+
+Linux uses memory for cache, and that is not automatically a bad thing. The system can free some of that memory when needed.
+
+CPU information:
+
+```bash
+lscpu
+```
+
+Or only the essentials:
+
+```bash
+lscpu | grep -E "^(CPU\(s\)|Model name)"
+```
+
+Disk devices:
+
+```bash
+lsblk
+```
+
+Disk space:
+
+```bash
+df -h
+```
+
+These commands are not only random information. They help when troubleshooting.
+
+If a service is slow, I can check CPU, memory, disk space and running processes instead of guessing.
+
+## First steps with systemctl
+
+The next bigger topic was service management with `systemd`.
+
+Processes are one thing, but services are another level.
+
+`Systemd` is the init system on many modern Linux distributions. It starts services at boot, manages running services, handles dependencies and collects logs.
+
+To check a service, I used:
+
+```bash
+systemctl status ssh
+```
+
+Example output:
+
+```bash
+● ssh.service - OpenBSD Secure Shell server
+Loaded: loaded (/lib/systemd/system/ssh.service; enabled; ...)
+Active: active (running) since Mon 2024-12-10 10:00:00 UTC; 2 days ago
+Main PID: 1234 (sshd)
+Tasks: 1
+Memory: 2.1M
+CPU: 123ms
+```
+
+This was very helpful because it shows much more than just “running” or “not running”.
+
+I can see:
+
+- if the service is active
+- when it started
+- the main process ID
+- memory usage
+- recent log output
+- whether it is enabled at boot
+
+To stop, start and restart a service:
+
+```bash
+sudo systemctl stop cron
+sudo systemctl start cron
+sudo systemctl restart cron
+```
+
+To check if a service starts automatically on boot:
+
+```bash
+systemctl is-enabled cron
+```
+
+To enable or disable it:
+
+```bash
+sudo systemctl enable cron
+sudo systemctl disable cron
+```
+
+This was probably one of the most important parts of this session. Process commands like `ps` and `top` show what is running, but `systemctl` gives me control over services.
+
+## Looking at process trees
+
+I also started using:
+
+```bash
+pstree
+```
+
+This command shows processes as a tree.
+
+That makes the parent-child relationship much easier to understand. Instead of only seeing many flat rows, I can see which process started which other process.
+
+That helped me understand PPID better. A process does not just exist alone. Most processes are started by another process, and Linux keeps track of that relationship.
+
+### Logs with journalctl
+
+The last part was looking into logs.
+
+```bash
+journalctl
+```
+
+This shows system logs.
+
+For a specific service:
+
+```bash
+journalctl -u ssh
+```
+
+To follow logs live:
+
+```bash
+journalctl -f
+```
+
+Logs from the last hour:
+
+```bash
+journalctl --since "1 hour ago"
+```
+
+Logs from the current boot:
+
+```bash
+journalctl -b
+```
+
+This feels like an important step toward real troubleshooting.
+
+Before this, if something did not work, I often only looked at the command output. But services run in the background, and their errors are often in logs. So `journalctl` is something I need to get comfortable with.
+
+## Problems on the way
+
+The biggest problem was not one specific error. It was more about understanding the difference between a normal process, a shell job and a system service.
+
+At first everything feels like “something running”.
+
+But there are differences:
+
+A **process** is any running program.
+
+A **job** is something managed by the current shell session.
+
+A **service** is usually managed by systemd and often runs in the background, even without my terminal.
+
+That distinction made the topic much clearer.
+
+Another small confusion was around killing processes. It is easy to remember `kill -9`, because it feels like the strong command. But I learned that it should not be the default. A normal `kill` gives the process a chance to shut down properly.
+
+## What I learned
+
+This session gave me a first mental model for Linux processes.
+
+The most important commands for me right now are:
+
+```bash
+ps aux
+pgrep
+top
+htop
+kill
+jobs
+fg
+bg
+systemctl status
+journalctl -u
+pstree
+```
+
+The biggest learning is that Linux gives me a lot of visibility.
+
+I can see what is running, who started it, how much CPU and memory it uses, and whether it belongs to a service. I can also stop it, restart it, move jobs between foreground and background, and check logs when something fails.
+
+I also learned that process management is not only useful for servers. Even on a small homelab machine or Raspberry Pi, it matters. If SSH does not work, if a script gets stuck, if memory is high, or if a service does not start, these commands are the first tools I need.
+
+## Conclusion
+
+This was a good step deeper into Linux.
+
+Not because I mastered process management now, but because I have a better first overview.
+
+The most useful realization was that troubleshooting becomes less random when I know where to look.
+
+Instead of guessing, I can ask the system:
+
+```bash
+ps aux
+htop
+systemctl status ssh
+journalctl -u ssh
+```
+
+And Linux gives me answers.
+
+For me, this is exactly the kind of knowledge that connects normal command line usage with system administration and DevOps basics.

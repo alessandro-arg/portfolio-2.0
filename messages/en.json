@@ -136,9 +136,9 @@
       }
     },
     "developerAkademie": {
-      "title": "Full-stack Web Development",
+      "title": "Frontend Web Development",
       "items": {
-        "one": "Completed the demanding full-stack program at Germany's leading TÜV-certified academy for web development. Successfully built more than 12 projects, both individually and as part of a team.",
+        "one": "Completed the demanding frontend program at Germany's leading TÜV-certified academy for web development. Successfully built more than 12 projects, both individually and as part of a team.",
         "two": "Web programming with <important>HTML, CSS (SCSS)</important> and <important>JavaScript</important>.",
         "three": "Frontend web development with <important>Angular</important> and <important>TypeScript</important>.",
         "four": "Using design frameworks such as <important>Bootstrap</important> and <important>Material Design</important>, as well as implementing UI/UX designs <important>(Figma)</important>.",

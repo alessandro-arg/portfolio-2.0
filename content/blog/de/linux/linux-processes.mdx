@@ -1,0 +1,483 @@
+---
+title: "Linux Prozesse"
+description: "Ich lerne, wie Prozesse funktionieren, wie man sie überwacht und Services mit systemctl verwaltet."
+date: "2026-07-05"
+updated: "2026-07-05"
+topic: "linux"
+tags:
+  - linux
+  - bash
+published: true
+cover: "/blog/linux/07-processes/cover.png"
+---
+
+Ich wollte verstehen, was auf einem Linux System eigentlich alles läuft.
+
+Bisher drehte sich mein Lernen hauptsächlich um Befehle, die ich selbst eingebe: Dateien verschieben, Berechtigungen ändern, Pipes verwenden, Dateien bearbeiten, mich per SSH verbinden und so weiter. Irgendwann kommt aber ganz automatisch die nächste Frage:
+
+Was passiert eigentlich im Hintergrund?
+
+Jedes Programm, das unter Linux ausgeführt wird, wird zu einem Prozess. Selbst ein kleiner Befehl wie `ls` startet als Prozess, erledigt seine Aufgabe und beendet sich wieder. Größere Programme wie SSH, Cron Jobs, Webserver oder Datenbanken laufen dagegen deutlich länger.
+
+Das war kein Deep Dive in jedes Detail des Linux Prozessmanagements, aber ich habe dadurch einen deutlich besseren ersten Überblick bekommen, wie Linux laufende Programme, Hintergrundprozesse und Services verwaltet.
+
+## Was ich gemacht habe
+
+Ich habe mit der Grundidee eines Prozesses begonnen.
+
+Ein Prozess ist eine laufende Instanz eines Programms. Jeder Prozess besitzt einige wichtige Informationen:
+
+- eine `PID`, also die eindeutige Prozess-ID
+- eine `PPID`, also die ID des Parentprozesses
+- einen `owner`, also den Benutzer, der den Prozess ausführt
+- einen `state`, zum Beispiel running, sleeping oder stopped
+
+Der erste Befehl war:
+
+```bash
+ps
+```
+
+Dieser zeigt nur Prozesse an, die mit dem aktuellen Terminal verbunden sind.
+
+Beispiel:
+
+```bash
+PID TTY     TIME CMD
+1234 pts/0  00:00:00 bash
+5678 pts/0  00:00:00 ps
+```
+
+Auf den ersten Blick wirkt das fast zu simpel, ergibt aber Sinn.
+
+Ich hatte eine Shell geöffnet und anschließend `ps` ausgeführt. Linux zeigt mir also die Shell und den `ps`-Prozess selbst an.
+
+Danach habe ich mir alle Prozesse angesehen:
+
+```bash
+ps aux
+```
+
+Das war deutlich interessanter.
+
+```bash
+USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+root 1  0.0 0.1 168936 11788 ? Ss Dec10 0:05 /sbin/init
+root 2  0.0 0.0 0 0 ? S Dec10 0:00 [kthreadd]
+```
+
+Die Optionen bedeuten ungefähr:
+
+```bash
+a # Prozesse aller Benutzer anzeigen
+u # Benutzerorientierte Informationen anzeigen
+x # Prozesse ohne Terminal anzeigen
+```
+
+Dadurch wurde mir bewusst, wie viele Dinge selbst auf einem kleinen Linux System ständig im Hintergrund laufen.
+
+Eine Sache fand ich besonders interessant: Das gesamte System belegte nur ungefähr 300 MB Arbeitsspeicher. Unter Windows würde ich erwarten, dass allein das Betriebssystem schon mehrere Gigabyte nutzt. Der Vergleich ist zwar nicht ganz fair, trotzdem war es spannend zu sehen, wie ressourcenschonend Linux sein kann.
+
+## Prozessen suchen
+
+Um nach einem Prozess zu suchen, habe ich den klassischen Pipe-Ansatz verwendet:
+
+```bash
+ps aux | grep cron
+```
+
+Das funktioniert, zeigt aber manchmal auch den `grep`-Prozess selbst an.
+
+Das hat mich anfangs etwas verwirrt, weil ich nach `cron` gesucht habe und plötzlich mein eigener Suchbefehl ebenfalls in der Ausgabe auftauchte.
+
+Eine sauberere Lösung ist:
+
+```bash
+pgrep cron
+```
+
+Dieser Befehl gibt nur die PIDs zurück.
+
+Das war ein kleines, aber nützliches Learning. Unter Linux gibt es oft mehrere Möglichkeiten, das gleiche Ziel zu erreichen, aber manche Werkzeuge sind genau für eine bestimmte Aufgabe gemacht.
+
+## top und htop verwenden
+
+Nach `ps` habe ich mir Echtzeit Prozessviewer angesehen.
+
+```bash
+top
+```
+
+`top` aktualisiert sich kontinuierlich und zeigt CPU-Auslastung, Speicherverbrauch und laufende Prozesse an.
+
+Ein paar nützliche keys:
+
+```bash
+q # beenden
+k # Prozess per PID beenden
+M # nach Speicherverbrauch sortieren
+P # nach CPU-Auslastung sortieren
+h # Hilfe
+```
+
+Danach habe ich:
+
+```bash
+htop
+```
+
+ausprobiert. `htop` fühlt sich deutlich übersichtlicher an. Es ist grafischer aufgebaut und lässt sich angenehmer mit der Tastatur bedienen.
+
+Nützliche keys in htop:
+
+```bash
+F6 # sortieren
+F9 # Prozess beenden
+F10 # beenden
+q # beenden
+```
+
+Ich kann mir gut vorstellen, in Zukunft häufiger `htop` statt `top` zu verwenden, besonders wenn ich einfach schnell überprüfen möchte, was gerade CPU oder Arbeitsspeicher verbraucht.
+
+Außerdem habe ich `btop` entdeckt und installiert. Und ja... das sieht schon ziemlich cool aus. x)
+
+<img
+  src="/blog/linux/07-processes/btop.png"
+  alt="test"
+  width={1200}
+  height={630}
+  className="h-auto w-full object-cover border border-border"
+/>
+
+## Prozesse beenden
+
+Der einfachste Weg, einen laufenden Prozess im Terminal zu stoppen, bleibt:
+
+```bash
+Ctrl + C
+```
+
+Dadurch wird ein Interrupt-Signal an den aktuell im Vordergrund laufenden Prozess gesendet.
+
+Für mich ist `Ctrl + C` inzwischen einfach der universelle "Stopp"-Shortcut im Terminal.
+
+Wenn sich etwas aufgehängt hat oder länger läuft als erwartet, ist das immer mein erster Versuch.
+
+Wenn ich die PID kenne, kann ich einen Prozess mit
+
+```bash
+kill 1234  # (`1234` ist nur eine Beispiel-PID)
+```
+
+beenden.
+
+Dadurch wird `SIGTERM` gesendet - also eine höfliche Aufforderung, den Prozess zu beenden. Der Prozess bekommt dabei noch die Möglichkeit, sauber aufzuräumen.
+
+Falls das nicht funktioniert, gibt es noch die harte Variante:
+
+```bash
+kill -9 1234
+```
+
+Diese sendet `SIGKILL`. Dabei wird nicht mehr gefragt - der Prozess wird sofort beendet.
+
+Ich habe außerdem ausprobiert, Prozesse direkt über ihren Namen zu beenden:
+
+```bash
+killall top
+```
+
+Oder per Muster:
+
+```bash
+pkill -f "python script.py"
+```
+
+Das ist ziemlich mächtig, aber auch etwas, womit ich vorsichtig umgehen möchte. Je nach Muster können mehr Prozesse beendet werden als eigentlich gewollt.
+
+<Callout type="warning">
+  `kill -9` sollte nicht die erste Wahl sein. Es ist nützlich, wenn ein Prozess
+  wirklich überhaupt nicht mehr reagiert, aber ein normales `kill` ohne `-9` ist
+  meistens der bessere erste Schritt.
+</Callout>
+
+## Background Jobs
+
+Ein weiterer Bereich, den ich verstehen wollte, waren Hintergrundprozesse innerhalb der Shell.
+
+Ich habe einen einfachen Befehl im Hintergrund gestartet:
+
+```bash
+sleep 60 &
+```
+
+Das `&` sorgt dafür, dass der Befehl im Hintergrund ausgeführt wird und ich meinen Prompt sofort zurückbekomme.
+
+Um Hintergrundjobs aufzulisten:
+
+```bash
+jobs
+```
+
+Beispiel:
+
+```bash
+[1]+ Running    sleep 60 &
+```
+
+Um ihn wieder in den Vordergrund zu holen:
+
+```bash
+fg %1
+```
+
+Wenn ein Prozess bereits im Vordergrund läuft, kann ich ihn mit
+
+```bash
+Ctrl + Z
+```
+
+anhalten.
+
+Anschließend lässt er sich mit
+
+```bash
+bg
+```
+
+im Hintergrund fortsetzen.
+
+Dadurch habe ich verstanden, dass nicht alles, was im Terminal läuft, dieses dauerhaft blockieren muss. Die Shell besitzt ihr eigenes Job-Control-System und genau das möchte ich in Zukunft noch etwas mehr üben.
+
+## Systeminformationen prüfen
+
+Ich habe mir außerdem einige grundlegende Befehle für Systeminformationen angesehen, weil Prozessmanagement deutlich mehr Sinn ergibt, wenn ich gleichzeitig auch die verfügbaren Systemressourcen im Blick habe.
+
+Kernel- und Systeminformationen:
+
+```bash
+uname -a
+```
+
+Laufzeit und Load Average:
+
+```bash
+uptime
+```
+
+Speicherauslastung:
+
+```bash
+free -h
+```
+
+Das Wichtigste hierbei war für mich zu lernen, dass der Wert `available` oft aussagekräftiger ist als einfach nur auf `free` zu schauen.
+
+Linux nutzt freien Arbeitsspeicher als Cache, und das ist nicht automatisch etwas Schlechtes. Falls Speicher benötigt wird, kann das System einen Teil dieses Caches wieder freigeben.
+
+CPU-Informationen:
+
+```bash
+lscpu
+```
+
+Oder nur die wichtigsten Informationen:
+
+```bash
+lscpu | grep -E "^(CPU\(s\)|Model name)"
+```
+
+Datenträger anzeigen:
+
+```bash
+lsblk
+```
+
+Speicherplatz überprüfen:
+
+```bash
+df -h
+```
+
+Diese Befehle liefern nicht einfach nur irgendwelche Informationen. Sie helfen beim Troubleshooting.
+
+Wenn ein Service langsam ist, kann ich CPU-Auslastung, Arbeitsspeicher, freien Speicherplatz und laufende Prozesse überprüfen, anstatt einfach nur zu raten.
+
+## Erste Schritte mit systemctl
+
+Das nächste größere Thema war die Verwaltung von Services mit `systemd`.
+
+Prozesse sind das eine, Services gehen noch einen Schritt weiter.
+
+`Systemd` ist das Init-System vieler moderner Linux Distributionen. Es startet Services beim Booten, verwaltet laufende Dienste, kümmert sich um Abhängigkeiten und sammelt Log-Dateien.
+
+Um den Status eines Services zu überprüfen, habe ich verwendet:
+
+```bash
+systemctl status ssh
+```
+
+Beispielausgabe:
+
+```bash
+● ssh.service - OpenBSD Secure Shell server
+Loaded: loaded (/lib/systemd/system/ssh.service; enabled; ...)
+Active: active (running) since Mon 2024-12-10 10:00:00 UTC; 2 days ago
+Main PID: 1234 (sshd)
+Tasks: 1
+Memory: 2.1M
+CPU: 123ms
+```
+
+Das fand ich besonders hilfreich, weil deutlich mehr Informationen angezeigt werden als nur „läuft“ oder „läuft nicht“.
+
+Ich sehe unter anderem:
+
+- ob der Service aktiv ist
+- wann er gestartet wurde
+- die PID des Hauptprozesses
+- den Speicherverbrauch
+- aktuelle Log-Ausgaben
+- ob der Service beim Systemstart automatisch gestartet wird
+
+Einen Service stoppen, starten oder neu starten:
+
+```bash
+sudo systemctl stop cron
+sudo systemctl start cron
+sudo systemctl restart cron
+```
+
+Prüfen, ob ein Service beim Booten automatisch startet:
+
+```bash
+systemctl is-enabled cron
+```
+
+Aktivieren oder deaktivieren:
+
+```bash
+sudo systemctl enable cron
+sudo systemctl disable cron
+```
+
+Das war wahrscheinlich einer der wichtigsten Teile dieser Lerneinheit. Befehle wie `ps` oder `top` zeigen zwar, was gerade läuft, aber mit `systemctl` kann ich Services tatsächlich verwalten.
+
+## Prozesse als Baum anzeigen
+
+Ich habe außerdem begonnen, folgenden Befehl zu verwenden:
+
+```bash
+pstree
+```
+
+Dieser zeigt Prozesse als Baumstruktur an.
+
+Dadurch wird die parent-child Beziehung zwischen Prozessen deutlich verständlicher. Statt nur viele einzelne Zeilen zu sehen, erkenne ich direkt, welcher Prozess einen anderen gestartet hat.
+
+Das hat mir geholfen, die PPID besser zu verstehen. Ein Prozess existiert nicht einfach alleine. Die meisten Prozesse werden von einem anderen Prozess gestartet und Linux verfolgt diese Beziehung.
+
+### Logs mit journalctl
+
+Zum Schluss habe ich mir noch die Log-Dateien angesehen.
+
+```bash
+journalctl
+```
+
+Dieser Befehl zeigt die Systemlogs an.
+
+Logs eines bestimmten Services:
+
+```bash
+journalctl -u ssh
+```
+
+Logs live mitverfolgen:
+
+```bash
+journalctl -f
+```
+
+Logs der letzten Stunde:
+
+```bash
+journalctl --since "1 hour ago"
+```
+
+Logs seit dem aktuellen Systemstart:
+
+```bash
+journalctl -b
+```
+
+Das fühlt sich nach einem wichtigen Schritt Richtung echtes Troubleshooting an.
+
+Bisher habe ich meistens nur auf die Ausgabe eines Befehls geschaut, wenn etwas nicht funktioniert hat. Services laufen jedoch im Hintergrund und ihre Fehlermeldungen landen oft in den Log-Dateien. Deshalb möchte ich mit `journalctl` deutlich vertrauter werden.
+
+## Schwierigkeiten unterwegs
+
+Das größte Problem war kein einzelner Fehler.
+
+Vielmehr musste ich erst den Unterschied zwischen einem normalen Prozess, einem Shell-Job und einem System-Service verstehen.
+
+Am Anfang fühlt sich alles einfach wie „irgendetwas läuft“ an.
+
+Dabei gibt es klare Unterschiede:
+
+Ein **Prozess** ist jedes laufende Programm.
+
+Ein **Job** wird von der aktuellen Shell-Sitzung verwaltet.
+
+Ein **Service** wird meistens von systemd verwaltet und läuft häufig im Hintergrund - sogar dann, wenn mein Terminal längst geschlossen ist.
+
+Diese Unterscheidung hat das gesamte Thema deutlich verständlicher gemacht.
+
+Eine weitere kleine Verwirrung gab es beim Beenden von Prozessen. `kill -9` merkt man sich leicht, weil es wie der „starke“ Befehl wirkt. Ich denke, dass er nicht die Standardlösung sein sollte. Ein normales `kill` gibt dem Prozess die Möglichkeit, sich sauber zu beenden.
+
+## Was ich gelernt habe
+
+Diese Lerneinheit hat mir ein erstes mentales Modell für Linux Prozesse gegeben.
+
+Die wichtigsten Befehle für mich sind momentan:
+
+```bash
+ps aux
+pgrep
+top
+htop
+kill
+jobs
+fg
+bg
+systemctl status
+journalctl -u
+pstree
+```
+
+Das größte Learning ist für mich, dass Linux unglaublich viel Transparenz bietet.
+
+Ich kann sehen, was gerade läuft, wer einen Prozess gestartet hat, wie viel CPU und Arbeitsspeicher er verbraucht und ob er zu einem Service gehört. Ich kann Prozesse stoppen, neu starten, Jobs zwischen Vorder- und Hintergrund verschieben und Log-Dateien prüfen, wenn etwas schiefläuft.
+
+Außerdem habe ich gemerkt, dass Prozessmanagement nicht nur auf großen Servern wichtig ist. Selbst auf einem kleinen Homelab oder einem Raspberry Pi spielt es eine Rolle. Wenn SSH nicht funktioniert, ein Skript hängen bleibt, der Speicher voll läuft oder ein Service nicht startet, sind genau diese Befehle meine ersten Werkzeuge.
+
+## Fazit
+
+Das war ein weiterer guter Schritt tiefer in die Linux-Welt.
+
+Nicht, weil ich Prozessmanagement jetzt beherrsche, sondern weil ich einen deutlich besseren ersten Überblick habe.
+
+Die wichtigste Erkenntnis war für mich, dass Troubleshooting viel weniger zufällig wird, wenn ich weiß, wo ich nachschauen muss.
+
+Statt einfach zu raten, kann ich das System fragen:
+
+```bash
+ps aux
+htop
+systemctl status ssh
+journalctl -u ssh
+```
+
+Und Linux liefert mir die Antworten.
+
+Genau diese Art von Wissen verbindet für mich die normale Arbeit auf der Kommandozeile mit den ersten Grundlagen von Systemadministration und DevOps.

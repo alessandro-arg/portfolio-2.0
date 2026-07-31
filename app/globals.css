@@ -132,7 +132,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -164,8 +164,10 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --grid-line: oklch(0 0 0 / 0.03);
-  --safe-top: env(safe-area-inset-top);
-  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
 }
 
 /* Fuma Docs  */
@@ -183,7 +185,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(20.463% 0.00002 271.152);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -264,6 +266,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100dvh;
+    margin: 0;
     padding-top: var(--safe-top);
     padding-bottom: var(--safe-bottom);
   }

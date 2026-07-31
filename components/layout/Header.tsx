@@ -6,7 +6,6 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants, Transition } from "framer-motion";
 import { gsap } from "gsap";
-import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { useContactModal } from "@/app/contact/ContactModalProvider";
 import { MoreMenu } from "./_ui/MoreMenu";
 // import { MobileMore } from "./_ui/MobileMore";
@@ -210,11 +209,6 @@ export default function Header() {
 
   return (
     <div className="pointer-events-auto fixed left-0 right-0 top-0 z-45">
-      <ProgressiveBlur
-        height="125px"
-        position="top"
-        className="h-[120px] sm:h-[150px] "
-      />
       <div className="relative w-full max-w-full md:max-w-4xl lg:max-w-7xl flex justify-center items-center mx-auto px-4 sm:px-6">
         {/* The floating shell we animate with GSAP */}
         <div

@@ -161,3 +161,11 @@ Use Vercel as the production deployment platform.
 **Reasoning**
 
 The application is built with Next.js and Vercel provides direct framework integration, Git-based deployment workflows, preview deployments, and production hosting without requiring custom server infrastructure.
+
+---
+
+## ADR-013 - Keep main production-safe during the refactor
+
+**Rule**
+
+`main` continues to serve the existing production portfolio. New portfolio development is integrated into `refactor/portfolio-v2`. Feature pull requests target the refactor branch. The refactor is merged to `main` only after the replacement portfolio passes final design, responsive, accessibility, performance, and production-readiness reviews.

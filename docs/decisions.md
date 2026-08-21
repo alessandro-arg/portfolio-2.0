@@ -169,3 +169,127 @@ The application is built with Next.js and Vercel provides direct framework integ
 **Rule**
 
 `main` continues to serve the existing production portfolio. New portfolio development is integrated into `refactor/portfolio-v2`. Feature pull requests target the refactor branch. The refactor is merged to `main` only after the replacement portfolio passes final design, responsive, accessibility, performance, and production-readiness reviews.
+
+---
+
+## ADR-014 - Use Geist as the primary typography system
+
+**Decision**
+
+Use Geist Sans as the primary application font and Geist Mono for limited technical accents.
+
+**Reasoning**
+
+Geist provides a clean and neutral visual foundation that fits the portfolio's technical design direction without becoming the visual identity itself.
+
+The sans-serif typeface is used for general interface and content typography, while the monospace variant is reserved for technical metadata, shortcuts, code-like details, and similar accents.
+
+Fonts are loaded through Next.js font optimization rather than external runtime stylesheet requests.
+
+---
+
+## ADR-015 - Use a neutral semantic color system
+
+**Decision**
+
+Use a primarily neutral color palette expressed through semantic design tokens.
+
+**Reasoning**
+
+The portfolio's visual identity should come primarily from typography, structure, spacing, imagery, and interaction rather than a dominant brand color.
+
+Semantic tokens such as `background`, `surface`, `foreground`, `muted`, and `border` describe interface roles instead of fixed colors, allowing light and dark themes to evolve without changing component-level styling.
+
+---
+
+## ADR-016 - Use a shared page container
+
+**Decision**
+
+Use a shared layout component to control maximum content width and responsive horizontal page padding.
+
+**Reasoning**
+
+Major portfolio sections should align to the same structural frame.
+
+Centralizing horizontal layout rules avoids duplicated width and padding values across sections while keeping the component focused on one responsibility.
+
+---
+
+## ADR-017 - Use lines and spacing as the primary structural language
+
+**Decision**
+
+Use thin semantic borders, structural rails, and whitespace as the primary means of separating portfolio content.
+
+**Reasoning**
+
+The portfolio is intended to have a precise, technical visual character rather than a card-heavy application aesthetic.
+
+Persistent rails and section separators establish alignment and hierarchy while keeping the layout visually lightweight.
+
+Shadows, rounded surfaces, and elevated containers should be introduced only when they communicate a meaningful UI relationship.
+
+This structural language is carried forward from the portfolio prototype and treated as a core visual constraint of the refactor.
+
+---
+
+## ADR-018 - Use a mobile-first responsive strategy
+
+**Decision**
+
+Use Tailwind CSS default breakpoints with mobile-first component styling.
+
+**Reasoning**
+
+Starting with the narrowest layout encourages components to work under constrained space before additional layout complexity is introduced.
+
+Using the shared Tailwind breakpoint system keeps responsive behavior consistent across the application and avoids device-specific media queries that are difficult to maintain.
+
+Custom or arbitrary breakpoints should be introduced only when a concrete component requirement justifies them.
+
+---
+
+## ADR-019 - Establish keyboard focus behavior at the design-system level
+
+**Decision**
+
+Provide a visible global `focus-visible` treatment and require interactive components to preserve an equivalent keyboard-focus indicator.
+
+**Reasoning**
+
+Keyboard accessibility should be part of the interface foundation rather than added after components are complete.
+
+Providing a shared baseline gives native interactive elements sensible behavior automatically while still allowing complex components to implement appropriate component-specific focus states.
+
+---
+
+## ADR-020 - Treat motion as interaction rather than decoration
+
+**Decision**
+
+Use Motion selectively and respect the user's reduced-motion preference at the application level.
+
+**Reasoning**
+
+Animation is an important part of the portfolio's visual identity, particularly for signature interactions such as the SpotlightLogo and hero transitions.
+
+However, widespread decorative animation increases distraction, client-side complexity, and accessibility concerns.
+
+The application therefore establishes reduced-motion behavior globally while allowing individual interactive components to provide more specific alternatives when required.
+
+---
+
+## ADR-021 - Separate the application shell from route content
+
+**Decision**
+
+Use a shared site shell for global frame geometry, the sticky header, and page-wide structural behavior.
+
+**Reasoning**
+
+The portfolio prototype relies on a single visual coordinate system where the header and page content share the same centered rails.
+
+Keeping that geometry in the application shell preserves the prototype's visual language while preventing individual routes from duplicating global layout responsibilities.
+
+Interactive header features are introduced only when they provide working behavior rather than appearing as non-functional placeholders.

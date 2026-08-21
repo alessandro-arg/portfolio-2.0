@@ -4,7 +4,7 @@ The portfolio is developed incrementally so architecture, design, accessibility,
 
 ## Phase 1 - Project Foundation & Next.js Migration
 
-Status: **In Progress**
+Status: **Completed**
 
 - [x] Preserve previous portfolio through Git history
 - [x] Create dedicated refactor branch
@@ -26,9 +26,23 @@ Status: **In Progress**
 
 ## Phase 2 - Design System & Application Shell
 
-Define the visual rules before building individual sections.
+Status: **Completed**
 
-Topics include typography, spacing, layout width, borders, surfaces, colors, dark/light themes, focus states, responsive breakpoints, and animation principles.
+- [x] Establish Geist typography system
+- [x] Define neutral semantic light and dark themes
+- [x] Define shared spacing and `48rem` page frame
+- [x] Establish structural rails and viewport-wide horizontal rules
+- [x] Add reusable stripe dividers
+- [x] Define mobile-first responsive rules
+- [x] Establish keyboard focus and accessibility baseline
+- [x] Establish reduced-motion behavior
+- [x] Create shared application shell
+- [x] Add sticky site header
+- [x] Add working theme control
+- [x] Add portfolio branding and metadata icons
+- [x] Add web app manifest
+- [x] Verify light and dark themes
+- [x] Run lint and production build
 
 ## Phase 3 - Content Architecture
 

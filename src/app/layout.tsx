@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
+import { SiteShell } from "@/components/layout/site-shell";
 
 import "./globals.css";
 
@@ -37,7 +39,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <MotionProvider>
+            <SiteShell>{children}</SiteShell>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -46,7 +46,7 @@ Status: **Completed**
 
 ## Phase 3 - Content Architecture
 
-Status: **In Progress**
+Status: **Completed**
 
 Separate portfolio content from presentation and establish typed, reusable data models for the homepage and future case studies.
 
@@ -63,7 +63,7 @@ Separate portfolio content from presentation and establish typed, reusable data 
 - [x] Define Stack presentation groups
 - [x] Document content architecture decisions
 - [x] Run final lint and production build
-- [ ] Commit and push foundation to refactor integration branch
+- [x] Commit, push, and merge content architecture into refactor integration branch
 
 ## Phase 4 - Homepage UI
 

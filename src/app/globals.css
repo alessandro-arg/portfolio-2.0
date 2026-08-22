@@ -76,7 +76,7 @@
   --accent: oklch(0.93 0 0);
   --accent-foreground: oklch(0.22 0 0);
 
-  --border: oklch(0.86 0 0);
+  --border: oklch(0.91 0 0);
   --input: oklch(0.86 0 0);
   --ring: oklch(0.52 0 0);
 
@@ -129,7 +129,7 @@
   --accent: oklch(0.23 0 0);
   --accent-foreground: oklch(0.92 0 0);
 
-  --border: oklch(1 0 0 / 14%);
+  --border: oklch(1 0 0 / 5%);
   --input: oklch(1 0 0 / 16%);
   --ring: oklch(0.64 0 0);
 
@@ -212,7 +212,7 @@
 
     border-block: 1px solid var(--border);
 
-    --stripe-color: color-mix(in oklab, var(--border) 56%, transparent);
+    --stripe-color: color-mix(in oklab, var(--border) 36%, transparent);
 
     background-image: repeating-linear-gradient(
       315deg,
@@ -221,6 +221,8 @@
       transparent 1px,
       transparent 7px
     );
+
+    background-size: 10px 10px;
   }
 }
 

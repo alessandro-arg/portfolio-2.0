@@ -9,6 +9,14 @@ The architecture intentionally starts small and expands only when application re
 ## Current Structure
 
     src/
+    ├── content/
+    │   ├── profile.ts
+    │   ├── projects.ts
+    │   └── technologies.ts
+    │
+    ├── types/
+    │    └── portfolio.ts
+    │
     ├── app/
     │   ├── favicon.ico
     │   ├── globals.css
@@ -217,9 +225,66 @@ Individual route components compose only their route-specific content inside tha
 
 ## Content
 
-Portfolio content will eventually be separated from presentation components.
+Portfolio content is separated from presentation components.
 
-Typed content modules will hold project information, profile details, technologies, and social links rather than embedding large content objects directly inside UI components.
+Typed content modules live in `src/content`:
+
+- `profile.ts` owns personal information, hero copy, about copy, and contact links
+- `projects.ts` owns featured project metadata, external links, case-study identifiers, and technology references
+- `technologies.ts` owns the canonical technology registries and Stack presentation groups
+
+Shared content contracts live in `src/types/portfolio.ts`.
+
+UI components consume these modules instead of embedding large content objects directly inside component implementations.
+
+### Projects
+
+Projects reference technologies by stable IDs rather than duplicating display labels.
+
+A project `slug` is optional.
+
+When a slug exists, the project may provide an internal case-study route. Projects without a slug remain valid portfolio entries without requiring a dedicated route.
+
+Repository and live URLs remain part of the project content model so presentation components can decide how those destinations are exposed.
+
+### Technologies
+
+Technologies use one shared `Technology` contract containing:
+
+- stable ID
+- display name
+- semantic category
+- official website
+
+Technology data is separated into two registries:
+
+- `stackTechnologies` contains technologies intentionally presented in the public Stack section
+- `projectTechnologies` contains additional technologies required to describe individual projects without presenting them as core Stack skills
+
+The combined `technologies` registry provides a single lookup source for components that need to resolve technology IDs from either registry.
+
+This distinction separates:
+
+- technologies used in a project
+- technologies intentionally presented as part of the developer Stack
+
+### Stack Groups
+
+Technology categories remain semantically specific in the data model.
+
+The Stack section may combine those categories for presentation through `stackGroups`.
+
+The current visual groups are:
+
+1. Language
+2. Frontend
+3. Backend & Database
+4. Workflow & AI
+5. Tools
+
+For example, `backend` and `database` remain separate technology categories even though they are displayed together in the Stack interface.
+
+Presentation numbering is derived from group order rather than stored as content.
 
 ## Deployment
 

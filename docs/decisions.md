@@ -293,3 +293,53 @@ The portfolio prototype relies on a single visual coordinate system where the he
 Keeping that geometry in the application shell preserves the prototype's visual language while preventing individual routes from duplicating global layout responsibilities.
 
 Interactive header features are introduced only when they provide working behavior rather than appearing as non-functional placeholders.
+
+---
+
+## ADR-022 - Separate portfolio content from presentation
+
+**Decision**
+
+Store profile, project, and technology information in typed content modules rather than embedding portfolio data directly inside UI components.
+
+**Reasoning**
+
+Portfolio content changes independently from component structure and styling.
+
+Keeping content in dedicated modules makes presentation components smaller, improves reuse across homepage sections and project routes, and allows TypeScript to validate the shape of portfolio data without coupling that data to a specific interface implementation.
+
+---
+
+## ADR-023 - Separate Stack technologies from project-only technologies
+
+**Decision**
+
+Use one shared `Technology` contract while maintaining separate `stackTechnologies` and `projectTechnologies` registries.
+
+Expose a combined `technologies` registry for components that need to resolve technology IDs from either source.
+
+**Reasoning**
+
+Using a technology in a project does not necessarily mean it should be presented as part of the developer's primary Stack.
+
+Separating the registries allows project descriptions to remain technically accurate without overstating individual technologies as core skills.
+
+A shared contract and combined lookup avoid duplicating names, URLs, and technology metadata while allowing the Stack and Projects interfaces to present the same technology differently.
+
+---
+
+## ADR-024 - Use optional project slugs for case studies
+
+**Decision**
+
+Make the project `slug` optional.
+
+The presence of a slug indicates that a project can have an internal case-study route. Projects without a slug remain valid portfolio entries and rely on their external repository or live links.
+
+**Reasoning**
+
+Not every portfolio project requires a dedicated case study.
+
+Using the optional slug as the routing signal avoids maintaining a second boolean such as `hasCaseStudy` and prevents project content from implying routes that do not exist.
+
+This keeps the project model small while supporting deeper case studies selectively.

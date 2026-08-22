@@ -46,9 +46,24 @@ Status: **Completed**
 
 ## Phase 3 - Content Architecture
 
-Separate portfolio content from presentation.
+Status: **In Progress**
 
-Introduce typed content models for personal information, social links, technologies, and projects.
+Separate portfolio content from presentation and establish typed, reusable data models for the homepage and future case studies.
+
+- [x] Define profile content contract
+- [x] Separate profile and contact content from presentation
+- [x] Define project content contract
+- [x] Add featured project content
+- [x] Use optional project slugs for selective case-study routing
+- [x] Reference project technologies through stable IDs
+- [x] Define semantic technology categories
+- [x] Create recruiter-facing Stack technology registry
+- [x] Create separate project-only technology registry
+- [x] Create combined technology lookup
+- [x] Define Stack presentation groups
+- [x] Document content architecture decisions
+- [x] Run final lint and production build
+- [ ] Commit and push foundation to refactor integration branch
 
 ## Phase 4 - Homepage UI
 

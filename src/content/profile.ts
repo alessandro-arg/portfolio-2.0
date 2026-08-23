@@ -4,6 +4,7 @@ export const profile = {
   name: "Alessandro Argenziano",
   role: "Software Developer",
   location: "Germany",
+  timeZone: "Europe/Berlin",
   heroSentences: [
     "Clean interfaces and solid foundations",
     "Building things for the web",
@@ -17,7 +18,10 @@ export const profile = {
   ],
   contact: {
     email: "contact@alessandro-argenziano.com",
+    phone: "+49 (0)160 92965227",
+    website: "https://alessandro-argenziano.com",
     github: "https://github.com/alessandro-arg",
+    githubUsername: "alessandro-arg",
     linkedin: "https://www.linkedin.com/in/alessandro-argenziano/",
   },
 } satisfies Profile;

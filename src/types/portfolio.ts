@@ -2,11 +2,15 @@ export type Profile = {
   name: string;
   role: string;
   location: string;
+  timeZone: string;
   heroSentences: readonly string[];
   about: readonly string[];
   contact: {
     email: string;
+    phone: string;
+    website: string;
     github: string;
+    githubUsername: string;
     linkedin: string;
   };
 };

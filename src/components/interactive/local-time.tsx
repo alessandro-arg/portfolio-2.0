@@ -87,11 +87,11 @@ export function LocalTime({ timeZone }: LocalTimeProps) {
     );
   }
 
-  const time = new Intl.DateTimeFormat("en-US", {
+  const time = new Intl.DateTimeFormat("de-DE", {
     timeZone,
     hour: "2-digit",
     minute: "2-digit",
-    hour12: true,
+    hour12: false,
   }).format(now);
 
   const difference = visitorTimeZone

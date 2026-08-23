@@ -71,7 +71,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">GitHub</span>
 
         <ArrowUpRight
-          className="size-4"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300"
           strokeWidth={1.75}
           aria-hidden="true"
         />
@@ -93,7 +93,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">LinkedIn</span>
 
         <ArrowUpRight
-          className="size-4"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300"
           strokeWidth={1.75}
           aria-hidden="true"
         />
@@ -114,7 +114,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">Email</span>
 
         <ArrowUpRight
-          className="size-4"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300"
           strokeWidth={1.75}
           aria-hidden="true"
         />

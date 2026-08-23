@@ -73,15 +73,11 @@ export function GitHubContributions({
           <ContributionGraphTotalCount>
             {({ totalCount }) => (
               <figcaption className="text-pretty tabular-nums">
-                <span className="mr-2 tracking-wide text-muted-foreground/80">
-                  Fig. 02
-                </span>
-                {totalCount.toLocaleString("en-US")} contributions,{" "}
-                {format(parseISO(data[0].date), "yyyy")} -{" "}
-                {format(parseISO(data[data.length - 1].date), "yyyy")} on{" "}
+                {totalCount.toLocaleString("en-US")} contributions in the last
+                year on{" "}
                 <a
                   href={githubProfileUrl}
-                  className="underline underline-offset-3"
+                  className="underline underline-offset-3 hover:text-muted-foreground"
                   target="_blank"
                   rel="noopener"
                 >

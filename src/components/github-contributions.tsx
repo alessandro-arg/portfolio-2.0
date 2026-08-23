@@ -77,9 +77,8 @@ export function GitHubContributions({
                   Fig. 02
                 </span>
                 {totalCount.toLocaleString("en-US")} contributions,{" "}
-                {format(parseISO(data[0].date), "dd.MM.yyyy")} -{" "}
-                {format(parseISO(data[data.length - 1].date), "dd.MM.yyyy")}.
-                Source:{" "}
+                {format(parseISO(data[0].date), "yyyy")} -{" "}
+                {format(parseISO(data[data.length - 1].date), "yyyy")} on{" "}
                 <a
                   href={githubProfileUrl}
                   className="underline underline-offset-3"

@@ -59,7 +59,7 @@ export function OverviewSection() {
 
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-1/2 hidden border-l border-dashed border-border md:block"
+        className="absolute inset-y-0 left-1/2 hidden border-l border-dashed border-border sm:block"
       />
 
       <div className="grid content-start gap-3 md:pr-8">
@@ -76,7 +76,7 @@ export function OverviewSection() {
         </OverviewItem>
       </div>
 
-      <div className="grid content-start gap-3 md:pl-8">
+      <div className="grid content-start gap-3 md:pl-4">
         <OverviewItem icon={Clock3}>
           <LocalTime timeZone={profile.timeZone} />
         </OverviewItem>

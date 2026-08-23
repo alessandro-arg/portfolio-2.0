@@ -180,10 +180,9 @@
   .screen-line-bottom::after {
     content: "";
     position: absolute;
-    left: 50%;
-    width: 100vw;
+    left: -100vw;
+    width: 200vw;
     height: 1px;
-    transform: translateX(-50%);
     pointer-events: none;
     background: var(--border);
   }

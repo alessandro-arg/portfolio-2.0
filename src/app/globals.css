@@ -103,6 +103,7 @@
   --sidebar-ring: oklch(0.56 0 0);
 
   --page-max-width: 48rem;
+  --page-frame-offset: 1rem;
 }
 
 .dark {
@@ -160,6 +161,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
   }
   html {
     @apply font-sans;
@@ -171,6 +173,12 @@
 }
 
 @layer components {
+  .page-frame {
+    width: var(--page-max-width);
+    max-width: calc(100% - var(--page-frame-offset));
+    margin-inline: auto;
+  }
+
   .screen-line-top,
   .screen-line-bottom {
     position: relative;

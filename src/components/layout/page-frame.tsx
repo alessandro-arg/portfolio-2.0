@@ -8,7 +8,7 @@ export function PageFrame({ className, children, ...props }: PageFrameProps) {
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-[var(--page-max-width)] border-x border-border bg-background",
+        "page-frame border-x border-border bg-background",
         className,
       )}
       {...props}

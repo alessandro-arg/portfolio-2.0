@@ -21,6 +21,11 @@ export type Project = {
   year: number;
   summary: string;
   technologies: readonly string[];
+  logo?: string;
+  mockup?: {
+    light: string;
+    dark: string;
+  };
   repositoryUrl?: string;
   liveUrl?: string;
   featured: boolean;

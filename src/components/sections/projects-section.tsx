@@ -98,7 +98,7 @@ export function ProjectSection() {
 
   return (
     <section aria-labelledby="projects-heading">
-      <header className="border-b border-border p-4 py-2">
+      <header className="screen-line-bottom border-border p-4 py-2">
         <p className="mb-1 font-mono text-xs text-muted-foreground">
           Selected Work
         </p>
@@ -111,7 +111,11 @@ export function ProjectSection() {
         </h2>
       </header>
 
-      <Accordion type="single" collapsible>
+      <Accordion
+        type="single"
+        collapsible
+        defaultValue={featuredProjects[0]?.slug ?? featuredProjects[0]?.title}
+      >
         {featuredProjects.map((project, index) => {
           const value = project.slug ?? project.title;
 

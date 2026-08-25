@@ -12,9 +12,9 @@ export const profile = {
     "Small details matter",
   ],
   about: [
-    "I'm Alessandro, a developer passionate about creating dynamic web applications. I enjoy working across frontend, backend, and infrastructure. I thrive on solving complex problems with clean, efficient code, and I'm always ready to learn more.",
-    "When I'm not immersed in work, I'm exploring new ideas or new mountains and staying curious. Life is about balance, and I love embracing every part of it, especially on a mountain.",
-    "I believe small daily progress leads to big results.",
+    "I'm Alessandro, a software developer who enjoys building web applications from the interface down to the systems that support them.",
+    "I like working across frontend, backend, and infrastructure, with a focus on clean code, thoughtful interfaces, and understanding how the pieces fit together.",
+    "Outside of development, I like exploring new ideas, learning new things, and spending time in the mountains. Staying curious is a big part of both how I work and how I live.",
   ],
   contact: {
     email: "contact@alessandro-argenziano.com",

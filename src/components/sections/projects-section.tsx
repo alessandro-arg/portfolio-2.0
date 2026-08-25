@@ -100,7 +100,7 @@ export function ProjectSection() {
     <section aria-labelledby="projects-heading">
       <header className="screen-line-bottom border-border p-4 py-2">
         <p className="mb-1 font-mono text-xs text-muted-foreground">
-          Selected Work
+          /Selected Work
         </p>
 
         <h2

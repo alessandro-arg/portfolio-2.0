@@ -216,7 +216,7 @@ export const stackGroups = [
   {
     id: "workflow-and-ai",
     label: "Workflow & AI",
-    categories: ["workflow", "ai"],
+    categories: ["ai", "workflow"],
   },
   {
     id: "tools",

@@ -17,11 +17,13 @@ export function TechnologyBadge({
 }: TechnologyBadgeProps) {
   const classes = cn(
     "inline-flex h-6 items-center justify-center gap-1.25 rounded-full",
-    "bg-zinc-50/80 px-2 font-mono text-xs text-foreground cursor-default",
-    "inset-ring-1 inset-ring-border dark:bg-zinc-900/80",
+    "bg-surface-elevated px-2 font-mono text-xs text-muted-foreground",
+    "inset-ring-1 inset-ring-border",
     "[&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0",
-    "[&_svg]:text-muted-foreground/80",
-    href && "transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/80",
+    "[&_img]:pointer-events-none [&_img]:size-3.5 [&_img]:shrink-0",
+    href
+      ? "cursor-pointer transition-colors hover:bg-accent"
+      : "cursor-default",
     className,
   );
 
@@ -31,7 +33,7 @@ export function TechnologyBadge({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={className}
+        className={classes}
       >
         {icon}
         {children}

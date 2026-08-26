@@ -7,8 +7,8 @@ import { PageFrame } from "@/components/layout/page-frame";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 isolate w-full bg-background">
-      <PageFrame className="screen-line-bottom">
-        <div className="flex min-h-14 items-center justify-between px-page sm:px-6 lg:px-8">
+      <PageFrame className="screen-line-bottom max-sm:border-x-0">
+        <div className="flex min-h-14 items-center justify-between px-page sm:px-4">
           <Link
             href="/"
             aria-label="Alessandro Argenziano Home"

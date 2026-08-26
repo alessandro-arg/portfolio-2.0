@@ -31,6 +31,29 @@ export type Project = {
   featured: boolean;
 };
 
+export type ExperienceLocationType = "remote" | "hybrid" | "on-site";
+
+export type ExperiencePosition = {
+  id: string;
+  title: string;
+  type?: string;
+  startDate: string;
+  endDate?: string;
+  highlights?: readonly string[];
+  technologies?: readonly string[];
+  skills?: readonly string[];
+};
+
+export type ExperienceOrganization = {
+  id: string;
+  name: string;
+  website?: string;
+  logo?: string;
+  location: string;
+  locationType?: ExperienceLocationType;
+  positions: readonly ExperiencePosition[];
+};
+
 export type TechnologyCategory =
   | "language"
   | "frontend"

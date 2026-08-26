@@ -192,9 +192,31 @@ export const projectTechnologies = {
   },
 } satisfies Record<string, Technology>;
 
+export const experienceTechnologies = {
+  java: {
+    id: "java",
+    name: "Java",
+    category: "language",
+    website: "https://www.java.com/",
+  },
+  php: {
+    id: "php",
+    name: "PHP",
+    category: "language",
+    website: "https://www.php.net/",
+  },
+  firebase: {
+    id: "firebase",
+    name: "Firebase",
+    category: "database",
+    website: "https://firebase.google.com/",
+  },
+} satisfies Record<string, Technology>;
+
 export const technologies = {
   ...stackTechnologies,
   ...projectTechnologies,
+  ...experienceTechnologies,
 };
 
 export const stackGroups = [

@@ -45,7 +45,7 @@ export function StackSection() {
                   aria-hidden="true"
                   className="mr-1.5 font-mono text-muted-foreground"
                 >
-                  {String(index + 1).padStart(2, "0")}
+                  /{String(index + 1).padStart(2, "0")}
                 </span>
 
                 {group.label}

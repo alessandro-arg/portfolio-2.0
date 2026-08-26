@@ -19,6 +19,7 @@ export function SiteHeader() {
               alt=""
               width={28}
               height={28}
+              className="dark:invert"
               priority
             />
           </Link>

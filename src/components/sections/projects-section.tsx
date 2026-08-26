@@ -39,7 +39,11 @@ function ProjectMark({ project }: ProjectMarkProps) {
           alt=""
           width={20}
           height={20}
-          className="size-5 object-contain"
+          className={
+            project.logo === "/projects/portfolio-logo.svg"
+              ? "size-5 object-contain dark:invert"
+              : "size-5 object-contain"
+          }
         />
       ) : (
         <Server className="size-5" strokeWidth={1.75} aria-hidden="true" />

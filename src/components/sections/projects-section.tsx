@@ -170,7 +170,7 @@ export function ProjectSection() {
               </div>
 
               <AccordionContent>
-                <div className="space-y-4 border-t border-border p-5">
+                <div className="space-y-4 border-t border-border p-4">
                   <ProjectMockup project={project} />
 
                   <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">

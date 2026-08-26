@@ -105,7 +105,7 @@ export function ProjectSection() {
 
         <h2
           id="projects-heading"
-          className="text-2xl font-medium tracking-tight"
+          className="text-3xl font-medium tracking-tight"
         >
           Projects
         </h2>

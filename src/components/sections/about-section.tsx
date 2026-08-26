@@ -7,7 +7,7 @@ export function AboutSection() {
       <header className="screen-line-bottom border-border p-4 py-2">
         <p className="mb-1 font-mono text-xs text-muted-foreground">/About</p>
 
-        <h2 id="about-heading" className="text-2xl font-medium tracking-tight">
+        <h2 id="about-heading" className="text-3xl font-medium tracking-tight">
           A little about me
         </h2>
       </header>

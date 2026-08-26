@@ -49,6 +49,7 @@ export type ExperienceOrganization = {
   name: string;
   website?: string;
   logo?: string;
+  logoDark?: string;
   location: string;
   locationType?: ExperienceLocationType;
   positions: readonly ExperiencePosition[];

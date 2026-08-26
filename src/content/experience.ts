@@ -5,13 +5,15 @@ export const experience = [
     id: "gfn",
     name: "GFN",
     website: "https://www.gfn.de/",
+    logo: "/companies/gfn.svg",
+    logoDark: "/companies/gfn-dark.svg",
     location: "Donaueschingen, Germany",
     locationType: "hybrid",
     positions: [
       {
         id: "application-development-retraining",
         title: "Fachinformatiker für Anwendungsentwicklung",
-        type: "Vocational Retraining",
+        type: "Retraining",
         startDate: "2025-08",
         highlights: [
           "Learning software development with a focus on structured, maintainable code and practical application development.",
@@ -19,12 +21,11 @@ export const experience = [
           "Learning to understand client requirements and translate them into technical solutions.",
           "Developing practical experience with programming languages including Java and Python.",
         ],
-        technologies: ["java", "python", "php"],
+        technologies: ["java", "python"],
         skills: [
           "Software Development",
           "Project Management",
           "Networking",
-          "IT Security",
           "Server Administration",
           "Database Fundamentals",
           "Quality Assurance",
@@ -37,6 +38,7 @@ export const experience = [
     id: "developer-akademie",
     name: "Developer Akademie",
     website: "https://developerakademie.com/",
+    logo: "/companies/developer-akademie.svg",
     location: "Munich, Germany",
     locationType: "remote",
     positions: [
@@ -64,10 +66,8 @@ export const experience = [
           "UI/UX Implementation",
           "API Integration",
           "Authentication",
-          "IT Security",
           "Agile Development",
           "Team Collaboration",
-          "Testing",
         ],
       },
     ],
@@ -76,6 +76,7 @@ export const experience = [
     id: "sonnenhof-sonnhalde",
     name: "Sonnenhof & Sonnhalde",
     website: "https://sonnenhof-sonnhalde.de/",
+    logo: "/companies/sonnenhof-sonnhalde.webp",
     location: "Birkendorf, Germany",
     locationType: "on-site",
     positions: [

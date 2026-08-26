@@ -199,12 +199,6 @@ export const experienceTechnologies = {
     category: "language",
     website: "https://www.java.com/",
   },
-  php: {
-    id: "php",
-    name: "PHP",
-    category: "language",
-    website: "https://www.php.net/",
-  },
   firebase: {
     id: "firebase",
     name: "Firebase",

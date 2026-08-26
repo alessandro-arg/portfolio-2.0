@@ -14,7 +14,7 @@ type OverviewItemProps = {
 function OverviewItem({ icon: Icon, children, href }: OverviewItemProps) {
   const content = (
     <>
-      <span className="grid size-7 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground">
+      <span className="grid size-7 shrink-0 place-items-center rounded-md border border-border bg-surface-elevated text-muted-foreground">
         <Icon className="size-4" strokeWidth={1.75} aria-hidden="true" />
       </span>
 

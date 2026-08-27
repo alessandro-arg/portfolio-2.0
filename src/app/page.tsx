@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/sections/about-section";
 import { SocialLinks } from "@/components/sections/social-links";
 import { StackSection } from "@/components/sections/stack-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
+import { CertificationsSection } from "@/components/sections/certifications-section";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,8 @@ export default function HomePage() {
       <StackSection />
       <StripeDivider />
       <ExperienceSection />
+      <StripeDivider />
+      <CertificationsSection />
       <StripeDivider />
     </>
   );

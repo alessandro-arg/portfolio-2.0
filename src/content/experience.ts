@@ -12,7 +12,7 @@ export const experience = [
     positions: [
       {
         id: "application-development-retraining",
-        title: "Fachinformatiker für Anwendungsentwicklung",
+        title: "Fachinformatiker für Anwendungsentwicklung (IHK)",
         type: "Retraining",
         startDate: "2025-08",
         highlights: [

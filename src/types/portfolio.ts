@@ -70,3 +70,13 @@ export type Technology = {
   category: TechnologyCategory;
   website: string;
 };
+
+export type Certification = {
+  id: string;
+  name: string;
+  issuer: string;
+  issuedOn: string;
+  credentialUrl: string;
+  credentialId?: string;
+  logo?: string;
+};

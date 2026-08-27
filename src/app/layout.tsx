@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alessandro Argenziano",
+    default: "Alessandro Argenziano - Software Developer",
     template: "%s | Alessandro Argenziano",
   },
   description: "Software developer portfolio of Alessandro Argenziano.",

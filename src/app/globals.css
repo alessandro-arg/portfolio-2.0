@@ -247,10 +247,50 @@
 
     background-size: 10px 10px;
   }
+
+  .testimonial-marquee-viewport {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 4rem,
+      black calc(100% - 4rem),
+      transparent
+    );
+  }
+
+  .testimonial-marquee-track {
+    animation: testimonial-marquee 42s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonial-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes testimonial-marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .testimonial-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .testimonial-marquee-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .testimonial-marquee-copy {
+    display: none;
   }
 }

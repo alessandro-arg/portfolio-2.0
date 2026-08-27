@@ -80,3 +80,10 @@ export type Certification = {
   credentialId?: string;
   logo?: string;
 };
+
+export type Testimonial = {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+};

@@ -21,7 +21,7 @@ export function AboutSection() {
             >
               <LineDotRightHorizontal
                 className="size-5 shrink-0 text-muted-foreground mt-1 sm:mt-0"
-                strokeWidth={0.5}
+                strokeWidth={1.75}
                 aria-hidden="true"
               />
               <span>{paragraph}</span>

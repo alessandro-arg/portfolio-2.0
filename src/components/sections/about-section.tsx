@@ -4,8 +4,8 @@ import { LineDotRightHorizontal } from "lucide-react";
 export function AboutSection() {
   return (
     <section aria-labelledby="about-heading">
-      <header className="screen-line-bottom border-border p-4 py-2">
-        <p className="mb-1 font-mono text-xs text-muted-foreground">/About</p>
+      <header className="screen-line-bottom border-border p-4 py-1 pt-2">
+        <p className="mb-1 font-mono text-xs text-muted-foreground">/Profile</p>
 
         <h2 id="about-heading" className="text-3xl font-medium tracking-tight">
           A little about me

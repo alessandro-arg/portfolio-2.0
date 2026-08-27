@@ -287,9 +287,9 @@ function ExperienceOrganizationItem({
 export function ExperienceSection() {
   return (
     <section aria-labelledby="experience-heading">
-      <header className="screen-line-bottom border-border p-4 py-2">
+      <header className="screen-line-bottom border-border p-4 py-1 pt-2">
         <p className="mb-1 font-mono text-xs text-muted-foreground">
-          /Experience
+          /Background
         </p>
 
         <h2

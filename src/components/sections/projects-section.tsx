@@ -102,7 +102,7 @@ export function ProjectSection() {
 
   return (
     <section aria-labelledby="projects-heading">
-      <header className="screen-line-bottom border-border p-4 py-2">
+      <header className="screen-line-bottom border-border p-4 py-1 pt-2">
         <p className="mb-1 font-mono text-xs text-muted-foreground">
           /Selected Work
         </p>
@@ -130,7 +130,7 @@ export function ProjectSection() {
                   <ProjectMark project={project} />
                 </div>
 
-                <AccordionTrigger className="min-w-0 px-4 py-3 hover:no-underline flex items-center border-l border-l-border">
+                <AccordionTrigger className="min-w-0 px-4 py-3 hover:no-underline flex items-center border-dashed border-l border-l-border">
                   <div className="min-w-0 flex-1 text-left">
                     <div className="flex min-w-0 items-baseline gap-2">
                       <span className="shrink-0 font-mono text-xs text-muted-foreground">

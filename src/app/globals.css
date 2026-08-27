@@ -183,6 +183,9 @@
     background: var(--border);
     border-radius: 5px;
   }
+  [id] {
+    @apply scroll-mt-18;
+  }
 }
 
 @layer components {

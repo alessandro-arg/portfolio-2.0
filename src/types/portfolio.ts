@@ -6,6 +6,8 @@ export type Profile = {
   heroSentences: readonly string[];
   about: readonly string[];
   contact: {
+    heading: string;
+    description: string;
     email: string;
     phone: string;
     website: string;

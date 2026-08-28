@@ -17,6 +17,9 @@ export const profile = {
     "Outside of development, I like exploring new ideas, learning new things, and spending time in the mountains. Staying curious is a big part of both how I work and how I live.",
   ],
   contact: {
+    heading: "Looking for a 9-month internship.",
+    description:
+      "I'm currently looking for a 9-month software development internship as part of my IHK retraining. If your team has an opportunity where I can contribute, learn, and grow, I'd love to hear from you.",
     email: "contact@alessandro-argenziano.com",
     phone: "+49 (0)160 92965227",
     website: "https://alessandro-argenziano.com",

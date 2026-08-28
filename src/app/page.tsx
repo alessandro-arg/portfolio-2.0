@@ -9,6 +9,7 @@ import { StackSection } from "@/components/sections/stack-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
 import { CertificationsSection } from "@/components/sections/certifications-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { ContactSection } from "@/components/sections/contact-section";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,8 @@ export default function HomePage() {
       <CertificationsSection />
       <StripeDivider />
       <TestimonialsSection />
+      <StripeDivider />
+      <ContactSection />
       <StripeDivider />
     </>
   );

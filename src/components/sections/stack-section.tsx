@@ -13,7 +13,7 @@ function getTechnologiesForGroup(categories: readonly TechnologyCategory[]) {
 
 export function StackSection() {
   return (
-    <section aria-labelledby="stack-heading">
+    <section id="stack" aria-labelledby="stack-heading">
       <header className="screen-line-bottom p-4 border-border py-1 pt-2">
         <p className="mb-1 font-mono text-xs uppercase tracking-wide text-muted-foreground">
           /Skills

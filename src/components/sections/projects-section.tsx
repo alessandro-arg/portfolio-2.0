@@ -101,7 +101,7 @@ export function ProjectSection() {
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <section aria-labelledby="projects-heading">
+    <section id="projects" aria-labelledby="projects-heading">
       <header className="screen-line-bottom border-border p-4 py-1 pt-2">
         <p className="mb-1 font-mono text-xs uppercase tracking-wide text-muted-foreground">
           /Selected Work

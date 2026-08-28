@@ -3,7 +3,7 @@ import { LineDotRightHorizontal } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <section aria-labelledby="about-heading">
+    <section id="about" aria-labelledby="about-heading">
       <header className="screen-line-bottom border-border p-4 py-1 pt-2">
         <p className="mb-1 font-mono text-xs uppercase tracking-wide text-muted-foreground">
           /Profile

@@ -10,11 +10,11 @@ function CertificationMark({
   certification: Certification;
 }) {
   return (
-    <span className="grid size-6 shrink-0 place-items-center rounded-md border border-border bg-surface-elevated text-muted-foreground">
+    <span className="grid size-9 shrink-0 place-items-center rounded-md border border-border bg-surface-elevated text-muted-foreground">
       {certification.logo ? (
         <span
           aria-hidden="true"
-          className="size-4 bg-current [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]"
+          className="size-5 bg-current [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]"
           style={{
             maskImage: `url(${certification.logo})`,
             WebkitMaskImage: `url(${certification.logo})`,
@@ -22,7 +22,7 @@ function CertificationMark({
         />
       ) : (
         <CircleCheckBig
-          className="size-4"
+          className="size-5"
           strokeWidth={1.75}
           aria-hidden="true"
         />
@@ -40,7 +40,7 @@ function CertificationRow({ certification }: { certification: Certification }) {
         rel="noopener noreferrer"
         className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center pr-2 transition-colors hover:bg-accent/40"
       >
-        <div className="mx-4">
+        <div className="mx-4 shrink-0">
           <CertificationMark certification={certification} />
         </div>
 

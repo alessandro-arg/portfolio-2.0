@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BadgeCheck } from "lucide-react";
 
 import { profile } from "@/content/profile";
 
@@ -48,6 +49,7 @@ export function HeroSection() {
             >
               {profile.name}
             </h1>
+            <BadgeCheck className="size-5 select-none text-muted-foreground" />
           </div>
 
           <div className="flex h-[3.125rem] items-start overflow-hidden border-t border-border py-1 pl-4 font-mono text-[0.82rem] text-muted-foreground sm:h-9">

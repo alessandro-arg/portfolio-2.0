@@ -104,6 +104,8 @@
 
   --page-max-width: 48rem;
   --page-frame-offset: 1rem;
+
+  --fade-bottom-height: --spacing(24);
 }
 
 .dark {

@@ -15,7 +15,9 @@ export function StackSection() {
   return (
     <section aria-labelledby="stack-heading">
       <header className="screen-line-bottom p-4 border-border py-1 pt-2">
-        <p className="mb-1 font-mono text-xs text-muted-foreground">/Skills</p>
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+          /Skills
+        </p>
 
         <h2 id="stack-heading" className="text-3xl font-medium tracking-tight">
           My Stack

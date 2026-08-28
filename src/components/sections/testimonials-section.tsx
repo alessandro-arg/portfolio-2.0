@@ -34,7 +34,7 @@ export function TestimonialsSection() {
   return (
     <section aria-labelledby="testimonials-heading">
       <header className="screen-line-bottom border-border p-4 py-1 pt-2">
-        <p className="mb-1 font-mono text-xs text-muted-foreground">
+        <p className="mb-1 font-mono text-xs uppercase tracking-wide text-muted-foreground">
           /Feedback
         </p>
 

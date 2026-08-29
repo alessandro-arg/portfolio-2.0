@@ -190,7 +190,7 @@
     border-radius: 5px;
   }
   [id] {
-    @apply scroll-mt-18;
+    @apply scroll-mt-22;
   }
 }
 

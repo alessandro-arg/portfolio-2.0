@@ -21,6 +21,7 @@ import {
   TextInitial,
   CornerDownLeft,
   Download,
+  Search,
   type LucideIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -36,9 +37,11 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { homepageNavigation } from "@/content/navigation";
 import { profile } from "@/content/profile";
+import { cn } from "@/lib/utils";
 
 type NavigationId = (typeof homepageNavigation)[number]["id"];
 
@@ -76,6 +79,34 @@ export function useCommandMenu() {
   }
 
   return context;
+}
+
+export function CommandMenuTrigger({ className }: { className?: string }) {
+  const { openCommandMenu } = useCommandMenu();
+
+  return (
+    <Button
+      type="button"
+      variant="ghost"
+      size="sm"
+      aria-label="Open command palette"
+      aria-keyshortcuts="Control+K Meta+K"
+      onClick={openCommandMenu}
+      className={cn(
+        "h-8 gap-1.5 rounded-[min(var(--radius-lg),10px)] border-none px-1.5",
+        "text-muted-foreground will-change-[scale] select-none",
+        "active:translate-y-0 active:scale-[0.98]",
+        className,
+      )}
+    >
+      <Search className="size-4" aria-hidden="true" />
+
+      <span aria-hidden="true" className="flex items-center gap-0.75">
+        <Kbd>Ctrl</Kbd>
+        <Kbd className="w-5 min-w-auto">K</Kbd>
+      </span>
+    </Button>
+  );
 }
 
 type CommandMenuProviderProps = {

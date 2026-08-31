@@ -82,6 +82,8 @@ function ProjectMockup({ project }: ProjectMockupProps) {
           height={1200}
           className={`${imageClassName} dark:hidden`}
           sizes="(max-width: 768px) calc(100vw - 3rem), 36rem"
+          loading="eager"
+          unoptimized
         />
 
         <Image
@@ -91,6 +93,8 @@ function ProjectMockup({ project }: ProjectMockupProps) {
           height={1200}
           className={`${imageClassName} hidden dark:block`}
           sizes="(max-width: 768px) calc(100vw - 3rem), 36rem"
+          loading="eager"
+          unoptimized
         />
       </div>
     </div>

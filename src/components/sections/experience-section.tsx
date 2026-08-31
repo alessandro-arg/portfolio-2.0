@@ -135,7 +135,7 @@ function ExperiencePositionItem({
         <div className="min-w-0 flex-1">
           <h4 className="font-medium text-balance">{position.title}</h4>
 
-          <dl className="mt-1 flex flex-wrap items-center gap-2 font-mono text-sm text-muted-foreground">
+          <dl className="mt-1 flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm text-muted-foreground">
             {position.type && (
               <>
                 <div>

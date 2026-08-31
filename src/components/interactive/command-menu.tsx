@@ -91,6 +91,7 @@ export function CommandMenuTrigger({ className }: { className?: string }) {
       size="sm"
       aria-label="Open command palette"
       aria-keyshortcuts="Control+K Meta+K"
+      data-slot="command-menu-trigger"
       onClick={openCommandMenu}
       className={cn(
         "h-8 gap-1.5 rounded-[min(var(--radius-lg),10px)] border-none px-1.5",
@@ -101,7 +102,9 @@ export function CommandMenuTrigger({ className }: { className?: string }) {
     >
       <Search className="size-4" aria-hidden="true" />
 
-      <span aria-hidden="true" className="flex items-center gap-0.75">
+      <span className="text-sm font-medium sm:hidden">Search…</span>
+
+      <span aria-hidden="true" className="hidden items-center gap-0.75 sm:flex">
         <Kbd>Ctrl</Kbd>
         <Kbd className="w-5 min-w-auto">K</Kbd>
       </span>

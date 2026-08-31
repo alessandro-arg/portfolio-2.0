@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,32 @@ import { homepageNavigation } from "@/content/navigation";
 
 export function MobileNavigationMenu() {
   const [open, setOpen] = useState(false);
+  const scrollStartRef = useRef(0);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    scrollStartRef.current = window.scrollY;
+
+    function handleScroll() {
+      const distance = Math.abs(window.scrollY - scrollStartRef.current);
+
+      if (distance >= 48) {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [open]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen} modal>
+    <Popover open={open} onOpenChange={setOpen} modal={false}>
       <PopoverTrigger asChild>
         <MobileNavigationTrigger />
       </PopoverTrigger>
@@ -24,7 +47,7 @@ export function MobileNavigationMenu() {
       <PopoverContent
         side="top"
         align="center"
-        sideOffset={8}
+        sideOffset={10}
         className="w-48 rounded-xl p-1 dark:bg-accent dark:ring-1 dark:ring-foreground/20"
       >
         <nav aria-label="Mobile navigation" className="flex flex-col">

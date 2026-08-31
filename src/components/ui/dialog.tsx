@@ -63,10 +63,7 @@ function DialogContent({
         <div
           aria-hidden="true"
           data-slot="dialog-visual-backdrop"
-          className={cn(
-            "pointer-events-none fixed inset-0 z-50",
-            visualBackdropClassName,
-          )}
+          className={cn("fixed inset-0 z-50", visualBackdropClassName)}
         />
       ) : (
         <DialogOverlay />

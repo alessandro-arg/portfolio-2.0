@@ -16,6 +16,7 @@ export function SocialLinks() {
         href={profile.contact.github}
         target="_blank"
         rel="noreferrer"
+        aria-label="GitHub"
         className={`${linkClassName} border-border border-r`}
       >
         <span className={iconClassName}>
@@ -25,7 +26,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">GitHub</span>
 
         <ArrowUpRight
-          className="size-4 group-hover:rotate-45 transition-transform duration-300"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300 motion-reduce:transition-none"
           strokeWidth={1.75}
           aria-hidden="true"
         />
@@ -35,6 +36,7 @@ export function SocialLinks() {
         href={profile.contact.linkedin}
         target="_blank"
         rel="noreferrer"
+        aria-label="LinkedIn"
         className={`${linkClassName} border-border border-r`}
       >
         <span className={iconClassName}>
@@ -44,7 +46,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">LinkedIn</span>
 
         <ArrowUpRight
-          className="size-4 group-hover:rotate-45 transition-transform duration-300"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300 motion-reduce:transition-none"
           strokeWidth={1.75}
           aria-hidden="true"
         />
@@ -52,6 +54,7 @@ export function SocialLinks() {
 
       <a
         href={`mailto:${profile.contact.email}`}
+        aria-label="Email"
         className={`${linkClassName}`}
       >
         <span className={iconClassName}>
@@ -65,7 +68,7 @@ export function SocialLinks() {
         <span className="hidden sm:inline">Email</span>
 
         <ArrowUpRight
-          className="size-4 group-hover:rotate-45 transition-transform duration-300"
+          className="size-4 group-hover:rotate-45 transition-transform duration-300 motion-reduce:transition-none"
           strokeWidth={1.75}
           aria-hidden="true"
         />

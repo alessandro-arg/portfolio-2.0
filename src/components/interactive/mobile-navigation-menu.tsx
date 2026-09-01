@@ -79,9 +79,9 @@ function MobileNavigationTrigger(
       className="group relative flex touch-manipulation flex-col gap-1 border-none active:scale-100 aria-expanded:bg-accent"
       {...props}
     >
-      <span className="h-0.5 w-4 rounded-full bg-foreground transition-transform group-aria-expanded:translate-y-0.75 group-aria-expanded:rotate-45" />
+      <span className="h-0.5 w-4 rounded-full bg-foreground transition-transform group-aria-expanded:translate-y-0.75 group-aria-expanded:rotate-45 motion-reduce:transition-none" />
 
-      <span className="h-0.5 w-4 rounded-full bg-foreground transition-transform group-aria-expanded:-translate-y-0.75 group-aria-expanded:-rotate-45" />
+      <span className="h-0.5 w-4 rounded-full bg-foreground transition-transform group-aria-expanded:-translate-y-0.75 group-aria-expanded:-rotate-45 motion-reduce:transition-none" />
     </Button>
   );
 }

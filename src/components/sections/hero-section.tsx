@@ -49,7 +49,10 @@ export function HeroSection() {
             >
               {profile.name}
             </h1>
-            <BadgeCheck className="size-5 select-none text-muted-foreground hidden sm:block" />
+            <BadgeCheck
+              className="size-5 select-none text-muted-foreground hidden sm:block"
+              aria-hidden="true"
+            />
           </div>
 
           <div className="flex h-[3.125rem] items-start overflow-hidden border-t border-border py-1 pl-4 font-mono text-[0.82rem] text-muted-foreground sm:h-9">

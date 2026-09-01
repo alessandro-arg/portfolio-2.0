@@ -36,7 +36,10 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
         className="grid size-8 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
         {copied ? (
-          <Check className="size-4 animate-in fade-in zoom-in-75" aria-hidden />
+          <Check
+            className="size-4 animate-in fade-in zoom-in-75 motion-reduce:animate-none"
+            aria-hidden
+          />
         ) : (
           <Copy className="size-4" aria-hidden />
         )}

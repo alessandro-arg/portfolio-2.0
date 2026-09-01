@@ -37,7 +37,7 @@ function FooterLink({ href, children }: { href: string; children: ReactNode }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
+      className="underline underline-offset-3 decoration-muted-foreground/50 hover:decoration-foreground transition-colors motion-reduce:transition-none"
     >
       {children}
     </a>

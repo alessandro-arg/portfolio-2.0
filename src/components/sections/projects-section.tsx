@@ -135,8 +135,8 @@ export function ProjectSection() {
                 </div>
 
                 <AccordionTrigger className="min-w-0 px-4 py-3 hover:no-underline flex items-center border-dashed border-l border-l-border">
-                  <div className="min-w-0 flex-1 text-left">
-                    <div className="flex min-w-0 items-baseline gap-2">
+                  <span className="min-w-0 flex-1 text-left">
+                    <span className="flex min-w-0 items-baseline gap-2">
                       <span className="shrink-0 font-mono text-xs text-muted-foreground">
                         /{String(index + 1).padStart(2, "0")}
                       </span>
@@ -144,12 +144,12 @@ export function ProjectSection() {
                       <span className="truncate text-sm font-medium">
                         {project.title}
                       </span>
-                    </div>
+                    </span>
 
                     <span className="mt-1 ml-7.5 block font-mono text-xs text-muted-foreground">
                       {project.year}
                     </span>
-                  </div>
+                  </span>
                 </AccordionTrigger>
 
                 {project.repositoryUrl && (
@@ -159,7 +159,7 @@ export function ProjectSection() {
                         href={project.repositoryUrl}
                         target="_blank"
                         rel="noreferrer"
-                        aria-label={`Open ${project.title}`}
+                        aria-label={`Open ${project.title} GitHub repository`}
                         className="absolute top-1/2 right-9 z-10 grid size-8 -translate-y-1/2 place-items-center text-muted-foreground transition-colors hover:text-foreground"
                       >
                         <CircleArrowOutUpRight
@@ -202,7 +202,7 @@ export function ProjectSection() {
                           >
                             Source Code
                             <ArrowUpRight
-                              className="size-4 group-hover:rotate-45 transition-transform duration-300"
+                              className="size-4 group-hover:rotate-45 transition-transform duration-300 motion-reduce:transition-none"
                               data-icon="inline-end"
                               aria-hidden="true"
                             />
@@ -225,7 +225,7 @@ export function ProjectSection() {
                           >
                             Live Demo
                             <ArrowUpRight
-                              className="size-4 group-hover:rotate-45 transition-transform duration-300"
+                              className="size-4 group-hover:rotate-45 transition-transform duration-300 motion-reduce:transition-none"
                               data-icon="inline-end"
                               aria-hidden="true"
                             />

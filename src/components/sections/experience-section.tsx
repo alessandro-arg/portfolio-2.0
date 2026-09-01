@@ -132,16 +132,18 @@ function ExperiencePositionItem({
       <AccordionTrigger className="relative z-10 -m-1 w-[calc(100%+0.5rem)] items-start gap-3 rounded-md p-1 text-left transition-colors hover:bg-accent/40 hover:no-underline">
         <PositionMark position={position} />
 
-        <div className="min-w-0 flex-1">
-          <h4 className="font-medium text-balance">{position.title}</h4>
+        <span className="min-w-0 flex-1">
+          <span className="block font-medium text-balance">
+            {position.title}
+          </span>
 
-          <dl className="mt-1 flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm text-muted-foreground">
+          <span className="mt-1 flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm text-muted-foreground">
             {position.type && (
               <>
-                <div>
-                  <dt className="sr-only">Employment type</dt>
-                  <dd>{position.type}</dd>
-                </div>
+                <span>
+                  <span className="sr-only">Employment type: </span>
+                  {position.type}
+                </span>
 
                 <span
                   aria-hidden="true"
@@ -150,19 +152,19 @@ function ExperiencePositionItem({
               </>
             )}
 
-            <div>
-              <dt className="sr-only">Employment period</dt>
-              <dd>{period}</dd>
-            </div>
+            <span>
+              <span className="sr-only">Employment period: </span>
+              {period}
+            </span>
 
             <span aria-hidden="true" className="h-4 w-px shrink-0 bg-border" />
 
-            <div>
-              <dt className="sr-only">Duration</dt>
-              <dd>{duration}</dd>
-            </div>
-          </dl>
-        </div>
+            <span>
+              <span className="sr-only">Duration: </span>
+              {duration}
+            </span>
+          </span>
+        </span>
       </AccordionTrigger>
 
       {position.highlights?.length ? (
@@ -253,7 +255,7 @@ function ExperienceOrganizationItem({
                   <span className="relative flex size-2.5 translate-x-px translate-y-px items-center justify-center">
                     <span
                       aria-hidden="true"
-                      className="absolute inline-flex size-2.5 animate-ping rounded-full bg-sky-500 opacity-40"
+                      className="absolute inline-flex size-2.5 animate-ping rounded-full bg-sky-500 opacity-40 motion-reduce:hidden"
                     />
                     <span
                       aria-hidden="true"

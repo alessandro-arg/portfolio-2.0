@@ -96,7 +96,7 @@ export function CommandMenuTrigger({ className }: { className?: string }) {
       className={cn(
         "h-8 gap-1.5 rounded-[min(var(--radius-lg),10px)] border-none px-1.5",
         "text-muted-foreground will-change-[scale] select-none",
-        "active:translate-y-0 active:scale-[0.98]",
+        "active:translate-y-0 active:scale-[0.98] motion-reduce:active:scale-100",
         className,
       )}
     >

@@ -26,7 +26,7 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="Alessandro Argenziano Home"
-            className="inline-flex items-center focus-visible:outline-offset-4"
+            className="inline-flex items-center rounded-md focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
           >
             <Image
               src="/icons/icon0.svg"
@@ -48,7 +48,7 @@ export function SiteHeader() {
               <Link
                 key={item.id}
                 href={`/#${item.id}`}
-                className="text-sm font-medium tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-md text-sm font-medium tracking-wide text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               >
                 {item.label}
               </Link>

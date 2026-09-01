@@ -46,6 +46,7 @@ export function GitHubContributions({
           className="px-4 **:data-[slot=month-labels]:text-muted-foreground"
           title="GitHub Contributions"
           aria-hidden
+          tabIndex={-1}
         >
           {({ activity, dayIndex, weekIndex }) => (
             <Tooltip>

@@ -67,36 +67,144 @@ Separate portfolio content from presentation and establish typed, reusable data 
 
 ## Phase 4 - Homepage UI
 
-Build the main portfolio sections incrementally:
+Status: **Completed**
 
-Header, Hero, Overview, Projects, About, Technology Stack, Contact, and Footer.
+Build the complete homepage from the established design system and typed content architecture.
 
-Each section will be reviewed for responsive behavior and accessibility while it is implemented.
+- [x] Build Hero section
+- [x] Build Overview section
+- [x] Add social links
+- [x] Add cached GitHub contributions graph
+- [x] Build expandable featured Projects section
+- [x] Build About section
+- [x] Build Technology Stack section
+- [x] Build Experience section
+- [x] Build Certifications section
+- [x] Build Testimonials marquee
+- [x] Build Contact section
+- [x] Build production-style Footer
+- [x] Add stable homepage section IDs and shared navigation content
+- [x] Add desktop anchor navigation
+- [x] Add mobile bottom navigation
+- [x] Add global command palette and keyboard shortcut
+- [x] Add scroll-to-top control
+- [x] Complete desktop, tablet, and mobile responsive QA
+- [x] Complete keyboard and focus-navigation QA
+- [x] Establish semantic accessibility baseline
+- [x] Respect reduced-motion preferences across homepage interactions
+- [x] Complete homepage implementation and client-runtime cleanup
+- [x] Run final lint and production build
 
 ## Phase 5 - Projects & Case Studies
 
-Create dedicated project routes and structured case studies covering project goals, architecture, technical decisions, challenges, results, and lessons learned.
+Create dedicated project routes and structured case studies for selected projects.
+
+Case studies should focus on:
+
+- project goals and context
+- architecture and technical decisions
+- implementation approach
+- challenges and solutions
+- results and current status
+- lessons learned
+
+Only projects that benefit from deeper explanation require a dedicated case-study route.
 
 ## Phase 6 - Interaction & Motion
 
-Add intentional interaction and animation including the interactive logo, theme controls, command/search interface, navigation feedback, and restrained section transitions.
+Refine the portfolio's motion language after the core content and project routes are complete.
 
-Motion must respect reduced-motion preferences.
+The homepage already includes the functional interaction baseline:
+
+- theme controls
+- command palette
+- navigation feedback
+- accordion interaction
+- mobile navigation
+- scroll-to-top behavior
+
+This phase focuses on intentional polish rather than adding animation everywhere.
+
+Potential work includes:
+
+- signature logo interaction
+- restrained section entrance transitions
+- project/case-study transitions
+- interaction timing refinement
+- motion consistency review
+
+Motion must continue to respect reduced-motion preferences.
 
 ## Phase 7 - Accessibility
 
-Perform a dedicated accessibility review covering semantic structure, keyboard navigation, focus behavior, screen-reader support, contrast, touch targets, and reduced motion.
+Perform the dedicated final accessibility audit.
+
+The homepage already establishes a baseline for semantic structure, keyboard navigation, focus visibility, accessible names, touch targets, and reduced motion.
+
+This phase verifies the complete application, including future project routes, with:
+
+- semantic structure review
+- keyboard-only navigation
+- focus management
+- screen-reader behavior
+- color contrast
+- touch-target review
+- reduced-motion behavior
+- automated accessibility tooling where useful
 
 ## Phase 8 - SEO & Social Sharing
 
-Implement production metadata, title templates, descriptions, canonical URLs, Open Graph data, social previews, sitemap, robots configuration, and appropriate structured data.
+Implement production SEO and sharing metadata.
+
+- production titles and descriptions
+- canonical URLs
+- Open Graph metadata
+- social preview images
+- sitemap
+- robots configuration
+- appropriate structured data
+- project-specific metadata for case-study routes
 
 ## Phase 9 - Performance & Quality
 
-Measure and optimize Core Web Vitals, client JavaScript, images, fonts, rendering boundaries, animations, layout stability, and dependency usage.
+Measure and optimize the completed application rather than applying speculative optimizations during feature development.
 
-Run Lighthouse and production quality checks.
+Review:
+
+- Core Web Vitals
+- client JavaScript
+- rendering boundaries
+- dependency usage
+- image delivery
+- fonts
+- layout stability
+- animation cost
+- caching and data loading
+
+### Final project asset pass
+
+After the final Portfolio screenshots are available:
+
+- create final Homelab, Coordina, and Portfolio mockups together
+- export them as genuine static WebP and/or AVIF assets
+- verify that WebP files do not contain unintended animation data
+- optimize source file sizes
+- remove temporary `unoptimized` / eager-loading workarounds where appropriate
+- verify responsive `next/image` sizing
+- measure LCP and image loading behavior
+
+Run Lighthouse and production quality checks after the final assets are in place.
 
 ## Phase 10 - Production & Deployment
 
-Connect the final application to Vercel, configure the production domain, validate production and preview deployments, perform final responsive/accessibility/performance checks, and complete project documentation.
+Prepare and release the completed portfolio.
+
+- connect final Vercel production deployment
+- configure the production domain
+- validate preview and production environments
+- perform final responsive checks
+- perform final accessibility checks
+- perform final performance checks
+- validate production metadata and sharing previews
+- complete project documentation
+- merge the replacement portfolio to `main` only after production-readiness review

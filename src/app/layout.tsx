@@ -6,6 +6,7 @@ import { MotionProvider } from "@/components/providers/motion-provider";
 import { SiteShell } from "@/components/layout/site-shell";
 
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alessandro Argenziano",
+    default: "Alessandro Argenziano - Software Developer",
     template: "%s | Alessandro Argenziano",
   },
   description: "Software developer portfolio of Alessandro Argenziano.",
@@ -39,9 +40,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          <MotionProvider>
-            <SiteShell>{children}</SiteShell>
-          </MotionProvider>
+          <TooltipProvider>
+            <MotionProvider>
+              <SiteShell>{children}</SiteShell>
+            </MotionProvider>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

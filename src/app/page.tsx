@@ -1,20 +1,38 @@
-import { PageContainer } from "@/components/layout/page-container";
 import { StripeDivider } from "@/components/layout/stripe-divider";
+import { GitHubContributionsSection } from "@/components/sections/github-contributions-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { OverviewSection } from "@/components/sections/overview-section";
+import { ProjectSection } from "@/components/sections/projects-section";
+import { AboutSection } from "@/components/sections/about-section";
+import { SocialLinks } from "@/components/sections/social-links";
+import { StackSection } from "@/components/sections/stack-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
+import { CertificationsSection } from "@/components/sections/certifications-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { ContactSection } from "@/components/sections/contact-section";
 
 export default function HomePage() {
   return (
     <>
-      <section>
-        <PageContainer className="py-16 md:py-section">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            Alessandro Argenziano
-          </h1>
-          <p className="mt-3 max-w-xl text-muted-foreground">
-            Portfolio foundation in progress.
-          </p>
-        </PageContainer>
-      </section>
-
+      <HeroSection />
+      <StripeDivider />
+      <OverviewSection />
+      <SocialLinks />
+      <GitHubContributionsSection />
+      <StripeDivider />
+      <ProjectSection />
+      <StripeDivider />
+      <AboutSection />
+      <StripeDivider />
+      <StackSection />
+      <StripeDivider />
+      <ExperienceSection />
+      <StripeDivider />
+      <CertificationsSection />
+      <StripeDivider />
+      <TestimonialsSection />
+      <StripeDivider />
+      <ContactSection />
       <StripeDivider />
     </>
   );

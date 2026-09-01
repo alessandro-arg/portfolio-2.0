@@ -192,9 +192,25 @@ export const projectTechnologies = {
   },
 } satisfies Record<string, Technology>;
 
+export const experienceTechnologies = {
+  java: {
+    id: "java",
+    name: "Java",
+    category: "language",
+    website: "https://www.java.com/",
+  },
+  firebase: {
+    id: "firebase",
+    name: "Firebase",
+    category: "database",
+    website: "https://firebase.google.com/",
+  },
+} satisfies Record<string, Technology>;
+
 export const technologies = {
   ...stackTechnologies,
   ...projectTechnologies,
+  ...experienceTechnologies,
 };
 
 export const stackGroups = [
@@ -216,7 +232,7 @@ export const stackGroups = [
   {
     id: "workflow-and-ai",
     label: "Workflow & AI",
-    categories: ["workflow", "ai"],
+    categories: ["ai", "workflow"],
   },
   {
     id: "tools",

@@ -8,31 +8,65 @@ The architecture intentionally starts small and expands only when application re
 
 ## Current Structure
 
-    src/
-    ├── content/
-    │   ├── profile.ts
-    │   ├── projects.ts
-    │   └── technologies.ts
-    │
-    ├── types/
-    │    └── portfolio.ts
-    │
-    ├── app/
-    │   ├── favicon.ico
-    │   ├── globals.css
-    │   ├── layout.tsx
-    │   └── page.tsx
-    │
-    ├── components/
-    │   ├── providers/
-    │   │   └── theme-provider.tsx
-    │   └── ui/
-    │       └── button.tsx
-    │
-    └── lib/
-        └── utils.ts
+```text
+src/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── interactive/
+│   │   ├── command-menu.tsx
+│   │   ├── copy-email-button.tsx
+│   │   ├── local-time.tsx
+│   │   ├── mobile-navigation-menu.tsx
+│   │   ├── scroll-to-top-button.tsx
+│   │   └── theme-toggle.tsx
+│   │
+│   ├── layout/
+│   │   ├── page-frame.tsx
+│   │   ├── site-bottom-nav.tsx
+│   │   ├── site-footer.tsx
+│   │   ├── site-header.tsx
+│   │   ├── site-shell.tsx
+│   │   └── stripe-divider.tsx
+│   │
+│   ├── providers/
+│   │   ├── motion-provider.tsx
+│   │   └── theme-provider.tsx
+│   │
+│   ├── sections/
+│   │   └── homepage section components
+│   │
+│   ├── ui/
+│   │   └── shared UI primitives
+│   │
+│   ├── contribution-graph.tsx
+│   └── github-contributions.tsx
+│
+├── content/
+│   ├── certifications.ts
+│   ├── experience.ts
+│   ├── footer.ts
+│   ├── navigation.ts
+│   ├── profile.ts
+│   ├── projects.ts
+│   ├── technologies.ts
+│   └── testimonials.ts
+│
+├── lib/
+│   ├── get-cached-contributions.ts
+│   ├── technology-icons.ts
+│   └── utils.ts
+│
+└── types/
+    └── portfolio.ts
+```
 
-Additional directories will be introduced when their first real responsibility appears.
+Directories are introduced only when they have a concrete responsibility.
+
+The structure is organized primarily by responsibility rather than by individual page. Static portfolio content remains separated from presentation and interactive browser behavior remains isolated behind explicit Client Component boundaries.
 
 ## Rendering Strategy
 
@@ -49,6 +83,10 @@ Client Components are used only when a component requires functionality such as:
 
 This keeps unnecessary client-side JavaScript out of static portfolio content.
 
+A Server Component may render Client Components without making the complete route client-rendered.
+
+Interactive boundaries are kept narrow where practical. Examples include the command palette, theme controls, local time, copy-to-clipboard behavior, mobile navigation, GitHub contribution interaction, and scroll-to-top behavior.
+
 ## Application Router
 
 `src/app` owns routing and route-level concerns.
@@ -62,6 +100,16 @@ This keeps unnecessary client-side JavaScript out of static portfolio content.
 - global styles
 
 `page.tsx` should remain primarily responsible for composing the homepage rather than containing the complete implementation of every section.
+
+## Homepage Composition
+
+`src/app/page.tsx` remains intentionally thin.
+
+The homepage route composes section components and structural dividers without owning section implementation or portfolio content.
+
+Homepage presentation lives in `src/components/sections`, while reusable shell, interactive, and UI behavior lives in their corresponding component directories.
+
+This keeps route-level code focused on composition and makes individual homepage sections easier to review, maintain, and reuse.
 
 ## Components
 
@@ -211,13 +259,21 @@ The shell is responsible for:
 
 - clipping intentional decorative horizontal overflow
 - rendering the sticky site header
-- aligning the header and page content to the same `48rem` frame
-- maintaining persistent vertical rails
+- aligning header, main content, and footer to the shared `48rem` frame
+- maintaining persistent structural rails
+- rendering the mobile bottom navigation
+- rendering the global scroll-to-top control
+- rendering the fixed bottom fade treatment
+- providing the global command-menu interaction boundary
 - providing the main structural page container
 
 Route components remain responsible for composing page-specific sections and content.
 
-The header initially contains only functional shell controls. Navigation and command-search controls are added when their destination sections and interaction behavior exist.
+The desktop header exposes selected homepage anchor links, command-search access, and the theme control.
+
+On narrow viewports, navigation moves to a compact fixed bottom interface while the header retains branding and theme access.
+
+Both interfaces consume the same homepage navigation model rather than maintaining independent destination definitions.
 
 The root application layout renders the shared `SiteShell`, so global frame geometry and navigation remain consistent across routes.
 
@@ -229,9 +285,14 @@ Portfolio content is separated from presentation components.
 
 Typed content modules live in `src/content`:
 
-- `profile.ts` owns personal information, hero copy, about copy, and contact links
-- `projects.ts` owns featured project metadata, external links, case-study identifiers, and technology references
-- `technologies.ts` owns the canonical technology registries and Stack presentation groups
+- `profile.ts` owns personal information, hero copy, about copy, and contact details
+- `projects.ts` owns featured project metadata, links, mockup references, case-study identifiers, and technology references
+- `technologies.ts` owns canonical technology registries and Stack presentation groups
+- `experience.ts` owns organizations, positions, dates, skills, technologies, and experience highlights
+- `certifications.ts` owns certification and credential metadata
+- `testimonials.ts` owns testimonial content
+- `navigation.ts` owns stable homepage navigation IDs and labels
+- `footer.ts` owns footer links, technology/version presentation, and inspiration metadata
 
 Shared content contracts live in `src/types/portfolio.ts`.
 
@@ -286,10 +347,28 @@ For example, `backend` and `database` remain separate technology categories even
 
 Presentation numbering is derived from group order rather than stored as content.
 
+### Homepage Navigation
+
+Homepage sections use stable IDs that also form the navigation contract.
+
+`navigation.ts` provides the shared source for section labels and IDs used by desktop navigation, mobile navigation, and the command palette.
+
+Presentation surfaces may expose different subsets of the navigation model without duplicating destination definitions.
+
+### GitHub Contributions
+
+GitHub contribution data is retrieved server-side and cached for one day.
+
+The homepage streams the contribution interface through React Suspense while browser-side code is limited to the interactive graph and tooltip behavior.
+
+Failure to retrieve contribution data must not prevent the rest of the homepage from rendering.
+
 ## Deployment
 
 GitHub is the source-control platform.
 
-Vercel is the planned production hosting platform.
+Vercel is the production hosting target.
 
-Production deployment configuration will be introduced in the deployment phase.
+Final production-domain configuration, deployment validation, and the replacement of the current production portfolio remain part of the production phase.
+
+Until that review is complete, unfinished V2 work is kept away from `main`.

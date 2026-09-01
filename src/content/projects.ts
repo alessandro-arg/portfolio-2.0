@@ -16,6 +16,10 @@ export const projects = [
       "grafana",
       "tailscale",
     ],
+    mockup: {
+      light: "/projects/homelab-platform/mockup-light.webp",
+      dark: "/projects/homelab-platform/mockup-dark.webp",
+    },
     repositoryUrl: "https://github.com/alessandro-arg/homelab-platform",
     featured: true,
   },
@@ -35,8 +39,13 @@ export const projects = [
       "tailwindcss",
       "shadcn-ui",
     ],
+    logo: "/projects/coordina-logo.svg",
+    mockup: {
+      light: "/projects/coordina/mockup-light.webp",
+      dark: "/projects/coordina/mockup-dark.webp",
+    },
     repositoryUrl: "https://github.com/alessandro-arg/coordina",
-    liveUrl: "https://coordina.alessandro-argenziano.com",
+    liveUrl: "https://coordina.alessandro-argenziano.com/sign-in",
     featured: true,
   },
   {
@@ -53,8 +62,12 @@ export const projects = [
       "shadcn-ui",
       "radixui",
     ],
+    logo: "/projects/portfolio-logo.svg",
+    mockup: {
+      light: "/projects/portfolio/mockup.webp",
+      dark: "/projects/portfolio/mockup.webp",
+    },
     repositoryUrl: "https://github.com/alessandro-arg/portfolio",
-    liveUrl: "https://alessandro-argenziano.com",
     featured: true,
   },
 ] satisfies readonly Project[];

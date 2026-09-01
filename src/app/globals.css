@@ -103,6 +103,9 @@
   --sidebar-ring: oklch(0.56 0 0);
 
   --page-max-width: 48rem;
+  --page-frame-offset: 1rem;
+
+  --fade-bottom-height: --spacing(24);
 }
 
 .dark {
@@ -129,7 +132,7 @@
   --accent: oklch(0.23 0 0);
   --accent-foreground: oklch(0.92 0 0);
 
-  --border: oklch(1 0 0 / 5%);
+  --border: oklch(0.274 0.006 286.033);
   --input: oklch(1 0 0 / 16%);
   --ring: oklch(0.64 0 0);
 
@@ -157,20 +160,47 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
   }
   html {
     @apply font-sans;
+  }
+  ::selection {
+    background: var(--foreground);
+    color: var(--background);
   }
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+  }
+  [id] {
+    @apply scroll-mt-22;
+  }
 }
 
 @layer components {
+  .page-frame {
+    width: var(--page-max-width);
+    max-width: calc(100% - var(--page-frame-offset));
+    margin-inline: auto;
+  }
+
   .screen-line-top,
   .screen-line-bottom {
     position: relative;
@@ -180,10 +210,9 @@
   .screen-line-bottom::after {
     content: "";
     position: absolute;
-    left: 50%;
-    width: 100vw;
+    left: -100vw;
+    width: 200vw;
     height: 1px;
-    transform: translateX(-50%);
     pointer-events: none;
     background: var(--border);
   }
@@ -224,10 +253,50 @@
 
     background-size: 10px 10px;
   }
+
+  .testimonial-marquee-viewport {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 4rem,
+      black calc(100% - 4rem),
+      transparent
+    );
+  }
+
+  .testimonial-marquee-track {
+    animation: testimonial-marquee 42s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonial-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes testimonial-marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .testimonial-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .testimonial-marquee-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .testimonial-marquee-copy {
+    display: none;
   }
 }

@@ -19,13 +19,19 @@ The project is being rebuilt from an earlier portfolio implementation with a str
 
 ## Project Status
 
-The portfolio is currently under active refactoring.
+The portfolio is being rebuilt incrementally from an earlier implementation.
 
-Current phase:
+Completed through:
 
-**Phase 1 - Project Foundation & Next.js Migration**
+**Phase 4 - Homepage UI**
 
-The previous portfolio implementation remains available through the Git history while the new architecture is developed incrementally.
+The homepage now includes the complete responsive content experience, shared navigation, command palette, theme support, GitHub contributions, featured projects, experience, certifications, testimonials, contact information, footer, keyboard-accessibility baseline, reduced-motion behavior, and initial runtime/performance cleanup.
+
+Next:
+
+**Phase 5 - Projects & Case Studies**
+
+The previous production portfolio remains preserved while the replacement application continues to be developed and reviewed before it is merged to `main`.
 
 See [docs/roadmap.md](docs/roadmap.md) for the full project roadmap.
 
@@ -51,7 +57,9 @@ Create a production build:
 
 The application uses the Next.js App Router with Server Components by default.
 
-Client Components are introduced only where browser APIs, local state, or interactive behavior require them.
+Static portfolio content is separated from presentation through typed content modules. Client Components are introduced only where browser APIs, local state, event handling, theme behavior, or interactive UI require them.
+
+The homepage is composed from dedicated section components inside a shared application shell.
 
 Architecture documentation is maintained in:
 

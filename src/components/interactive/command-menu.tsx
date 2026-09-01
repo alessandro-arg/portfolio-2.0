@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
   type ReactNode,
 } from "react";
@@ -95,7 +96,7 @@ export function CommandMenuTrigger({ className }: { className?: string }) {
       onClick={openCommandMenu}
       className={cn(
         "h-8 gap-1.5 rounded-[min(var(--radius-lg),10px)] border-none px-1.5",
-        "text-muted-foreground will-change-[scale] select-none",
+        "text-muted-foreground select-none",
         "active:translate-y-0 active:scale-[0.98] motion-reduce:active:scale-100",
         className,
       )}
@@ -132,6 +133,11 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
   const openCommandMenu = useCallback(() => {
     setOpen(true);
   }, []);
+
+  const commandMenuContextValue = useMemo(
+    () => ({ openCommandMenu }),
+    [openCommandMenu],
+  );
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -183,7 +189,7 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
   }
 
   return (
-    <CommandMenuContext.Provider value={{ openCommandMenu }}>
+    <CommandMenuContext.Provider value={commandMenuContextValue}>
       {children}
 
       <CommandDialog

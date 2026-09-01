@@ -1,7 +1,6 @@
 "use client";
 
 import { use } from "react";
-import { format, parseISO } from "date-fns";
 
 import { Spinner } from "@/components/ui/spinner";
 import {
@@ -18,6 +17,16 @@ import {
   ContributionGraphLegend,
   ContributionGraphTotalCount,
 } from "@/components/contribution-graph";
+
+const contributionDateFormatter = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+
+function formatContributionDate(date: string) {
+  return contributionDateFormatter.format(new Date(`${date}T00:00:00`));
+}
 
 export function GitHubContributions({
   contributions,
@@ -63,7 +72,7 @@ export function GitHubContributions({
                 <p>
                   {activity.count} contribution
                   {activity.count !== 1 ? "s" : null} on{" "}
-                  {format(parseISO(activity.date), "d MMM yyyy")}
+                  {formatContributionDate(activity.date)}
                 </p>
               </TooltipContent>
             </Tooltip>

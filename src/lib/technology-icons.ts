@@ -20,6 +20,10 @@ import {
   siTailwindcss,
   siTypescript,
   siVercel,
+  siFastapi,
+  siGrafana,
+  siPrometheus,
+  siTailscale,
 } from "simple-icons";
 
 type TechnologyIconDefinition =
@@ -133,5 +137,22 @@ export const technologyIcons: Record<string, TechnologyIconDefinition> = {
   vscode: {
     type: "asset",
     src: "/icons/technologies/vscode.svg",
+  },
+  fastapi: {
+    type: "simple",
+    icon: siFastapi,
+  },
+  prometheus: {
+    type: "simple",
+    icon: siPrometheus,
+  },
+  grafana: {
+    type: "simple",
+    icon: siGrafana,
+  },
+  tailscale: {
+    type: "simple",
+    icon: siTailscale,
+    monochrome: true,
   },
 };

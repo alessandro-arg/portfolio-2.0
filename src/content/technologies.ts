@@ -158,7 +158,7 @@ export const projectTechnologies = {
     id: "grafana",
     name: "Grafana",
     category: "tools",
-    website: "https://grafana.com/",
+    website: "https://grafana.com/oss/grafana/",
   },
   tailscale: {
     id: "tailscale",

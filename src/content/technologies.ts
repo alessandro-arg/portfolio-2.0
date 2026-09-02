@@ -172,9 +172,9 @@ export const projectTechnologies = {
     category: "backend",
     website: "https://hono.dev/",
   },
-  nextauth: {
-    id: "nextauth",
-    name: "NextAuth.js",
+  authjs: {
+    id: "authjs",
+    name: "Auth.js",
     category: "backend",
     website: "https://authjs.dev/",
   },

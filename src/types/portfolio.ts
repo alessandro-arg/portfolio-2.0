@@ -33,6 +33,22 @@ export type Project = {
   featured: boolean;
 };
 
+export type ProjectOverview = {
+  projectSlug: string;
+  context: readonly string[];
+  architecture: readonly string[];
+  decisions: readonly {
+    title: string;
+    description: string;
+  }[];
+  outcome: readonly string[];
+  lessons: readonly string[];
+  resources: readonly {
+    label: string;
+    href: string;
+  }[];
+};
+
 export type ExperienceLocationType = "remote" | "hybrid" | "on-site";
 
 export type ExperiencePosition = {

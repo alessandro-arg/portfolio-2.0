@@ -35,6 +35,7 @@ export type Project = {
 
 export type ProjectOverview = {
   projectSlug: string;
+  contextTitle: string;
   context: readonly string[];
   architecture: readonly string[];
   decisions: readonly {

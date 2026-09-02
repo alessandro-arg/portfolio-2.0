@@ -79,13 +79,15 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
             /Project
           </p>
 
-          <h1 className="text-3xl font-medium tracking-tight">
-            {project.title}
-          </h1>
+          <div className="flex items-baseline gap-2">
+            <h1 className="text-3xl font-medium tracking-tight">
+              {project.title}
+            </h1>
 
-          <p className="mt-1 font-mono text-xs text-muted-foreground">
-            {project.year}
-          </p>
+            <span className="font-mono text-xs text-muted-foreground">
+              {project.year}
+            </span>
+          </div>
         </div>
 
         <ProjectCover project={project} />
@@ -120,18 +122,37 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
             })}
           </ul>
 
-          {project.repositoryUrl && (
-            <Button asChild variant="secondary" size="sm">
-              <a href={project.repositoryUrl} target="_blank" rel="noreferrer">
-                Source Code
-                <ArrowUpRight
-                  className="size-4"
-                  data-icon="inline-end"
-                  aria-hidden="true"
-                />
-              </a>
-            </Button>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {project.repositoryUrl && (
+              <Button asChild variant="secondary" size="sm">
+                <a
+                  href={project.repositoryUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Source Code
+                  <ArrowUpRight
+                    className="size-4"
+                    data-icon="inline-end"
+                    aria-hidden="true"
+                  />
+                </a>
+              </Button>
+            )}
+
+            {project.liveUrl && (
+              <Button asChild variant="outline" size="sm">
+                <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                  Live Demo
+                  <ArrowUpRight
+                    className="size-4"
+                    data-icon="inline-end"
+                    aria-hidden="true"
+                  />
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -147,7 +168,7 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
             id="project-context-heading"
             className="text-2xl font-medium tracking-tight"
           >
-            From spreadsheet to self-hosted platform
+            {overview.contextTitle}
           </h2>
         </header>
 

@@ -24,6 +24,7 @@ import {
   siGrafana,
   siPrometheus,
   siTailscale,
+  siHono,
 } from "simple-icons";
 
 type TechnologyIconDefinition =
@@ -154,5 +155,13 @@ export const technologyIcons: Record<string, TechnologyIconDefinition> = {
     type: "simple",
     icon: siTailscale,
     monochrome: true,
+  },
+  hono: {
+    type: "simple",
+    icon: siHono,
+  },
+  authjs: {
+    type: "asset",
+    src: "/icons/technologies/authjs.svg",
   },
 };

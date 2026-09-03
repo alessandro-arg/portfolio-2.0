@@ -11,39 +11,23 @@ The architecture intentionally starts small and expands only when application re
 ```text
 src/
 ├── app/
+│   ├── projects/
+│   │   └── [slug]/
+│   │       └── page.tsx
 │   ├── globals.css
 │   ├── layout.tsx
+│   ├── not-found.tsx
 │   └── page.tsx
 │
 ├── components/
 │   ├── interactive/
-│   │   ├── command-menu.tsx
-│   │   ├── copy-email-button.tsx
-│   │   ├── local-time.tsx
-│   │   ├── mobile-navigation-menu.tsx
-│   │   ├── scroll-to-top-button.tsx
-│   │   └── theme-toggle.tsx
-│   │
 │   ├── layout/
-│   │   ├── page-frame.tsx
-│   │   ├── site-bottom-nav.tsx
-│   │   ├── site-footer.tsx
-│   │   ├── site-header.tsx
-│   │   ├── site-shell.tsx
-│   │   └── stripe-divider.tsx
-│   │
 │   ├── providers/
-│   │   ├── motion-provider.tsx
-│   │   └── theme-provider.tsx
-│   │
 │   ├── sections/
-│   │   └── homepage section components
-│   │
 │   ├── ui/
-│   │   └── shared UI primitives
-│   │
 │   ├── contribution-graph.tsx
-│   └── github-contributions.tsx
+│   ├── github-contributions.tsx
+│   └── project-overview.tsx
 │
 ├── content/
 │   ├── certifications.ts
@@ -51,6 +35,7 @@ src/
 │   ├── footer.ts
 │   ├── navigation.ts
 │   ├── profile.ts
+│   ├── project-overviews.ts
 │   ├── projects.ts
 │   ├── technologies.ts
 │   └── testimonials.ts
@@ -100,6 +85,25 @@ Interactive boundaries are kept narrow where practical. Examples include the com
 - global styles
 
 `page.tsx` should remain primarily responsible for composing the homepage rather than containing the complete implementation of every section.
+
+### Project Overview Routes
+
+Projects with an internal engineering overview use the dynamic route:
+
+    /projects/[slug]
+
+Known project overview slugs are statically generated with `generateStaticParams()`.
+
+`dynamicParams = false` prevents arbitrary project slugs from being generated at runtime. Unknown slugs therefore resolve as not found.
+
+The route remains a Server Component and is intentionally thin:
+
+1. resolve the project from its slug
+2. resolve the corresponding `ProjectOverview`
+3. return `notFound()` when the required data does not exist
+4. render the shared project overview presentation
+
+The homepage remains the primary project index, so no separate `/projects` listing route is required.
 
 ## Homepage Composition
 
@@ -286,7 +290,8 @@ Portfolio content is separated from presentation components.
 Typed content modules live in `src/content`:
 
 - `profile.ts` owns personal information, hero copy, about copy, and contact details
-- `projects.ts` owns featured project metadata, links, mockup references, case-study identifiers, and technology references
+- `projects.ts` owns shared project metadata, links, mockup references, optional routing slugs, and technology references
+- `project-overviews.ts` owns additional engineering overview content for projects with internal overview routes
 - `technologies.ts` owns canonical technology registries and Stack presentation groups
 - `experience.ts` owns organizations, positions, dates, skills, technologies, and experience highlights
 - `certifications.ts` owns certification and credential metadata
@@ -300,13 +305,33 @@ UI components consume these modules instead of embedding large content objects d
 
 ### Projects
 
-Projects reference technologies by stable IDs rather than duplicating display labels.
+`projects.ts` owns shared project identity and metadata including:
 
-A project `slug` is optional.
+- title and year
+- summary
+- technology references
+- project imagery
+- repository and live URLs
+- optional project slug
 
-When a slug exists, the project may provide an internal case-study route. Projects without a slug remain valid portfolio entries without requiring a dedicated route.
+A project slug is the routing signal for an internal engineering overview.
 
-Repository and live URLs remain part of the project content model so presentation components can decide how those destinations are exposed.
+If a slug exists, `/projects/[slug]` must resolve to a valid overview. Projects without a slug remain valid homepage projects and do not require a dedicated route.
+
+Long-form engineering content is stored separately in `project-overviews.ts`.
+
+`ProjectOverview` contains only information that extends the shared project metadata:
+
+- project context
+- architecture explanation
+- engineering decisions
+- outcomes
+- lessons learned
+- supporting repository resources
+
+Shared information such as title, year, technologies, repository URL, live URL, and imagery is not duplicated in overview content.
+
+The homepage and global command palette derive project-overview navigation from the same project slug rather than maintaining separate route definitions.
 
 ### Technologies
 

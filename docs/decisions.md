@@ -328,18 +328,22 @@ A shared contract and combined lookup avoid duplicating names, URLs, and technol
 
 ---
 
-## ADR-024 - Use optional project slugs for case studies
+## ADR-024 - Use optional project slugs for project overviews
 
 **Decision**
 
 Make the project `slug` optional.
 
-The presence of a slug indicates that a project can have an internal case-study route. Projects without a slug remain valid portfolio entries and rely on their external repository or live links.
+The presence of a slug indicates that the project has a valid internal overview route under `/projects/[slug]`.
+
+Projects without a slug remain valid portfolio entries without requiring a dedicated overview.
 
 **Reasoning**
 
-Not every portfolio project requires a dedicated case study.
+Not every portfolio project benefits from a dedicated engineering overview.
 
-Using the optional slug as the routing signal avoids maintaining a second boolean such as `hasCaseStudy` and prevents project content from implying routes that do not exist.
+Using the optional slug as the routing signal avoids maintaining a second boolean such as `hasCaseStudy` or duplicating route information in the project model.
 
-This keeps the project model small while supporting deeper case studies selectively.
+This establishes one clear invariant: if a project has a slug, its internal project overview must resolve.
+
+The overview content remains separate from shared project metadata so information such as title, year, technologies, repository URLs, live URLs, and imagery does not need to be duplicated.

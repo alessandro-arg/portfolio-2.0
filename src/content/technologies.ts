@@ -158,7 +158,7 @@ export const projectTechnologies = {
     id: "grafana",
     name: "Grafana",
     category: "tools",
-    website: "https://grafana.com/",
+    website: "https://grafana.com/oss/grafana/",
   },
   tailscale: {
     id: "tailscale",
@@ -172,9 +172,9 @@ export const projectTechnologies = {
     category: "backend",
     website: "https://hono.dev/",
   },
-  nextauth: {
-    id: "nextauth",
-    name: "NextAuth.js",
+  authjs: {
+    id: "authjs",
+    name: "Auth.js",
     category: "backend",
     website: "https://authjs.dev/",
   },

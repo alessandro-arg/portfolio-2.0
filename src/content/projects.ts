@@ -34,7 +34,7 @@ export const projects = [
       "react",
       "typescript",
       "mongodb",
-      "nextauth",
+      "authjs",
       "hono",
       "tailwindcss",
       "shadcn-ui",

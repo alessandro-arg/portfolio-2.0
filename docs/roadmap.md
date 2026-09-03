@@ -97,18 +97,26 @@ Build the complete homepage from the established design system and typed content
 
 ## Phase 5 - Projects & Case Studies
 
-Create dedicated project routes and structured case studies for selected projects.
+Status: **Completed**
 
-Case studies should focus on:
+Add concise internal engineering overviews for selected projects without introducing a documentation framework or duplicating repository documentation.
 
-- project goals and context
-- architecture and technical decisions
-- implementation approach
-- challenges and solutions
-- results and current status
-- lessons learned
-
-Only projects that benefit from deeper explanation require a dedicated case-study route.
+- [x] Define the `ProjectOverview` content contract
+- [x] Use optional project slugs as the routing signal for internal overviews
+- [x] Add statically generated `/projects/[slug]` routes
+- [x] Disable unknown dynamic project routes
+- [x] Build the shared project overview renderer
+- [x] Add Homelab Platform engineering overview
+- [x] Add Coordina engineering overview
+- [x] Keep shared project metadata separate from overview content
+- [x] Reuse project technologies, repository links, live links, and imagery
+- [x] Add project-specific context headings
+- [x] Add project overview navigation to the homepage
+- [x] Add project overviews to the global command palette
+- [x] Keep Portfolio without a dedicated overview
+- [x] Add a theme-aware not-found page for invalid routes
+- [x] Complete responsive and navigation QA
+- [x] Run final lint and production build
 
 ## Phase 6 - Interaction & Motion
 

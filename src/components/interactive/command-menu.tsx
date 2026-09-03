@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+
 import {
   Box,
   BriefcaseBusiness,
@@ -28,6 +29,8 @@ import {
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
+import { cn } from "@/lib/utils";
+
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 import {
   Command,
@@ -40,9 +43,10 @@ import {
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
+
 import { homepageNavigation } from "@/content/navigation";
 import { profile } from "@/content/profile";
-import { cn } from "@/lib/utils";
+import { projects } from "@/content/projects";
 
 type NavigationId = (typeof homepageNavigation)[number]["id"];
 
@@ -60,9 +64,10 @@ type CommandKind = "command" | "page" | "link";
 
 const externalLinkValues = new Set(["GitHub", "LinkedIn"]);
 
-const pageValues = new Set<string>(
-  homepageNavigation.map((item) => item.label),
-);
+const pageValues = new Set<string>([
+  ...homepageNavigation.map((item) => item.label),
+  ...projects.flatMap((project) => (project.slug ? [project.title] : [])),
+]);
 
 const cvHref = "/documents/alessandro-argenziano-cv.pdf";
 
@@ -160,9 +165,9 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
     };
   }, []);
 
-  function navigateToSection(id: string) {
+  function navigateToPage(href: string) {
     setOpen(false);
-    router.push(`/#${id}`);
+    router.push(href);
   }
 
   function openExternalLink(href: string) {
@@ -214,10 +219,37 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
                     <CommandItem
                       key={item.id}
                       value={item.label}
-                      onSelect={() => navigateToSection(item.id)}
+                      onSelect={() => navigateToPage(`/#${item.id}`)}
                     >
                       <Icon aria-hidden="true" />
                       <span>{item.label}</span>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+
+              <CommandGroup heading="Projects">
+                {projects.map((project) => {
+                  if (!project.slug) {
+                    return null;
+                  }
+
+                  return (
+                    <CommandItem
+                      key={project.slug}
+                      value={project.title}
+                      keywords={[
+                        "project",
+                        "overview",
+                        project.slug,
+                        ...project.technologies,
+                      ]}
+                      onSelect={() =>
+                        navigateToPage(`/projects/${project.slug}`)
+                      }
+                    >
+                      <Box aria-hidden="true" />
+                      <span>{project.title}</span>
                     </CommandItem>
                   );
                 })}

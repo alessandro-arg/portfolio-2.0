@@ -22,17 +22,24 @@ export function HeroSection() {
         </figcaption>
       </figure>
 
-      <div className="relative z-30 col-start-1 row-start-2 flex flex-col overflow-visible sm:row-start-1 sm:row-span-2">
+      <div className="relative col-start-1 row-start-2 flex flex-col overflow-visible sm:row-start-1 sm:row-span-2">
         <div className="screen-line-top mt-auto shrink-0 border-r border-border">
-          <div className="m-[3px_2px] h-[7.5rem] w-[7.5rem] bg-surface p-2 min-[384px]:h-32 min-[384px]:w-32 sm:h-40 sm:w-40">
+          <div className="relative z-30 p-0.5 m-[3px_2px] h-[7.5rem] w-[7.5rem] min-[384px]:h-32 min-[384px]:w-32 sm:h-40 sm:w-40">
             <div className="relative h-full w-full overflow-hidden rounded-full">
               <Image
-                src="/profile.png"
+                src="/profile.webp"
                 alt={profile.name}
                 fill
-                priority
                 sizes="(min-width: 640px) 144px, (min-width: 384px) 112px, 104px"
-                className="object-cover"
+                className="object-cover dark:hidden"
+              />
+
+              <Image
+                src="/profile-dark.webp"
+                alt={profile.name}
+                fill
+                sizes="(min-width: 640px) 144px, (min-width: 384px) 112px, 104px"
+                className="hidden object-cover dark:block"
               />
             </div>
           </div>
@@ -41,7 +48,7 @@ export function HeroSection() {
 
       <div className="relative z-20 col-start-2 row-start-2 flex min-w-0 flex-col">
         <div className="mt-auto border-t border-border bg-background">
-          <div className="flex items-center gap-2 pl-4">
+          <div className="flex items-center gap-2 pl-2 min-w-xs:pl-4">
             <h1
               id="hero-heading"
               className="translate-y-[-1px] text-[2rem] leading-none font-medium tracking-[-0.04em]"

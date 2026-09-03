@@ -136,7 +136,7 @@ export function ProjectSection() {
                 </div>
 
                 <AccordionTrigger className="min-w-0 px-4 py-3 hover:no-underline flex items-center border-dashed border-l border-l-border">
-                  <span className="min-w-0 flex-1 text-left">
+                  <span className="min-w-0 flex-1 text-left mr-9">
                     <span className="flex min-w-0 items-baseline gap-2">
                       <span className="shrink-0 font-mono text-xs text-muted-foreground">
                         /{String(index + 1).padStart(2, "0")}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, CircleArrowOutUpRight, Server } from "lucide-react";
 
@@ -152,14 +153,12 @@ export function ProjectSection() {
                   </span>
                 </AccordionTrigger>
 
-                {project.repositoryUrl && (
+                {project.slug && (
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a
-                        href={project.repositoryUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`Open ${project.title} GitHub repository`}
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        aria-label={`View ${project.title} project overview`}
                         className="absolute top-1/2 right-9 z-10 grid size-8 -translate-y-1/2 place-items-center text-muted-foreground transition-colors hover:text-foreground"
                       >
                         <CircleArrowOutUpRight
@@ -167,11 +166,11 @@ export function ProjectSection() {
                           strokeWidth={1.75}
                           aria-hidden="true"
                         />
-                      </a>
+                      </Link>
                     </TooltipTrigger>
 
                     <TooltipContent side="top" sideOffset={8}>
-                      GitHub Repository
+                      Project Overview
                     </TooltipContent>
                   </Tooltip>
                 )}

@@ -1,21 +1,20 @@
 import Image from "next/image";
 import { BadgeCheck } from "lucide-react";
 
+import { SpotlightLogo } from "@/components/interactive/spotlight-logo";
+import { RotatingSentence } from "@/components/interactive/rotating-sentence";
+
 import { profile } from "@/content/profile";
 
 export function HeroSection() {
-  const heroSentence = profile.heroSentences[0] ?? "";
-
   return (
     <section
       aria-labelledby="hero-heading"
       className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-[minmax(0,1fr)_auto] overflow-y-clip"
     >
       <figure className="relative z-10 col-span-2 row-start-1 m-0 min-w-0 p-2 sm:col-span-1 sm:col-start-2 sm:p-4">
-        <div className="grid aspect-[556/354] w-full place-items-center border border-dashed border-border bg-surface/40">
-          <span className="font-mono text-xs text-muted-foreground">
-            Spotlight Logo
-          </span>
+        <div className="aspect-[556/354] w-full sm:-translate-x-20">
+          <SpotlightLogo />
         </div>
 
         <figcaption className="absolute right-4 bottom-3 font-mono text-[0.7rem] tracking-[0.05em] text-muted-foreground">

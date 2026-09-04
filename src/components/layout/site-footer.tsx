@@ -91,7 +91,9 @@ export function SiteFooter() {
           </FooterItem>
 
           <FooterItem label="Source code" className="sm:col-span-2">
-            <FooterLink href={footerLinks.repository}>GitHub</FooterLink>
+            <FooterLink href={footerLinks.repository}>
+              Portfolio Repository
+            </FooterLink>
           </FooterItem>
 
           <FooterItem label="License" className="sm:col-span-2">

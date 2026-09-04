@@ -36,6 +36,10 @@ export function ScrollToTopButton() {
       top: 0,
       behavior: prefersReducedMotion ? "auto" : "smooth",
     });
+
+    document
+      .getElementById("skip-to-main-content")
+      ?.focus({ preventScroll: true });
   }
 
   return (

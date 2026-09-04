@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -126,6 +127,9 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+  const shouldRestoreFocusRef = useRef(true);
+
   const selectedCommandKind: CommandKind = externalLinkValues.has(selectedValue)
     ? "link"
     : pageValues.has(selectedValue)
@@ -136,6 +140,13 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
   const { setTheme } = useTheme();
 
   const openCommandMenu = useCallback(() => {
+    const activeElement = document.activeElement;
+
+    restoreFocusRef.current =
+      activeElement instanceof HTMLElement ? activeElement : null;
+
+    shouldRestoreFocusRef.current = true;
+
     setOpen(true);
   }, []);
 
@@ -155,7 +166,13 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
       }
 
       event.preventDefault();
-      setOpen((current) => !current);
+
+      if (open) {
+        setOpen(false);
+        return;
+      }
+
+      openCommandMenu();
     }
 
     window.addEventListener("keydown", handleKeyDown);
@@ -163,9 +180,11 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [open, openCommandMenu]);
 
   function navigateToPage(href: string) {
+    shouldRestoreFocusRef.current = false;
+
     setOpen(false);
     router.push(href);
   }
@@ -200,6 +219,19 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
+        onCloseAutoFocus={(event) => {
+          const element = restoreFocusRef.current;
+          const shouldRestoreFocus = shouldRestoreFocusRef.current;
+
+          restoreFocusRef.current = null;
+          shouldRestoreFocusRef.current = true;
+
+          event.preventDefault();
+
+          if (shouldRestoreFocus && element?.isConnected) {
+            element.focus();
+          }
+        }}
         title="Command palette"
         description="Navigate the portfolio and access useful links."
         className="rounded-3xl! dark:bg-accent dark:ring-1 dark:ring-foreground/20"

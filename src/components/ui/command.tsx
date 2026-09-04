@@ -36,12 +36,16 @@ function CommandDialog({
   children,
   className,
   showCloseButton = false,
+  onCloseAutoFocus,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
   showCloseButton?: boolean;
+  onCloseAutoFocus?: React.ComponentProps<
+    typeof DialogContent
+  >["onCloseAutoFocus"];
 }) {
   return (
     <Dialog modal={false} {...props}>
@@ -55,6 +59,7 @@ function CommandDialog({
           className,
         )}
         showCloseButton={showCloseButton}
+        onCloseAutoFocus={onCloseAutoFocus}
         visualBackdropClassName="bg-black/5 supports-backdrop-filter:backdrop-blur-[1px]"
       >
         {children}

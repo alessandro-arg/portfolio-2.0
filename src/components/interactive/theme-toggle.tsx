@@ -55,7 +55,8 @@ export function ThemeToggle() {
           type="button"
           size="icon"
           variant="ghost"
-          aria-label="Toggle color theme"
+          aria-label="Dark mode"
+          aria-pressed={isDark}
           onClick={() => setTheme(isDark ? "light" : "dark")}
           className="rounded-md text-foreground hover:bg-muted"
         >

@@ -78,7 +78,7 @@ export function HeroSection() {
             />
           </div>
 
-          <div className="flex h-[3.125rem] items-start overflow-hidden border-t border-border py-1 pl-2 min-w-xs:pl-4 font-mono text-[0.82rem] text-muted-foreground sm:h-9">
+          <div className="flex h-[3.125rem] items-start overflow-hidden border-t border-border py-1 pl-2 min-w-xs:pl-4 font-mono text-[0.82rem] text-muted-foreground sm:h-7">
             <RotatingSentence sentences={profile.heroSentences} />
           </div>
         </div>

@@ -108,7 +108,7 @@ export function GitHubContributions({
 export function GitHubContributionsFallback() {
   return (
     <div className="flex h-45 w-full items-center justify-center">
-      <Spinner className="text-muted-foreground" />
+      <Spinner className="text-muted-foreground motion-reduce:animate-none" />
     </div>
   );
 }

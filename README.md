@@ -23,13 +23,17 @@ The portfolio is being rebuilt incrementally from an earlier implementation.
 
 Completed through:
 
-**Phase 4 - Homepage UI**
+**Phase 6 - Interaction & Motion**
 
-The homepage now includes the complete responsive content experience, shared navigation, command palette, theme support, GitHub contributions, featured projects, experience, certifications, testimonials, contact information, footer, keyboard-accessibility baseline, reduced-motion behavior, and initial runtime/performance cleanup.
+The application now includes the complete responsive homepage, statically generated engineering overviews for selected projects, shared navigation and command interfaces, light and dark themes, GitHub contribution data, focused interaction motion, reduced-motion fallbacks, and signature hero interactions.
+
+Motion is intentionally used for feedback and interaction rather than as a decorative layer. Generic section entrance animations and route transitions were evaluated and deliberately omitted.
 
 Next:
 
-**Phase 5 - Projects & Case Studies**
+**Phase 7 - Accessibility**
+
+The next phase performs the dedicated application-wide accessibility audit across the homepage and project overview routes.
 
 The previous production portfolio remains preserved while the replacement application continues to be developed and reviewed before it is merged to `main`.
 

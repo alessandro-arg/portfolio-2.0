@@ -124,7 +124,7 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
 
           <div className="flex flex-wrap gap-2">
             {project.repositoryUrl && (
-              <Button asChild variant="secondary" size="sm">
+              <Button asChild variant="secondary" size="sm" className="group">
                 <a
                   href={project.repositoryUrl}
                   target="_blank"
@@ -132,7 +132,7 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
                 >
                   Source Code
                   <ArrowUpRight
-                    className="size-4"
+                    className="size-4 transition-transform duration-300 group-hover:rotate-45 motion-reduce:transition-none"
                     data-icon="inline-end"
                     aria-hidden="true"
                   />
@@ -141,11 +141,11 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
             )}
 
             {project.liveUrl && (
-              <Button asChild variant="outline" size="sm">
+              <Button asChild variant="outline" size="sm" className="group">
                 <a href={project.liveUrl} target="_blank" rel="noreferrer">
                   Live Demo
                   <ArrowUpRight
-                    className="size-4"
+                    className="size-4 transition-transform duration-300 group-hover:rotate-45 motion-reduce:transition-none"
                     data-icon="inline-end"
                     aria-hidden="true"
                   />

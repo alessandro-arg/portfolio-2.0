@@ -268,15 +268,23 @@ Providing a shared baseline gives native interactive elements sensible behavior 
 
 **Decision**
 
-Use Motion selectively and respect the user's reduced-motion preference at the application level.
+Use Motion selectively for interaction feedback and signature interface behavior while respecting the user's reduced-motion preference throughout the application.
+
+Do not introduce generic section entrance animations or route transitions unless a future interaction requirement clearly justifies them.
 
 **Reasoning**
 
-Animation is an important part of the portfolio's visual identity, particularly for signature interactions such as the SpotlightLogo and hero transitions.
+Motion contributes to the portfolio's identity most effectively when it explains or reinforces interaction.
 
-However, widespread decorative animation increases distraction, client-side complexity, and accessibility concerns.
+Examples include the pointer-responsive SpotlightLogo, tactile press feedback, rotating hero copy, accordion behavior, scroll feedback, external-link arrows, and the testimonial marquee.
 
-The application therefore establishes reduced-motion behavior globally while allowing individual interactive components to provide more specific alternatives when required.
+Applying animation uniformly to sections or route changes would increase distraction and client-side complexity without improving the information architecture.
+
+Reduced-motion behavior is therefore treated as part of each interaction's design rather than as a final override.
+
+The application provides a global Motion reduced-motion policy while individual components and shared UI primitives provide more specific fallbacks where required.
+
+Continuous or spatial movement must never be required to understand or operate the interface.
 
 ---
 

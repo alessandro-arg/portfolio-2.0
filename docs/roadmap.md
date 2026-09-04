@@ -120,28 +120,28 @@ Add concise internal engineering overviews for selected projects without introdu
 
 ## Phase 6 - Interaction & Motion
 
-Refine the portfolio's motion language after the core content and project routes are complete.
+Status: **Completed**
 
-The homepage already includes the functional interaction baseline:
+Refine the portfolio's motion language with focused interaction feedback while avoiding decorative animation that does not improve the experience.
 
-- theme controls
-- command palette
-- navigation feedback
-- accordion interaction
-- mobile navigation
-- scroll-to-top behavior
-
-This phase focuses on intentional polish rather than adding animation everywhere.
-
-Potential work includes:
-
-- signature logo interaction
-- restrained section entrance transitions
-- project/case-study transitions
-- interaction timing refinement
-- motion consistency review
-
-Motion must continue to respect reduced-motion preferences.
+- [x] Add interactive SpotlightLogo with local pointer tracking
+- [x] Add tactile press feedback and optional click sound
+- [x] Respect reduced-motion preferences in the SpotlightLogo
+- [x] Add rotating hero sentences with a reduced-motion fallback
+- [x] Add theme-aware hero profile imagery
+- [x] Add desktop-only handwritten interaction annotations
+- [x] Keep cursor-specific guidance limited to fine-pointer devices
+- [x] Standardize external CTA arrow interactions
+- [x] Review accordion, dialog, popover, tooltip, and navigation motion
+- [x] Provide reduced-motion behavior for continuous and spatial animations
+- [x] Move spinner reduced-motion behavior into the shared primitive
+- [x] Verify testimonial marquee reduced-motion behavior
+- [x] Verify scroll-to-top reduced-motion behavior
+- [x] Complete application-wide motion audit
+- [x] Complete desktop, mobile, light, dark, keyboard, and reduced-motion QA
+- [x] Deliberately skip generic section entrance animations
+- [x] Deliberately skip route-transition animations
+- [x] Run final lint and production build
 
 ## Phase 7 - Accessibility
 

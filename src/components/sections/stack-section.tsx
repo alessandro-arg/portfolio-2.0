@@ -19,7 +19,11 @@ export function StackSection() {
           /Skills
         </p>
 
-        <h2 id="stack-heading" className="text-3xl font-medium tracking-tight">
+        <h2
+          id="stack-heading"
+          tabIndex={-1}
+          className="text-3xl font-medium tracking-tight"
+        >
           My Stack
         </h2>
       </header>

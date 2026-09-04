@@ -296,6 +296,7 @@ export function ExperienceSection() {
 
         <h2
           id="experience-heading"
+          tabIndex={-1}
           className="text-3xl font-medium tracking-tight"
         >
           My Experience

@@ -40,6 +40,7 @@ export function TestimonialsSection() {
 
         <h2
           id="testimonials-heading"
+          tabIndex={-1}
           className="text-3xl font-medium tracking-tight"
         >
           Testimonials

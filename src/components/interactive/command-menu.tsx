@@ -27,7 +27,7 @@ import {
   Search,
   type LucideIcon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
@@ -48,6 +48,18 @@ import { Kbd } from "@/components/ui/kbd";
 import { homepageNavigation } from "@/content/navigation";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
+
+function focusElementById(id: string) {
+  const element = document.getElementById(id);
+
+  if (!element) {
+    return false;
+  }
+
+  element.focus({ preventScroll: true });
+
+  return true;
+}
 
 type NavigationId = (typeof homepageNavigation)[number]["id"];
 
@@ -129,15 +141,17 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
 
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const shouldRestoreFocusRef = useRef(true);
+  const pendingFocusTargetRef = useRef<string | null>(null);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const { setTheme } = useTheme();
 
   const selectedCommandKind: CommandKind = externalLinkValues.has(selectedValue)
     ? "link"
     : pageValues.has(selectedValue)
       ? "page"
       : "command";
-
-  const router = useRouter();
-  const { setTheme } = useTheme();
 
   const openCommandMenu = useCallback(() => {
     const activeElement = document.activeElement;
@@ -182,8 +196,21 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
     };
   }, [open, openCommandMenu]);
 
-  function navigateToPage(href: string) {
+  useEffect(() => {
+    const focusTargetId = pendingFocusTargetRef.current;
+
+    if (!focusTargetId || pathname !== "/") {
+      return;
+    }
+
+    if (focusElementById(focusTargetId)) {
+      pendingFocusTargetRef.current = null;
+    }
+  }, [pathname]);
+
+  function navigateToPage(href: string, focusTargetId?: string) {
     shouldRestoreFocusRef.current = false;
+    pendingFocusTargetRef.current = focusTargetId ?? null;
 
     setOpen(false);
     router.push(href);
@@ -222,11 +249,17 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
         onCloseAutoFocus={(event) => {
           const element = restoreFocusRef.current;
           const shouldRestoreFocus = shouldRestoreFocusRef.current;
+          const focusTargetId = pendingFocusTargetRef.current;
 
           restoreFocusRef.current = null;
           shouldRestoreFocusRef.current = true;
 
           event.preventDefault();
+
+          if (focusTargetId && focusElementById(focusTargetId)) {
+            pendingFocusTargetRef.current = null;
+            return;
+          }
 
           if (shouldRestoreFocus && element?.isConnected) {
             element.focus();
@@ -236,7 +269,11 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
         description="Navigate the portfolio and access useful links."
         className="rounded-3xl! dark:bg-accent dark:ring-1 dark:ring-foreground/20"
       >
-        <Command value={selectedValue} onValueChange={setSelectedValue}>
+        <Command
+          label="Search commands"
+          value={selectedValue}
+          onValueChange={setSelectedValue}
+        >
           <CommandInput placeholder="Type a command or search…" />
 
           <div className="rounded-2xl bg-background ring-1 ring-border">
@@ -251,7 +288,9 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
                     <CommandItem
                       key={item.id}
                       value={item.label}
-                      onSelect={() => navigateToPage(`/#${item.id}`)}
+                      onSelect={() =>
+                        navigateToPage(`/#${item.id}`, `${item.id}-heading`)
+                      }
                     >
                       <Icon aria-hidden="true" />
                       <span>{item.label}</span>

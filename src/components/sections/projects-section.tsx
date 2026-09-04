@@ -114,6 +114,7 @@ export function ProjectSection() {
 
         <h2
           id="projects-heading"
+          tabIndex={-1}
           className="text-3xl font-medium tracking-tight"
         >
           Projects

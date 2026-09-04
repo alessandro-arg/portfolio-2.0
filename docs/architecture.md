@@ -42,6 +42,9 @@ src/
 │
 ├── lib/
 │   ├── get-cached-contributions.ts
+│   ├── metal-click.ts
+│   ├── sound-engine.ts
+│   ├── sound-types.ts
 │   ├── technology-icons.ts
 │   └── utils.ts
 │
@@ -144,7 +147,13 @@ Detailed visual decisions will be defined during the design-system phase.
 
 Geist Sans is the primary typeface for content, interface elements, and headings.
 
-Geist Mono is available for limited technical details and metadata.
+Geist Mono is used for limited technical details and metadata.
+
+Kalam is used only for handwritten annotation notes that provide supplementary visual guidance around selected interactions.
+
+The handwritten typeface is intentionally restricted to this annotation role so it remains an accent rather than becoming part of the general interface typography.
+
+Fonts are loaded through Next.js font optimization.
 
 Typography should establish hierarchy through scale, spacing, and moderate weight rather than relying on excessive bold text or widespread uppercase styling.
 
@@ -230,30 +239,56 @@ Arbitrary breakpoints should be avoided unless a component has a concrete layout
 
 Theme-specific browser behavior is isolated inside a Client Component provider instead of making the complete application client-rendered.
 
-## Animation
-
-Motion is the primary animation library.
-
-Animation should support hierarchy, feedback, and interaction rather than act as decoration by default.
-
-Reduced-motion preferences must be respected.
-
 ## Motion
 
-Motion is used selectively for interaction feedback, content transitions, and signature interactive elements.
+Motion is used selectively for interaction feedback and signature interface behavior rather than as a default decoration layer.
 
-Animation is not treated as a default decoration layer.
+The portfolio uses Motion for interactions that benefit from stateful or physical-feeling behavior, while simple CSS transitions remain appropriate for lightweight UI feedback.
+
+Current signature motion includes:
+
+- local pointer-following spotlight behavior in the portfolio mark
+- spring-based press feedback
+- restrained rotating hero copy
+- external-link arrow feedback
+- scroll-direction feedback
+- accordion and overlay transitions
+- the testimonial marquee
 
 General principles:
 
 - interaction feedback should be short and responsive
 - large spatial transforms should be used sparingly
-- springs are primarily reserved for physical-feeling interactions
-- simple appearance transitions generally prefer restrained tween or opacity animation
-- reduced-motion preferences must be respected
+- springs are reserved primarily for physical-feeling interactions
 - animation must not be required to understand or operate the interface
+- continuous motion must provide an appropriate reduced-motion alternative
+- reduced-motion behavior should live in shared primitives when the requirement applies to every consumer
 
-A root Motion configuration respects the user's reduced-motion preference by default. Individual interactive components may use `useReducedMotion()` when they require more specific fallback behavior.
+A root Motion configuration uses `reducedMotion="user"` so Motion-based interactions respect the user's operating-system preference by default.
+
+Components that need behavior beyond the global Motion configuration use `useReducedMotion()` or CSS `motion-reduce` variants.
+
+Examples include:
+
+- the SpotlightLogo disables pointer-following and press morphing
+- rotating hero copy stops rotating
+- the testimonial marquee becomes a static horizontally scrollable list
+- the current-status ping is hidden
+- the spinner remains visible without rotating
+- smooth scroll falls back to immediate scrolling
+- spatial CTA and navigation transitions are removed where appropriate
+
+Generic section entrance animations and route transitions were deliberately not introduced. They add motion and client-side complexity without improving the portfolio's information hierarchy or navigation.
+
+### Interaction Sound
+
+The SpotlightLogo may play a short tactile click as supplementary interaction feedback.
+
+Sound is optional and is not required to understand or operate the interface.
+
+Playback uses the Web Audio API through a small local sound engine. The decoded audio buffer is cached after first use, and playback failure does not interrupt the interaction.
+
+Sound logic remains isolated from the rest of the portfolio rather than introducing a general audio framework before broader reuse exists.
 
 ## Application Shell
 

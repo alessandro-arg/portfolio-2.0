@@ -20,10 +20,7 @@ export function GitHubContributionsSection() {
       </h2>
 
       <Suspense fallback={<GitHubContributionsFallback />}>
-        <GitHubContributions
-          contributions={contributions}
-          githubProfileUrl={profile.contact.github}
-        />
+        <GitHubContributions contributions={contributions} />
       </Suspense>
     </section>
   );

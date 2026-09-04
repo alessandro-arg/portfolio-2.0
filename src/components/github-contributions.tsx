@@ -30,10 +30,8 @@ function formatContributionDate(date: string) {
 
 export function GitHubContributions({
   contributions,
-  githubProfileUrl,
 }: {
   contributions: Promise<Activity[]>;
-  githubProfileUrl: string;
 }) {
   const data = use(contributions);
 
@@ -84,16 +82,7 @@ export function GitHubContributions({
             {({ totalCount }) => (
               <figcaption className="text-pretty tabular-nums">
                 {totalCount.toLocaleString("en-US")} contributions in the last
-                year on{" "}
-                <a
-                  href={githubProfileUrl}
-                  className="underline underline-offset-3 hover:text-muted-foreground"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  GitHub
-                </a>
-                .
+                year on GitHub.
               </figcaption>
             )}
           </ContributionGraphTotalCount>

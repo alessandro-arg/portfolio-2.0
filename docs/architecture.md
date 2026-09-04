@@ -207,19 +207,60 @@ Sections directly adjacent to a stripe divider do not duplicate those boundaries
 
 ## Interaction Accessibility
 
-Interactive elements must remain usable with keyboard navigation.
+Accessibility is treated as part of component architecture rather than as a final styling pass.
 
-A visible `focus-visible` treatment is provided globally for native focusable elements. Components may provide their own equivalent focus treatment when their interaction design requires it.
+Interactive elements remain usable through keyboard navigation and expose visible focus states.
+
+A shared `focus-visible` treatment provides the application-wide baseline, while individual components may provide an equivalent component-specific treatment when required.
 
 Native semantic elements are preferred over recreating controls with generic elements:
 
 - links represent navigation
 - buttons represent actions
 - form controls use their corresponding native elements
+- headings and landmarks communicate page structure
+- interactive state is exposed through appropriate native or ARIA semantics
 
-Hover states must not be the only indication that an element is interactive.
+The application shell provides a skip link that allows keyboard users to bypass repeated navigation and move directly to the main content.
 
-Accessibility is treated as part of component implementation rather than a final styling pass.
+Focus management is handled explicitly where interaction changes the user's navigation context.
+
+Examples include:
+
+- the command palette restores focus to the element that opened it when dismissed
+- command-based homepage navigation moves programmatic focus to the destination section heading
+- destination headings use `tabIndex={-1}` so they can receive programmatic focus without becoming part of the normal tab order
+- scroll-to-top transfers focus to the skip-navigation control after the fixed button removes itself from the tab order
+
+The command palette intentionally uses a non-modal dialog.
+
+The underlying portfolio remains visible and scrollable while the palette is open. Keyboard interaction remains centered on the command search interface, which uses `cmdk` combobox behavior with arrow-key navigation and active-descendant semantics.
+
+The palette restores previous focus when dismissed without navigation and suppresses stale focus restoration when a navigation command changes the user's location.
+
+Screen-reader behavior is designed to avoid unnecessary repeated announcements.
+
+Examples include:
+
+- rotating hero copy exposes one stable accessible sentence while visual copy rotates
+- testimonial marquee duplicates are hidden from assistive technology
+- local time updates do not use a live region
+- copy-to-clipboard feedback uses a polite live region while the button retains a stable accessible name
+- the GitHub contribution visualization exposes a concise textual summary rather than hundreds of interactive graph cells
+
+Responsive accessibility is treated as part of layout architecture.
+
+The interface has been reviewed at 200% and 400% browser zoom, including narrow effective viewports.
+
+Components must reflow without requiring page-level horizontal scrolling except where two-dimensional content genuinely requires its own local scrolling.
+
+The command palette constrains its result area against the dynamic viewport height so it remains usable in short or highly zoomed viewports.
+
+Touch targets are reviewed against WCAG 2.2 target-size and spacing requirements rather than applying a blanket minimum size to every control.
+
+Color contrast is driven primarily by semantic theme tokens and is verified in both light and dark themes.
+
+Reduced-motion behavior remains part of the interaction architecture described in the Motion section below.
 
 ## Responsive Design
 

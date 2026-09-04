@@ -145,20 +145,31 @@ Refine the portfolio's motion language with focused interaction feedback while a
 
 ## Phase 7 - Accessibility
 
-Perform the dedicated final accessibility audit.
+Status: **Completed**
 
-The homepage already establishes a baseline for semantic structure, keyboard navigation, focus visibility, accessible names, touch targets, and reduced motion.
+Perform a dedicated accessibility review covering semantic structure,
+keyboard navigation, focus behavior, screen-reader support, contrast,
+touch targets, reduced motion, and reflow.
 
-This phase verifies the complete application, including future project routes, with:
-
-- semantic structure review
-- keyboard-only navigation
-- focus management
-- screen-reader behavior
-- color contrast
-- touch-target review
-- reduced-motion behavior
-- automated accessibility tooling where useful
+- [x] Review document landmarks and heading hierarchy
+- [x] Add skip navigation
+- [x] Review accessible names and native element semantics
+- [x] Expose theme-toggle state
+- [x] Review keyboard navigation and focus order
+- [x] Restore focus correctly after command-palette dismissal
+- [x] Improve scroll-to-top focus behavior
+- [x] Remove redundant contribution-graph navigation
+- [x] Review dynamic content with NVDA
+- [x] Keep copy-email feedback in a polite live region
+- [x] Focus destination headings after command navigation
+- [x] Review light and dark theme contrast
+- [x] Review touch-target sizing and spacing
+- [x] Verify 200% and 400% zoom/reflow
+- [x] Constrain command-palette height for short viewports
+- [x] Verify reduced-motion behavior
+- [x] Run Lighthouse accessibility audits on homepage and project routes
+- [x] Resolve identical-link-purpose warning
+- [x] Run final lint and production build
 
 ## Phase 8 - SEO & Social Sharing
 

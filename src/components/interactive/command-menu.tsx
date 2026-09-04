@@ -277,7 +277,7 @@ export function CommandMenuProvider({ children }: CommandMenuProviderProps) {
           <CommandInput placeholder="Type a command or search…" />
 
           <div className="rounded-2xl bg-background ring-1 ring-border">
-            <CommandList className="min-h-80 scroll-fade">
+            <CommandList className="h-80 max-h-[calc(100dvh-10rem)] scroll-fade">
               <CommandEmpty>No results found.</CommandEmpty>
 
               <CommandGroup heading="Portfolio">

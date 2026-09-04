@@ -1,7 +1,12 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 
-import { profile } from "@/content/profile";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
+import {
+  AnnotationArrow,
+  AnnotationNote,
+} from "@/components/ui/annotation-note";
+
+import { profile } from "@/content/profile";
 
 const iconClassName =
   "grid size-7 shrink-0 place-items-center rounded-md border border-border bg-surface text-muted-foreground";
@@ -11,7 +16,10 @@ const linkClassName =
 
 export function SocialLinks() {
   return (
-    <nav aria-label="Social links" className="screen-line-top grid grid-cols-3">
+    <nav
+      aria-label="Social links"
+      className="screen-line-top relative grid grid-cols-3"
+    >
       <a
         href={profile.contact.github}
         target="_blank"
@@ -73,6 +81,15 @@ export function SocialLinks() {
           aria-hidden="true"
         />
       </a>
+
+      <AnnotationNote
+        aria-hidden="true"
+        className="-top-4 right-full mr-4 hidden w-20 flex-col items-end pointer-fine:lg:flex"
+      >
+        <span className="-rotate-6">follow me</span>
+
+        <AnnotationArrow className="size-7 translate-x-2 -rotate-6" />
+      </AnnotationNote>
     </nav>
   );
 }

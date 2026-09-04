@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Kalam } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { MotionProvider } from "@/components/providers/motion-provider";
@@ -18,6 +18,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const handwritten = Kalam({
+  variable: "--font-kalam",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Alessandro Argenziano - Software Developer",
@@ -31,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${handwritten.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <ThemeProvider

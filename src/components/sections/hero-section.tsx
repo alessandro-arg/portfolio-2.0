@@ -3,6 +3,10 @@ import { BadgeCheck } from "lucide-react";
 
 import { SpotlightLogo } from "@/components/interactive/spotlight-logo";
 import { RotatingSentence } from "@/components/interactive/rotating-sentence";
+import {
+  AnnotationArrow,
+  AnnotationNote,
+} from "@/components/ui/annotation-note";
 
 import { profile } from "@/content/profile";
 
@@ -16,6 +20,19 @@ export function HeroSection() {
         <div className="aspect-[556/354] w-full sm:-translate-x-20">
           <SpotlightLogo />
         </div>
+
+        <AnnotationNote
+          aria-hidden="true"
+          className="bottom-20 left-full hidden w-36 flex-col items-start pointer-fine:xl:flex"
+        >
+          <AnnotationArrow className="rotate-180" />
+
+          <span className="ml-1 -rotate-6">
+            follows your cursor
+            <span className="block" />
+            click for a sound
+          </span>
+        </AnnotationNote>
 
         <figcaption className="absolute right-4 bottom-3 font-mono text-[0.7rem] tracking-[0.05em] text-muted-foreground">
           Fig. 01

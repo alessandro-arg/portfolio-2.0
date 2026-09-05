@@ -23,17 +23,19 @@ The portfolio is being rebuilt incrementally from an earlier implementation.
 
 Completed through:
 
-**Phase 6 - Interaction & Motion**
+**Phase 7 - Accessibility**
 
 The application now includes the complete responsive homepage, statically generated engineering overviews for selected projects, shared navigation and command interfaces, light and dark themes, GitHub contribution data, focused interaction motion, reduced-motion fallbacks, and signature hero interactions.
 
-Motion is intentionally used for feedback and interaction rather than as a decorative layer. Generic section entrance animations and route transitions were evaluated and deliberately omitted.
+A dedicated accessibility pass has now been completed across the homepage and project routes, covering semantic structure, keyboard navigation, focus management, screen-reader behavior, color contrast, touch targets, reduced motion, and high-zoom reflow.
+
+The interface includes skip navigation, explicit focus restoration, programmatically focusable navigation destinations, accessible interactive states, reduced-motion alternatives, and responsive command-palette constraints for narrow or highly zoomed viewports.
 
 Next:
 
-**Phase 7 - Accessibility**
+**Phase 8 - SEO & Social Sharing**
 
-The next phase performs the dedicated application-wide accessibility audit across the homepage and project overview routes.
+The next phase adds production metadata, canonical URLs, Open Graph support, social preview images, sitemap and robots configuration, structured data, and project-specific metadata.
 
 The previous production portfolio remains preserved while the replacement application continues to be developed and reviewed before it is merged to `main`.
 

@@ -102,6 +102,7 @@ export function CertificationsSection() {
 
         <h2
           id="certifications-heading"
+          tabIndex={-1}
           className="text-3xl font-medium tracking-tight"
         >
           Certifications

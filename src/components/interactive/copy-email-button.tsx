@@ -32,7 +32,7 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
       <button
         type="button"
         onClick={copyEmail}
-        aria-label={copied ? "Email copied" : "Copy email address"}
+        aria-label="Copy email address"
         className="grid size-8 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
         {copied ? (

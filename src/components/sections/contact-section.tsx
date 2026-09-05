@@ -13,6 +13,7 @@ export function ContactSection() {
 
         <h2
           id="contact-heading"
+          tabIndex={-1}
           className="text-3xl font-medium tracking-tight"
         >
           Let&apos;s work together

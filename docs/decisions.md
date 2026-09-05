@@ -355,3 +355,36 @@ Using the optional slug as the routing signal avoids maintaining a second boolea
 This establishes one clear invariant: if a project has a slug, its internal project overview must resolve.
 
 The overview content remains separate from shared project metadata so information such as title, year, technologies, repository URLs, live URLs, and imagery does not need to be duplicated.
+
+---
+
+## ADR-025 - Keep the command palette non-modal
+
+**Decision**
+
+Use the global command palette as a non-modal Radix dialog.
+
+Keep the underlying portfolio visible and scrollable while the palette is open instead of using Radix's default modal behavior.
+
+**Reasoning**
+
+The command palette is intended as a lightweight command surface rather than a blocking application dialog.
+
+Modal behavior would make the underlying document inert, lock page scrolling, and introduce scrollbar compensation while the palette is open.
+
+That behavior conflicts with the intended interaction, where users can continue to visually inspect and scroll the portfolio behind the palette without causing layout shifts.
+
+Using `modal={false}` preserves that interaction model while the command interface still provides:
+
+- immediate focus on the command search input
+- arrow-key navigation through commands
+- active-command announcements through `cmdk` combobox semantics
+- Escape and keyboard-shortcut dismissal
+- restoration of the previously focused element after dismissal
+- suppression of stale focus restoration during navigation
+- programmatic focus of destination section headings after homepage navigation
+- viewport-constrained result scrolling at high zoom or short viewport heights
+
+The visual backdrop remains a presentation treatment and does not imply modal semantics.
+
+If the interaction model changes in the future so that the underlying document should become unavailable while the palette is open, the dialog behavior should be reconsidered rather than overriding modal scroll-lock behavior with custom CSS.

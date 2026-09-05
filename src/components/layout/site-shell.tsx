@@ -15,6 +15,14 @@ export function SiteShell({ children }: SiteShellProps) {
   return (
     <CommandMenuProvider>
       <div className="min-h-screen overflow-x-clip bg-background">
+        <a
+          id="skip-to-main-content"
+          href="#main-content"
+          className="fixed top-2 left-2 z-[60] -translate-y-16 rounded-md border border-border bg-surface-elevated px-3 py-2 text-sm font-medium focus-visible:translate-y-0"
+        >
+          Skip to main content
+        </a>
+
         <SiteHeader />
 
         <div
@@ -27,15 +35,16 @@ export function SiteShell({ children }: SiteShellProps) {
         </div>
 
         <SiteBottomNav />
-        <ScrollToTopButton />
 
-        <main>
+        <main id="main-content">
           <PageFrame className="min-h-[calc(100vh-3.5rem)]">
             {children}
           </PageFrame>
         </main>
 
         <SiteFooter />
+
+        <ScrollToTopButton />
       </div>
     </CommandMenuProvider>
   );

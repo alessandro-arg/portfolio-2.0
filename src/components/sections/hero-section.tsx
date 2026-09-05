@@ -23,7 +23,7 @@ export function HeroSection() {
 
         <AnnotationNote
           aria-hidden="true"
-          className="bottom-20 left-full hidden w-36 flex-col items-start pointer-fine:xl:flex"
+          className="bottom-20 left-full hidden w-36 flex-col items-start pointer-fine:xl:flex motion-reduce:xl:hidden!"
         >
           <AnnotationArrow className="rotate-180" />
 

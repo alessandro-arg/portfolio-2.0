@@ -9,7 +9,11 @@ export function AboutSection() {
           /Profile
         </p>
 
-        <h2 id="about-heading" className="text-3xl font-medium tracking-tight">
+        <h2
+          id="about-heading"
+          tabIndex={-1}
+          className="text-3xl font-medium tracking-tight"
+        >
           A little about me
         </h2>
       </header>

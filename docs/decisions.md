@@ -388,3 +388,44 @@ Using `modal={false}` preserves that interaction model while the command interfa
 The visual backdrop remains a presentation treatment and does not imply modal semantics.
 
 If the interaction model changes in the future so that the underlying document should become unavailable while the palette is open, the dialog behavior should be reconsidered rather than overriding modal scroll-lock behavior with custom CSS.
+
+---
+
+## ADR-026 - Keep SEO framework-native and URL migration conservative
+
+**Decision**
+
+Use Next.js metadata APIs and file conventions for SEO, search discovery, and
+social-sharing behavior instead of introducing a separate SEO dependency.
+
+Use `https://www.alessandro-argenziano.com` as the single canonical production
+origin and derive that origin from the shared profile content.
+
+Preserve legacy URLs only when they have a genuine equivalent in the replacement
+portfolio. Use permanent redirects for those routes and allow removed content
+without an honest replacement to return `404 Not Found`.
+
+**Reasoning**
+
+The portfolio has an existing production domain and search history that should
+be preserved during the V2 replacement.
+
+Maintaining one canonical origin avoids conflicting URL signals across metadata,
+sitemaps, structured data, and social previews.
+
+Next.js already provides the required primitives for metadata, generated social
+images, sitemap generation, robots configuration, and route-level metadata.
+Adding a separate SEO abstraction would introduce another dependency and another
+configuration layer without solving a missing requirement.
+
+Redirecting every historical URL to the homepage or project section would hide
+removed content and create misleading relationships between old and new pages.
+
+A conservative migration therefore follows two rules:
+
+- redirect when a meaningful replacement exists
+- return not found when it does not
+
+Structured data follows the same principle: expose only useful, truthful
+information already represented by the portfolio rather than adding schema
+markup solely for additional SEO signals.

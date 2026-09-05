@@ -173,16 +173,31 @@ touch targets, reduced motion, and reflow.
 
 ## Phase 8 - SEO & Social Sharing
 
-Implement production SEO and sharing metadata.
+Status: **Completed**
 
-- production titles and descriptions
-- canonical URLs
-- Open Graph metadata
-- social preview images
-- sitemap
-- robots configuration
-- appropriate structured data
-- project-specific metadata for case-study routes
+Implement production SEO and sharing metadata while preserving the existing
+production domain history and keeping metadata derived from canonical portfolio
+content where practical.
+
+- [x] Preserve `https://www.alessandro-argenziano.com` as the canonical production origin
+- [x] Add global metadata title template and production description
+- [x] Add canonical homepage metadata
+- [x] Add project-specific titles, descriptions, canonical URLs, Open Graph metadata, and Twitter metadata
+- [x] Add `sitemap.ts` for the real indexable V2 routes
+- [x] Add `robots.ts` referencing the canonical sitemap
+- [x] Inventory legacy V1 routes before defining redirects
+- [x] Add permanent redirects only where a genuine V2 replacement exists
+- [x] Allow intentionally removed legacy content to resolve as not found
+- [x] Add generated Open Graph preview images for the homepage and project routes
+- [x] Add matching Twitter large-image previews
+- [x] Add homepage `Person` and `WebSite` JSON-LD structured data
+- [x] Keep project structured data intentionally omitted where it adds little value
+- [x] Validate rendered titles, descriptions, canonical URLs, Open Graph metadata, and Twitter metadata
+- [x] Validate sitemap and robots output
+- [x] Validate legacy 308 redirects and intentional 404 responses
+- [x] Run Lighthouse SEO audits on homepage and both project routes
+- [x] Achieve Lighthouse SEO score of 100 on all indexable routes
+- [x] Run final lint and production build
 
 ## Phase 9 - Performance & Quality
 

@@ -22,7 +22,7 @@ export const profile = {
       "I'm currently looking for a 9-month software development internship as part of my IHK retraining. If your team has an opportunity where I can contribute, learn, and grow, I'd love to hear from you.",
     email: "contact@alessandro-argenziano.com",
     phone: "+49 (0)160 92965227",
-    website: "https://alessandro-argenziano.com",
+    website: "https://www.alessandro-argenziano.com",
     github: "https://github.com/alessandro-arg",
     githubUsername: "alessandro-arg",
     linkedin: "https://www.linkedin.com/in/alessandro-argenziano/",

@@ -278,11 +278,11 @@ export function ProjectOverview({ project, overview }: ProjectOverviewProps) {
           ))}
         </div>
 
-        <ul className="p-4 pt-0 grid gap-3">
+        <ul className="grid screen-line-top pb-4">
           {overview.lessons.map((lesson) => (
             <li
               key={lesson}
-              className="rounded-lg border border-border border-l-4 px-4 py-3 text-sm text-foreground/80"
+              className="screen-line-bottom px-4 py-4 text-sm text-foreground/80"
             >
               {lesson}
             </li>

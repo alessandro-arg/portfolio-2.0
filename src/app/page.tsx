@@ -11,9 +11,50 @@ import { CertificationsSection } from "@/components/sections/certifications-sect
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
+import { profile } from "@/content/profile";
+
 export default function HomePage() {
+  const personId = `${profile.contact.website}/#person`;
+  const websiteId = `${profile.contact.website}/#website`;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": personId,
+        name: profile.name,
+        url: profile.contact.website,
+        jobTitle: profile.role,
+        description: profile.about[0],
+        homeLocation: {
+          "@type": "Country",
+          name: profile.location,
+        },
+        sameAs: [profile.contact.github, profile.contact.linkedin],
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: profile.contact.website,
+        name: `${profile.name} Portfolio`,
+        inLanguage: "en-US",
+        author: {
+          "@id": personId,
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <HeroSection />
       <StripeDivider />
       <OverviewSection />

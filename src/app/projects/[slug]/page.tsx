@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ProjectOverview } from "@/components/project-overview";
@@ -27,9 +27,10 @@ function getProjectOverview(slug: string) {
   return projectOverviews.find((overview) => overview.projectSlug === slug);
 }
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: ProjectPageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { slug } = await params;
 
   const project = getProject(slug);
@@ -39,9 +40,29 @@ export async function generateMetadata({
     return {};
   }
 
+  const projectPath = `/projects/${slug}`;
+  const parentMetadata = await parent;
+
   return {
     title: project.title,
     description: project.summary,
+
+    alternates: {
+      canonical: projectPath,
+    },
+
+    openGraph: {
+      ...(parentMetadata.openGraph ?? {}),
+      title: project.title,
+      description: project.summary,
+      url: projectPath,
+    },
+
+    twitter: {
+      ...(parentMetadata.twitter ?? {}),
+      title: project.title,
+      description: project.summary,
+    },
   };
 }
 

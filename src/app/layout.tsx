@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Alessandro Argenziano - Software Developer",
     description: siteDescription,
   },

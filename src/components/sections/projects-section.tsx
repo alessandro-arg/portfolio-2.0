@@ -79,23 +79,19 @@ function ProjectMockup({ project }: ProjectMockupProps) {
         <Image
           src={project.mockup.light}
           alt={`${project.title} project preview`}
-          width={1800}
-          height={1200}
+          width={1600}
+          height={1018}
           className={`${imageClassName} dark:hidden`}
           sizes="(max-width: 768px) calc(100vw - 3rem), 36rem"
-          loading="eager"
-          unoptimized
         />
 
         <Image
           src={project.mockup.dark}
           alt={`${project.title} project preview`}
-          width={1800}
-          height={1200}
+          width={1600}
+          height={1018}
           className={`${imageClassName} hidden dark:block`}
           sizes="(max-width: 768px) calc(100vw - 3rem), 36rem"
-          loading="eager"
-          unoptimized
         />
       </div>
     </div>

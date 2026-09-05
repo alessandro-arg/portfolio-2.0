@@ -64,8 +64,8 @@ export const projects = [
     ],
     logo: "/projects/portfolio-logo.svg",
     mockup: {
-      light: "/projects/portfolio/mockup.webp",
-      dark: "/projects/portfolio/mockup.webp",
+      light: "/projects/portfolio/mockup-light.webp",
+      dark: "/projects/portfolio/mockup-dark.webp",
     },
     repositoryUrl: "https://github.com/alessandro-arg/portfolio",
     featured: true,

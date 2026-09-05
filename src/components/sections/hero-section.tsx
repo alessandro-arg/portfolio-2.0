@@ -49,6 +49,7 @@ export function HeroSection() {
                 fill
                 sizes="(min-width: 640px) 144px, (min-width: 384px) 112px, 104px"
                 className="object-cover dark:hidden"
+                fetchPriority="high"
               />
 
               <Image
@@ -57,6 +58,7 @@ export function HeroSection() {
                 fill
                 sizes="(min-width: 640px) 144px, (min-width: 384px) 112px, 104px"
                 className="hidden object-cover dark:block"
+                fetchPriority="high"
               />
             </div>
           </div>

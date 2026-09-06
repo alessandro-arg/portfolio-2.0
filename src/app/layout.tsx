@@ -25,6 +25,7 @@ const handwritten = Kalam({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
+  preload: false,
 });
 
 const siteDescription =

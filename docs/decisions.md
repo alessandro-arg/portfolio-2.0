@@ -170,6 +170,14 @@ The application is built with Next.js and Vercel provides direct framework integ
 
 `main` continues to serve the existing production portfolio. New portfolio development is integrated into `refactor/portfolio-v2`. Feature pull requests target the refactor branch. The refactor is merged to `main` only after the replacement portfolio passes final design, responsive, accessibility, performance, and production-readiness reviews.
 
+**Outcome**
+
+The release gate was completed in September 2026.
+
+Portfolio V2 passed the production-readiness review, was merged into `main`, and became the production application. The temporary `refactor/portfolio-v2` integration branch was removed after production validation.
+
+`main` is now the canonical production branch.
+
 ---
 
 ## ADR-014 - Use Geist as the primary typography system
@@ -429,3 +437,34 @@ A conservative migration therefore follows two rules:
 Structured data follows the same principle: expose only useful, truthful
 information already represented by the portfolio rather than adding schema
 markup solely for additional SEO signals.
+
+---
+
+## ADR-027 - Treat production validation as part of the release process
+
+**Decision**
+
+Treat deployment as the beginning of production validation rather than the end of the release process.
+
+A release is considered complete only after the public production application has been verified across deployment behavior, accessibility, performance, SEO, search discovery, and legacy URL handling.
+
+**Reasoning**
+
+Preview validation can confirm most application behavior, but it cannot fully represent the public production environment.
+
+Production introduces concerns that depend on the real canonical domain and public crawler access, including redirects, canonical metadata, robots directives, sitemap discovery, Search Console inspection, and public Lighthouse results.
+
+The Portfolio V2 release therefore used a staged validation process:
+
+1. validate the Vercel Preview deployment
+2. complete responsive and accessibility regression checks
+3. review repository history for exposed secrets before making the repository public
+4. merge the production-ready application into `main`
+5. verify the Vercel production deployment and canonical domain
+6. run production smoke tests and verify legacy redirects and intentional `404` responses
+7. verify canonical metadata, social images, `robots.txt`, and `sitemap.xml`
+8. validate the production URLs through Google Search Console
+9. run final Lighthouse audits against the public production origin
+10. remove obsolete deployment configuration only after the replacement application is confirmed healthy
+
+This keeps release validation evidence-based and avoids treating a successful deployment alone as proof that the application is production-ready.

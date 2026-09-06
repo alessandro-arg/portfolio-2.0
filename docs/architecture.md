@@ -580,8 +580,14 @@ Failure to retrieve contribution data must not prevent the rest of the homepage 
 
 GitHub is the source-control platform.
 
-Vercel is the production hosting target.
+Vercel is the production hosting platform.
 
-Final production-domain configuration, deployment validation, and the replacement of the current production portfolio remain part of the production phase.
+`main` is the canonical production branch. Changes merged into `main` are deployed to the public portfolio after the repository's production checks have passed.
 
-Until that review is complete, unfinished V2 work is kept away from `main`.
+The canonical production origin is:
+
+[https://www.alessandro-argenziano.com](https://www.alessandro-argenziano.com)
+
+The apex domain redirects to the canonical `www` origin.
+
+Vercel Preview deployments are used to validate branch changes before they reach production. Production-specific behavior such as canonical-domain redirects, public crawler access, Search Console inspection, and final Lighthouse validation is verified against the real production deployment.

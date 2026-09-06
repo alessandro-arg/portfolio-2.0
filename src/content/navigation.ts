@@ -1,11 +1,11 @@
 export const homepageNavigation = [
   {
-    id: "projects",
-    label: "Projects",
-  },
-  {
     id: "about",
     label: "About",
+  },
+  {
+    id: "projects",
+    label: "Projects",
   },
   {
     id: "stack",

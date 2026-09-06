@@ -1,100 +1,77 @@
-<h1>
-  Portfolio
-</h1>
+# Portfolio
 
-A modern, performance-focused **developer portfolio** with polished UI, smooth motion, and full internationalization support.
-https://alessandro-argenziano.com
+Personal developer portfolio built as a production-focused Next.js application.
 
-##
+The project is being rebuilt from an earlier portfolio implementation with a stronger focus on maintainability, performance, accessibility, SEO, clean architecture, and polished UI/UX.
 
-### ✨ Key Features
+## Tech Stack
 
-| Feature                    | Description                                                         |
-| -------------------------- | ------------------------------------------------------------------- |
-| **⚡ Next.js + Turbopack** | Fast dev/build workflow and modern App Router architecture.         |
-| **🎨 Modern UI System**    | Tailwind CSS v4 + shadcn/ui + Radix UI primitives.                  |
-| **🧠 Motion & Effects**    | Framer Motion, GSAP, particles, carousels and micro-interactions.   |
-| **🌍 Dev Journal**         | Blog posts with .mdx files.                                         |
-| **🌗 Theme Switching**     | Dark/light mode with `next-themes`.                                 |
-| **📈 SEO + Analytics**     | SEO metadata with `next-seo` + usage insights via Vercel Analytics. |
-| **✉️ Email Delivery**      | Contact flow using Resend + React Email.                            |
-| **📦 Data Fetching**       | Client data fetching with SWR where needed.                         |
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- shadcn/ui
+- Radix UI
+- Motion
+- next-themes
+- Lucide
+- npm
 
-##
+## Project Status
 
-### 🛠 Tech Stack (Complete & Accurate)
+The portfolio is being rebuilt incrementally from an earlier implementation.
 
-#### Core
+Completed through:
 
-- **Next.js** `^15.5.7`
-- **React** `^19.2.1`
-- **TypeScript** `^5`
+**Phase 9 - Performance & Quality**
 
-#### UI / Styling
+The replacement application now includes the complete responsive homepage, statically generated engineering overviews for selected projects, accessible navigation and command interfaces, light and dark themes, focused interaction motion, production SEO and social-sharing metadata, and optimized project assets.
 
-- **Tailwind CSS** `^4.1.13`
-- **shadcn/ui** (`shadcn` `^3.5.0`)
-- **Radix UI** (Accordion, Navigation Menu, Separator, Slot, Switch, Tooltip, Icons)
-- **class-variance-authority** + **clsx** + **tailwind-merge**
-- **tw-animate-css**
+Dedicated accessibility, SEO, and performance reviews have been completed across the homepage and project routes. Performance work included image optimization, client JavaScript and rendering-boundary analysis, font loading improvements, dependency review, animation-cost review, layout-stability checks, and contribution-data caching improvements.
 
-#### Animation / Visuals
+Next:
 
-- **Framer Motion** `^12.23.21` (+ `motion` `^12.23.24`)
-- **GSAP** `^3.13.0`
-- **tsParticles** (`@tsparticles/react`, `@tsparticles/engine`, `@tsparticles/slim`)
-- **Embla Carousel** (`embla-carousel-react`)
-- **Cobe** (3D globe)
+**Phase 10 - Production & Deployment**
 
-#### Content / Docs / Code Rendering
+The final phase will deploy and validate the replacement portfolio in production, configure the canonical domain, verify real deployment behavior and sharing previews, perform final responsive, accessibility, and performance checks, and merge the replacement portfolio to `main` only after the production-readiness review.
 
-- **fumadocs** (`fumadocs-core`, `fumadocs-ui`)
-- **Shiki** (syntax highlighting)
+The previous production portfolio remains preserved while the replacement application continues to be developed and reviewed before it is merged to `main`.
 
-#### Internationalization
+See [docs/roadmap.md](docs/roadmap.md) for the full project roadmap.
 
-- **next-intl** `^4.3.9`
+## Development
 
-#### SEO / Analytics
+Install dependencies:
 
-- **next-seo** `^6.8.0`
-- **@vercel/analytics** `^1.5.0`
+    npm install
 
-#### Email
+Start the development server:
 
-- **Resend** `^6.2.2`
-- **React Email** (`@react-email/components`, `@react-email/render`)
+    npm run dev
 
-#### Utilities / UI Enhancements
+Run linting:
 
-- **lucide-react**
-- **sonner** (toasts)
-- **react-countup**
-- **react-type-animation**
-- **react-activity-calendar**
-- **simple-icons**
+    npm run lint
 
-#### Data Fetching
+Create a production build:
 
-- **SWR** `^2.3.6`
+    npm run build
 
-#### Tooling
+## Architecture
 
-- **ESLint** `^9` + `eslint-config-next`
-- **SVGR** (`@svgr/webpack`)
-- **PostCSS** + `@tailwindcss/postcss`
+The application uses the Next.js App Router with Server Components by default.
 
-##
+Static portfolio content is separated from presentation through typed content modules. Client Components are introduced only where browser APIs, local state, event handling, theme behavior, or interactive UI require them.
 
-### 📂 Project Structure
+The homepage is composed from dedicated section components inside a shared application shell.
 
-```text
-/
-├─ app/                 # Next.js App Router pages, layouts, routes
-├─ components/          # Reusable UI components (incl. shadcn/ui)
-├─ lib/                 # Utilities, helpers, configs (i18n, seo, etc.)
-├─ public/              # Static assets (images, icons)
-├─ styles/              # Global styles (if applicable)
-├─ types/               # Shared TypeScript types
-└─ README.md
-```
+Architecture documentation is maintained in:
+
+- [docs/architecture.md](docs/architecture.md)
+- [docs/decisions.md](docs/decisions.md)
+
+## Deployment
+
+The production portfolio will be deployed on Vercel and version-controlled with GitHub.
+
+Deployment configuration will be completed once the application reaches the production phase.

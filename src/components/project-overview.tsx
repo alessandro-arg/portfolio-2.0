@@ -41,18 +41,20 @@ function ProjectCover({ project }: { project: Project }) {
         <Image
           src={project.mockup.light}
           alt={`${project.title} project preview`}
-          width={1800}
-          height={1200}
+          width={1600}
+          height={1018}
           sizes="(max-width: 768px) calc(100vw - 1rem), 48rem"
+          fetchPriority="high"
           className="h-auto w-full object-contain dark:hidden"
         />
 
         <Image
           src={project.mockup.dark}
           alt={`${project.title} project preview`}
-          width={1800}
-          height={1200}
+          width={1600}
+          height={1018}
           sizes="(max-width: 768px) calc(100vw - 1rem), 48rem"
+          fetchPriority="high"
           className="hidden h-auto w-full object-contain dark:block"
         />
       </div>

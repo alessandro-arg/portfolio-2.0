@@ -201,33 +201,27 @@ content where practical.
 
 ## Phase 9 - Performance & Quality
 
+Status: **Completed**
+
 Measure and optimize the completed application rather than applying speculative optimizations during feature development.
 
-Review:
-
-- Core Web Vitals
-- client JavaScript
-- rendering boundaries
-- dependency usage
-- image delivery
-- fonts
-- layout stability
-- animation cost
-- caching and data loading
-
-### Final project asset pass
-
-After the final Portfolio screenshots are available:
-
-- create final Homelab, Coordina, and Portfolio mockups together
-- export them as genuine static WebP and/or AVIF assets
-- verify that WebP files do not contain unintended animation data
-- optimize source file sizes
-- remove temporary `unoptimized` / eager-loading workarounds where appropriate
-- verify responsive `next/image` sizing
-- measure LCP and image loading behavior
-
-Run Lighthouse and production quality checks after the final assets are in place.
+- [x] Establish clean production Lighthouse baselines
+- [x] Review Core Web Vitals across homepage and project routes
+- [x] Audit client JavaScript and route-specific bundles
+- [x] Review Server and Client Component boundaries
+- [x] Audit dependency usage and duplicate package versions
+- [x] Replace final project mockups with optimized static WebP assets
+- [x] Verify project assets contain no unintended animation data
+- [x] Review responsive image sizing and LCP fetch priority
+- [x] Remove temporary image-loading workarounds
+- [x] Audit application fonts and defer the decorative Kalam preload
+- [x] Verify layout stability across indexable routes
+- [x] Review non-composited animations
+- [x] Narrow broad interactive transitions
+- [x] Review contribution-data caching and failure behavior
+- [x] Replace `unstable_cache` wrapping with Next.js fetch revalidation
+- [x] Run final mobile Lighthouse regression checks
+- [x] Run final lint and production build
 
 ## Phase 10 - Production & Deployment
 

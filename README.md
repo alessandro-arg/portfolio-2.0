@@ -23,19 +23,17 @@ The portfolio is being rebuilt incrementally from an earlier implementation.
 
 Completed through:
 
-**Phase 7 - Accessibility**
+**Phase 9 - Performance & Quality**
 
-The application now includes the complete responsive homepage, statically generated engineering overviews for selected projects, shared navigation and command interfaces, light and dark themes, GitHub contribution data, focused interaction motion, reduced-motion fallbacks, and signature hero interactions.
+The replacement application now includes the complete responsive homepage, statically generated engineering overviews for selected projects, accessible navigation and command interfaces, light and dark themes, focused interaction motion, production SEO and social-sharing metadata, and optimized project assets.
 
-A dedicated accessibility pass has now been completed across the homepage and project routes, covering semantic structure, keyboard navigation, focus management, screen-reader behavior, color contrast, touch targets, reduced motion, and high-zoom reflow.
-
-The interface includes skip navigation, explicit focus restoration, programmatically focusable navigation destinations, accessible interactive states, reduced-motion alternatives, and responsive command-palette constraints for narrow or highly zoomed viewports.
+Dedicated accessibility, SEO, and performance reviews have been completed across the homepage and project routes. Performance work included image optimization, client JavaScript and rendering-boundary analysis, font loading improvements, dependency review, animation-cost review, layout-stability checks, and contribution-data caching improvements.
 
 Next:
 
-**Phase 8 - SEO & Social Sharing**
+**Phase 10 - Production & Deployment**
 
-The next phase adds production metadata, canonical URLs, Open Graph support, social preview images, sitemap and robots configuration, structured data, and project-specific metadata.
+The final phase will deploy and validate the replacement portfolio in production, configure the canonical domain, verify real deployment behavior and sharing previews, perform final responsive, accessibility, and performance checks, and merge the replacement portfolio to `main` only after the production-readiness review.
 
 The previous production portfolio remains preserved while the replacement application continues to be developed and reviewed before it is merged to `main`.
 

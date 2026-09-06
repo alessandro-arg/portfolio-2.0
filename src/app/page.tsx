@@ -61,9 +61,9 @@ export default function HomePage() {
       <SocialLinks />
       <GitHubContributionsSection />
       <StripeDivider />
-      <ProjectSection />
-      <StripeDivider />
       <AboutSection />
+      <StripeDivider />
+      <ProjectSection />
       <StripeDivider />
       <StackSection />
       <StripeDivider />

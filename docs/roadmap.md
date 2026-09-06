@@ -225,14 +225,36 @@ Measure and optimize the completed application rather than applying speculative 
 
 ## Phase 10 - Production & Deployment
 
-Prepare and release the completed portfolio.
+Status: **In Progress**
 
-- connect final Vercel production deployment
-- configure the production domain
-- validate preview and production environments
-- perform final responsive checks
-- perform final accessibility checks
-- perform final performance checks
-- validate production metadata and sharing previews
-- complete project documentation
-- merge the replacement portfolio to `main` only after production-readiness review
+Release and validate the completed portfolio in production.
+
+- [x] Review production-readiness configuration
+- [x] Align the production Node.js runtime with Node.js 24
+- [x] Validate the Vercel Preview deployment
+- [x] Complete final responsive regression checks
+- [x] Complete final accessibility regression checks
+- [x] Complete final production-readiness performance checks
+- [x] Verify production metadata, canonical URLs, sitemap, robots, and social preview images
+- [x] Preserve the previous portfolio locally and through Git history
+- [x] Review repository history for exposed secrets before making the repository public
+- [x] Make the GitHub repository public
+- [x] Merge Portfolio V2 into `main`
+- [x] Deploy the replacement portfolio to Vercel production
+- [x] Verify the canonical `www.alessandro-argenziano.com` production domain
+- [x] Verify the apex-domain redirect to the canonical `www` origin
+- [x] Complete production smoke testing
+- [x] Confirm production pages are indexable and contain no `noindex` response directive
+- [x] Verify the production sitemap contains the three canonical V2 routes
+- [x] Verify intentional legacy redirects and removed-route 404 behavior
+- [x] Validate the production property in Google Search Console
+- [x] Submit the updated sitemap to Google Search Console
+- [x] Run live URL inspection for the homepage and both project routes
+- [x] Request indexing for the updated homepage and new project routes
+- [x] Run final public mobile Lighthouse audits
+- [x] Achieve Lighthouse Accessibility, Best Practices, and SEO scores of 100 on all three indexable routes
+- [x] Achieve final Lighthouse Performance scores of 92 on the homepage and 98 on both project routes
+- [x] Remove obsolete Portfolio V1 environment variables from Vercel
+- [x] Clean obsolete local and remote development branches
+- [x] Refresh the public repository README
+- [ ] Complete production documentation
